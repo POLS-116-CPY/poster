@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<title>ETF 共同持股網路能預測報酬嗎</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--hero-bg:#1B2A4A;--hero-ink:#F4F2ED;--positive:#276B3E;--bg:#F4F2ED;--surface:#FFF;--ink:#1B2A4A;--ink-2:#4A5568;--ink-3:#596579;--accent:#2169BA;--neg:#C4463A;--border:#D8D4CC;--grid:#E2DFD8;--vbg:#FDF6F3;--pbg:#F0F7ED}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--hero-bg:#1B2A4A;--hero-ink:#F4F2ED;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#A8A6A0;--ink-3:#AAA8A3;--accent:#72B0FA;--neg:#e66767;--border:#333338;--grid:#2A2A2E;--vbg:#2A1F1D;--pbg:#1D2A1D}}
+:root[data-theme="dark"]{--hero-bg:#1B2A4A;--hero-ink:#F4F2ED;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#A8A6A0;--ink-3:#AAA8A3;--accent:#72B0FA;--neg:#e66767;--border:#333338;--grid:#2A2A2E;--vbg:#2A1F1D;--pbg:#1D2A1D}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.poster{max-width:1440px;margin:0 auto;padding:20px 20px env(safe-area-inset-bottom,0px);display:flex;flex-direction:column;gap:14px}
+.hero{background:var(--hero-bg);color:var(--hero-ink);padding:28px 40px 24px;border-radius:10px;display:flex;flex-direction:column;gap:6px}
+.hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(24px,3.5vw,42px);line-height:1.15;letter-spacing:.02em;text-wrap:balance}
+.hero .sub{font-size:clamp(12px,1.5vw,16px);font-weight:300;opacity:.92;max-width:80ch;line-height:1.65}
+.hero .verdict{margin-top:6px;font-size:clamp(13px,1.6vw,18px);font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.verdict .tag{background:#B23830;color:#fff;padding:2px 12px;border-radius:100px;font-size:.85em;font-weight:700;letter-spacing:.04em}
+.hero .auth{font-size:clamp(10px,1.2vw,13px);opacity:.85;margin-top:4px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:12px}
+.c{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+.c h2{font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;margin-bottom:8px;color:var(--ink);letter-spacing:.02em}
+.c h3{font-size:12.5px;font-weight:600;margin-bottom:6px;color:var(--ink)}
+.c p{font-size:12px;color:var(--ink-2);line-height:1.7;margin-bottom:6px}
+.c p:last-child{margin-bottom:0}
+.st{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;font-variant-numeric:tabular-nums;margin-top:8px}
+.st th{text-align:left;font-weight:600;padding:4px 6px;border-bottom:2px solid var(--border);color:var(--ink-3);font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.st td{padding:5px 6px;border-bottom:1px solid var(--grid);color:var(--ink-2);vertical-align:top}
+.st td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.st .fail{color:var(--neg);font-weight:600}
+.st .na{color:var(--ink-3);font-style:italic}
+.nt{width:100%;border-collapse:separate;border-spacing:0;font-size:10.5px;font-variant-numeric:tabular-nums;margin-top:8px}
+.nt th{text-align:right;font-weight:600;padding:3px 5px;border-bottom:2px solid var(--border);color:var(--ink-3);font-size:9.5px}
+.nt th:first-child{text-align:left}
+.nt td{padding:3px 5px;border-bottom:1px solid var(--grid);color:var(--ink-2);text-align:right}
+.nt td:first-child{text-align:left;font-weight:500;color:var(--ink)}
+.nt .red{color:var(--neg)}
+.hm{display:grid;grid-template-columns:auto repeat(4,1fr);gap:2px;font-size:11px;font-variant-numeric:tabular-nums;margin-top:8px}
+.hm .hd{font-weight:600;font-size:9.5px;color:var(--ink-3);text-align:center;padding:3px 2px}
+.hm .rl{font-size:10px;color:var(--ink-2);padding:6px 6px 6px 0;display:flex;align-items:center;white-space:nowrap}
+.hm .cl{text-align:center;padding:6px 3px;border-radius:3px;font-weight:500;font-size:11.5px;background:var(--grid);color:var(--ink-3)}
+.lg{display:flex;gap:14px;font-size:10px;color:var(--ink-2);margin-bottom:6px}
+.lg .sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:3px}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.bottom{grid-template-columns:1fr}}
+.insight{background:var(--vbg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;border-left:3px solid var(--neg)}
+.insight h2{font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--neg)}
+.insight p{font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:6px}
+.insight p:last-child{margin-bottom:0}
+.contrib{background:var(--pbg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;border-left:3px solid var(--positive)}
+.contrib h2{font-family:'Noto Serif TC',serif;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--positive)}
+.contrib p{font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:6px}
+.contrib p:last-child{margin-bottom:0}
+svg text{font-family:'Noto Sans TC',system-ui,sans-serif}
+.note{font-size:10px;color:var(--ink-3);margin-top:6px;line-height:1.5}
+.ref{font-size:9.5px;color:var(--ink-3);margin-top:8px;line-height:1.5;border-top:1px solid var(--grid);padding-top:8px}
+.fig-caption{font-size:10px;color:var(--ink-3);text-align:center;margin-top:4px;font-style:italic}
+/* Screen reading: use comfortable text sizes and balance the two columns. */
+.poster{padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
+.col{min-width:0}
+.c,.insight,.contrib{min-width:0}
+.c h2,.insight h2,.contrib h2{font-size:20px;line-height:1.35}
+.c h3,.insight h3,.contrib h3{font-size:17px!important;line-height:1.4}
+.c p,.insight p,.contrib p{font-size:15px!important;line-height:1.65}
+.st,.nt{font-size:13px}
+.st th,.nt th{font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink-2)}
+.st td,.nt td{padding:6px;line-height:1.5}
+.note,.fig-caption,.ref{font-size:12px;line-height:1.55}
+.fig-caption{font-style:normal;text-align:left}
+.lg{font-size:12px;flex-wrap:wrap}
+.hm{font-size:13px}
+.hm .hd,.hm .rl{font-size:12px}
+.hm .cl{font-size:13px;color:var(--ink-2)}
+.st.features th:nth-child(2),.st.features td:nth-child(2){text-align:right}
+.st.verdicts th:nth-child(1){width:7%}
+.st.verdicts th:nth-child(2){width:22%}
+.st.verdicts th:nth-child(3){width:16%}
+.st.verdicts td:first-child,.st.amendments td:first-child{white-space:normal}
+.st.verdicts td:nth-child(3){font-weight:600}
+.mde caption{text-align:left;color:var(--ink-2);font-size:12px;line-height:1.5;margin-bottom:4px}
+.mde tbody th{text-align:left;font-size:inherit;color:var(--ink);border-bottom:1px solid var(--grid);font-weight:500}
+.reading-guide h3{margin-top:12px}
+.verdict-guide{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.verdict-guide dt{font-weight:600;color:var(--ink)}
+.verdict-guide dd{margin:0}
+.reading-guide .reading-conclusion{border-top:1px solid var(--border);padding-top:10px;margin-top:10px;color:var(--ink)}
+/* Labels accompany colors; bars also differ by outline/dash treatment. */
+svg{display:block;overflow:visible;max-width:100%}
+svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
+.chart-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+.chart-scroll svg{min-width:540px}
+.chart-scroll:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sw{border:1px solid currentColor}
+.bottom{grid-template-columns:1.15fr 1fr}
+@media(min-width:901px){
+  .cols{display:block;column-count:2;column-gap:14px}
+  .col{display:contents}
+  .c{break-inside:avoid;margin-bottom:12px}
+}
+@media(max-width:900px){.bottom{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .poster{padding:12px;gap:12px}
+  .hero{padding:22px 18px}
+  .hero .sub{font-size:14px;max-width:none}
+  .hero .auth{font-size:12px}
+  .c,.insight,.contrib{padding:16px 12px}
+  .st,.nt{font-size:12px}
+  .st th,.nt th{font-size:11px}
+  .st td,.nt td,.st th,.nt th{padding:5px 3px}
+  .st td:first-child{white-space:normal}
+  .hm .rl{white-space:normal}
+}
+/* A1 is a distinct, fixed-size composition. Never shrink the web page to fit. */
+@page{size:841mm 594mm;margin:10mm}
+@media print{
+  :root,:root[data-theme],:root:not([data-theme="light"]){
+    color-scheme:light;--bg:#FFF;--surface:#FFF;--ink:#1B2A4A;
+    --ink-2:#39475C;--ink-3:#596579;--accent:#2169BA;--neg:#B23830;
+    --border:#B8BEC7;--grid:#D5DAE0;--vbg:#FDF6F3;--pbg:#F0F7ED;
+    --hero-bg:#1B2A4A;--hero-ink:#FFF;--positive:#276B3E;
+  }
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{width:821mm;margin:0;padding:0;background:#FFF}
+  .poster{width:821mm;max-width:none;margin:0;padding:0;display:block;
+    column-count:5;column-gap:5mm;column-fill:balance}
+  .hero{column-span:all;margin-bottom:5mm;padding:5mm 7mm;border-radius:0;gap:2mm}
+  .hero h1{font-size:36pt;line-height:1.15}
+  .hero .sub{font-size:14pt;max-width:none;line-height:1.45}
+  .hero .verdict{font-size:16pt;line-height:1.4;margin-top:1mm;gap:3mm}
+  .hero .auth{font-size:11pt;margin-top:1mm;opacity:1}
+  .cols,.col,.col:first-child,.col:last-child,.bottom{display:contents}
+  .c,.insight,.contrib{break-inside:avoid;page-break-inside:avoid;
+    padding:2mm;margin:0 0 3mm;border-radius:0;border-width:.3mm}
+  /* Long footer essays may continue in the next column; keep their headings with text. */
+  .insight,.contrib{break-inside:auto;page-break-inside:auto;box-decoration-break:clone}
+  h2,h3{break-after:avoid}
+  p,.note,.ref{orphans:3;widows:3}
+  svg,.chart-scroll,table,.hm{break-inside:avoid}
+  .c h2,.insight h2,.contrib h2{font-size:16pt;line-height:1.25;margin-bottom:2mm}
+  .c h3,.insight h3,.contrib h3{font-size:15pt!important;line-height:1.3;margin-bottom:2mm}
+  .c p,.insight p,.contrib p{font-size:12.5pt!important;line-height:1.4;margin-bottom:2mm}
+  .st,.nt{font-size:10pt;margin-top:2mm}
+  .st th,.nt th{font-size:9.5pt;padding:1mm;line-height:1.35}
+  .st td,.nt td{padding:1mm;line-height:1.4}
+  .note,.fig-caption,.ref{font-size:9.5pt;line-height:1.4;margin-top:2mm}
+  .lg{font-size:11pt;gap:3mm}
+  .lg .sw{width:3mm;height:3mm}
+  .hm .hd,.hm .rl{font-size:11pt}
+  .hm .cl{font-size:12pt;padding:1mm}
+  .mde caption{font-size:9.5pt;margin-bottom:1mm}
+  .reading-guide h3{margin-top:2mm}
+  .verdict-guide{font-size:10.5pt;line-height:1.4;gap:1mm 2mm;break-inside:avoid}
+  .reading-guide .reading-conclusion{padding-top:2mm;margin-top:2mm}
+  svg{max-height:none}
+  .chart-scroll{overflow:visible}
+  .chart-scroll svg{min-width:0;max-height:none}
+}
+</style>
+</head><body>
+
+<div class="poster">
+  <header class="hero">
+    <h1>ETF 共同持股網路能預測股票報酬嗎？</h1>
+    <div class="sub">指數股票型基金（ETF）透過持有一籃子股票追蹤指數。當多檔 ETF 同時持有相同股票，這些股票之間便形成一張「共同持股網路」。本研究檢驗此一網路所承載的資訊——在移除相對於全市場市值權重的機械性重疊之後——結合殘差化價格共動網路，能否改善臺灣上市半導體與金融保險股票報酬的樣本外預測。在已測試的規格下答案為否定，且在檢驗過程中發現廣泛使用的評估指標本身存在估計量—校準不匹配。</div>
+    <div class="verdict"><span class="tag">否證</span>在已測試的規格下（N ≈ 22–36、Ridge 與 XGBoost、2018–2025），六條方法論上互補的檢驗路徑一致指向：去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵，未能建立可偵測的增量選股預測力。</div>
+    <div class="auth">黃晨瑋、鐘珮甄、黃苡晴 — 國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題 — 2026</div>
+  </header>
+
+  <div class="cols">
+    <div class="col">
+
+      <div class="c">
+        <h2>一、研究背景與問題</h2>
+        <p>去偏 ETF 共同持股網路特徵在樣本外能否為個股報酬的橫斷面排序提供增量資訊，目前仍缺乏直接的實證檢驗。ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊——計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。此法可反映共同的超額配置或不足配置，但不等同於識別基金的刻意投資決策，亦不完全消除被動指數成分。Cohen & Frazzini (2008) 的有限注意力機制針對的是供應鏈上的經濟連結；本研究假定相似的注意力不足亦可能存在於共同持股的脈絡中，但此一延伸尚待直接的理論支撐——這正是本研究欲以樣本外資料檢驗的推論。</p>
+        <!-- ▸ 新增圖：網路去偏 before/after -->
+        <svg viewBox="0 0 460 110" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing illustration: before debiasing large-cap stocks are densely connected due to market-cap overlap; after debiasing edges reflect similarity in market-relative weights, which can capture common overweights or underweights">
+          <defs><marker id="na" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
+          <line x1="80" y1="55" x2="130" y2="45" stroke="var(--ink-3)" stroke-width="1.5"/>
+          <line x1="80" y1="55" x2="50" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="80" y1="55" x2="100" y2="95" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="80" y1="55" x2="150" y2="88" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="130" y1="45" x2="50" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="130" y1="45" x2="100" y2="95" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="130" y1="45" x2="150" y2="88" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="50" y1="90" x2="100" y2="95" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <line x1="280" y1="90" x2="340" y2="95" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="340" y1="95" x2="400" y2="88" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="310" y1="55" x2="280" y2="90" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <!-- Before -->
+          <text x="100" y="12" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)">去偏前</text>
+          <circle cx="80" cy="55" r="16" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="80" y="59" text-anchor="middle" font-size="9" fill="var(--ink-2)">大A</text>
+          <circle cx="130" cy="45" r="14" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="130" y="49" text-anchor="middle" font-size="9" fill="var(--ink-2)">大B</text>
+          <circle cx="50" cy="90" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="50" y="93" text-anchor="middle" font-size="9" fill="var(--ink-3)">C</text>
+          <circle cx="100" cy="95" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="100" y="98" text-anchor="middle" font-size="9" fill="var(--ink-3)">D</text>
+          <circle cx="150" cy="88" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="150" y="91" text-anchor="middle" font-size="9" fill="var(--ink-3)">E</text>
+          <!-- Arrow -->
+          <line x1="185" y1="60" x2="220" y2="60" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
+          <text x="202" y="52" text-anchor="middle" font-size="9" fill="var(--ink-3)">去偏</text>
+          <!-- After -->
+          <text x="350" y="12" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)">去偏後</text>
+          <circle cx="310" cy="55" r="12" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="310" y="59" text-anchor="middle" font-size="9" fill="var(--ink-3)">大A</text>
+          <circle cx="370" cy="45" r="11" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="370" y="49" text-anchor="middle" font-size="9" fill="var(--ink-3)">大B</text>
+          <circle cx="280" cy="90" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="280" y="93" text-anchor="middle" font-size="9" fill="var(--accent)">C</text>
+          <circle cx="340" cy="95" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="340" y="98" text-anchor="middle" font-size="9" fill="var(--accent)">D</text>
+          <circle cx="400" cy="88" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" font-size="9" fill="var(--accent)">E</text>
+        </svg>
+        <div class="fig-caption">去偏前，大型股因市值權重而與所有股票密集相連（機械性重疊）；去偏後，連結反映市場相對權重的相似度（藍色），可包含共同超額配置或共同不足配置。</div>
+        <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則均於分析之前登錄（事前分析計畫，旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡）。</p>
+      </div>
+
+      <div class="c">
+        <h2>資料概覽</h2>
+        <table class="st">
+          <thead><tr><th>資料來源</th><th>涵蓋</th><th>規模</th></tr></thead>
+          <tbody>
+            <tr><td>MOPS ETF 持股</td><td>2004Q1–2025Q4（88 季）</td><td>108,881 列、76 檔基金、1,059 檔個股</td></tr>
+            <tr><td>TEJ 個股日股價</td><td>2012-05-02 起</td><td>上市普通股面板，含已下市標的（無存活者偏誤）</td></tr>
+            <tr><td>TEJ 多因子模組</td><td>2000–2026</td><td>Fama–French 五因子（FF5）+ 動量因子（日頻），代號 Y9999（上市）</td></tr>
+            <tr><td>TWSE 三大法人</td><td>2012-05-02 起</td><td>3,348 個交易日（含 12 個補行交易日）</td></tr>
+            <tr><td>TWSE 產業分類</td><td>2012Q2–2025Q4</td><td>Internet Archive 快照重建，前視違規 0</td></tr>
+          </tbody>
+        </table>
+        <div class="note">半導體與金融保險兩產業面板。訓練期 2012Q4–2017Q4（約 5.2 年），樣本外評估期 2018Q1–2025Q4（1,943–1,948 個可用交易日，隨預測期距 H 而異）。半導體業訓練期平均 22.1 檔、評估期 36.4 檔；金融保險業穩定在 22–26 檔。前視違規 0（產業分類以 Internet Archive 快照重建；訓練期 16 季使用回填資料）。</div>
+      </div>
+
+      <div class="c">
+        <h2>二、研究設計</h2>
+        <!-- ▸ 新增圖：研究設計流程圖 -->
+        <svg viewBox="0 0 440 195" style="width:100%;height:auto;margin:0 0 8px" role="img" aria-label="Research design flowchart: data sources through two network tracks, features, models, six evaluation paths, to proposition verdicts">
+          <defs><marker id="fa" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0,0 7,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
+          <rect x="140" y="2" width="160" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="17" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">資料（MOPS·TEJ·TWSE）</text>
+          <line x1="180" y1="24" x2="110" y2="40" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <line x1="260" y1="24" x2="330" y2="40" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <rect x="20" y="40" width="180" height="22" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.5"/><text x="110" y="55" text-anchor="middle" font-size="9" fill="var(--accent)">軌道 A：ETF 去偏共同持股</text>
+          <rect x="240" y="40" width="180" height="22" rx="4" fill="none" stroke="var(--neg)" stroke-width="1.5"/><text x="330" y="55" text-anchor="middle" font-size="9" fill="var(--neg)">軌道 B：殘差化價格共動</text>
+          <line x1="110" y1="62" x2="190" y2="78" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <line x1="330" y1="62" x2="250" y2="78" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <rect x="130" y="78" width="180" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="93" text-anchor="middle" font-size="9" fill="var(--ink)">~45 個預測特徵</text>
+          <line x1="220" y1="100" x2="220" y2="114" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <rect x="100" y="114" width="240" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="129" text-anchor="middle" font-size="9" fill="var(--ink)">Ridge（裁定）· XGBoost · GAT</text>
+          <line x1="220" y1="136" x2="220" y2="150" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
+          <rect x="60" y="150" width="320" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="165" text-anchor="middle" font-size="9" fill="var(--ink)">六路評估 → P1–P5 裁定 → 132 個穩健性變體</text>
+          <!-- Timeline annotation -->
+          <text x="220" y="190" text-anchor="middle" font-size="9" fill="var(--ink-3)">訓練 2012–2017 ｜ 樣本外評估 2018–2025（~1,948 交易日）</text>
+        </svg>
+        <p>本研究的主要檢驗是比較無網路基線 M0 與加入雙軌網路特徵的完整模型 M1：若 M1 在已測試的規格下未能顯著擊敗 M0，則未能建立網路特徵的增量預測力。兩條平行的網路軌道如下：軌道 A 基於 ETF 的季度持股揭露，計算每對股票在市場相對權重（ETF 持股權重減去全市場市值權重）上的餘弦相似度，保留最相似的 K=30 個鄰居（K 為最大保留鄰居數）。軌道 B 基於股價的殘差共動——先以六個共同因子加一個產業特定因子殘差化個股日報酬（詳見論文 §5.2），再以滾動 52 週窗口計算殘差相關。兩條軌道合計提供 24 個網路特徵，連同 10 個個股特徵與 11 個市場控制變數（其中 1 個因缺失而未使用），候選特徵共 45 個；經篩選後 M1 實際配適約 42 個。</p>
+        <p>預測模型採用 Ridge 迴歸（一種帶 L2 懲罰的線性模型，事前指定為裁定模型——即正式命題裁定以其結果為準，其餘模型提供描述性參照）與 XGBoost（一種梯度提升樹模型）。模型每季以全部歷史資料重新配適，在 2018–2025 年進行樣本外預測。穩健性檢核涵蓋 132 個設定變體（含 99 次排列安慰劑、10 次 iid 抽取及基準設定），此 132 包含安慰劑抽取，非 132 種獨立模型設計。</p>
+        <table class="st features">
+          <thead><tr><th>特徵群組</th><th>欄位數</th><th>角色</th><th>M0</th><th>M1</th></tr></thead>
+          <tbody>
+            <tr><td>個股特徵</td><td>10</td><td>單股基線</td><td>✓</td><td>✓</td></tr>
+            <tr><td>市場控制</td><td>11</td><td>控制群組</td><td>✓</td><td>✓</td></tr>
+            <tr><td>ETF 軌道</td><td>12</td><td>實驗變數</td><td>—</td><td>✓</td></tr>
+            <tr><td>價格軌道</td><td>12</td><td>實驗變數</td><td>—</td><td>✓</td></tr>
+          </tbody>
+        </table>
+        <div class="note">候選特徵 45 個（11 個市場控制中 1 個因缺失未使用，故實際候選 44 個）。M0 保留約 20 個；M1 加入兩條軌道的 24 個網路特徵，經篩選後實際配適約 42 個。</div>
+      </div>
+
+      <div class="c">
+        <h2>三、五項命題裁定</h2>
+        <p>P1 在嚴格規則下不可裁定，P2–P4 不支持，P5 因 P3 未通過而不予裁定。裁定標準於分析前登錄（H 為交易日預測期距）。</p>
+        <table class="st verdicts">
+          <thead><tr><th>命題</th><th>內容</th><th>裁定</th><th>依據</th></tr></thead>
+          <tbody>
+            <tr><td>P1</td><td>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>嚴格解讀下安慰劑+檢定力規則排除所有期距（空集）；限定裁定模型 Ridge 後 H=5 與 H=20（或 H=30）可用，但 Ridge 仍未達支持標準。H=60 因檢定力不足僅供描述</td></tr>
+            <tr><td>P2</td><td>去偏程序為必要</td><td class="fail">不支持</td><td>移除去偏後未觀察到符合裁定門檻的顯著惡化</td></tr>
+            <tr><td>P3</td><td>半導體效果強於金融</td><td class="fail">不支持</td><td>交互作用 F 檢定全不顯著（p = 0.17–0.75）</td></tr>
+            <tr><td>P4</td><td>涵蓋度越高效果越強</td><td class="fail">不支持 ↻</td><td>係數方向與預期相反（係數方向非樣本外預測力之充分條件）</td></tr>
+            <tr><td>P5</td><td>差異來自價格軌道</td><td class="na">不予裁定</td><td>條件於 P3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="c">
+        <h2>事前登錄的修訂軌跡</h2>
+        <p>六項事後修訂全部使否證結論更強或維持中性——無一使裁定從「不支持」轉為「支持」。此一方向性觀察降低了修訂被導向正面結論的疑慮，但不能完全排除偏向否證敘事的可能。</p>
+        <table class="st amendments">
+          <thead><tr><th>修訂</th><th>性質</th><th>方向</th></tr></thead>
+          <tbody>
+            <tr><td>P4 χ²→F</td><td>修正過度拒絕的參考分布</td><td>支持→不支持</td></tr>
+            <tr><td>Hodrick 5.8× 膨脹</td><td>修正公式錯誤</td><td>中性</td></tr>
+            <tr><td>U19 正規化</td><td>市場層級特徵經橫斷面正規化後塌縮為 1/N<sub>t</sub>（特徵工程缺陷，已修正）</td><td>金融有→兩側皆無</td></tr>
+            <tr><td>BH 多重比較</td><td>報告 32 個比較；Benjamini–Hochberg（BH）錯誤發現率控制分模型施加，每組 8 個檢定</td><td>中性</td></tr>
+            <tr><td>P3 配對→全樣本</td><td>配對前提不成立</td><td>不變</td></tr>
+            <tr><td>Clark–West（CW）大小</td><td>發現 CW 檢定在 XGBoost 上過度拒絕</td><td>不變</td></tr>
+          </tbody>
+        </table>
+        <div class="note">計畫書第 3 章保留原文一字不改，修訂以視覺區隔的框呈現，供讀者獨立覆核。</div>
+      </div>
+
+      <div class="c">
+        <h2>四、裁定模型的分解結果</h2>
+        <p>裁定模型 Ridge 在八格主規格中的合併 R²、選股 R²（橫斷面 R²，僅衡量區分個股漲跌的能力）與淨選股增益全為負值。淨選股增益定義為 R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 為離散度匹配後的基線，是一種事後的診斷工具而非因果推論。</p>
+        <table class="nt">
+          <thead><tr><th>產業 × 預測天數</th><th>合併 R²</th><th>選股 R²</th><th>淨選股增益</th></tr></thead>
+          <tbody>
+            <tr><td>半導體 5 日</td><td class="red">−0.10%</td><td class="red">−0.17%</td><td class="red">−0.11%</td></tr>
+            <tr><td>半導體 20 日</td><td class="red">−0.35%</td><td class="red">−0.60%</td><td class="red">−0.31%</td></tr>
+            <tr><td>半導體 30 日</td><td class="red">−0.49%</td><td class="red">−0.80%</td><td class="red">−0.39%</td></tr>
+            <tr><td>半導體 60 日</td><td class="red">−0.71%</td><td class="red">−1.03%</td><td class="red">−0.26%</td></tr>
+            <tr><td>金融 5 日</td><td class="red">−0.05%</td><td class="red">−0.12%</td><td class="red">−0.08%</td></tr>
+            <tr><td>金融 20 日</td><td class="red">−0.15%</td><td class="red">−0.36%</td><td class="red">−0.35%</td></tr>
+            <tr><td>金融 30 日</td><td class="red">−0.26%</td><td class="red">−0.57%</td><td class="red">−0.55%</td></tr>
+            <tr><td>金融 60 日</td><td class="red">−0.48%</td><td class="red">−0.90%</td><td class="red">−0.67%</td></tr>
+          </tbody>
+        </table>
+        <div class="note">八格全負。在已測試的 Ridge 規格下，加入雙軌網路特徵未能改善預測。</div>
+      </div>
+
+      <section class="c reading-guide" aria-labelledby="reading-guide-title">
+        <h2 id="reading-guide-title">檢定力與裁定判讀</h2>
+        <p>負結果應連同設計的偵測能力解讀。最小可偵測效果（minimum detectable effect, MDE）是在特定資料生成過程與檢定設定下估計的效果量尺度。</p>
+        <table class="nt mde">
+          <caption>BH 最保守門檻下的 MDE（R² 效果量，以百分比表示）</caption>
+          <thead><tr><th scope="col">預測期距</th><th scope="col">半導體</th><th scope="col">金融保險</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">5 日</th><td>0.06%</td><td>0.05%</td></tr>
+            <tr><th scope="row">20 日</th><td>0.16%</td><td>0.25%</td></tr>
+            <tr><th scope="row">30 日</th><td>0.30%</td><td>0.30%</td></tr>
+            <tr><th scope="row">60 日</th><td>0.45%</td><td>0.50%</td></tr>
+          </tbody>
+        </table>
+        <div class="note">來源：本研究檢定力模擬（論文 §8.6）。MDE 依模擬假設而定，並非實現效果的上信賴界限，也不能直接作為事後淨選股增益的顯著性門檻。60 日期距事前標記為檢定力不足，僅供描述。</div>
+        <h3>三種裁定如何理解</h3>
+        <dl class="verdict-guide">
+          <dt>不支持</dt><dd>本次檢驗未達支持標準，不等同於證明效果不存在。</dd>
+          <dt>無法裁定</dt><dd>事前規則限制使正式裁定無法成立；P1 的嚴格規則屬此情況。</dd>
+          <dt>不予裁定</dt><dd>前提命題未成立，因此不進行後續裁定；P5 以前提 P3 為條件。</dd>
+        </dl>
+        <p class="reading-conclusion">在已測試的規格下未能建立增量預測力；低於設計偵測能力的效果，以及其他市場與模型下的效果，仍屬未決。</p>
+      </section>
+
+      <div class="c">
+        <h2>五、安慰劑檢驗與配對崩塌</h2>
+        <p>排列安慰劑保留每個特徵的統計性質，僅隨機打亂「誰是誰的鄰居」。若真實配對攜帶資訊，其表現應顯著優於 99 次隨機重配（p < 0.05）。</p>
+        <div class="hm">
+          <div class="hd"></div><div class="hd">5 日</div><div class="hd">20 日</div><div class="hd">30 日</div><div class="hd">60 日</div>
+          <div class="rl">半導體 Ridge</div><div class="cl">0.83</div><div class="cl">0.90</div><div class="cl">0.95</div><div class="cl">0.92</div>
+          <div class="rl">半導體 XGBoost</div><div class="cl">0.12</div><div class="cl">0.29</div><div class="cl">0.47</div><div class="cl">0.53</div>
+          <div class="rl">金融 Ridge</div><div class="cl">0.34</div><div class="cl">0.42</div><div class="cl">0.51</div><div class="cl">0.54</div>
+          <div class="rl">金融 XGBoost</div><div class="cl">0.63</div><div class="cl">0.27</div><div class="cl">0.22</div><div class="cl">0.19</div>
+        </div>
+        <div class="note">16 格未調整排列 p 值無一低於 0.05（最小 0.12）。未偵測到真實網路配對優於隨機重配的證據。</div>
+        <p style="margin-top:10px">P3 的跨產業配對檢定原擬以傾向分數配對控制 ETF 涵蓋密度，但可配對性在評估期大幅下降（非嚴格單調——個別季度有局部回升）：</p>
+        <!-- ▸ 新增圖：配對崩塌折線圖 -->
+        <svg viewBox="0 0 400 120" style="width:100%;height:auto;margin:6px 0" role="img" aria-label="Annual median of quarterly matchable fractions: peaks at 88% in 2019, drops sharply, with brief 4.3% rebound in 2024; only 9/32 evaluation quarters retain at least 5 pairs, all ending by 2021Q1">
+          <line x1="50" y1="10" x2="50" y2="100" stroke="var(--grid)" stroke-width="1"/>
+          <line x1="50" y1="100" x2="390" y2="100" stroke="var(--grid)" stroke-width="1"/>
+          <text x="45" y="15" text-anchor="end" font-size="9" fill="var(--ink-3)">100%</text>
+          <text x="45" y="57" text-anchor="end" font-size="9" fill="var(--ink-3)">50%</text>
+          <text x="45" y="103" text-anchor="end" font-size="9" fill="var(--ink-3)">0%</text>
+          <line x1="50" y1="55" x2="390" y2="55" stroke="var(--grid)" stroke-width=".5"/>
+          <!-- x: 50=2018, 390=2025, step=48.6 per year -->
+          <!-- Data: 2018:76%, 2019:88.5%, 2020:26.1%, 2021:26%, 2022:0%, 2023:0%, 2024:4.3%, 2025:0% -->
+          <!-- y: 100=0%, 10=100%, scale: 0.9px per % -->
+          <polyline points="50,31.6 98.6,20.4 147.1,76.5 195.7,76.6 244.3,100 292.9,100 341.4,96.1 390,100" fill="none" stroke="var(--neg)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="50" cy="31.6" r="3" fill="var(--neg)"/><circle cx="98.6" cy="20.4" r="3" fill="var(--neg)"/>
+          <circle cx="147.1" cy="76.5" r="3" fill="var(--neg)"/><circle cx="195.7" cy="76.6" r="3" fill="var(--neg)"/>
+          <circle cx="244.3" cy="100" r="3" fill="var(--neg)"/><circle cx="292.9" cy="100" r="3" fill="var(--neg)"/>
+          <circle cx="341.4" cy="96.1" r="3" fill="var(--neg)"/><circle cx="390" cy="100" r="3" fill="var(--neg)"/>
+          <text x="50" y="113" text-anchor="middle" font-size="9" fill="var(--ink-3)">2018</text>
+          <text x="147" y="113" text-anchor="middle" font-size="9" fill="var(--ink-3)">2020</text>
+          <text x="244" y="113" text-anchor="middle" font-size="9" fill="var(--ink-3)">2022</text>
+          <text x="341" y="113" text-anchor="middle" font-size="9" fill="var(--ink-3)">2024</text>
+          <text x="105" y="17" font-size="9" fill="var(--neg)">88%</text>
+          <text x="250" y="96" font-size="9" fill="var(--neg)">0%</text>
+        </svg>
+        <div class="fig-caption">圖為金融保險股中可與半導體配對之比例的年度中位數。2020 年後急劇下降（2024 年有 4.3% 的局部回升）。32 個評估季度中僅 9 季保留至少 5 對配對，且全部集中於 2021Q1 之前——之後配對前提不成立。</div>
+      </div>
+
+      <div class="c">
+        <h2>六、經濟顯著性</h2>
+        <p>在最嚴格的成本條件下（H=20、零售費率、年化借券費 3%、最大市場衝擊係數 0.003），M1 在 16 個格子（2 產業 × 4 模型 × 2 排序方式：三分位與五分位）中無一取得正的淨夏普比率（最佳 −0.007），M0 則有 1 格為正（+0.308）。即使不扣成本，H=20 三分位多空策略中 M0 在 8 格中贏 7 格。放寬至全部 1,536 個成本切片（4 期距 × 多成本情境），M1 有 564 格為正（最大 0.730），M0 有 957 格為正（最大 0.853）——M1 在任何成本設定下均未系統性地優於 M0。</p>
+      </div>
+    </div>
+    <div class="col">
+
+      <div class="c">
+        <h3>圖一：合併指標的正值不等同於增量選股資訊（XGBoost，主規格，M1 vs M0）</h3>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">合併 R²（整體準確度，藍色）包含選股與擇時兩個維度。拆為橫斷面 R²（選股分量，紅色）後大部分轉負。合併指標的正值可能源自預測離散度的縮減（離散度匹配診斷，詳見下方），而非新的排序資訊。</p>
+        <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>合併 R²（整體）</span><span><span class="sw" style="background:var(--neg)"></span>橫斷面 R²（選股）</span></div>
+        <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 580 292" style="width:100%;height:auto" role="img" aria-label="XGBoost incremental R-squared: solid blue pooled bars and outlined red cross-sectional bars. Values are listed in separate aligned columns; most cross-sectional values are negative.">
+<text x="463" y="15" text-anchor="end" font-size="11" fill="var(--accent)">合併 R²</text><text x="570" y="15" text-anchor="end" font-size="11" fill="var(--neg)">選股 R²</text>
+<line x1="195" y1="23" x2="195" y2="267" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="2,3"/>
+<line x1="280" y1="23" x2="280" y2="267" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="365" y1="23" x2="365" y2="267" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="2,3"/>
+<text x="125" y="43" text-anchor="end" font-size="11" fill="var(--ink-2)">半導體 5日</text>
+<rect x="280.00" y="32" width="11.05" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="274.90" y="42" width="5.10" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="43" text-anchor="end" font-size="11" fill="var(--accent)">+0.13%</text>
+<text x="570" y="43" text-anchor="end" font-size="11" fill="var(--neg)">−0.06%</text>
+<text x="125" y="71" text-anchor="end" font-size="11" fill="var(--ink-2)">半導體 20日</text>
+<rect x="280.00" y="60" width="28.05" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="248.55" y="70" width="31.45" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="71" text-anchor="end" font-size="11" fill="var(--accent)">+0.33%</text>
+<text x="570" y="71" text-anchor="end" font-size="11" fill="var(--neg)">−0.37%</text>
+<text x="125" y="99" text-anchor="end" font-size="11" fill="var(--ink-2)">半導體 30日</text>
+<rect x="280.00" y="88" width="5.10" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="203.50" y="98" width="76.50" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="99" text-anchor="end" font-size="11" fill="var(--accent)">+0.06%</text>
+<text x="570" y="99" text-anchor="end" font-size="11" fill="var(--neg)">−0.90%</text>
+<text x="125" y="127" text-anchor="end" font-size="11" fill="var(--ink-2)">半導體 60日</text>
+<rect x="248.55" y="116" width="31.45" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="213.70" y="126" width="66.30" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="127" text-anchor="end" font-size="11" fill="var(--accent)">−0.37%</text>
+<text x="570" y="127" text-anchor="end" font-size="11" fill="var(--neg)">−0.78%</text>
+<text x="125" y="164" text-anchor="end" font-size="11" fill="var(--ink-2)">金融 5日</text>
+<rect x="275.75" y="153" width="4.25" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="280.00" y="163" width="3.40" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="164" text-anchor="end" font-size="11" fill="var(--accent)">−0.05%</text>
+<text x="570" y="164" text-anchor="end" font-size="11" fill="var(--neg)">+0.04%</text>
+<text x="125" y="192" text-anchor="end" font-size="11" fill="var(--ink-2)">金融 20日</text>
+<rect x="280.00" y="181" width="66.30" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="182.25" y="191" width="97.75" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="192" text-anchor="end" font-size="11" fill="var(--accent)">+0.78%</text>
+<text x="570" y="192" text-anchor="end" font-size="11" fill="var(--neg)">−1.15%</text>
+<text x="125" y="220" text-anchor="end" font-size="11" fill="var(--ink-2)">金融 30日</text>
+<rect x="280.00" y="209" width="13.60" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="145.70" y="219" width="134.30" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="220" text-anchor="end" font-size="11" fill="var(--accent)">+0.16%</text>
+<text x="570" y="220" text-anchor="end" font-size="11" fill="var(--neg)">−1.58%</text>
+<text x="125" y="248" text-anchor="end" font-size="11" fill="var(--ink-2)">金融 60日</text>
+<rect x="280.00" y="237" width="59.50" height="8" fill="var(--accent)" fill-opacity="1" stroke="var(--accent)" stroke-width="1"/>
+<rect x="280.00" y="247" width="6.80" height="8" fill="var(--neg)" fill-opacity="0.3" stroke="var(--neg)" stroke-width="1"/>
+<text x="463" y="248" text-anchor="end" font-size="11" fill="var(--accent)">+0.70%</text>
+<text x="570" y="248" text-anchor="end" font-size="11" fill="var(--neg)">+0.08%</text>
+<line x1="135" y1="143" x2="570" y2="143" stroke="var(--grid)" stroke-width="1"/>
+<text x="195" y="287" text-anchor="middle" font-size="10" fill="var(--ink-2)">−1%</text><text x="280" y="287" text-anchor="middle" font-size="10" fill="var(--ink-2)">0</text><text x="365" y="287" text-anchor="middle" font-size="10" fill="var(--ink-2)">+1%</text></svg></div>
+      </div>
+
+      <div class="c">
+        <h3>圖二：統計檢定工具的可靠度</h3>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷新模型是否顯著優於舊模型。在真正無差異時應僅有約 5% 的誤判率（紅色虛線）。Ridge 符合此標準，但 XGBoost 的誤判率高達 25–99%。</p>
+        <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>Ridge（裁定模型）</span><span><span class="sw" style="background:var(--neg)"></span>XGBoost</span></div>
+        <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 540 220" style="width:100%;height:auto" role="img" aria-label="Paired Clark-West null rejection rates by horizon. Semiconductor Ridge: 5, 6, 5, 2 percent; XGBoost: 88, 99, 96, 82 percent. Finance Ridge: 2, 6, 7, 5 percent; XGBoost: 25, 96, 86, 66 percent. Dashed line: nominal 5 percent.">
+<line x1="45" y1="160.0" x2="520" y2="160.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="164.0" text-anchor="end" font-size="10" fill="var(--ink-2)">0%</text>
+<line x1="45" y1="95.0" x2="520" y2="95.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="99.0" text-anchor="end" font-size="10" fill="var(--ink-2)">50%</text>
+<line x1="45" y1="30.0" x2="520" y2="30.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="34.0" text-anchor="end" font-size="10" fill="var(--ink-2)">100%</text>
+<rect x="64" y="153.5" width="14" height="6.5" fill="var(--accent)"/><text x="71" y="146.5" text-anchor="middle" font-size="10" fill="var(--accent)">5%</text>
+<rect x="82" y="45.599999999999994" width="14" height="114.4" fill="var(--neg)"/><text x="89" y="38.599999999999994" text-anchor="middle" font-size="10" fill="var(--neg)">88%</text>
+<text x="80" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=5</text>
+<rect x="121" y="152.2" width="14" height="7.800000000000001" fill="var(--accent)"/><text x="128" y="145.2" text-anchor="middle" font-size="10" fill="var(--accent)">6%</text>
+<rect x="139" y="31.299999999999983" width="14" height="128.70000000000002" fill="var(--neg)"/><text x="146" y="24.299999999999983" text-anchor="middle" font-size="10" fill="var(--neg)">99%</text>
+<text x="137" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=20</text>
+<rect x="178" y="153.5" width="14" height="6.5" fill="var(--accent)"/><text x="185" y="146.5" text-anchor="middle" font-size="10" fill="var(--accent)">5%</text>
+<rect x="196" y="35.19999999999999" width="14" height="124.80000000000001" fill="var(--neg)"/><text x="203" y="28.19999999999999" text-anchor="middle" font-size="10" fill="var(--neg)">96%</text>
+<text x="194" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=30</text>
+<rect x="235" y="157.4" width="14" height="2.6" fill="var(--accent)"/><text x="242" y="150.4" text-anchor="middle" font-size="10" fill="var(--accent)">2%</text>
+<rect x="253" y="53.39999999999999" width="14" height="106.60000000000001" fill="var(--neg)"/><text x="260" y="46.39999999999999" text-anchor="middle" font-size="10" fill="var(--neg)">82%</text>
+<text x="251" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=60</text>
+<rect x="292" y="157.4" width="14" height="2.6" fill="var(--accent)"/><text x="299" y="150.4" text-anchor="middle" font-size="10" fill="var(--accent)">2%</text>
+<rect x="310" y="127.5" width="14" height="32.5" fill="var(--neg)"/><text x="317" y="120.5" text-anchor="middle" font-size="10" fill="var(--neg)">25%</text>
+<text x="308" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=5</text>
+<rect x="349" y="152.2" width="14" height="7.800000000000001" fill="var(--accent)"/><text x="356" y="145.2" text-anchor="middle" font-size="10" fill="var(--accent)">6%</text>
+<rect x="367" y="35.19999999999999" width="14" height="124.80000000000001" fill="var(--neg)"/><text x="374" y="28.19999999999999" text-anchor="middle" font-size="10" fill="var(--neg)">96%</text>
+<text x="365" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=20</text>
+<rect x="406" y="150.9" width="14" height="9.1" fill="var(--accent)"/><text x="413" y="143.9" text-anchor="middle" font-size="10" fill="var(--accent)">7%</text>
+<rect x="424" y="48.2" width="14" height="111.8" fill="var(--neg)"/><text x="431" y="41.2" text-anchor="middle" font-size="10" fill="var(--neg)">86%</text>
+<text x="422" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=30</text>
+<rect x="463" y="153.5" width="14" height="6.5" fill="var(--accent)"/><text x="470" y="146.5" text-anchor="middle" font-size="10" fill="var(--accent)">5%</text>
+<rect x="481" y="74.2" width="14" height="85.8" fill="var(--neg)"/><text x="488" y="67.2" text-anchor="middle" font-size="10" fill="var(--neg)">66%</text>
+<text x="479" y="179" text-anchor="middle" font-size="11" fill="var(--ink-2)">H=60</text>
+<line x1="45" y1="153.5" x2="520" y2="153.5" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5,4"/><text x="510" y="147" text-anchor="end" font-size="10" font-weight="600" fill="var(--ink)">5%</text>
+<text x="165" y="207" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">半導體</text><text x="393" y="207" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">金融</text><line x1="279" y1="20" x2="279" y2="187" stroke="var(--border)" stroke-width="1"/></svg></div>
+      </div>
+
+      <div class="c">
+        <h2>圖注意力網路（Graph Attention Network, GAT）</h2>
+        <p>所評估的 GAT 在 8 格 M0 相對合併 R² 全為負值（平均 −7.9%）。GAT 是一種能自動學習鄰居重要性權重（注意力機制）的神經網路，可直接處理兩張網路的圖結構。</p>
+        <table class="nt">
+          <thead><tr><th>產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
+          <tbody>
+            <tr><td>半導體</td><td class="red">−2.3%</td><td class="red">−7.1%</td><td class="red">−10.2%</td><td class="red">−6.9%</td></tr>
+            <tr><td>金融</td><td class="red">−5.8%</td><td class="red">−9.4%</td><td class="red">−11.9%</td><td class="red">−9.6%</td></tr>
+          </tbody>
+        </table>
+        <div class="note">合併 R²（M1 GAT vs M0），8 格全負。此為整條 GAT 管線（含注意力機制與訓練協定）的綜合表現，不能單獨歸因於注意力權重的優劣。另以離散度匹配調整後的 GAT vs M1-Ridge 橫斷面比較亦為 8/8 負值（詳見論文 §9.5 及 gat_vs_manual.csv）。</div>
+      </div>
+
+      <div class="c">
+        <h2>Fama–MacBeth 增量迴歸：第四條互補路徑</h2>
+        <p>裁定模型 Ridge 的增量係數 γ₁ 在八格全部不顯著（p = 0.26–0.90）。Fama–MacBeth 迴歸逐日跑橫斷面普通最小平方法（OLS），檢驗 M1 的預測在控制 M0 之後是否仍有增量的橫斷面定價資訊（γ₁ 顯著異於零即表示有增量）。</p>
+        <table class="nt">
+          <thead><tr><th>產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
+          <tbody>
+            <tr><td>半導體 γ̄₁</td><td>−0.04</td><td>−0.26</td><td>−0.29</td><td>−0.04</td></tr>
+            <tr><td>p 值</td><td>0.84</td><td>0.30</td><td>0.26</td><td>0.86</td></tr>
+            <tr><td>金融 γ̄₁</td><td>0.05</td><td>0.04</td><td>0.07</td><td>0.24</td></tr>
+            <tr><td>p 值</td><td>0.84</td><td>0.90</td><td>0.81</td><td>0.38</td></tr>
+          </tbody>
+        </table>
+        <div class="note">八格的 p 值介於 0.26–0.90，遠離 0.05 門檻。在此檢驗下未能建立 M1 對 M0 的增量橫斷面定價資訊。</div>
+      </div>
+
+      <div class="c">
+        <h2>七、穩健性與延伸分析</h2>
+        <p>在兩種懲罰網格設定下，Ridge 的資訊係數（IC，即預測值與實現報酬的日橫斷面 Spearman 相關）增量在 8 格中無一為正。132 個設定變體涵蓋鄰居數敏感度（K = 15, 20, 30, 50）、99 次排列安慰劑等。示範性案例：交叉驗證在半導體 H=60 上選出的 Elastic Net 最佳模型為 42 個係數全為零的空模型——所有股票在同一天得到完全相同的預測，選股資訊依定義為零——然而合併 R² 仍為正值（+0.326%），構成離散度匹配診斷的直接示範。</p>
+        <h3 style="margin-top:8px;font-size:12px">ETF 類型切分（XGBoost 合併 R²，掃描規格，機制診斷用途）</h3>
+        <p>論文 §5.1 預測去偏後市值加權 ETF 貢獻近乎為零，故預期僅用市值加權廣基 ETF 建構的網路（cap_broad 變體）應大幅衰減。金融側符合此一預期，但半導體側方向相反。此結果來自掃描規格而非主規格（主規格見圖一），為機制診斷而非增量選股資訊的正面證據。</p>
+        <table class="nt">
+          <thead><tr><th>變體 × 產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
+          <tbody>
+            <tr><td>base 半導體</td><td>+0.14%</td><td>+0.57%</td><td>+0.14%</td><td class="red">−0.39%</td></tr>
+            <tr><td>cap_broad 半導體</td><td>+0.17%</td><td>+0.98%</td><td>+0.60%</td><td>+0.22%</td></tr>
+            <tr><td>base 金融</td><td>+0.12%</td><td>+0.75%</td><td>+1.05%</td><td>+0.15%</td></tr>
+            <tr><td>cap_broad 金融</td><td class="red">−0.01%</td><td>+0.56%</td><td>+0.62%</td><td class="red">−1.22%</td></tr>
+          </tbody>
+        </table>
+        <div class="note">半導體側 cap_broad 在 H=20/30/60 的合併 R² 皆優於完整網路 base——去偏後殘餘的大型股成分在半導體側仍為主要來源（排除台積電後大幅衰減為佐證，詳見論文 §9.4）。注意：合併 R² 的正值不等同於增量選股資訊（見圖一及下方離散度匹配診斷）。</div>
+      </div>
+
+      <div class="c">
+        <h2>八、限制與效力邊界</h2>
+        <p>本研究的橫斷面規模（N ≈ 22–36）約為 Gu, Kelly, & Xiu (2020) 所使用的美國橫斷面（N ≈ 3,000–10,000）的百分之一，外推需謹慎。Ridge 的交叉驗證 216 次中 216 次選到懲罰項上界（據歷史稽核紀錄，當前匯出的 fit log 未含 best_alpha），顯示模型偏好常數預測，其有效容量可能不足以提取極弱訊號。Clark–West（CW）在 XGBoost 上的大小失真可能為小樣本所特有；LightGBM 與 CatBoost 未獨立量測。M1 同時包含 ETF 軌道 A 與價格軌道 B，負結果不能單獨歸因於其中一條軌道（論文 §9.3 的描述性單軌消融分析顯示 Ridge 16 格皆負，但正式的 P5 閘門未通過）。六條檢驗路徑使用不同的統計工具（方法論上互補），但共享同一組預測輸出與訓練協定。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="insight">
+      <h2>次要方法論發現：合併 R² 的估計量—校準不匹配</h2>
+      <!-- 收縮機制示意圖 -->
+      <svg viewBox="0 0 380 150" style="width:100%;height:auto;margin:0 0 8px" role="img" aria-label="Dispersion-matching diagnostic: for centered, fixed forecasts with negative covariance, MSE increases with prediction dispersion, so shrinking predictions mechanically reduces MSE">
+        <defs><marker id="sa" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
+        <line x1="50" y1="130" x2="360" y2="130" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#sa)"/>
+        <line x1="50" y1="130" x2="50" y2="10" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#sa)"/>
+        <text x="205" y="148" text-anchor="middle" font-size="9" fill="var(--ink-2)">預測離散度（sd）→</text>
+        <text x="15" y="70" text-anchor="middle" font-size="9" fill="var(--ink-2)" transform="rotate(-90,15,70)">預測誤差（MSE）→</text>
+        <path d="M70,40 Q160,120 300,30" fill="none" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="355" y="108" text-anchor="end" font-size="9" fill="var(--ink-3)">Cov > 0（正常）</text>
+        <path d="M70,110 Q150,90 300,20" fill="none" stroke="var(--neg)" stroke-width="2"/>
+        <text x="355" y="91" text-anchor="end" font-size="9" fill="var(--neg)" font-weight="600">Cov < 0（本研究）</text>
+        <circle cx="230" cy="45" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="238" y="40" font-size="9" fill="var(--accent)" font-weight="600">φ×M0</text>
+        <circle cx="170" cy="72" r="5" fill="var(--neg)" stroke="var(--surface)" stroke-width="2"/><text x="155" y="67" font-size="9" fill="var(--neg)" font-weight="600">M0</text>
+        <line x1="220" y1="50" x2="180" y2="68" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#sa)"/>
+        <text x="215" y="68" font-size="9" fill="var(--ink-2)">φ 縮放</text>
+        <text x="100" y="15" font-size="9" fill="var(--neg)">條件：零均值預測、Cov(y,ŷ) < 0</text>
+        <text x="100" y="25" font-size="9" fill="var(--neg)">沿紅線左移 = MSE 下降</text>
+      </svg>
+      <p>合併樣本外 R²（pooled out-of-sample R²）是 Campbell & Thompson (2008) 以來報酬可預測性文獻廣泛採用的標準評估量，Gu, Kelly, & Xiu (2020) 在機器學習資產定價的基準研究中亦以此為主要指標。然而，此一指標在面板追蹤資料的脈絡下混合了兩個可能方向相反的維度：橫斷面（在同一天內區分個股漲跌的能力，即選股）與時序（判斷整體市場方向的能力，即擇時）。本研究的目標是選股，但合併指標被擇時分量主導。</p>
+      <p>其關鍵機制在於（上圖所示為零均值預測的充分條件）：當預測值已去均值且 Cov(y, ŷ) < 0 時，MSE 對預測離散度單調遞增。此時任何使預測值更集中的改動——即便完全不攜帶選股資訊——都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
+      <p><strong>歷史診斷（修正前 U19 規格）：</strong>修正前半導體 15/16 格的時序相關為負。以離散度匹配的反事實縮放——僅將基線預測按離散度比 φ 縮放而不加入任何資訊——複製了修正前 XGBoost 23 格正合併 R² 增益中 20 格的至少 97%（20 格超過 100%，其餘 3 格為 66–84%）。<strong>修正後（當前結果）：</strong>半導體 H=20 的離散度匹配複製比例為 68.8%，即非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。</p>
+      <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">與既有文獻的定位</h3>
+      <p>此一發現的數學基礎——MSE 的二次展開——是教科書內容（Elliott & Timmermann, 2016）。在本研究的文獻搜尋範圍內（截至 2026 年 9 月），尚未發現有文獻明確指出合併 R² 在基線擇時為負時會系統性地獎勵離散度縮減。最接近的是 Engelberg, McLean, Pontiff, & Ringgenberg (2023) 發現橫斷面預測因子的樣本外時序預測力有限，以及 Rapach & Zhou (2020) 分開定義時序與橫斷面 R²，但兩者皆未涉及合併指標的離散度匹配機制。本研究將此定位為已知數學性質在面板報酬預測脈絡下的一個量化應用與診斷程序。</p>
+      <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">Clark–West 檢定在 XGBoost 上的大小失真</h3>
+      <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑實測其虛無拒絕率，發現在裁定模型 Ridge 上為 0.02–0.07（符合名目水準 5%），在 XGBoost 上則高達 0.25–0.99（嚴重過度拒絕；LightGBM、CatBoost 未獨立量測）。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
+      <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">可移植的檢驗程序</h3>
+      <p>本研究據此提出一套適用於任何使用合併 R² 且基線擇時為負的研究的檢驗程序：對指標本身施加安慰劑——將一個理論上不應產生效果的改動施加於指標，觀察其是否產生反應。此程序的成本趨近於零（一行反事實計算），但揭露力可以是決定性的。任何報告合併 R² 的研究，宜先檢查基線模型的時序相關符號；若為負，合併 R² 的正值即有可能為收縮假象。</p>
+    </div>
+    <div class="contrib">
+      <h2>本研究之貢獻</h2>
+      <p>在實質面，本研究為去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的橫斷面預測力提供了一份否證記錄。裁定模型 Ridge 在兩個產業、四個預測期距、兩種懲罰網格設定下的 IC 增量（IC(M1) − IC(M0)）無一為正（IC 為預測值與實現報酬的日橫斷面 Spearman 相關），且此符號結論在兩種網格下一致。六條方法論上互補的評估路徑對此給出一致的答案：</p>
+      <!-- 六路收斂圖 -->
+      <svg viewBox="0 0 440 165" style="width:100%;height:auto;margin:6px 0" role="img" aria-label="Six complementary evaluation paths converge to the falsification verdict. All paths share the same predictions; subperiod and rolling-CW qualifications appear below.">
+<line x1="155" y1="13" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="17" font-size="11" fill="var(--ink-2)">① R² 分解</text>
+<line x1="155" y1="33" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="37" font-size="11" fill="var(--ink-2)">② 排列安慰劑</text>
+<line x1="155" y1="53" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="57" font-size="11" fill="var(--ink-2)">③ M0 投資組合</text>
+<line x1="155" y1="73" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="77" font-size="11" fill="var(--ink-2)">④ Fama–MacBeth</text>
+<line x1="155" y1="93" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="97" font-size="11" fill="var(--ink-2)">⑤ 子期間 R²</text>
+<line x1="155" y1="113" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
+<text x="10" y="117" font-size="11" fill="var(--ink-2)">⑥ 逐點滾動 CW</text>
+<rect x="300" y="50" width="125" height="30" rx="4" fill="#B23830"/><text x="362" y="71" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">否證</text><text x="220" y="154" text-anchor="middle" font-size="10" fill="var(--ink-2)">方法論上互補，共享同一組預測</text></svg>
+<div class="note">⑤ Ridge 合併 R² 在 23/24 子期間格為負（例外：金融 2018–2019 H=20, +0.13%）。<br>⑥ 240 日逐點滾動 CW 診斷，非正式路徑檢定。</div>
+      <p>上述研究也產生了以下次要的方法論診斷。其一，以離散度匹配診斷量化了合併 R² 在基線擇時技能為負時的離散度縮減效應——此為已知 MSE 性質的量化應用，任何使用此指標的面板報酬預測研究都可能遇到。其二，在小橫斷面設計下以排列安慰劑量化了 Clark–West 檢定在 XGBoost 上的大小失真（虛無拒絕率 0.25–0.99，對照裁定模型 Ridge 的 0.02–0.07；LightGBM、CatBoost 未獨立量測），與 Escanciano & Parra (2026) 的理論分析方向一致。其三，提出可移植的「對指標施加安慰劑」檢驗程序——對指標施加一個理論上不應產生效果的改動，觀察其是否產生反應——此程序適用於任何使用合併 R² 且基線擇時為負的研究。</p>
+      <p>在已測試的規格下（臺灣上市半導體與金融保險股、N ≈ 22–36、訓練期 2012–2017、評估期 2018–2025、Ridge 與 XGBoost），本研究未能建立去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的統計顯著增量預測力。M1 同時包含兩條軌道，負結果不能單獨歸因於其中一條（描述性單軌消融分析顯示 Ridge 16 格皆負，但正式的 P5 閘門未通過）。低於本設計偵測能力的效果、以及在橫斷面規模較大的市場（如美國，N ≈ 3,000–10,000）、其他產業、或以其他模型萃取時的效果，仍屬未決。</p>
+      <div class="ref"><strong>主要參考文獻</strong>　Anton & Polk (2014, <em>JF</em>) · Brown, Davies & Ringgenberg (2021, <em>RoF</em>) · Campbell & Thompson (2008, <em>RFS</em>) · Clark & West (2007, <em>JoE</em>) · Cohen & Frazzini (2008, <em>JF</em>) · Elliott & Timmermann (2016, Princeton UP) · Engelberg, McLean, Pontiff & Ringgenberg (2023, <em>JFQA</em>) · Escanciano & Parra (2026, <em>JBES</em>) · Gu, Kelly & Xiu (2020, <em>RFS</em>) · Rapach & Zhou (2020, Wiley)</div>
+    </div>
+  </div>
+  <footer style="margin-top:18px;padding:12px 0;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--ink-3)">
+    © 2026 黃晨瑋、鐘珮甄、黃苡晴　All rights reserved.<br>
+    國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題
+  </footer>
+</div>
+</body></html>
