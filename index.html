@@ -187,64 +187,125 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       <div class="c">
         <h2>一、研究背景與問題</h2>
         <p>去偏 ETF 共同持股網路特徵在樣本外能否為個股報酬的橫斷面排序提供增量資訊，目前仍缺乏直接的實證檢驗。ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。此法可反映共同的超額配置或不足配置，但不等同於識別基金的刻意投資決策，亦不完全消除被動指數成分。具體而言，產業型 ETF（例如半導體 ETF）的持股對象本就集中於特定產業，其成分股在該 ETF 中的權重必然高於全市場市值權重，因此去偏後的正相對權重有一部分來自產業授權的機械性效應，而非管理者的主動選擇。本研究的去偏程序移除的是「全市場層級」的市值重疊，但未進一步移除「產業層級」的授權效應。Cohen & Frazzini (2008) 的有限注意力機制針對的是供應鏈上的經濟連結；本研究假定相似的注意力不足亦可能存在於共同持股的脈絡中，但此一延伸尚待直接的理論支撐，而這正是本研究欲以樣本外資料檢驗的推論。</p>
-        <!-- ▸ 去偏示意圖：ETF 持股權重表 + 網路 before/after -->
-        <svg viewBox="0 0 460 195" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing: left shows a weight table for three ETFs and five stocks, computing market-relative weight; right shows the network before (dense) and after (sparse, reflecting overweight similarity) debiasing">
+        <!-- ▸ 去偏示意圖：多 ETF 權重表 + 相對權重向量 + 網路 before/after -->
+        <svg viewBox="0 0 480 310" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Debiasing illustration: three real ETFs show how market-relative weights are computed for five stocks, then how cosine similarity between relative-weight vectors determines the debiased network">
           <defs><marker id="na" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
-          <!-- 權重表示意（假設性數字，用真實股票代號） -->
-          <text x="5" y="12" font-size="9" font-weight="600" fill="var(--ink)">某半導體 ETF 的持股權重 → 市場相對權重（示意）</text>
-          <rect x="5" y="18" width="175" height="14" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="10" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">股票</text>
-          <text x="52" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">ETF權重</text>
-          <text x="100" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">市值權重</text>
-          <text x="147" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">相對權重</text>
-          <text x="10" y="42" font-size="7.5" fill="var(--ink-2)">2330 台積電</text><text x="60" y="42" font-size="7.5" fill="var(--ink-2)">30%</text><text x="108" y="42" font-size="7.5" fill="var(--ink-2)">28%</text><text x="153" y="42" font-size="7.5" fill="var(--ink-3)">+2%</text>
-          <text x="10" y="53" font-size="7.5" fill="var(--ink-2)">2454 聯發科</text><text x="60" y="53" font-size="7.5" fill="var(--ink-2)">18%</text><text x="108" y="53" font-size="7.5" fill="var(--ink-2)">16%</text><text x="153" y="53" font-size="7.5" fill="var(--ink-3)">+2%</text>
-          <text x="10" y="64" font-size="7.5" fill="var(--accent)">3034 聯詠</text><text x="60" y="64" font-size="7.5" fill="var(--ink-2)">15%</text><text x="108" y="64" font-size="7.5" fill="var(--ink-2)">3%</text><text x="149" y="64" font-size="7.5" font-weight="600" fill="var(--accent)">+12%</text>
-          <text x="10" y="75" font-size="7.5" fill="var(--accent)">2379 瑞昱</text><text x="60" y="75" font-size="7.5" fill="var(--ink-2)">14%</text><text x="108" y="75" font-size="7.5" fill="var(--ink-2)">2%</text><text x="149" y="75" font-size="7.5" font-weight="600" fill="var(--accent)">+12%</text>
-          <text x="10" y="86" font-size="7.5" fill="var(--ink-2)">8299 群聯</text><text x="60" y="86" font-size="7.5" fill="var(--ink-2)">5%</text><text x="108" y="86" font-size="7.5" fill="var(--ink-2)">1%</text><text x="153" y="86" font-size="7.5" fill="var(--ink-3)">+4%</text>
-          <text x="5" y="100" font-size="7" fill="var(--ink-3)">台積電、聯發科：相對權重小（ETF 權重 ≈ 市值權重）</text>
-          <text x="5" y="110" font-size="7" fill="var(--accent)">聯詠、瑞昱：被大幅超額配置 → 去偏後強連結</text>
-          <!-- 箭頭連接 -->
-          <line x1="180" y1="60" x2="195" y2="60" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#na)"/>
-          <!-- 去偏前網路 -->
-          <text x="275" y="12" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">去偏前（原始持股重疊）</text>
-          <line x1="255" y1="50" x2="300" y2="42" stroke="var(--ink-3)" stroke-width="1.5"/>
-          <line x1="255" y1="50" x2="225" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="255" y1="50" x2="275" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="255" y1="50" x2="325" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="300" y1="42" x2="225" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="300" y1="42" x2="275" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="300" y1="42" x2="325" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="225" y1="85" x2="275" y2="90" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
-          <circle cx="255" cy="50" r="15" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="255" y="48" text-anchor="middle" font-size="6.5" fill="var(--ink-2)">台積電</text><text x="255" y="56" text-anchor="middle" font-size="6" fill="var(--ink-3)">2330</text>
-          <circle cx="300" cy="42" r="13" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="300" y="40" text-anchor="middle" font-size="6.5" fill="var(--ink-2)">聯發科</text><text x="300" y="48" text-anchor="middle" font-size="6" fill="var(--ink-3)">2454</text>
-          <circle cx="225" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="225" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">聯詠</text><text x="225" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">3034</text>
-          <circle cx="275" cy="90" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="275" y="88" text-anchor="middle" font-size="6" fill="var(--ink-3)">瑞昱</text><text x="275" y="95" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">2379</text>
-          <circle cx="325" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="325" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">群聯</text><text x="325" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">8299</text>
-          <text x="275" y="108" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科市值大，幾乎所有 ETF 都持有</text>
-          <text x="275" y="117" text-anchor="middle" font-size="7" fill="var(--ink-3)">→ 原始持股重疊高 → 與每檔股票都「相連」（機械性）</text>
+
+          <!-- ═══ 上半：多 ETF 權重表 ═══ -->
+          <text x="5" y="12" font-size="9" font-weight="600" fill="var(--ink)">步驟一：計算各股票在每檔 ETF 中的市場相對權重（示意數字）</text>
+
+          <!-- 表頭 -->
+          <rect x="5" y="18" width="320" height="14" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="10" y="28" font-size="7" font-weight="600" fill="var(--ink-2)">股票</text>
+          <text x="65" y="28" font-size="7" font-weight="600" fill="var(--ink-2)">市值權重</text>
+          <text x="110" y="22" font-size="6" fill="var(--ink-3)">元大台灣50</text><text x="110" y="30" font-size="6" fill="var(--ink-3)">（廣基）</text>
+          <text x="155" y="22" font-size="6" fill="var(--neg)">元大電子科技</text><text x="155" y="30" font-size="6" fill="var(--neg)">（產業型）</text>
+          <text x="205" y="22" font-size="6" fill="var(--ink-3)">元大高股息</text><text x="205" y="30" font-size="6" fill="var(--ink-3)">（主題型）</text>
+          <text x="260" y="28" font-size="7" font-weight="600" fill="var(--ink)">相對權重向量</text>
+
+          <!-- 台積電 -->
+          <text x="10" y="42" font-size="7" fill="var(--ink-2)">2330 台積電</text>
+          <text x="75" y="42" font-size="7" fill="var(--ink-2)">28%</text>
+          <text x="115" y="42" font-size="7" fill="var(--ink-2)">30%</text>
+          <text x="162" y="42" font-size="7" fill="var(--ink-2)">25%</text>
+          <text x="210" y="42" font-size="7" fill="var(--ink-2)">5%</text>
+          <text x="255" y="42" font-size="7" fill="var(--ink-3)">[+2, −3, −23]</text>
+
+          <!-- 聯發科 -->
+          <text x="10" y="53" font-size="7" fill="var(--ink-2)">2454 聯發科</text>
+          <text x="75" y="53" font-size="7" fill="var(--ink-2)">16%</text>
+          <text x="115" y="53" font-size="7" fill="var(--ink-2)">18%</text>
+          <text x="162" y="53" font-size="7" fill="var(--ink-2)">20%</text>
+          <text x="210" y="53" font-size="7" fill="var(--ink-2)">3%</text>
+          <text x="255" y="53" font-size="7" fill="var(--ink-3)">[+2, +4, −13]</text>
+
+          <!-- 聯詠 (highlighted) -->
+          <rect x="5" y="56" width="320" height="12" rx="1" fill="var(--accent)" fill-opacity=".08"/>
+          <text x="10" y="65" font-size="7" font-weight="500" fill="var(--accent)">3034 聯詠</text>
+          <text x="75" y="65" font-size="7" fill="var(--ink-2)">3%</text>
+          <text x="115" y="65" font-size="7" fill="var(--ink-2)">4%</text>
+          <text x="162" y="65" font-size="7" fill="var(--neg)">15%</text>
+          <text x="210" y="65" font-size="7" fill="var(--ink-2)">8%</text>
+          <text x="255" y="65" font-size="7" font-weight="600" fill="var(--accent)">[+1, +12, +5]</text>
+
+          <!-- 瑞昱 (highlighted) -->
+          <rect x="5" y="68" width="320" height="12" rx="1" fill="var(--accent)" fill-opacity=".08"/>
+          <text x="10" y="77" font-size="7" font-weight="500" fill="var(--accent)">2379 瑞昱</text>
+          <text x="75" y="77" font-size="7" fill="var(--ink-2)">2%</text>
+          <text x="115" y="77" font-size="7" fill="var(--ink-2)">3%</text>
+          <text x="162" y="77" font-size="7" fill="var(--neg)">14%</text>
+          <text x="210" y="77" font-size="7" fill="var(--ink-2)">7%</text>
+          <text x="255" y="77" font-size="7" font-weight="600" fill="var(--accent)">[+1, +12, +5]</text>
+
+          <!-- 群聯 -->
+          <text x="10" y="89" font-size="7" fill="var(--ink-2)">8299 群聯</text>
+          <text x="75" y="89" font-size="7" fill="var(--ink-2)">1%</text>
+          <text x="115" y="89" font-size="7" fill="var(--ink-2)">2%</text>
+          <text x="162" y="89" font-size="7" fill="var(--ink-2)">5%</text>
+          <text x="210" y="89" font-size="7" fill="var(--ink-2)">3%</text>
+          <text x="255" y="89" font-size="7" fill="var(--ink-3)">[+1, +4, +2]</text>
+
+          <!-- 公式標註 -->
+          <text x="340" y="42" font-size="7" fill="var(--ink-3)">← w</text><text x="356" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="sub">ij</text><text x="365" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="super">rel</text><text x="373" y="42" font-size="7" fill="var(--ink-3)"> = w</text><text x="389" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="sub">ij</text><text x="398" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="super">ETF</text><text x="410" y="42" font-size="7" fill="var(--ink-3)"> − w</text><text x="428" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="sub">j</text><text x="434" y="42" font-size="5.5" fill="var(--ink-3)" baseline-shift="super">mkt</text>
+          <text x="340" y="55" font-size="6.5" fill="var(--ink-3)">例：台積電在元大50</text>
+          <text x="340" y="64" font-size="6.5" fill="var(--ink-3)">= 30% − 28% = +2%</text>
+
+          <!-- 觀察重點 -->
+          <rect x="340" y="72" width="135" height="22" rx="2" fill="var(--accent)" fill-opacity=".1" stroke="var(--accent)" stroke-width=".5"/>
+          <text x="407" y="82" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠 [+1,+12,+5]</text>
+          <text x="407" y="91" text-anchor="middle" font-size="6.5" fill="var(--accent)">瑞昱 [+1,+12,+5] → 向量幾乎相同</text>
+
+          <!-- ═══ 步驟二：餘弦相似度計算 ═══ -->
+          <line x1="5" y1="100" x2="475" y2="100" stroke="var(--grid)" stroke-width=".5"/>
+          <text x="5" y="113" font-size="9" font-weight="600" fill="var(--ink)">步驟二：計算餘弦相似度 → 建立去偏網路（保留 K=30 最近鄰）</text>
+
+          <rect x="5" y="118" width="470" height="24" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="240" y="128" text-anchor="middle" font-size="8" fill="var(--ink)">CosSim(聯詠, 瑞昱) = [+1,+12,+5] · [+1,+12,+5] / (‖[+1,+12,+5]‖²) = 1.00（完全相同） → 強連結</text>
+          <text x="240" y="139" text-anchor="middle" font-size="8" fill="var(--ink-3)">CosSim(台積電, 聯詠) = [+2,−3,−23] · [+1,+12,+5] / (‖…‖·‖…‖) ≈ −0.82（方向相反） → 無連結</text>
+
+          <!-- ═══ 下半：網路 before/after ═══ -->
+          <line x1="5" y1="148" x2="475" y2="148" stroke="var(--grid)" stroke-width=".5"/>
+          <text x="5" y="161" font-size="9" font-weight="600" fill="var(--ink)">結果：網路結構的改變</text>
+
+          <!-- 去偏前 -->
+          <text x="120" y="175" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--ink)">去偏前（原始持股重疊）</text>
+          <line x1="100" y1="205" x2="145" y2="197" stroke="var(--ink-3)" stroke-width="1.5"/>
+          <line x1="100" y1="205" x2="70" y2="240" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="100" y1="205" x2="120" y2="245" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="100" y1="205" x2="170" y2="240" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="145" y1="197" x2="70" y2="240" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="145" y1="197" x2="120" y2="245" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="145" y1="197" x2="170" y2="240" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="70" y1="240" x2="120" y2="245" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <circle cx="100" cy="205" r="14" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="100" y="203" text-anchor="middle" font-size="6" fill="var(--ink-2)">台積電</text><text x="100" y="211" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">2330</text>
+          <circle cx="145" cy="197" r="12" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="145" y="195" text-anchor="middle" font-size="6" fill="var(--ink-2)">聯發科</text><text x="145" y="203" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">2454</text>
+          <circle cx="70" cy="240" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="70" y="238" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯詠</text><text x="70" y="245" text-anchor="middle" font-size="5" fill="var(--ink-3)">3034</text>
+          <circle cx="120" cy="245" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="120" y="243" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">瑞昱</text><text x="120" y="250" text-anchor="middle" font-size="5" fill="var(--ink-3)">2379</text>
+          <circle cx="170" cy="240" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="170" y="238" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">群聯</text><text x="170" y="245" text-anchor="middle" font-size="5" fill="var(--ink-3)">8299</text>
+          <text x="120" y="265" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">台積電、聯發科市值大，所有 ETF 都持有</text>
+          <text x="120" y="274" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">→ 與每檔股票的持股重疊高（機械性）</text>
+
           <!-- 箭頭 -->
-          <line x1="340" y1="60" x2="365" y2="60" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
-          <text x="352" y="52" text-anchor="middle" font-size="8" fill="var(--ink-3)">去偏</text>
-          <!-- 去偏後網路 -->
-          <text x="418" y="12" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">去偏後</text>
-          <line x1="393" y1="85" x2="418" y2="90" stroke="var(--accent)" stroke-width="2.5"/>
-          <line x1="418" y1="90" x2="443" y2="85" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="383" y1="50" x2="393" y2="85" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
-          <circle cx="383" cy="50" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="383" y="48" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">台積電</text><text x="383" y="55" text-anchor="middle" font-size="5" fill="var(--ink-3)">2330</text>
-          <circle cx="430" cy="42" r="9" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="430" y="40" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="430" y="47" text-anchor="middle" font-size="5" fill="var(--ink-3)">2454</text>
-          <circle cx="393" cy="85" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="393" y="83" text-anchor="middle" font-size="6" fill="var(--accent)">聯詠</text><text x="393" y="90" text-anchor="middle" font-size="5.5" fill="var(--accent)">3034</text>
-          <circle cx="418" cy="90" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="418" y="88" text-anchor="middle" font-size="6" fill="var(--accent)">瑞昱</text><text x="418" y="95" text-anchor="middle" font-size="5.5" fill="var(--accent)">2379</text>
-          <circle cx="443" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="443" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">群聯</text><text x="443" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">8299</text>
-          <text x="418" y="108" text-anchor="middle" font-size="7" fill="var(--accent)">聯詠、瑞昱被多檔 ETF 同樣大幅超額配置</text>
-          <text x="418" y="117" text-anchor="middle" font-size="7" fill="var(--accent)">→ 相對權重向量相似 → 去偏後強連結</text>
-          <text x="418" y="128" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科：ETF 權重 ≈ 市值權重</text>
-          <text x="418" y="137" text-anchor="middle" font-size="7" fill="var(--ink-3)">→ 相對權重趨近零 → 連結大幅減弱（虛線）</text>
-          <!-- 全圖底部說明 -->
-          <rect x="5" y="148" width="450" height="40" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="230" y="162" text-anchor="middle" font-size="8" fill="var(--ink)">去偏的核心邏輯</text>
-          <text x="230" y="174" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">原始持股權重中，大型股因市值佔比大而與所有股票高度重疊（機械性連結，無資訊含量）。</text>
-          <text x="230" y="184" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">扣除市值權重後的「市場相對權重」反映 ETF 對個股的超額/不足配置，由此計算的相似度才可能攜帶資訊。</text>
+          <line x1="200" y1="220" x2="235" y2="220" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
+          <text x="217" y="213" text-anchor="middle" font-size="7.5" fill="var(--ink-3)">去偏</text>
+
+          <!-- 去偏後 -->
+          <text x="360" y="175" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--ink)">去偏後（市場相對權重相似度）</text>
+          <line x1="330" y1="240" x2="360" y2="245" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="360" y1="245" x2="390" y2="240" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="310" y1="205" x2="330" y2="240" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <circle cx="310" cy="205" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="310" y="203" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">台積電</text><text x="310" y="210" text-anchor="middle" font-size="5" fill="var(--ink-3)">2330</text>
+          <circle cx="365" cy="197" r="9" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="365" y="195" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="365" y="202" text-anchor="middle" font-size="5" fill="var(--ink-3)">2454</text>
+          <circle cx="330" cy="240" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="330" y="238" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text><text x="330" y="245" text-anchor="middle" font-size="5" fill="var(--accent)">3034</text>
+          <circle cx="360" cy="245" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="360" y="243" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text><text x="360" y="250" text-anchor="middle" font-size="5" fill="var(--accent)">2379</text>
+          <circle cx="390" cy="240" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="390" y="238" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">群聯</text><text x="390" y="245" text-anchor="middle" font-size="5" fill="var(--ink-3)">8299</text>
+          <text x="360" y="265" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠、瑞昱的相對權重向量幾乎相同</text>
+          <text x="360" y="274" text-anchor="middle" font-size="6.5" fill="var(--accent)">→ CosSim ≈ 1.0 → 去偏後強連結</text>
+          <text x="360" y="285" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">台積電：相對權重趨近零且方向不同</text>
+          <text x="360" y="294" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">→ CosSim ≈ −0.82 → 連結消失（虛線）</text>
+
+          <!-- 底部說明 -->
+          <text x="240" y="308" text-anchor="middle" font-size="7" fill="var(--ink-3)">數字為示意，非實際持股資料。產業型 ETF（如元大電子科技）的超額配置有一部分來自授權而非主動選擇（見限制章節）。</text>
         </svg>
         <div class="formula">
           <span class="label">去偏公式：</span><br>
