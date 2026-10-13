@@ -329,7 +329,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <thead><tr><th>資料來源</th><th>涵蓋</th><th>規模</th></tr></thead>
           <tbody>
             <tr><td>MOPS ETF 持股</td><td>2004Q1–2025Q4（88 季）</td><td>108,881 列、76 檔基金、1,059 檔個股</td></tr>
-            <tr><td>TEJ 個股日股價</td><td>2012-05-02 起</td><td>上市普通股面板，含已下市標的（無存活者偏誤）</td></tr>
+            <tr><td>TEJ 個股日股價</td><td>2012-05-02 起</td><td>上市普通股面板，含已下市標的</td></tr>
             <tr><td>TEJ 多因子模組</td><td>2000–2026</td><td>Fama–French 五因子（FF5）+ 動量因子（日頻），代號 Y9999（上市）</td></tr>
             <tr><td>TWSE 三大法人</td><td>2012-05-02 起</td><td>3,348 個交易日（含 12 個補行交易日）</td></tr>
             <tr><td>TWSE 產業分類</td><td>2012Q2–2025Q4</td><td>Internet Archive 快照重建，前視違規 0</td></tr>
@@ -407,13 +407,13 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       <div class="c">
         <h2>如何閱讀本海報的核心指標</h2>
         <dl class="glossary">
-          <dt>R²<sub>OOS</sub></dt><dd>樣本外 R²，衡量模型預測相對於「直接用歷史均值預測」的改善程度。正值表示模型比歷史均值更準確，負值表示更差。數值以百分比報告，例如 −0.35% 表示預測誤差比歷史均值高出 0.35%。</dd>
+          <dt>R²<sub>OOS</sub></dt><dd>本海報報告的增量樣本外 R² 是以無網路基線 M0 為分母：R²<sub>OOS</sub>(M1:M0) = 1 − MSE(M1) / MSE(M0)。正值表示 M1 的預測誤差低於 M0，負值表示更高。例如 −0.35% 表示 M1 的平方誤差比 M0 約高出 0.35%。</dd>
           <dt>合併 R²</dt><dd>將所有股票在所有交易日的預測匯成一個數字。問題在於它混合了兩種能力：區分同一天內哪些股票漲跌（選股）和判斷市場整體方向（擇時）。本研究的目標是選股，但合併指標可能被擇時分量主導。</dd>
-          <dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），僅衡量模型在同一天內區分個股漲跌的能力。正值表示 M1 的排序能力優於 M0，負值表示更差。這是本研究判斷網路特徵是否有用的關鍵指標。</dd>
+          <dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），衡量 M1 相對 M0 在同一天內個股報酬偏差上的平方誤差縮減程度。此指標對預測值的尺度敏感：保序的正向縮放可改變 R²<sub>CS</sub> 而不改變排序。排序能力由 IC 另行衡量。</dd>
           <dt>IC</dt><dd>資訊係數（Information Coefficient），定義為每日預測值與實現報酬的 Spearman 等級相關。IC > 0 表示預測排序與實際漲跌方向一致。本研究以 IC 增量（IC(M1) − IC(M0)）判斷加入網路特徵後排序是否改善。</dd>
           <dt>淨選股增益</dt><dd>R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 是將基線預測縮放至與 M1 相同離散度後的版本。此指標排除了「M1 只是因為離散度較小而得分」的可能，是事後診斷工具而非因果推論。</dd>
           <dt>增量選股資訊</dt><dd>加入網路特徵後，模型是否能比不含網路的基線（M0）更好地區分同一天內哪些股票會漲、哪些會跌。「增量」是相對於 M0 已有的預測能力而言：M0 已使用個股與市場特徵，問的是網路特徵能否在此之上再提供額外的選股排序資訊。</dd>
-          <dt>增量定價資訊</dt><dd>Fama–MacBeth 迴歸中的概念。在每個交易日，用 M0 和 M1 的預測值同時去解釋實際報酬的橫斷面差異。若 M1 的係數（γ₁）顯著異於零，表示 M1 在控制 M0 之後仍攜帶額外的橫斷面定價資訊。本研究八格 p = 0.26–0.90，遠離顯著。</dd>
+          <dt>增量預測關聯</dt><dd>Fama–MacBeth 迴歸中的概念。在每個交易日，用 M0 和 M1 的預測值同時去解釋實際報酬的橫斷面差異。若 M1 的係數（γ₁）顯著異於零，表示 M1 在控制 M0 之後仍與橫斷面報酬有額外的線性關聯。此處的「關聯」不等同於識別已定價風險因子。本研究八格 p = 0.26–0.90，遠離顯著。</dd>
         </dl>
       </div>
 
@@ -461,7 +461,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>五、安慰劑檢驗與配對崩塌</h2>
-        <p>排列安慰劑保留每個特徵的統計性質，僅隨機打亂「誰是誰的鄰居」。若真實配對攜帶資訊，其表現應顯著優於 99 次隨機重配（p < 0.05）。</p>
+        <p>排列安慰劑在每個產業—季度區塊內隨機重新指派股票代號與網路特徵區塊的對應關係，保留區塊內的特徵結構與變異，僅打斷「哪檔股票對應哪組鄰居特徵」。若真實的網路配對攜帶資訊，其表現應顯著優於 99 次隨機重配（p < 0.05）。</p>
         <div class="hm">
           <div class="hd"></div><div class="hd">5 日</div><div class="hd">20 日</div><div class="hd">30 日</div><div class="hd">60 日</div>
           <div class="rl">半導體 Ridge</div><div class="cl">0.83</div><div class="cl">0.90</div><div class="cl">0.95</div><div class="cl">0.92</div>
@@ -469,7 +469,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <div class="rl">金融 Ridge</div><div class="cl">0.34</div><div class="cl">0.42</div><div class="cl">0.51</div><div class="cl">0.54</div>
           <div class="rl">金融 XGBoost</div><div class="cl">0.63</div><div class="cl">0.27</div><div class="cl">0.22</div><div class="cl">0.19</div>
         </div>
-        <div class="note">16 格未調整排列 p 值無一低於 0.05（最小 0.12）。未偵測到真實網路配對優於隨機重配的證據。</div>
+        <div class="note">16 格未調整排列 p 值（基於合併 R²，非 IC）無一低於 0.05（最小 0.12）。在此隨機化方案下，未偵測到真實網路配對優於隨機重配的證據。</div>
         <p style="margin-top:10px">P3 的跨產業配對檢定原擬以傾向分數配對控制 ETF 涵蓋密度，但可配對性在評估期大幅下降（非嚴格單調，個別季度有局部回升）：</p>
         <!-- ▸ 新增圖：配對崩塌折線圖 -->
         <svg viewBox="0 0 400 120" style="width:100%;height:auto;margin:6px 0" role="img" aria-label="Annual median of quarterly matchable fractions: peaks at 88% in 2019, drops sharply, with brief 4.3% rebound in 2024; only 9/32 evaluation quarters retain at least 5 pairs, all ending by 2021Q1">
@@ -559,7 +559,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h3>圖二：統計檢定工具的可靠度</h3>
-        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷「新模型是否顯著優於舊模型」。理想情況下，當兩個模型實際上一樣好時，此檢定應僅有約 5% 的機率誤判為「新模型較優」（下圖虛線）。本研究以 99 次隨機打亂的安慰劑測試此檢定的可靠度：Ridge 的誤判率接近 5%（可信賴），但 XGBoost 高達 25–99%（不可信賴），意即 XGBoost 通過 CW 檢定不能視為預測力的證據。</p>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷「新模型是否顯著優於舊模型」。理想情況下，當兩個模型實際上一樣好時，此檢定應僅有約 5% 的機率誤判為「新模型較優」（下圖虛線）。在本資料集的 99 次排列實驗中（掃描規格；名目 α=0.05），Ridge 的拒絕率接近名目水準（0.02–0.07），XGBoost 則大幅超過（0.25–0.99）。此結果描述的是已測試的資料、模型設定與隨機化方案，不構成 CW 檢定在所有 XGBoost 應用上無效的一般性結論。</p>
         <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>Ridge（裁定模型）</span><span><span class="sw" style="background:var(--neg)"></span>XGBoost</span></div>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 540 220" style="width:100%;height:auto" role="img" aria-label="Paired Clark-West null rejection rates by horizon. Semiconductor Ridge: 5, 6, 5, 2 percent; XGBoost: 88, 99, 96, 82 percent. Finance Ridge: 2, 6, 7, 5 percent; XGBoost: 25, 96, 86, 66 percent. Dashed line: nominal 5 percent.">
 <line x1="45" y1="160.0" x2="520" y2="160.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="164.0" text-anchor="end" font-size="10" fill="var(--ink-2)">0%</text>
@@ -595,7 +595,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>圖注意力網路（Graph Attention Network, GAT）</h2>
-        <p><strong>為什麼需要 GAT？</strong> Ridge 和 XGBoost 使用的是人工設計的網路特徵（例如鄰居報酬均值、加權相關等），這些特徵的計算方式由研究者事先決定。一個自然的問題是：是否因為人工特徵的設計不夠好，才導致網路資訊無法被提取？GAT 是一種能直接在圖結構上運算的神經網路，它透過「注意力機制」自動學習每個鄰居的重要性權重，不需要人工指定如何彙總鄰居資訊。若 GAT 也無法從網路中提取有用的預測資訊，則更進一步排除了「資訊存在但人工特徵提取不到」的可能。</p>
+        <p><strong>為什麼需要 GAT？</strong> Ridge 和 XGBoost 使用的是人工設計的網路特徵（例如鄰居報酬均值、加權相關等），這些特徵的計算方式由研究者事先決定。一個自然的問題是：是否因為人工特徵的設計不夠好，才導致網路資訊無法被提取？GAT 是一種能直接在圖結構上運算的神經網路，它透過「注意力機制」自動學習每個鄰居的重要性權重，不需要人工指定如何彙總鄰居資訊。GAT 的負結果擴大了已測試方法的範圍，但不能排除其他圖架構或訓練協定可能成功的可能性。</p>
         <table class="nt">
           <thead><tr><th>產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
           <tbody>
@@ -603,12 +603,12 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
             <tr><td>金融</td><td class="red">−5.8%</td><td class="red">−9.4%</td><td class="red">−11.9%</td><td class="red">−9.6%</td></tr>
           </tbody>
         </table>
-        <div class="note"><strong>結果解讀：</strong>合併 R²（M1 GAT vs M0）8 格全負（平均 −7.9%），表示 GAT 加入網路資訊後的預測反而比無網路基線更差。此為整條 GAT 管線（含注意力機制與訓練協定）的綜合表現，不能單獨歸因於注意力權重的優劣，也可能受限於小樣本（N ≈ 22–36）下神經網路的過度配適。但結合 Ridge 和 XGBoost 的結果，三種截然不同的模型架構皆未能從網路中提取增量選股資訊，強化了否證結論的穩健性。</div>
+        <div class="note"><strong>結果解讀：</strong>合併 R²（GAT M1 vs Ridge M0 基線）8 格全負（平均 −7.9%）。此比較以 Ridge M0 為基準，而非 GAT 自身的有邊/無邊消融實驗，因此反映的是整條 GAT 管線（含注意力機制與訓練協定）相對於 Ridge 基線的綜合表現。負結果可能受限於小樣本（N ≈ 22–36）下神經網路的過度配適。結合 Ridge 和 XGBoost 的結果，三種不同架構皆未勝過 M0，擴大了已測試方法的範圍。</div>
       </div>
 
       <div class="c">
         <h2>Fama–MacBeth 增量迴歸：第四條互補路徑</h2>
-        <p>裁定模型 Ridge 的增量係數 γ₁ 在八格全部不顯著（p = 0.26–0.90）。Fama–MacBeth 迴歸逐日跑橫斷面普通最小平方法（OLS），檢驗 M1 的預測在控制 M0 之後是否仍有增量的橫斷面定價資訊（γ₁ 顯著異於零即表示有增量）。</p>
+        <p>裁定模型 Ridge 的增量係數 γ₁ 在八格全部不顯著（p = 0.26–0.90）。Fama–MacBeth 迴歸逐日跑橫斷面普通最小平方法（OLS），檢驗 M1 的預測在控制 M0 之後是否仍有增量的橫斷面預測關聯（γ₁ 顯著異於零即表示有增量）。</p>
         <table class="nt">
           <thead><tr><th>產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
           <tbody>
@@ -618,7 +618,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
             <tr><td>p 值</td><td>0.84</td><td>0.90</td><td>0.81</td><td>0.38</td></tr>
           </tbody>
         </table>
-        <div class="note">八格的 p 值介於 0.26–0.90，遠離 0.05 門檻。在此檢驗下未能建立 M1 對 M0 的增量橫斷面定價資訊。</div>
+        <div class="note">八格的 p 值介於 0.26–0.90，遠離 0.05 門檻。在此檢驗下未能建立 M1 對 M0 的增量橫斷面預測關聯。</div>
       </div>
 
       <div class="c">
@@ -660,10 +660,10 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <text x="355" y="108" text-anchor="end" font-size="9" fill="var(--ink-3)">Cov > 0（正常）</text>
         <path d="M70,110 Q150,90 300,20" fill="none" stroke="var(--neg)" stroke-width="2"/>
         <text x="355" y="91" text-anchor="end" font-size="9" fill="var(--neg)" font-weight="600">Cov < 0（本研究）</text>
-        <circle cx="230" cy="45" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="238" y="40" font-size="9" fill="var(--accent)" font-weight="600">φ×M0</text>
-        <circle cx="170" cy="72" r="5" fill="var(--neg)" stroke="var(--surface)" stroke-width="2"/><text x="155" y="67" font-size="9" fill="var(--neg)" font-weight="600">M0</text>
+        <circle cx="230" cy="45" r="5" fill="var(--neg)" stroke="var(--surface)" stroke-width="2"/><text x="238" y="40" font-size="9" fill="var(--neg)" font-weight="600">M0</text>
+        <circle cx="170" cy="72" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="145" y="67" font-size="9" fill="var(--accent)" font-weight="600">φ×M0</text>
         <line x1="220" y1="50" x2="180" y2="68" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#sa)"/>
-        <text x="215" y="68" font-size="9" fill="var(--ink-2)">φ 縮放</text>
+        <text x="215" y="68" font-size="9" fill="var(--ink-2)">φ &lt; 1</text>
         <text x="100" y="15" font-size="9" fill="var(--neg)">條件：零均值預測、Cov(y,ŷ) < 0</text>
         <text x="100" y="25" font-size="9" fill="var(--neg)">沿紅線左移 = MSE 下降</text>
       </svg>
@@ -672,7 +672,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <span class="eq">MSE</span> = Var(<span class="eq">y</span>) + Var(<span class="eq">ŷ</span>) − 2 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>) + (𝜇̂ − 𝜇)<sup>2</sup><br>
         <span class="label">當預測去均值（𝜇̂ = 𝜇 = 0）時，簡化為：</span><br>
         <span class="eq">MSE</span> = Var(<span class="eq">y</span>) + <strong>Var(<span class="eq">ŷ</span>)</strong> − 2 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>)<br>
-        <span class="label">若 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>) &lt; 0，則 −2 Cov 項為正，使 MSE 隨 Var(<span class="eq">ŷ</span>) 單調遞增。<br>縮小預測離散度（降低 Var(<span class="eq">ŷ</span>)）即降低 MSE，無需增加排序資訊。</span>
+        <span class="label">對一組固定的去均值預測 <span class="eq">p</span>，將其乘以正縮放因子 <span class="eq">c</span>：MSE(<span class="eq">cp</span>) 對 <span class="eq">c</span> 的導數 = 2<span class="eq">c</span> Var(<span class="eq">p</span>) − 2 Cov(<span class="eq">y</span>, <span class="eq">p</span>)。<br>若 Cov(<span class="eq">y</span>, <span class="eq">p</span>) &lt; 0，此導數恆正，故縮小 <span class="eq">c</span> 即降低 MSE，同時保留排序不變。</span>
         <hr style="border:none;border-top:1px solid var(--border);margin:8px 0 6px">
         <span class="label" style="font-size:11px;line-height:1.6">
           <span class="eq">y</span>：實現報酬（觀測值），即股票在預測期距結束後的實際累積報酬。<br>
@@ -680,17 +680,17 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           Var(·)：變異數，衡量一組數值偏離其均值的離散程度。Var(<span class="eq">ŷ</span>) 即「預測離散度」。<br>
           Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>)：共變異數，衡量實現報酬與預測值的共同變動方向。正值表示預測方向與實際一致，負值表示系統性地反向。<br>
           𝜇：實現報酬的均值；𝜇̂：預測值的均值。去均值後兩者皆為零。<br>
-          <span class="eq">MSE</span>：均方誤差（Mean Squared Error），預測誤差的平方平均值。R²<sub>OOS</sub> = 1 − MSE(模型) / MSE(歷史均值)，故 MSE 越低 R² 越高。<br>
-          <span class="eq">φ</span>：離散度匹配的縮放因子，定義為 sd(<span class="eq">ŷ</span><sub>M1</sub>) / sd(<span class="eq">ŷ</span><sub>M0</sub>)。將 M0 的預測乘以 φ 使其離散度與 M1 相同，藉此分離「離散度縮減」與「排序改善」兩種效應。
+          <span class="eq">MSE</span>：均方誤差（Mean Squared Error），預測誤差的平方平均值。本研究的 R²<sub>OOS</sub> = 1 − MSE(M1) / MSE(M0)，故 M1 的 MSE 越低於 M0，R² 越高。<br>
+          <span class="eq">φ</span>：離散度匹配的縮放因子，定義為 sd(<span class="eq">ŷ</span><sub>M1</sub>) / sd(<span class="eq">ŷ</span><sub>M0</sub>)。反事實預測為 ŷ₀* = mean(ŷ₀) + φ(ŷ₀ − mean(ŷ₀))，保留均值、僅改變離散度。φ 可大於或小於 1，故此操作為「離散度匹配」而非僅「縮減」。合併與橫斷面各有獨立的 φ 值。
         </span>
       </div>
       <p>合併樣本外 R²（pooled out-of-sample R²）是 Campbell & Thompson (2008) 以來報酬可預測性文獻廣泛採用的標準評估量，Gu, Kelly, & Xiu (2020) 在機器學習資產定價的基準研究中亦以此為主要指標。然而，此一指標在面板追蹤資料的脈絡下混合了兩個可能方向相反的維度：橫斷面（在同一天內區分個股漲跌的能力，即選股）與時序（判斷整體市場方向的能力，即擇時）。本研究的目標是選股，但合併指標被擇時分量主導。</p>
       <p>上方公式揭示了關鍵機制：當預測值已去均值且 Cov(<span style="font-style:italic">y</span>, <span style="font-style:italic">ŷ</span>) < 0 時，MSE 中的 −2 Cov 項變為正值，使 MSE 對預測離散度單調遞增（如上圖紅線所示）。此時任何使預測值更集中的改動，即便完全不攜帶選股資訊，都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
-      <p><strong>歷史診斷（修正前 U19 規格）：</strong>修正前半導體 15/16 格的時序相關為負。以離散度匹配的反事實縮放（僅將基線預測按離散度比 φ 縮放而不加入任何資訊）複製了修正前 XGBoost 23 格正合併 R² 增益中 20 格的至少 97%（20 格超過 100%，其餘 3 格為 66–84%）。<strong>修正後（當前結果）：</strong>半導體 H=20 的離散度匹配複製比例為 68.8%，即非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。</p>
+      <p><strong>歷史診斷（修正前 U19 規格）：</strong>修正前半導體 15/16 格的時序相關為負。修正前三種樹模型（XGBoost、LightGBM、CatBoost）合計 23 格正合併 R² 增益中，離散度匹配的反事實縮放可複製其中大部分（歷史計算的確切比例因修正前配置已不可重建而未獨立驗證）。<strong>修正後（當前結果）：</strong>半導體 XGBoost H=20 的離散度匹配複製比例為 68.8%，即非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">與既有文獻的定位</h3>
       <p>此一發現的數學基礎（MSE 的二次展開）是教科書內容（Elliott & Timmermann, 2016）。在本研究的文獻搜尋範圍內（截至 2026 年 9 月），尚未發現有文獻明確指出合併 R² 在基線擇時為負時會系統性地獎勵離散度縮減。最接近的是 Engelberg, McLean, Pontiff, & Ringgenberg (2023) 發現橫斷面預測因子的樣本外時序預測力有限，以及 Rapach & Zhou (2020) 分開定義時序與橫斷面 R²，但兩者皆未涉及合併指標的離散度匹配機制。本研究將此定位為已知數學性質在面板報酬預測脈絡下的一個量化應用與診斷程序。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">Clark–West 檢定在 XGBoost 上的大小失真</h3>
-      <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑實測其虛無拒絕率，發現在裁定模型 Ridge 上為 0.02–0.07（符合名目水準 5%），在 XGBoost 上則高達 0.25–0.99（嚴重過度拒絕；LightGBM、CatBoost 未獨立量測）。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
+      <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑（掃描規格；名目 α=0.05）實測其虛無拒絕率，發現在裁定模型 Ridge 上為 0.02–0.07（接近名目水準），在 XGBoost 上則高達 0.25–0.99（大幅超過名目水準；LightGBM、CatBoost 未獨立量測）。此結果描述的是已測試的資料、模型設定與隨機化方案。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">可移植的檢驗程序</h3>
       <svg viewBox="0 0 380 95" style="width:100%;height:auto;margin:4px 0 6px" role="img" aria-label="Portable diagnostic procedure: three steps from checking time-series correlation sign, to computing counterfactual scaling, to comparing with observed gain">
         <defs><marker id="sp" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
@@ -704,10 +704,10 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <text x="190" y="32" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">若為負：計算反事實</text>
         <text x="190" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">φ×M0 的合併 R²</text>
         <line x1="245" y1="25" x2="270" y2="25" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#sp)"/>
-        <rect x="270" y="5" width="105" height="40" rx="4" fill="var(--neg-bg)" stroke="var(--neg)" stroke-width="1"/>
+        <rect x="270" y="5" width="105" height="40" rx="4" fill="var(--vbg)" stroke="var(--neg)" stroke-width="1"/>
         <text x="322" y="20" text-anchor="middle" font-size="8" font-weight="600" fill="var(--neg)">步驟 3</text>
         <text x="322" y="32" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">比較：反事實增益</text>
-        <text x="322" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">≥ 觀測增益？→ 假象</text>
+        <text x="322" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">≥ 觀測？→ 可由匹配解釋</text>
         <rect x="5" y="52" width="370" height="38" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
         <text x="190" y="66" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)">反事實縮放公式</text>
         <text x="190" y="79" text-anchor="middle" font-size="8" fill="var(--ink-2)">R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。</text>
