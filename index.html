@@ -188,7 +188,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <h2>一、研究背景與問題</h2>
         <p>去偏 ETF 共同持股網路特徵在樣本外能否為個股報酬的橫斷面排序提供增量資訊，目前仍缺乏直接的實證檢驗。ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。此法可反映共同的超額配置或不足配置，但不等同於識別基金的刻意投資決策，亦不完全消除被動指數成分。具體而言，產業型 ETF（例如半導體 ETF）的持股對象本就集中於特定產業，其成分股在該 ETF 中的權重必然高於全市場市值權重，因此去偏後的正相對權重有一部分來自產業授權的機械性效應，而非管理者的主動選擇。本研究的去偏程序移除的是「全市場層級」的市值重疊，但未進一步移除「產業層級」的授權效應。Cohen & Frazzini (2008) 的有限注意力機制針對的是供應鏈上的經濟連結；本研究假定相似的注意力不足亦可能存在於共同持股的脈絡中，但此一延伸尚待直接的理論支撐，而這正是本研究欲以樣本外資料檢驗的推論。</p>
         <!-- ▸ 去偏示意圖：ETF 持股權重表 + 網路 before/after -->
-        <svg viewBox="0 0 460 170" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing: left shows a weight table for three ETFs and five stocks, computing market-relative weight; right shows the network before (dense) and after (sparse, reflecting overweight similarity) debiasing">
+        <svg viewBox="0 0 460 195" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing: left shows a weight table for three ETFs and five stocks, computing market-relative weight; right shows the network before (dense) and after (sparse, reflecting overweight similarity) debiasing">
           <defs><marker id="na" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
           <!-- 權重表示意（假設性數字，用真實股票代號） -->
           <text x="5" y="12" font-size="9" font-weight="600" fill="var(--ink)">某半導體 ETF 的持股權重 → 市場相對權重（示意）</text>
@@ -221,7 +221,8 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <circle cx="225" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="225" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">聯詠</text><text x="225" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">3034</text>
           <circle cx="275" cy="90" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="275" y="88" text-anchor="middle" font-size="6" fill="var(--ink-3)">瑞昱</text><text x="275" y="95" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">2379</text>
           <circle cx="325" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="325" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">群聯</text><text x="325" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">8299</text>
-          <text x="275" y="108" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科與所有股票密集相連</text>
+          <text x="275" y="108" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科市值大，幾乎所有 ETF 都持有</text>
+          <text x="275" y="117" text-anchor="middle" font-size="7" fill="var(--ink-3)">→ 原始持股重疊高 → 與每檔股票都「相連」（機械性）</text>
           <!-- 箭頭 -->
           <line x1="340" y1="60" x2="365" y2="60" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
           <text x="352" y="52" text-anchor="middle" font-size="8" fill="var(--ink-3)">去偏</text>
@@ -235,13 +236,15 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <circle cx="393" cy="85" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="393" y="83" text-anchor="middle" font-size="6" fill="var(--accent)">聯詠</text><text x="393" y="90" text-anchor="middle" font-size="5.5" fill="var(--accent)">3034</text>
           <circle cx="418" cy="90" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="418" y="88" text-anchor="middle" font-size="6" fill="var(--accent)">瑞昱</text><text x="418" y="95" text-anchor="middle" font-size="5.5" fill="var(--accent)">2379</text>
           <circle cx="443" cy="85" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="443" y="83" text-anchor="middle" font-size="6" fill="var(--ink-3)">群聯</text><text x="443" y="90" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">8299</text>
-          <text x="418" y="108" text-anchor="middle" font-size="7" fill="var(--accent)">聯詠–瑞昱：相對權重相似 → 強連結</text>
-          <text x="418" y="118" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科連結大幅減弱（虛線）</text>
+          <text x="418" y="108" text-anchor="middle" font-size="7" fill="var(--accent)">聯詠、瑞昱被多檔 ETF 同樣大幅超額配置</text>
+          <text x="418" y="117" text-anchor="middle" font-size="7" fill="var(--accent)">→ 相對權重向量相似 → 去偏後強連結</text>
+          <text x="418" y="128" text-anchor="middle" font-size="7" fill="var(--ink-3)">台積電、聯發科：ETF 權重 ≈ 市值權重</text>
+          <text x="418" y="137" text-anchor="middle" font-size="7" fill="var(--ink-3)">→ 相對權重趨近零 → 連結大幅減弱（虛線）</text>
           <!-- 全圖底部說明 -->
-          <rect x="5" y="125" width="450" height="40" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="230" y="139" text-anchor="middle" font-size="8" fill="var(--ink)">去偏的核心邏輯</text>
-          <text x="230" y="151" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">原始持股權重中，大型股因市值佔比大而與所有股票高度重疊（機械性連結，無資訊含量）。</text>
-          <text x="230" y="161" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">扣除市值權重後的「市場相對權重」反映 ETF 對個股的超額/不足配置，由此計算的相似度才可能攜帶資訊。</text>
+          <rect x="5" y="148" width="450" height="40" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="230" y="162" text-anchor="middle" font-size="8" fill="var(--ink)">去偏的核心邏輯</text>
+          <text x="230" y="174" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">原始持股權重中，大型股因市值佔比大而與所有股票高度重疊（機械性連結，無資訊含量）。</text>
+          <text x="230" y="184" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">扣除市值權重後的「市場相對權重」反映 ETF 對個股的超額/不足配置，由此計算的相似度才可能攜帶資訊。</text>
         </svg>
         <div class="formula">
           <span class="label">去偏公式：</span><br>
