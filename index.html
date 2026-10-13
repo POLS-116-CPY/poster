@@ -187,39 +187,62 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       <div class="c">
         <h2>一、研究背景與問題</h2>
         <p>去偏 ETF 共同持股網路特徵在樣本外能否為個股報酬的橫斷面排序提供增量資訊，目前仍缺乏直接的實證檢驗。ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。此法可反映共同的超額配置或不足配置，但不等同於識別基金的刻意投資決策，亦不完全消除被動指數成分。Cohen & Frazzini (2008) 的有限注意力機制針對的是供應鏈上的經濟連結；本研究假定相似的注意力不足亦可能存在於共同持股的脈絡中，但此一延伸尚待直接的理論支撐，而這正是本研究欲以樣本外資料檢驗的推論。</p>
-        <!-- ▸ 新增圖：網路去偏 before/after -->
-        <svg viewBox="0 0 460 110" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing illustration: before debiasing large-cap stocks are densely connected due to market-cap overlap; after debiasing edges reflect similarity in market-relative weights, which can capture common overweights or underweights">
+        <!-- ▸ 去偏示意圖：ETF 持股權重表 + 網路 before/after -->
+        <svg viewBox="0 0 460 170" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Network debiasing: left shows a weight table for three ETFs and five stocks, computing market-relative weight; right shows the network before (dense) and after (sparse, reflecting overweight similarity) debiasing">
           <defs><marker id="na" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
-          <line x1="80" y1="55" x2="130" y2="45" stroke="var(--ink-3)" stroke-width="1.5"/>
-          <line x1="80" y1="55" x2="50" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="80" y1="55" x2="100" y2="95" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="80" y1="55" x2="150" y2="88" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="130" y1="45" x2="50" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="130" y1="45" x2="100" y2="95" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="130" y1="45" x2="150" y2="88" stroke="var(--ink-3)" stroke-width="1"/>
-          <line x1="50" y1="90" x2="100" y2="95" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
-          <line x1="280" y1="90" x2="340" y2="95" stroke="var(--accent)" stroke-width="2"/>
-          <line x1="340" y1="95" x2="400" y2="88" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="310" y1="55" x2="280" y2="90" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
-          <!-- Before -->
-          <text x="100" y="12" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)">去偏前</text>
-          <circle cx="80" cy="55" r="16" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="80" y="59" text-anchor="middle" font-size="9" fill="var(--ink-2)">大A</text>
-          <circle cx="130" cy="45" r="14" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="130" y="49" text-anchor="middle" font-size="9" fill="var(--ink-2)">大B</text>
-          <circle cx="50" cy="90" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="50" y="93" text-anchor="middle" font-size="9" fill="var(--ink-3)">C</text>
-          <circle cx="100" cy="95" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="100" y="98" text-anchor="middle" font-size="9" fill="var(--ink-3)">D</text>
-          <circle cx="150" cy="88" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="150" y="91" text-anchor="middle" font-size="9" fill="var(--ink-3)">E</text>
-          <!-- Arrow -->
-          <line x1="185" y1="60" x2="220" y2="60" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
-          <text x="202" y="52" text-anchor="middle" font-size="9" fill="var(--ink-3)">去偏</text>
-          <!-- After -->
-          <text x="350" y="12" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)">去偏後</text>
-          <circle cx="310" cy="55" r="12" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="310" y="59" text-anchor="middle" font-size="9" fill="var(--ink-3)">大A</text>
-          <circle cx="370" cy="45" r="11" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="370" y="49" text-anchor="middle" font-size="9" fill="var(--ink-3)">大B</text>
-          <circle cx="280" cy="90" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="280" y="93" text-anchor="middle" font-size="9" fill="var(--accent)">C</text>
-          <circle cx="340" cy="95" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="340" y="98" text-anchor="middle" font-size="9" fill="var(--accent)">D</text>
-          <circle cx="400" cy="88" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" font-size="9" fill="var(--accent)">E</text>
+          <!-- 權重表示意 -->
+          <text x="5" y="12" font-size="9" font-weight="600" fill="var(--ink)">ETF 持股權重 → 市場相對權重</text>
+          <rect x="5" y="18" width="170" height="14" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="10" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">股票</text>
+          <text x="48" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">ETF權重</text>
+          <text x="95" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">市值權重</text>
+          <text x="142" y="28" font-size="7.5" font-weight="600" fill="var(--ink-2)">相對權重</text>
+          <text x="10" y="42" font-size="7.5" fill="var(--ink-2)">大A</text><text x="55" y="42" font-size="7.5" fill="var(--ink-2)">30%</text><text x="105" y="42" font-size="7.5" fill="var(--ink-2)">28%</text><text x="148" y="42" font-size="7.5" fill="var(--ink-3)">+2%</text>
+          <text x="10" y="53" font-size="7.5" fill="var(--ink-2)">大B</text><text x="55" y="53" font-size="7.5" fill="var(--ink-2)">25%</text><text x="105" y="53" font-size="7.5" fill="var(--ink-2)">24%</text><text x="148" y="53" font-size="7.5" fill="var(--ink-3)">+1%</text>
+          <text x="10" y="64" font-size="7.5" fill="var(--accent)">C</text><text x="55" y="64" font-size="7.5" fill="var(--ink-2)">20%</text><text x="105" y="64" font-size="7.5" fill="var(--ink-2)">8%</text><text x="145" y="64" font-size="7.5" font-weight="600" fill="var(--accent)">+12%</text>
+          <text x="10" y="75" font-size="7.5" fill="var(--accent)">D</text><text x="55" y="75" font-size="7.5" fill="var(--ink-2)">18%</text><text x="105" y="75" font-size="7.5" fill="var(--ink-2)">7%</text><text x="145" y="75" font-size="7.5" font-weight="600" fill="var(--accent)">+11%</text>
+          <text x="10" y="86" font-size="7.5" fill="var(--ink-2)">E</text><text x="55" y="86" font-size="7.5" fill="var(--ink-2)">7%</text><text x="105" y="86" font-size="7.5" fill="var(--ink-2)">5%</text><text x="148" y="86" font-size="7.5" fill="var(--ink-3)">+2%</text>
+          <text x="5" y="100" font-size="7" fill="var(--ink-3)">大型股相對權重小（接近市值權重）</text>
+          <text x="5" y="110" font-size="7" fill="var(--accent)">C、D 被大幅超額配置 → 去偏後相連</text>
+          <!-- 箭頭連接 -->
+          <line x1="180" y1="60" x2="195" y2="60" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#na)"/>
+          <!-- 去偏前網路 -->
+          <text x="280" y="12" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">去偏前（原始持股重疊）</text>
+          <line x1="260" y1="50" x2="305" y2="42" stroke="var(--ink-3)" stroke-width="1.5"/>
+          <line x1="260" y1="50" x2="230" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="260" y1="50" x2="275" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="260" y1="50" x2="320" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="305" y1="42" x2="230" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="305" y1="42" x2="275" y2="90" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="305" y1="42" x2="320" y2="85" stroke="var(--ink-3)" stroke-width="1"/>
+          <line x1="230" y1="85" x2="275" y2="90" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <circle cx="260" cy="50" r="14" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="260" y="54" text-anchor="middle" font-size="8" fill="var(--ink-2)">大A</text>
+          <circle cx="305" cy="42" r="12" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.5"/><text x="305" y="46" text-anchor="middle" font-size="8" fill="var(--ink-2)">大B</text>
+          <circle cx="230" cy="85" r="7" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="230" y="88" text-anchor="middle" font-size="8" fill="var(--ink-3)">C</text>
+          <circle cx="275" cy="90" r="7" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="275" y="93" text-anchor="middle" font-size="8" fill="var(--ink-3)">D</text>
+          <circle cx="320" cy="85" r="7" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="320" y="88" text-anchor="middle" font-size="8" fill="var(--ink-3)">E</text>
+          <text x="275" y="108" text-anchor="middle" font-size="7" fill="var(--ink-3)">大型股與所有股票密集相連</text>
+          <!-- 箭頭 -->
+          <line x1="340" y1="60" x2="365" y2="60" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#na)"/>
+          <text x="352" y="52" text-anchor="middle" font-size="8" fill="var(--ink-3)">去偏</text>
+          <!-- 去偏後網路 -->
+          <text x="418" y="12" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">去偏後</text>
+          <line x1="393" y1="85" x2="418" y2="90" stroke="var(--accent)" stroke-width="2.5"/>
+          <line x1="418" y1="90" x2="443" y2="85" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="383" y1="50" x2="393" y2="85" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
+          <circle cx="383" cy="50" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="383" y="54" text-anchor="middle" font-size="8" fill="var(--ink-3)">大A</text>
+          <circle cx="430" cy="42" r="9" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/><text x="430" y="46" text-anchor="middle" font-size="8" fill="var(--ink-3)">大B</text>
+          <circle cx="393" cy="85" r="7" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="393" y="88" text-anchor="middle" font-size="8" fill="var(--accent)">C</text>
+          <circle cx="418" cy="90" r="7" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/><text x="418" y="93" text-anchor="middle" font-size="8" fill="var(--accent)">D</text>
+          <circle cx="443" cy="85" r="7" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/><text x="443" y="88" text-anchor="middle" font-size="8" fill="var(--ink-3)">E</text>
+          <text x="418" y="108" text-anchor="middle" font-size="7" fill="var(--accent)">C–D 相對權重相似 → 強連結</text>
+          <text x="418" y="118" text-anchor="middle" font-size="7" fill="var(--ink-3)">大型股連結大幅減弱（虛線）</text>
+          <!-- 全圖底部說明 -->
+          <rect x="5" y="125" width="450" height="40" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="230" y="139" text-anchor="middle" font-size="8" fill="var(--ink)">去偏的核心邏輯</text>
+          <text x="230" y="151" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">原始持股權重中，大型股因市值佔比大而與所有股票高度重疊（機械性連結，無資訊含量）。</text>
+          <text x="230" y="161" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">扣除市值權重後的「市場相對權重」反映 ETF 對個股的超額/不足配置，由此計算的相似度才可能攜帶資訊。</text>
         </svg>
-        <div class="fig-caption">去偏前，大型股因市值權重而與所有股票密集相連（機械性重疊）；去偏後，連結反映市場相對權重的相似度（藍色），可包含共同超額配置或共同不足配置。</div>
         <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則均於分析之前登錄（事前分析計畫，旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡）。</p>
       </div>
 
@@ -312,6 +335,8 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），僅衡量模型在同一天內區分個股漲跌的能力。正值表示 M1 的排序能力優於 M0，負值表示更差。這是本研究判斷網路特徵是否有用的關鍵指標。</dd>
           <dt>IC</dt><dd>資訊係數（Information Coefficient），定義為每日預測值與實現報酬的 Spearman 等級相關。IC > 0 表示預測排序與實際漲跌方向一致。本研究以 IC 增量（IC(M1) − IC(M0)）判斷加入網路特徵後排序是否改善。</dd>
           <dt>淨選股增益</dt><dd>R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 是將基線預測縮放至與 M1 相同離散度後的版本。此指標排除了「M1 只是因為離散度較小而得分」的可能，是事後診斷工具而非因果推論。</dd>
+          <dt>增量選股資訊</dt><dd>加入網路特徵後，模型是否能比不含網路的基線（M0）更好地區分同一天內哪些股票會漲、哪些會跌。「增量」是相對於 M0 已有的預測能力而言：M0 已使用個股與市場特徵，問的是網路特徵能否在此之上再提供額外的選股排序資訊。</dd>
+          <dt>增量定價資訊</dt><dd>Fama–MacBeth 迴歸中的概念。在每個交易日，用 M0 和 M1 的預測值同時去解釋實際報酬的橫斷面差異。若 M1 的係數（γ₁）顯著異於零，表示 M1 在控制 M0 之後仍攜帶額外的橫斷面定價資訊。本研究八格 p = 0.26–0.90，遠離顯著。</dd>
         </dl>
       </div>
 
@@ -493,7 +518,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>圖注意力網路（Graph Attention Network, GAT）</h2>
-        <p>所評估的 GAT 在 8 格 M0 相對合併 R² 全為負值（平均 −7.9%）。GAT 是一種能自動學習鄰居重要性權重（注意力機制）的神經網路，可直接處理兩張網路的圖結構。</p>
+        <p><strong>為什麼需要 GAT？</strong> Ridge 和 XGBoost 使用的是人工設計的網路特徵（例如鄰居報酬均值、加權相關等），這些特徵的計算方式由研究者事先決定。一個自然的問題是：是否因為人工特徵的設計不夠好，才導致網路資訊無法被提取？GAT 是一種能直接在圖結構上運算的神經網路，它透過「注意力機制」自動學習每個鄰居的重要性權重，不需要人工指定如何彙總鄰居資訊。若 GAT 也無法從網路中提取有用的預測資訊，則更進一步排除了「資訊存在但人工特徵提取不到」的可能。</p>
         <table class="nt">
           <thead><tr><th>產業</th><th>5 日</th><th>20 日</th><th>30 日</th><th>60 日</th></tr></thead>
           <tbody>
@@ -501,7 +526,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
             <tr><td>金融</td><td class="red">−5.8%</td><td class="red">−9.4%</td><td class="red">−11.9%</td><td class="red">−9.6%</td></tr>
           </tbody>
         </table>
-        <div class="note">合併 R²（M1 GAT vs M0），8 格全負。此為整條 GAT 管線（含注意力機制與訓練協定）的綜合表現，不能單獨歸因於注意力權重的優劣。另以離散度匹配調整後的 GAT vs M1-Ridge 橫斷面比較亦為 8/8 負值（詳見論文 §9.5 及 gat_vs_manual.csv）。</div>
+        <div class="note"><strong>結果解讀：</strong>合併 R²（M1 GAT vs M0）8 格全負（平均 −7.9%），表示 GAT 加入網路資訊後的預測反而比無網路基線更差。此為整條 GAT 管線（含注意力機制與訓練協定）的綜合表現，不能單獨歸因於注意力權重的優劣，也可能受限於小樣本（N ≈ 22–36）下神經網路的過度配適。但結合 Ridge 和 XGBoost 的結果，三種截然不同的模型架構皆未能從網路中提取增量選股資訊，強化了否證結論的穩健性。</div>
       </div>
 
       <div class="c">
@@ -589,6 +614,27 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">Clark–West 檢定在 XGBoost 上的大小失真</h3>
       <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑實測其虛無拒絕率，發現在裁定模型 Ridge 上為 0.02–0.07（符合名目水準 5%），在 XGBoost 上則高達 0.25–0.99（嚴重過度拒絕；LightGBM、CatBoost 未獨立量測）。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">可移植的檢驗程序</h3>
+      <svg viewBox="0 0 380 95" style="width:100%;height:auto;margin:4px 0 6px" role="img" aria-label="Portable diagnostic procedure: three steps from checking time-series correlation sign, to computing counterfactual scaling, to comparing with observed gain">
+        <defs><marker id="sp" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
+        <rect x="5" y="5" width="105" height="40" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
+        <text x="57" y="20" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)">步驟 1</text>
+        <text x="57" y="32" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">檢查基線的</text>
+        <text x="57" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">時序 Corr(y, ŷ) 符號</text>
+        <line x1="110" y1="25" x2="135" y2="25" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#sp)"/>
+        <rect x="135" y="5" width="110" height="40" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
+        <text x="190" y="20" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)">步驟 2</text>
+        <text x="190" y="32" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">若為負：計算反事實</text>
+        <text x="190" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">φ×M0 的合併 R²</text>
+        <line x1="245" y1="25" x2="270" y2="25" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#sp)"/>
+        <rect x="270" y="5" width="105" height="40" rx="4" fill="var(--neg-bg)" stroke="var(--neg)" stroke-width="1"/>
+        <text x="322" y="20" text-anchor="middle" font-size="8" font-weight="600" fill="var(--neg)">步驟 3</text>
+        <text x="322" y="32" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">比較：反事實增益</text>
+        <text x="322" y="41" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">≥ 觀測增益？→ 假象</text>
+        <rect x="5" y="52" width="370" height="38" rx="3" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+        <text x="190" y="66" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)">反事實縮放公式</text>
+        <text x="190" y="79" text-anchor="middle" font-size="8" fill="var(--ink-2)">R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。</text>
+        <text x="190" y="88" text-anchor="middle" font-size="7.5" fill="var(--ink-3)">若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。</text>
+      </svg>
       <p>本研究據此提出一套適用於任何使用合併 R² 且基線擇時為負的研究的檢驗程序：對指標本身施加安慰劑，即將一個理論上不應產生效果的改動施加於指標，觀察其是否產生反應。此程序的成本趨近於零（一行反事實計算），但揭露力可以是決定性的。任何報告合併 R² 的研究，宜先檢查基線模型的時序相關符號；若為負，合併 R² 的正值即有可能為收縮假象。</p>
     </div>
     <div class="contrib">
