@@ -243,6 +243,19 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <text x="230" y="151" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">原始持股權重中，大型股因市值佔比大而與所有股票高度重疊（機械性連結，無資訊含量）。</text>
           <text x="230" y="161" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">扣除市值權重後的「市場相對權重」反映 ETF 對個股的超額/不足配置，由此計算的相似度才可能攜帶資訊。</text>
         </svg>
+        <div class="formula">
+          <span class="label">去偏公式：</span><br>
+          <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup> = <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup> − <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>mkt</sup><br>
+          <span class="label">兩股票間的去偏共同持股相似度（餘弦相似度）：</span><br>
+          CosSim(<span class="eq">j</span>, <span class="eq">k</span>) = Σ<sub><span class="eq">i</span></sub> <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup> · <span class="eq">w</span><sub><span class="eq">ik</span></sub><sup>rel</sup> / (‖<span class="eq">w</span><sub>·<span class="eq">j</span></sub><sup>rel</sup>‖ · ‖<span class="eq">w</span><sub>·<span class="eq">k</span></sub><sup>rel</sup>‖)
+          <hr style="border:none;border-top:1px solid var(--border);margin:8px 0 6px">
+          <span class="label" style="font-size:11px;line-height:1.6">
+            <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup>：股票 <span class="eq">j</span> 在 ETF <span class="eq">i</span> 中的持股權重。<br>
+            <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>mkt</sup>：股票 <span class="eq">j</span> 的全市場市值權重（市值 / 全市場總市值）。<br>
+            <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup>：市場相對權重。正值表示 ETF <span class="eq">i</span> 對股票 <span class="eq">j</span> 超額配置，負值表示不足配置。<br>
+            CosSim(<span class="eq">j</span>, <span class="eq">k</span>)：股票 <span class="eq">j</span> 與 <span class="eq">k</span> 在所有 ETF 上的市場相對權重向量之餘弦相似度。值越高表示兩檔股票被 ETF 群以相似的模式超額或不足配置。保留相似度最高的 K=30 個鄰居。
+          </span>
+        </div>
         <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則均於分析之前載明於計畫書中，旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡。</p>
       </div>
 
