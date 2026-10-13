@@ -57,6 +57,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,
 svg text{font-family:'Noto Sans TC',system-ui,sans-serif}
 .note{font-size:10px;color:var(--ink-3);margin-top:6px;line-height:1.5}
 .ref{font-size:9.5px;color:var(--ink-3);margin-top:8px;line-height:1.5;border-top:1px solid var(--grid);padding-top:8px}
+.formula{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:15px;line-height:1.8;color:var(--ink);overflow-x:auto}
+.formula .eq{font-family:'Times New Roman','Noto Serif TC',serif;font-style:italic}
+.formula .label{font-family:'Noto Sans TC',sans-serif;font-style:normal;font-size:12px;color:var(--ink-2)}
+.glossary{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin:8px 0}
+.glossary dt{font-weight:600;color:var(--ink);font-size:14px;float:left;width:110px;clear:left}
+.glossary dd{margin-left:115px;font-size:13px;color:var(--ink-2);line-height:1.6;margin-bottom:4px}
 .fig-caption{font-size:10px;color:var(--ink-3);text-align:center;margin-top:4px;font-style:italic}
 /* Screen reading: use comfortable text sizes and balance the two columns. */
 .poster{padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
@@ -293,8 +299,19 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       </div>
 
       <div class="c">
+        <h2>如何閱讀本海報的核心指標</h2>
+        <dl class="glossary">
+          <dt>R²<sub>OOS</sub></dt><dd>樣本外 R²，衡量模型預測相對於「直接用歷史均值預測」的改善程度。正值表示模型比歷史均值更準確，負值表示更差。數值以百分比報告，例如 −0.35% 表示預測誤差比歷史均值高出 0.35%。</dd>
+          <dt>合併 R²</dt><dd>將所有股票在所有交易日的預測匯成一個數字。問題在於它混合了兩種能力：區分同一天內哪些股票漲跌（選股）和判斷市場整體方向（擇時）。本研究的目標是選股，但合併指標可能被擇時分量主導。</dd>
+          <dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），僅衡量模型在同一天內區分個股漲跌的能力。正值表示 M1 的排序能力優於 M0，負值表示更差。這是本研究判斷網路特徵是否有用的關鍵指標。</dd>
+          <dt>IC</dt><dd>資訊係數（Information Coefficient），定義為每日預測值與實現報酬的 Spearman 等級相關。IC > 0 表示預測排序與實際漲跌方向一致。本研究以 IC 增量（IC(M1) − IC(M0)）判斷加入網路特徵後排序是否改善。</dd>
+          <dt>淨選股增益</dt><dd>R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 是將基線預測縮放至與 M1 相同離散度後的版本。此指標排除了「M1 只是因為離散度較小而得分」的可能，是事後診斷工具而非因果推論。</dd>
+        </dl>
+      </div>
+
+      <div class="c">
         <h2>四、裁定模型的分解結果</h2>
-        <p>裁定模型 Ridge 在八格主規格中的合併 R²、選股 R²（橫斷面 R²，僅衡量區分個股漲跌的能力）與淨選股增益全為負值。淨選股增益定義為 R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 為離散度匹配後的基線，是一種事後的診斷工具而非因果推論。</p>
+        <p>裁定模型 Ridge 在八格主規格中，合併 R²、選股 R² 與淨選股增益全為負值。三個指標全為負意味著：無論用哪一種衡量方式，加入雙軌網路特徵後的 M1 預測都不如無網路的 M0 基線。</p>
         <table class="nt">
           <thead><tr><th>產業 × 預測天數</th><th>合併 R²</th><th>選股 R²</th><th>淨選股增益</th></tr></thead>
           <tbody>
@@ -381,7 +398,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h3>圖一：合併指標的正值不等同於增量選股資訊（XGBoost，主規格，M1 vs M0）</h3>
-        <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">合併 R²（整體準確度，藍色）包含選股與擇時兩個維度。拆為橫斷面 R²（選股分量，紅色）後大部分轉負。合併指標的正值可能源自預測離散度的縮減（離散度匹配診斷，詳見下方），而非新的排序資訊。</p>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">合併 R²（藍色）衡量整體預測準確度，包含選股與擇時兩個維度。橫斷面 R²（紅色）僅衡量選股能力。此圖的關鍵訊息是：XGBoost 的合併 R² 有時為正（藍色條形向右），但拆出選股分量後大多為負（紅色條形向左），表示其表面上的改善可能來自預測離散度的縮減，而非真正更好的選股排序。</p>
         <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>合併 R²（整體）</span><span><span class="sw" style="background:var(--neg)"></span>橫斷面 R²（選股）</span></div>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 580 292" style="width:100%;height:auto" role="img" aria-label="XGBoost incremental R-squared: solid blue pooled bars and outlined red cross-sectional bars. Values are listed in separate aligned columns; most cross-sectional values are negative.">
 <text x="463" y="15" text-anchor="end" font-size="11" fill="var(--accent)">合併 R²</text><text x="570" y="15" text-anchor="end" font-size="11" fill="var(--neg)">選股 R²</text>
@@ -434,7 +451,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h3>圖二：統計檢定工具的可靠度</h3>
-        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷新模型是否顯著優於舊模型。在真正無差異時應僅有約 5% 的誤判率（紅色虛線）。Ridge 符合此標準，但 XGBoost 的誤判率高達 25–99%。</p>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷「新模型是否顯著優於舊模型」。理想情況下，當兩個模型實際上一樣好時，此檢定應僅有約 5% 的機率誤判為「新模型較優」（下圖虛線）。本研究以 99 次隨機打亂的安慰劑測試此檢定的可靠度：Ridge 的誤判率接近 5%（可信賴），但 XGBoost 高達 25–99%（不可信賴），意即 XGBoost 通過 CW 檢定不能視為預測力的證據。</p>
         <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>Ridge（裁定模型）</span><span><span class="sw" style="background:var(--neg)"></span>XGBoost</span></div>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 540 220" style="width:100%;height:auto" role="img" aria-label="Paired Clark-West null rejection rates by horizon. Semiconductor Ridge: 5, 6, 5, 2 percent; XGBoost: 88, 99, 96, 82 percent. Finance Ridge: 2, 6, 7, 5 percent; XGBoost: 25, 96, 86, 66 percent. Dashed line: nominal 5 percent.">
 <line x1="45" y1="160.0" x2="520" y2="160.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="164.0" text-anchor="end" font-size="10" fill="var(--ink-2)">0%</text>
@@ -541,8 +558,15 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <text x="100" y="15" font-size="9" fill="var(--neg)">條件：零均值預測、Cov(y,ŷ) < 0</text>
         <text x="100" y="25" font-size="9" fill="var(--neg)">沿紅線左移 = MSE 下降</text>
       </svg>
+      <div class="formula">
+        <span class="label">MSE 的二次展開（離散度匹配診斷的數學基礎）：</span><br>
+        <span class="eq">MSE</span> = Var(<span class="eq">y</span>) + Var(<span class="eq">ŷ</span>) − 2 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>) + (𝜇̂ − 𝜇)<sup>2</sup><br>
+        <span class="label">當預測去均值（𝜇̂ = 𝜇 = 0）時，簡化為：</span><br>
+        <span class="eq">MSE</span> = Var(<span class="eq">y</span>) + <strong>Var(<span class="eq">ŷ</span>)</strong> − 2 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>)<br>
+        <span class="label">若 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>) &lt; 0，則 −2 Cov 項為正，使 MSE 隨 Var(<span class="eq">ŷ</span>) 單調遞增。<br>縮小預測離散度（降低 Var(<span class="eq">ŷ</span>)）即降低 MSE，無需增加排序資訊。</span>
+      </div>
       <p>合併樣本外 R²（pooled out-of-sample R²）是 Campbell & Thompson (2008) 以來報酬可預測性文獻廣泛採用的標準評估量，Gu, Kelly, & Xiu (2020) 在機器學習資產定價的基準研究中亦以此為主要指標。然而，此一指標在面板追蹤資料的脈絡下混合了兩個可能方向相反的維度：橫斷面（在同一天內區分個股漲跌的能力，即選股）與時序（判斷整體市場方向的能力，即擇時）。本研究的目標是選股，但合併指標被擇時分量主導。</p>
-      <p>其關鍵機制在於（上圖所示為零均值預測的充分條件）：當預測值已去均值且 Cov(y, ŷ) < 0 時，MSE 對預測離散度單調遞增。此時任何使預測值更集中的改動，即便完全不攜帶選股資訊，都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
+      <p>上方公式揭示了關鍵機制：當預測值已去均值且 Cov(<span style="font-style:italic">y</span>, <span style="font-style:italic">ŷ</span>) < 0 時，MSE 中的 −2 Cov 項變為正值，使 MSE 對預測離散度單調遞增（如上圖紅線所示）。此時任何使預測值更集中的改動，即便完全不攜帶選股資訊，都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
       <p><strong>歷史診斷（修正前 U19 規格）：</strong>修正前半導體 15/16 格的時序相關為負。以離散度匹配的反事實縮放（僅將基線預測按離散度比 φ 縮放而不加入任何資訊）複製了修正前 XGBoost 23 格正合併 R² 增益中 20 格的至少 97%（20 格超過 100%，其餘 3 格為 66–84%）。<strong>修正後（當前結果）：</strong>半導體 H=20 的離散度匹配複製比例為 68.8%，即非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">與既有文獻的定位</h3>
       <p>此一發現的數學基礎（MSE 的二次展開）是教科書內容（Elliott & Timmermann, 2016）。在本研究的文獻搜尋範圍內（截至 2026 年 9 月），尚未發現有文獻明確指出合併 R² 在基線擇時為負時會系統性地獎勵離散度縮減。最接近的是 Engelberg, McLean, Pontiff, & Ringgenberg (2023) 發現橫斷面預測因子的樣本外時序預測力有限，以及 Rapach & Zhou (2020) 分開定義時序與橫斷面 R²，但兩者皆未涉及合併指標的離散度匹配機制。本研究將此定位為已知數學性質在面板報酬預測脈絡下的一個量化應用與診斷程序。</p>
