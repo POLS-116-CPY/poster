@@ -564,6 +564,16 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
         <span class="label">當預測去均值（𝜇̂ = 𝜇 = 0）時，簡化為：</span><br>
         <span class="eq">MSE</span> = Var(<span class="eq">y</span>) + <strong>Var(<span class="eq">ŷ</span>)</strong> − 2 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>)<br>
         <span class="label">若 Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>) &lt; 0，則 −2 Cov 項為正，使 MSE 隨 Var(<span class="eq">ŷ</span>) 單調遞增。<br>縮小預測離散度（降低 Var(<span class="eq">ŷ</span>)）即降低 MSE，無需增加排序資訊。</span>
+        <hr style="border:none;border-top:1px solid var(--border);margin:8px 0 6px">
+        <span class="label" style="font-size:11px;line-height:1.6">
+          <span class="eq">y</span>：實現報酬（觀測值），即股票在預測期距結束後的實際累積報酬。<br>
+          <span class="eq">ŷ</span>：模型預測值，即 Ridge 或 XGBoost 對該股票未來報酬的樣本外預測。<br>
+          Var(·)：變異數，衡量一組數值偏離其均值的離散程度。Var(<span class="eq">ŷ</span>) 即「預測離散度」。<br>
+          Cov(<span class="eq">y</span>, <span class="eq">ŷ</span>)：共變異數，衡量實現報酬與預測值的共同變動方向。正值表示預測方向與實際一致，負值表示系統性地反向。<br>
+          𝜇：實現報酬的均值；𝜇̂：預測值的均值。去均值後兩者皆為零。<br>
+          <span class="eq">MSE</span>：均方誤差（Mean Squared Error），預測誤差的平方平均值。R²<sub>OOS</sub> = 1 − MSE(模型) / MSE(歷史均值)，故 MSE 越低 R² 越高。<br>
+          <span class="eq">φ</span>：離散度匹配的縮放因子，定義為 sd(<span class="eq">ŷ</span><sub>M1</sub>) / sd(<span class="eq">ŷ</span><sub>M0</sub>)。將 M0 的預測乘以 φ 使其離散度與 M1 相同，藉此分離「離散度縮減」與「排序改善」兩種效應。
+        </span>
       </div>
       <p>合併樣本外 R²（pooled out-of-sample R²）是 Campbell & Thompson (2008) 以來報酬可預測性文獻廣泛採用的標準評估量，Gu, Kelly, & Xiu (2020) 在機器學習資產定價的基準研究中亦以此為主要指標。然而，此一指標在面板追蹤資料的脈絡下混合了兩個可能方向相反的維度：橫斷面（在同一天內區分個股漲跌的能力，即選股）與時序（判斷整體市場方向的能力，即擇時）。本研究的目標是選股，但合併指標被擇時分量主導。</p>
       <p>上方公式揭示了關鍵機制：當預測值已去均值且 Cov(<span style="font-style:italic">y</span>, <span style="font-style:italic">ŷ</span>) < 0 時，MSE 中的 −2 Cov 項變為正值，使 MSE 對預測離散度單調遞增（如上圖紅線所示）。此時任何使預測值更集中的改動，即便完全不攜帶選股資訊，都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
