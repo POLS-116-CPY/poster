@@ -186,13 +186,13 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>一、研究背景與問題</h2>
-        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。所得的網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 產業型 ETF 的被動授權（半導體 ETF 必然超額配置半導體股）、(2) 指數方法論差異（等權 vs 市值加權）、(3) 管理者的主動選股。主規格以全市場市值權重為基準，使市值加權廣基 ETF 的相對權重趨近零；另以產業內市值權重為基準重跑 132 變體作為敏感度檢查（結果見限制章節）。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量選股資訊。</p>
+        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。所得的網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 指數母體差異（追蹤子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數方法論差異（等權 vs 市值加權 vs 殖利率加權等）、(3) 管理者的主動選股。主規格以全市場市值權重為基準，使市值加權廣基 ETF 的相對權重趨近零；另以產業內市值權重為基準重跑 132 變體作為敏感度檢查（結果見限制章節）。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量選股資訊。</p>
         <!-- ▸ 統一示意圖：市場級 vs 產業級去偏 -->
         <svg viewBox="0 0 580 460" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Unified debiasing comparison: shared weight table showing both market and sector relative weights side by side, parallel network diagrams, B−c limitation, and sweep results">
           <defs><marker id="nd" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
 
           <!-- ═══ A：統一權重表 ═══ -->
-          <text x="5" y="12" font-size="10" font-weight="600" fill="var(--ink)">ETF 持股權重 → 兩種基準下的相對權重（示意數字）</text>
+          <text x="5" y="12" font-size="10" font-weight="600" fill="var(--ink)">ETF 持股權重 → 兩種基準下的相對權重（MOPS 2023Q4 實際數據）</text>
 
           <!-- 表頭 -->
           <rect x="5" y="18" width="570" height="16" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
@@ -209,58 +209,58 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
           <!-- 台積電 -->
           <text x="10" y="46" font-size="7" fill="var(--ink-2)">2330 台積電</text>
-          <text x="78" y="46" font-size="7" fill="var(--ink-2)">28%</text>
-          <text x="118" y="46" font-size="7" fill="var(--ink-2)">45%</text>
-          <text x="165" y="46" font-size="7" fill="var(--ink-2)">30%</text>
-          <text x="210" y="46" font-size="7" fill="var(--ink-2)">25%</text>
-          <text x="258" y="46" font-size="7" fill="var(--ink-2)">5%</text>
-          <text x="305" y="46" font-size="7" fill="var(--ink-3)">[+2, −3, −23]</text>
-          <text x="442" y="46" font-size="7" fill="var(--neg)">[−15, −20, −40]</text>
+          <text x="73" y="46" font-size="7" fill="var(--ink-2)">26.5%</text>
+          <text x="113" y="46" font-size="7" fill="var(--ink-2)">72.7%</text>
+          <text x="160" y="46" font-size="7" fill="var(--ink-2)">46.3%</text>
+          <text x="205" y="46" font-size="7" fill="var(--ink-2)">42.0%</text>
+          <text x="255" y="46" font-size="7" fill="var(--ink-2)">0%</text>
+          <text x="305" y="46" font-size="7" fill="var(--ink-3)">[+19.9, +15.6, −26.5]</text>
+          <text x="442" y="46" font-size="7" fill="var(--neg)">[−26.4, −30.7, −72.7]</text>
 
           <!-- 聯發科 -->
           <text x="10" y="58" font-size="7" fill="var(--ink-2)">2454 聯發科</text>
-          <text x="78" y="58" font-size="7" fill="var(--ink-2)">16%</text>
-          <text x="118" y="58" font-size="7" fill="var(--ink-2)">25%</text>
-          <text x="165" y="58" font-size="7" fill="var(--ink-2)">18%</text>
-          <text x="210" y="58" font-size="7" fill="var(--ink-2)">20%</text>
-          <text x="258" y="58" font-size="7" fill="var(--ink-2)">3%</text>
-          <text x="305" y="58" font-size="7" fill="var(--ink-3)">[+2, +4, −13]</text>
-          <text x="442" y="58" font-size="7" fill="var(--ink-3)">[−7, −5, −22]</text>
+          <text x="73" y="58" font-size="7" fill="var(--ink-2)">2.3%</text>
+          <text x="113" y="58" font-size="7" fill="var(--ink-2)">6.3%</text>
+          <text x="160" y="58" font-size="7" fill="var(--ink-2)">4.9%</text>
+          <text x="205" y="58" font-size="7" fill="var(--ink-2)">5.1%</text>
+          <text x="255" y="58" font-size="7" fill="var(--ink-2)">3.3%</text>
+          <text x="305" y="58" font-size="7" fill="var(--ink-3)">[+2.6, +2.8, +1.0]</text>
+          <text x="442" y="58" font-size="7" fill="var(--ink-3)">[−1.4, −1.2, −3.0]</text>
 
           <!-- 聯詠 (highlighted) -->
           <rect x="5" y="62" width="570" height="12" rx="1" fill="var(--accent)" fill-opacity=".06"/>
           <text x="10" y="71" font-size="7" font-weight="500" fill="var(--accent)">3034 聯詠</text>
-          <text x="78" y="71" font-size="7" fill="var(--ink-2)">3%</text>
-          <text x="118" y="71" font-size="7" fill="var(--ink-2)">5%</text>
-          <text x="165" y="71" font-size="7" fill="var(--ink-2)">4%</text>
-          <text x="210" y="71" font-size="7" fill="var(--neg)">15%</text>
-          <text x="258" y="71" font-size="7" fill="var(--ink-2)">8%</text>
-          <text x="305" y="71" font-size="7" font-weight="600" fill="var(--accent)">[+1, +12, +5]</text>
-          <text x="442" y="71" font-size="7" font-weight="600" fill="var(--accent)">[−1, +10, +3]</text>
+          <text x="73" y="71" font-size="7" fill="var(--ink-2)">0.5%</text>
+          <text x="113" y="71" font-size="7" fill="var(--ink-2)">1.4%</text>
+          <text x="160" y="71" font-size="7" fill="var(--ink-2)">1.0%</text>
+          <text x="205" y="71" font-size="7" fill="var(--ink-2)">0.8%</text>
+          <text x="255" y="71" font-size="7" fill="var(--accent)">3.0%</text>
+          <text x="305" y="71" font-size="7" font-weight="600" fill="var(--accent)">[+0.5, +0.3, +2.5]</text>
+          <text x="442" y="71" font-size="7" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.7]</text>
 
           <!-- 瑞昱 (highlighted) -->
           <rect x="5" y="74" width="570" height="12" rx="1" fill="var(--accent)" fill-opacity=".06"/>
           <text x="10" y="83" font-size="7" font-weight="500" fill="var(--accent)">2379 瑞昱</text>
-          <text x="78" y="83" font-size="7" fill="var(--ink-2)">2%</text>
-          <text x="118" y="83" font-size="7" fill="var(--ink-2)">4%</text>
-          <text x="165" y="83" font-size="7" fill="var(--ink-2)">3%</text>
-          <text x="210" y="83" font-size="7" fill="var(--neg)">14%</text>
-          <text x="258" y="83" font-size="7" fill="var(--ink-2)">7%</text>
-          <text x="305" y="83" font-size="7" font-weight="600" fill="var(--accent)">[+1, +12, +5]</text>
-          <text x="442" y="83" font-size="7" font-weight="600" fill="var(--accent)">[−1, +10, +3]</text>
+          <text x="73" y="83" font-size="7" fill="var(--ink-2)">0.4%</text>
+          <text x="113" y="83" font-size="7" fill="var(--ink-2)">1.1%</text>
+          <text x="160" y="83" font-size="7" fill="var(--ink-2)">0.7%</text>
+          <text x="205" y="83" font-size="7" fill="var(--ink-2)">0.6%</text>
+          <text x="255" y="83" font-size="7" fill="var(--accent)">2.5%</text>
+          <text x="305" y="83" font-size="7" font-weight="600" fill="var(--accent)">[+0.3, +0.2, +2.1]</text>
+          <text x="442" y="83" font-size="7" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.4]</text>
 
-          <!-- 群聯 -->
-          <text x="10" y="95" font-size="7" fill="var(--ink-2)">8299 群聯</text>
-          <text x="78" y="95" font-size="7" fill="var(--ink-2)">1%</text>
-          <text x="118" y="95" font-size="7" fill="var(--ink-2)">2%</text>
-          <text x="165" y="95" font-size="7" fill="var(--ink-2)">2%</text>
-          <text x="210" y="95" font-size="7" fill="var(--ink-2)">5%</text>
-          <text x="258" y="95" font-size="7" fill="var(--ink-2)">3%</text>
-          <text x="305" y="95" font-size="7" fill="var(--ink-3)">[+1, +4, +2]</text>
-          <text x="442" y="95" font-size="7" fill="var(--ink-3)">[0, +3, +1]</text>
+          <!-- 聯電 -->
+          <text x="10" y="95" font-size="7" fill="var(--ink-2)">2303 聯電</text>
+          <text x="73" y="95" font-size="7" fill="var(--ink-2)">1.1%</text>
+          <text x="113" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
+          <text x="160" y="95" font-size="7" fill="var(--ink-2)">2.0%</text>
+          <text x="205" y="95" font-size="7" fill="var(--ink-2)">1.9%</text>
+          <text x="255" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
+          <text x="305" y="95" font-size="7" fill="var(--ink-3)">[+0.9, +0.8, +1.9]</text>
+          <text x="442" y="95" font-size="7" fill="var(--ink-3)">[−1.0, −1.1, −0.1]</text>
 
-          <text x="5" y="108" font-size="6.5" fill="var(--ink-3)">本圖數字為教學示意，非三檔 ETF 的實際持股。0050 追蹤大型股市值指數，0053 追蹤電子產業市值指數，0056 追蹤殖利率選股及加權的策略指數；三者皆可因成分母體與編製規則不同而偏離全市場市值基準，偏離不等同主動選股。</text>
-          <text x="5" y="119" font-size="7" fill="var(--neg)">台積電在產業基準下轉為大幅負值：ETF 權重（30%）遠低於其產業內市值佔比（45%），表示 ETF 對台積電相對不足配置。</text>
+          <text x="5" y="108" font-size="6.5" fill="var(--ink-3)">數據來源：MOPS 2023Q4 持股揭露。0050 追蹤臺灣50指數（大型股市值加權）、0053 追蹤電子類發行量加權指數（涵蓋全部電子業，非僅半導體）、0056 追蹤臺灣高股息指數（殖利率規則選股加權）。三者皆被動追蹤各自指數，偏離全市場基準來自成分母體與加權規則，非主動選股。</text>
+          <text x="5" y="119" font-size="7" fill="var(--neg)">台積電在產業基準下轉為大幅負值：佔半導體產業市值 72.7%，但 0050 持股僅 46.3%、0053 僅 42.0%、0056 未持有。即使產業型 ETF 也不足配置台積電。</text>
 
           <!-- ═══ B：並排網路圖 ═══ -->
           <line x1="5" y1="127" x2="575" y2="127" stroke="var(--border)" stroke-width="1"/>
@@ -276,19 +276,19 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <line x1="115" y1="195" x2="90" y2="225" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
           <!-- nodes -->
           <circle cx="115" cy="195" r="11" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="115" y="193" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">台積電</text><text x="115" y="200" text-anchor="middle" font-size="5" fill="var(--ink-3)">+2,−3,−23</text>
+          <text x="115" y="193" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">台積電</text><text x="115" y="200" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">+19.9,+15.6,−26.5</text>
           <circle cx="160" cy="190" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="160" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="160" y="195" text-anchor="middle" font-size="5" fill="var(--ink-3)">+2,+4,−13</text>
+          <text x="160" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="160" y="195" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">+2.6,+2.8,+1.0</text>
           <circle cx="90" cy="225" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
           <text x="90" y="223" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
           <circle cx="135" cy="230" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
           <text x="135" y="228" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
           <circle cx="180" cy="225" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="180" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">群聯</text>
+          <text x="180" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
           <!-- annotations -->
-          <text x="135" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim = 1.0 → 強連結</text>
-          <text x="135" y="260" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">台積電：相對權重小 → 虛線弱連結</text>
-          <text x="135" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">CosSim(台積電,聯詠) ≈ −0.82</text>
+          <text x="135" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim = 0.999 → 強連結</text>
+          <text x="135" y="260" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">台積電：向量方向相反 → 負連結</text>
+          <text x="135" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">CosSim(台積電,聯詠) = −0.553</text>
 
           <!-- 中：箭頭 -->
           <line x1="270" y1="215" x2="305" y2="215" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#nd)"/>
@@ -306,19 +306,19 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <line x1="420" y1="195" x2="440" y2="230" stroke="var(--neg)" stroke-width="1"/>
           <!-- nodes -->
           <circle cx="420" cy="195" r="11" fill="var(--surface)" stroke="var(--neg)" stroke-width="1.5"/>
-          <text x="420" y="193" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text><text x="420" y="200" text-anchor="middle" font-size="5" fill="var(--neg)">−15,−20,−40</text>
+          <text x="420" y="193" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text><text x="420" y="200" text-anchor="middle" font-size="4.5" fill="var(--neg)">−26.4,−30.7,−72.7</text>
           <circle cx="465" cy="190" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="465" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="465" y="195" text-anchor="middle" font-size="5" fill="var(--ink-3)">−7,−5,−22</text>
+          <text x="465" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="465" y="195" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">−1.4,−1.2,−3.0</text>
           <circle cx="395" cy="225" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
           <text x="395" y="223" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
           <circle cx="440" cy="230" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
           <text x="440" y="228" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
           <circle cx="485" cy="225" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="485" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">群聯</text>
+          <text x="485" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
           <!-- annotations -->
-          <text x="440" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim ≈ 0.99 → 仍強連結</text>
-          <text x="440" y="260" text-anchor="middle" font-size="6.5" fill="var(--neg)">台積電：大幅負值 → 反向連結出現</text>
-          <text x="440" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">產業內佔比 45% → 所有 ETF 皆不足配置</text>
+          <text x="440" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim = 0.999 → 仍強連結</text>
+          <text x="440" y="260" text-anchor="middle" font-size="6.5" fill="var(--neg)">台積電：大幅負值 → 反向連結加強</text>
+          <text x="440" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">CosSim(台積電,聯詠) = −0.621 · CosSim(台積電,聯發科) = +0.996</text>
 
           <!-- ═══ C：關鍵差異 + B−c 限制 + 掃描結果 ═══ -->
           <line x1="5" y1="286" x2="575" y2="286" stroke="var(--border)" stroke-width="1"/>
@@ -327,7 +327,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <!-- 左框：改變了什麼 -->
           <rect x="5" y="308" width="275" height="58" rx="3" fill="var(--bg)" stroke="var(--positive)" stroke-width=".5"/>
           <text x="142" y="320" text-anchor="middle" font-size="8" font-weight="600" fill="var(--positive)">產業基準改變了什麼</text>
-          <text x="15" y="334" font-size="7" fill="var(--ink-2)">• 台積電從「弱連結」變成「反向強連結」（產業內佔比 45%）</text>
+          <text x="15" y="334" font-size="7" fill="var(--ink-2)">• 台積電從「弱連結」變成「反向強連結」（產業內佔比 72.7%）</text>
           <text x="15" y="346" font-size="7" fill="var(--ink-2)">• 中小型股的超額配置相對值略減</text>
           <text x="15" y="358" font-size="7" fill="var(--ink-2)">• 聯詠–瑞昱的強連結依然存在（向量仍相似）</text>
 
@@ -686,7 +686,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       <div class="c">
         <h2>八、限制與效力邊界</h2>
         <p>本研究的橫斷面規模（N ≈ 22–36）約為 Gu, Kelly, & Xiu (2020) 所使用的美國橫斷面（N ≈ 3,000–10,000）的百分之一，外推需謹慎。Ridge 的交叉驗證 216 次中 216 次選到懲罰項上界（據歷史稽核紀錄，當前匯出的 fit log 未含 best_alpha），顯示模型偏好常數預測，其有效容量可能不足以提取極弱訊號。Clark–West（CW）在 XGBoost 上的大小失真可能為小樣本所特有；LightGBM 與 CatBoost 未獨立量測。M1 同時包含 ETF 軌道 A 與價格軌道 B，負結果不能單獨歸因於其中一條軌道（論文 §9.3 的描述性單軌消融分析顯示 Ridge 16 格皆負，但正式的 P5 閘門未通過）。六條檢驗路徑使用不同的統計工具（方法論上互補），但共享同一組預測輸出與訓練協定。</p>
-        <p>去偏程序的另一項限制是：市場相對權重無法區分三種來源：(1) 產業型 ETF 的被動授權（半導體 ETF 必然超額配置半導體股）、(2) 指數方法論差異（等權 vs 市值加權）、(3) 管理者的主動配置。本研究以全市場市值權重為去偏基準，產業型 ETF 的配置偏離仍反映在特徵中。研究樣本的 76 檔 ETF 中有 8 檔為產業型（10.5%）：半導體相關 5 檔（元大電子科技自 2007 年起全程存在；中信關鍵半導體、富邦核心半導體自 2021Q2 起；台新半導體精選 30 自 2022Q1 起；群益半導體收益自 2023Q2 起）、金融相關 2 檔（元大金融全程存在；富邦金融 2008–2019 已下市）、綠能電動車 1 檔（2021Q3 起）。評估期每季產業型 ETF 佔全部 ETF 的 10–16%。事後敏感度檢查：以產業內市值權重取代全市場基準重跑 132 變體，Ridge IC 增量仍 0/8 正、排列 p 值 16 格皆 > 0.05（最小 0.18）。但此基準未完全移除產業配置（B − c = (a−1)c ≠ 0），為穩健性證據而非完全辨識。</p>
+        <p>去偏程序的另一項限制是：市場相對權重無法區分三種來源：(1) 指數母體差異（追蹤子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數方法論差異（等權 vs 市值加權 vs 殖利率加權等）、(3) 管理者的主動配置。本研究以全市場市值權重為去偏基準，產業型 ETF 的配置偏離仍反映在特徵中。研究樣本的 76 檔 ETF 中有 8 檔為產業型（10.5%）：半導體或電子相關 5 檔（元大電子科技自 2007 年起全程存在，追蹤電子類指數涵蓋全部電子業；中信關鍵半導體、富邦核心半導體自 2021Q2 起；台新半導體精選 30 自 2022Q1 起；群益半導體收益自 2023Q2 起）、金融相關 2 檔（元大金融全程存在；富邦金融 2008–2019 已下市）、綠能電動車 1 檔（2021Q3 起）。評估期每季產業型 ETF 佔全部 ETF 的 10–16%。事後敏感度檢查：以產業內市值權重取代全市場基準重跑 132 變體，Ridge IC 增量仍 0/8 正、排列 p 值 16 格皆 > 0.05（最小 0.18）。但此基準未完全移除產業配置（B − c = (a−1)c ≠ 0），為穩健性證據而非完全辨識。</p>
       </div>
     </div>
   </div>
