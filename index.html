@@ -320,6 +320,47 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
             CosSim(<span class="eq">j</span>, <span class="eq">k</span>)：股票 <span class="eq">j</span> 與 <span class="eq">k</span> 在所有 ETF 上的市場相對權重向量之餘弦相似度。值越高表示兩檔股票被 ETF 群以相似的模式超額或不足配置。保留相似度最高的 K=30 個鄰居。
           </span>
         </div>
+        <!-- 兩種去偏基準比較示意圖 -->
+        <svg viewBox="0 0 480 280" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Comparison of market-level and sector-level debiasing with numerical example showing why B−c does not fully remove sector mandate">
+          <text x="240" y="16" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)">兩種去偏基準的比較與限制</text>
+
+          <!-- 左欄：市場基準 -->
+          <rect x="5" y="25" width="225" height="105" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
+          <text x="117" y="40" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">主規格：全市場市值基準</text>
+          <text x="15" y="56" font-size="8" fill="var(--ink-2)">公式：A = B − w<tspan font-size="6" baseline-shift="super">mkt</tspan></text>
+          <text x="15" y="68" font-size="7.5" fill="var(--ink-3)">w<tspan font-size="5.5" baseline-shift="super">mkt</tspan> = 個股市值 / 全市場總市值</text>
+          <text x="15" y="82" font-size="8" fill="var(--positive)">✓ 市值加權廣基 ETF → 相對權重 ≈ 0</text>
+          <text x="15" y="94" font-size="8" fill="var(--neg)">✗ 產業型 ETF → 相對權重仍為正</text>
+          <text x="15" y="106" font-size="8" fill="var(--neg)">✗ 主題型 ETF → 相對權重仍為正</text>
+          <text x="15" y="120" font-size="7" fill="var(--ink-3)">去偏後網路仍包含產業授權的機械性連結</text>
+
+          <!-- 右欄：產業基準 -->
+          <rect x="250" y="25" width="225" height="105" rx="4" fill="var(--bg)" stroke="var(--accent)" stroke-width="1"/>
+          <text x="362" y="40" text-anchor="middle" font-size="9" font-weight="600" fill="var(--accent)">敏感度檢查：產業內市值基準</text>
+          <text x="260" y="56" font-size="8" fill="var(--ink-2)">公式：A = B − w<tspan font-size="6" baseline-shift="super">sector</tspan></text>
+          <text x="260" y="68" font-size="7.5" fill="var(--ink-3)">w<tspan font-size="5.5" baseline-shift="super">sec</tspan> = 個股市值 / 同產業總市值</text>
+          <text x="260" y="82" font-size="8" fill="var(--positive)">✓ 產業內按市值被動持股 → ≈ 0</text>
+          <text x="260" y="94" font-size="8" fill="var(--neg)">✗ 跨產業配置比例 a 未移除</text>
+          <text x="260" y="106" font-size="8" fill="var(--neg)">✗ B − c = (a−1)c ≠ 0（見下方）</text>
+          <text x="260" y="120" font-size="7" fill="var(--ink-3)">較主規格移除更多機械性，但非完全中性化</text>
+
+          <!-- 數值範例 -->
+          <rect x="5" y="140" width="470" height="90" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+          <text x="240" y="156" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">為什麼 B − w<tspan font-size="6" baseline-shift="super">sector</tspan> 沒有完全移除產業配置？數值範例</text>
+
+          <text x="15" y="172" font-size="8" fill="var(--ink-2)">設兩檔 ETF 對半導體業的配置比例分別為 a₁=20%、a₂=40%</text>
+          <text x="15" y="184" font-size="8" fill="var(--ink-2)">某半導體股的產業內市值比 c = 60%（即 w<tspan font-size="5.5" baseline-shift="super">sec</tspan> = 0.60）</text>
+          <text x="15" y="198" font-size="8" fill="var(--ink)">ETF₁ 持股 B₁ = a₁×c = 12%，　B₁ − c = (0.20−1)×0.60 = −48%</text>
+          <text x="15" y="210" font-size="8" fill="var(--ink)">ETF₂ 持股 B₂ = a₂×c = 24%，　B₂ − c = (0.40−1)×0.60 = −36%</text>
+
+          <rect x="15" y="216" width="450" height="10" rx="2" fill="var(--neg)" fill-opacity=".08"/>
+          <text x="240" y="224" text-anchor="middle" font-size="8" font-weight="600" fill="var(--neg)">兩股票若 c 相同，殘差向量成比例 → CosSim = 1，產業配置未被移除</text>
+
+          <!-- 結論框 -->
+          <rect x="5" y="240" width="470" height="34" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="240" y="254" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--ink)">產業基準 132 變體掃描結果</text>
+          <text x="240" y="268" text-anchor="middle" font-size="8" fill="var(--ink-2)">Ridge IC 增量 0/8 正、排列 p 值 16 格皆 > 0.05（最小 0.18）、1,056 格中僅 2.5% IC 為正。兩種基準下否證結論一致。</text>
+        </svg>
         <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則均於分析之前載明於計畫書中，旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡。</p>
       </div>
 
