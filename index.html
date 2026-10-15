@@ -186,7 +186,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>一、研究背景與問題</h2>
-        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。所得的網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 產業型 ETF 的被動授權（半導體 ETF 必然超額配置半導體股）、(2) 指數方法論差異（等權 vs 市值加權）、(3) 管理者的主動選股。本研究的去偏以全市場市值權重為基準，使市值加權廣基 ETF 的相對權重趨近零，但產業型或主題型 ETF 的配置偏離仍反映在特徵中（事後敏感度檢查見限制章節）。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量選股資訊。</p>
+        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。所得的網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 產業型 ETF 的被動授權（半導體 ETF 必然超額配置半導體股）、(2) 指數方法論差異（等權 vs 市值加權）、(3) 管理者的主動選股。主規格以全市場市值權重為基準，使市值加權廣基 ETF 的相對權重趨近零；另以產業內市值權重為基準重跑 132 變體作為敏感度檢查（結果見限制章節）。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量選股資訊。</p>
         <!-- ▸ 去偏示意圖：多 ETF 權重表 + 相對權重向量 + 網路 before/after -->
         <svg viewBox="0 0 480 310" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Debiasing illustration: three real ETFs show how market-relative weights are computed for five stocks, then how cosine similarity between relative-weight vectors determines the debiased network">
           <defs><marker id="na" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
