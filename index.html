@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<title>ETF 共同持股網路能預測報酬嗎</title>
+<title>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？臺灣上市半導體與金融保險業的樣本外檢驗</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap">
@@ -14,6 +14,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,
 .poster{max-width:1440px;margin:0 auto;padding:20px 20px env(safe-area-inset-bottom,0px);display:flex;flex-direction:column;gap:14px}
 .hero{background:var(--hero-bg);color:var(--hero-ink);padding:28px 40px 24px;border-radius:10px;display:flex;flex-direction:column;gap:6px}
 .hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(24px,3.5vw,42px);line-height:1.15;letter-spacing:.02em;text-wrap:balance}
+.hero .subtitle{font-family:'Noto Serif TC',serif;font-size:clamp(15px,2vw,24px);font-weight:700;line-height:1.3;opacity:.95}
 .hero .sub{font-size:clamp(12px,1.5vw,16px);font-weight:300;opacity:.92;max-width:80ch;line-height:1.65}
 .hero .verdict{margin-top:6px;font-size:clamp(13px,1.6vw,18px);font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .verdict .tag{background:#B23830;color:#fff;padding:2px 12px;border-radius:100px;font-size:.85em;font-weight:700;letter-spacing:.04em}
@@ -134,6 +135,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
     column-count:5;column-gap:4mm;column-fill:balance}
   .hero{column-span:all;margin-bottom:3mm;padding:4mm 6mm;border-radius:0;gap:1.5mm}
   .hero h1{font-size:30pt;line-height:1.08}
+  .hero .subtitle{font-size:17pt;line-height:1.15}
   .hero .sub{font-size:11pt;max-width:none;line-height:1.28}
   .hero .verdict{font-size:12pt;line-height:1.25;margin-top:.5mm;gap:1.5mm}
   .hero .auth{font-size:9pt;margin-top:.5mm;opacity:1}
@@ -175,9 +177,10 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
 <div class="poster">
   <header class="hero">
-    <h1>ETF 共同持股網路能預測股票報酬嗎？</h1>
-    <div class="sub">指數股票型基金（ETF）透過持有一籃子股票追蹤指數。當多檔 ETF 同時持有相同股票，這些股票之間便形成一張「共同持股網路」。本研究在移除相對於全市場市值權重的機械性重疊之後，檢驗此一網路所承載的資訊結合殘差化價格共動網路，能否改善臺灣上市半導體與金融保險股票報酬的樣本外預測。在已測試的規格下答案為否定，且在檢驗過程中發現廣泛使用的評估指標本身存在估計量—校準不匹配。</div>
-    <div class="verdict"><span class="tag">否證</span>在已測試的規格下（N ≈ 22–36、Ridge 與 XGBoost、2018–2025），六條方法論上互補的檢驗路徑一致指向：去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵，未能建立可偵測的增量選股預測力。</div>
+    <h1>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？</h1>
+    <div class="subtitle">臺灣上市半導體與金融保險業的樣本外檢驗</div>
+    <div class="sub">指數股票型基金（ETF）透過持有一籃子股票追蹤指數。本研究以各檔 ETF 持股權重減去全市場市值權重所得的「市場相對權重」（去偏）建構共同持股網路，結合因子殘差化的價格共動網路，檢驗此雙軌網路特徵（完整模型 M1）相對無網路基準 M0，能否改善臺灣上市半導體股票（金融保險業為比較產業）報酬的每日橫斷面排序。方法上，本研究在此設計中量測合併樣本外 R² 對預測離散度的已知機械敏感，並以排列安慰劑實測 Clark–West 檢定的拒絕比例。</div>
+    <div class="verdict"><span class="tag">否證</span>在已測規格下（N ≈ 22–36、Ridge 與 XGBoost、評估期 2018–2025），裁定模型 Ridge 的增量排序資訊 ΔIC = IC(M1) − IC(M0) 在兩產業 × 四期距 8 格中全部為負，市場、產業與 ETF 配置三種去偏基準皆然（單尾 p(ΔIC&gt;0) 最小 0.875）：雙軌網路特徵未能建立增量排序資訊。</div>
     <div class="auth">黃晨瑋、鐘珮甄、黃苡晴 — 國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題 — 2026</div>
   </header>
 
@@ -186,186 +189,197 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>一、研究背景與問題</h2>
-        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指移除相對於全市場市值權重的機械性重疊：計算各股在每檔 ETF 中的持股權重與其全市場市值權重之差（市場相對權重），再以此計算股票間的相似度。所得的網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 指數母體差異（追蹤子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數方法論差異（等權 vs 市值加權 vs 殖利率加權等）、(3) 管理者的主動選股。主規格以全市場市值權重為基準，使市值加權廣基 ETF 的相對權重趨近零；另以產業內市值權重為基準重跑 132 變體作為敏感度檢查（結果見限制章節）。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量選股資訊。</p>
-        <!-- ▸ 統一示意圖：市場級 vs 產業級去偏 -->
-        <svg viewBox="0 0 580 460" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Unified debiasing comparison: shared weight table showing both market and sector relative weights side by side, parallel network diagrams, B−c limitation, and sweep results">
-          <defs><marker id="nd" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
-
-          <!-- ═══ A：統一權重表 ═══ -->
-          <text x="5" y="12" font-size="10" font-weight="600" fill="var(--ink)">ETF 持股權重 → 兩種基準下的相對權重（MOPS 2023Q4 實際數據）</text>
-
-          <!-- 表頭 -->
-          <rect x="5" y="18" width="570" height="16" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="10" y="29" font-size="7" font-weight="600" fill="var(--ink-2)">股票</text>
-          <text x="68" y="23" font-size="6" fill="var(--ink-3)">全市場</text><text x="68" y="31" font-size="6" fill="var(--ink-3)">市值權重</text>
-          <text x="110" y="23" font-size="6" fill="var(--ink-3)">產業內</text><text x="110" y="31" font-size="6" fill="var(--ink-3)">市值權重</text>
-          <text x="155" y="23" font-size="6" fill="var(--ink-3)">元大台灣50</text><text x="155" y="31" font-size="6" fill="var(--ink-3)">（被動市值型）</text>
-          <text x="200" y="23" font-size="6" fill="var(--neg)">元大電子科技</text><text x="200" y="31" font-size="6" fill="var(--neg)">（被動產業市值型）</text>
-          <text x="250" y="23" font-size="6" fill="var(--ink-3)">元大高股息</text><text x="250" y="31" font-size="6" fill="var(--ink-3)">（規則式高股息）</text>
-          <rect x="298" y="19" width="130" height="14" rx="2" fill="var(--bg)" stroke="var(--border)" stroke-width=".3"/>
-          <text x="363" y="29" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--ink)">市場相對權重</text>
-          <rect x="435" y="19" width="135" height="14" rx="2" fill="var(--accent)" fill-opacity=".08" stroke="var(--accent)" stroke-width=".3"/>
-          <text x="502" y="29" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">產業相對權重</text>
-
-          <!-- 台積電 -->
-          <text x="10" y="46" font-size="7" fill="var(--ink-2)">2330 台積電</text>
-          <text x="73" y="46" font-size="7" fill="var(--ink-2)">26.5%</text>
-          <text x="113" y="46" font-size="7" fill="var(--ink-2)">72.7%</text>
-          <text x="160" y="46" font-size="7" fill="var(--ink-2)">46.3%</text>
-          <text x="205" y="46" font-size="7" fill="var(--ink-2)">42.0%</text>
-          <text x="255" y="46" font-size="7" fill="var(--ink-2)">0%</text>
-          <text x="305" y="46" font-size="7" fill="var(--ink-3)">[+19.9, +15.6, −26.5]</text>
-          <text x="442" y="46" font-size="7" fill="var(--neg)">[−26.4, −30.7, −72.7]</text>
-
-          <!-- 聯發科 -->
-          <text x="10" y="58" font-size="7" fill="var(--ink-2)">2454 聯發科</text>
-          <text x="73" y="58" font-size="7" fill="var(--ink-2)">2.3%</text>
-          <text x="113" y="58" font-size="7" fill="var(--ink-2)">6.3%</text>
-          <text x="160" y="58" font-size="7" fill="var(--ink-2)">4.9%</text>
-          <text x="205" y="58" font-size="7" fill="var(--ink-2)">5.1%</text>
-          <text x="255" y="58" font-size="7" fill="var(--ink-2)">3.3%</text>
-          <text x="305" y="58" font-size="7" fill="var(--ink-3)">[+2.6, +2.8, +1.0]</text>
-          <text x="442" y="58" font-size="7" fill="var(--ink-3)">[−1.4, −1.2, −3.0]</text>
-
-          <!-- 聯詠 (highlighted) -->
+        <p>ETF 市場的擴張使共同持股效應成為近年資產定價文獻的焦點。Anton & Polk (2014) 發現透過共同基金持股相連的股票會展現超出基本面連結的報酬共動；Brown, Davies, & Ringgenberg (2021) 進一步指出 ETF 的申購贖回資金流會在成分股之間產生報酬可預測性。然而，市值加權 ETF 對大型股的持股重疊是機械性的。本研究的「去偏」指自各股在每檔 ETF 中的持股權重減去其全市場市值權重（所得差額稱市場相對權重），再以此計算股票間的餘弦相似度。所得網路反映哪些股票在 ETF 群中具有相近的市場相對配置，但此種偏離可能來自三種來源：(1) 指數成分母體差異（追蹤大型股子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數選股與加權規則差異（市值加權 vs 等權 vs 殖利率加權等）、(3) 基金的追蹤執行或主動配置差異；差額本身無法辨識經理人意圖。主規格以全市場市值權重為基準；另以產業內市值權重（B − c）與 ETF 產業配置條件化基準（B − a·c）各重跑 132 個變體，作為事後敏感度檢查（下圖與限制章節），不更動主規格與事前裁定。本研究檢驗此一網路結合殘差化價格共動網路後，能否為個股報酬的橫斷面排序提供增量排序資訊。</p>
+        <!-- ▸ 統一示意圖：市場級、產業級與配置級去偏（真實 2023Q4 數據） -->
+        <svg viewBox="0 0 580 492" style="width:100%;height:auto;margin:8px 0" role="img" aria-label="Three debiasing baselines compared on real MOPS 2023Q4 holdings of five semiconductor stocks in three ETFs: weight table with market, sector and allocation-conditioned relative weights, three network panels drawn from the actual cosine similarities, what each baseline removes, and the 132-variant sweep results for each baseline">
+          <!-- ═══ A：權重表（MOPS 2023Q4 持股；市值權重取 2023-10-02 再平衡日） ═══ -->
+          <text x="5" y="12" font-size="10" font-weight="600" fill="var(--ink)">ETF 持股權重 → 三種基準下的相對權重（百分點；MOPS 2023Q4 實際持股）</text>
+          <rect x="5" y="18" width="570" height="18" rx="2" fill="var(--grid)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="8" y="30" font-size="7" font-weight="600" fill="var(--ink-2)">股票</text>
+          <text x="56" y="25" font-size="5.5" fill="var(--ink-3)">全市場</text><text x="56" y="33" font-size="5.5" fill="var(--ink-3)">市值權重</text>
+          <text x="93" y="25" font-size="5.5" fill="var(--ink-3)">產業內</text><text x="93" y="33" font-size="5.5" fill="var(--ink-3)">市值比 c</text>
+          <text x="130" y="25" font-size="5.5" fill="var(--ink-3)">元大台灣50</text><text x="130" y="33" font-size="5.5" fill="var(--ink-3)">被動市值型</text>
+          <text x="172" y="25" font-size="5.5" fill="var(--ink-3)">元大電子科技</text><text x="172" y="33" font-size="5.5" fill="var(--ink-3)">被動產業市值型</text>
+          <text x="218" y="25" font-size="5.5" fill="var(--ink-3)">元大高股息</text><text x="218" y="33" font-size="5.5" fill="var(--ink-3)">規則式高股息</text>
+          <rect x="264" y="20" width="101" height="14" rx="2" fill="var(--bg)" stroke="var(--border)" stroke-width=".3"/>
+          <text x="314.5" y="30" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--ink)">市場相對 B − w<tspan font-size="4.5" baseline-shift="super">mkt</tspan></text>
+          <rect x="369" y="20" width="101" height="14" rx="2" fill="var(--accent)" fill-opacity=".08" stroke="var(--accent)" stroke-width=".3"/>
+          <text x="419.5" y="30" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">產業相對 B − c</text>
+          <rect x="474" y="20" width="101" height="14" rx="2" fill="var(--positive)" fill-opacity=".08" stroke="var(--positive)" stroke-width=".3"/>
+          <text x="524.5" y="30" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--positive)">配置相對 B − a·c</text>
+          <text x="8" y="47" font-size="7" fill="var(--ink-2)">2330 台積電</text>
+          <text x="58" y="47" font-size="7" fill="var(--ink-2)">26.4%</text><text x="95" y="47" font-size="7" fill="var(--ink-2)">72.7%</text>
+          <text x="132" y="47" font-size="7" fill="var(--ink-2)">46.3%</text>
+          <text x="174" y="47" font-size="7" fill="var(--ink-2)">42.0%</text>
+          <text x="220" y="47" font-size="7" fill="var(--ink-2)">0%</text>
+          <text x="314.5" y="47" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">[+19.9, +15.6, −26.4]</text>
+          <text x="419.5" y="47" text-anchor="middle" font-size="6.5" fill="var(--neg)">[−26.4, −30.7, −72.7]</text>
+          <text x="524.5" y="47" text-anchor="middle" font-size="6.5" fill="var(--neg)">[+5.1, −1.0, −13.2]</text>
+          <text x="8" y="59" font-size="7" fill="var(--ink-2)">2454 聯發科</text>
+          <text x="58" y="59" font-size="7" fill="var(--ink-2)">2.3%</text><text x="95" y="59" font-size="7" fill="var(--ink-2)">6.3%</text>
+          <text x="132" y="59" font-size="7" fill="var(--ink-2)">4.9%</text>
+          <text x="174" y="59" font-size="7" fill="var(--ink-2)">5.1%</text>
+          <text x="220" y="59" font-size="7" fill="var(--ink-2)">3.3%</text>
+          <text x="314.5" y="59" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">[+2.6, +2.8, +1.0]</text>
+          <text x="419.5" y="59" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">[−1.4, −1.2, −3.0]</text>
+          <text x="524.5" y="59" text-anchor="middle" font-size="6.5" fill="var(--positive)">[+1.3, +1.4, +2.2]</text>
           <rect x="5" y="62" width="570" height="12" rx="1" fill="var(--accent)" fill-opacity=".06"/>
-          <text x="10" y="71" font-size="7" font-weight="500" fill="var(--accent)">3034 聯詠</text>
-          <text x="73" y="71" font-size="7" fill="var(--ink-2)">0.5%</text>
-          <text x="113" y="71" font-size="7" fill="var(--ink-2)">1.4%</text>
-          <text x="160" y="71" font-size="7" fill="var(--ink-2)">1.0%</text>
-          <text x="205" y="71" font-size="7" fill="var(--ink-2)">0.8%</text>
-          <text x="255" y="71" font-size="7" fill="var(--accent)">3.0%</text>
-          <text x="305" y="71" font-size="7" font-weight="600" fill="var(--accent)">[+0.5, +0.3, +2.5]</text>
-          <text x="442" y="71" font-size="7" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.7]</text>
-
-          <!-- 瑞昱 (highlighted) -->
+          <text x="8" y="71" font-size="7" font-weight="500" fill="var(--accent)">3034 聯詠</text>
+          <text x="58" y="71" font-size="7" fill="var(--ink-2)">0.5%</text><text x="95" y="71" font-size="7" fill="var(--ink-2)">1.4%</text>
+          <text x="132" y="71" font-size="7" fill="var(--ink-2)">1.0%</text>
+          <text x="174" y="71" font-size="7" fill="var(--ink-2)">0.8%</text>
+          <text x="220" y="71" font-size="7" fill="var(--ink-2)">3.0%</text>
+          <text x="314.5" y="71" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">[+0.5, +0.3, +2.5]</text>
+          <text x="419.5" y="71" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.6]</text>
+          <text x="524.5" y="71" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--positive)">[+0.2, +0.0, +2.8]</text>
           <rect x="5" y="74" width="570" height="12" rx="1" fill="var(--accent)" fill-opacity=".06"/>
-          <text x="10" y="83" font-size="7" font-weight="500" fill="var(--accent)">2379 瑞昱</text>
-          <text x="73" y="83" font-size="7" fill="var(--ink-2)">0.4%</text>
-          <text x="113" y="83" font-size="7" fill="var(--ink-2)">1.1%</text>
-          <text x="160" y="83" font-size="7" fill="var(--ink-2)">0.7%</text>
-          <text x="205" y="83" font-size="7" fill="var(--ink-2)">0.6%</text>
-          <text x="255" y="83" font-size="7" fill="var(--accent)">2.5%</text>
-          <text x="305" y="83" font-size="7" font-weight="600" fill="var(--accent)">[+0.3, +0.2, +2.1]</text>
-          <text x="442" y="83" font-size="7" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.4]</text>
-
-          <!-- 聯電 -->
-          <text x="10" y="95" font-size="7" fill="var(--ink-2)">2303 聯電</text>
-          <text x="73" y="95" font-size="7" fill="var(--ink-2)">1.1%</text>
-          <text x="113" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
-          <text x="160" y="95" font-size="7" fill="var(--ink-2)">2.0%</text>
-          <text x="205" y="95" font-size="7" fill="var(--ink-2)">1.9%</text>
-          <text x="255" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
-          <text x="305" y="95" font-size="7" fill="var(--ink-3)">[+0.9, +0.8, +1.9]</text>
-          <text x="442" y="95" font-size="7" fill="var(--ink-3)">[−1.0, −1.1, −0.1]</text>
-
-          <text x="5" y="108" font-size="6.5" fill="var(--ink-3)">數據來源：MOPS 2023Q4 持股揭露。0050 追蹤臺灣50指數（大型股市值加權）、0053 追蹤電子類發行量加權指數（涵蓋全部電子業，非僅半導體）、0056 追蹤臺灣高股息指數（殖利率規則選股加權）。三者皆被動追蹤各自指數，偏離全市場基準來自成分母體與加權規則，非主動選股。</text>
-          <text x="5" y="119" font-size="7" fill="var(--neg)">台積電在產業基準下轉為大幅負值：佔半導體產業市值 72.7%，但 0050 持股僅 46.3%、0053 僅 42.0%、0056 未持有。即使產業型 ETF 也不足配置台積電。</text>
-
-          <!-- ═══ B：並排網路圖 ═══ -->
-          <line x1="5" y1="127" x2="575" y2="127" stroke="var(--border)" stroke-width="1"/>
-          <text x="5" y="142" font-size="10" font-weight="600" fill="var(--ink)">網路結構的差異：市場級 vs 產業級去偏</text>
-
-          <!-- 左：市場級去偏 -->
-          <rect x="5" y="148" width="260" height="130" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="135" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">市場級去偏（主規格）</text>
-          <text x="135" y="172" text-anchor="middle" font-size="7" fill="var(--ink-3)">A = B − w<tspan font-size="5" baseline-shift="super">mkt</tspan></text>
-          <!-- edges -->
-          <line x1="90" y1="225" x2="135" y2="230" stroke="var(--accent)" stroke-width="2.5"/>
-          <line x1="135" y1="230" x2="180" y2="225" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="115" y1="195" x2="90" y2="225" stroke="var(--ink-3)" stroke-width=".5" stroke-dasharray="3,2"/>
-          <!-- nodes -->
-          <circle cx="115" cy="195" r="11" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="115" y="193" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">台積電</text><text x="115" y="200" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">+19.9,+15.6,−26.5</text>
-          <circle cx="160" cy="190" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="160" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="160" y="195" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">+2.6,+2.8,+1.0</text>
-          <circle cx="90" cy="225" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
-          <text x="90" y="223" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
-          <circle cx="135" cy="230" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
-          <text x="135" y="228" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
-          <circle cx="180" cy="225" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="180" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
-          <!-- annotations -->
-          <text x="135" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim = 0.999 → 強連結</text>
-          <text x="135" y="260" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">台積電：向量方向相反 → 負連結</text>
-          <text x="135" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">CosSim(台積電,聯詠) = −0.553</text>
-
-          <!-- 中：箭頭 -->
-          <line x1="270" y1="215" x2="305" y2="215" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#nd)"/>
-          <text x="287" y="207" text-anchor="middle" font-size="7.5" fill="var(--ink-3)">改用</text>
-          <text x="287" y="227" text-anchor="middle" font-size="7.5" fill="var(--ink-3)">產業基準</text>
-
-          <!-- 右：產業級去偏 -->
-          <rect x="310" y="148" width="260" height="130" rx="4" fill="var(--accent)" fill-opacity=".04" stroke="var(--accent)" stroke-width=".5"/>
-          <text x="440" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="var(--accent)">產業級去偏（敏感度檢查）</text>
-          <text x="440" y="172" text-anchor="middle" font-size="7" fill="var(--ink-3)">A = B − w<tspan font-size="5" baseline-shift="super">sector</tspan></text>
-          <!-- edges -->
-          <line x1="395" y1="225" x2="440" y2="230" stroke="var(--accent)" stroke-width="2.5"/>
-          <line x1="440" y1="230" x2="485" y2="225" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="420" y1="195" x2="395" y2="225" stroke="var(--neg)" stroke-width="1.5"/>
-          <line x1="420" y1="195" x2="440" y2="230" stroke="var(--neg)" stroke-width="1"/>
-          <!-- nodes -->
-          <circle cx="420" cy="195" r="11" fill="var(--surface)" stroke="var(--neg)" stroke-width="1.5"/>
-          <text x="420" y="193" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text><text x="420" y="200" text-anchor="middle" font-size="4.5" fill="var(--neg)">−26.4,−30.7,−72.7</text>
-          <circle cx="465" cy="190" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="465" y="188" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text><text x="465" y="195" text-anchor="middle" font-size="4.5" fill="var(--ink-3)">−1.4,−1.2,−3.0</text>
-          <circle cx="395" cy="225" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
-          <text x="395" y="223" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
-          <circle cx="440" cy="230" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
-          <text x="440" y="228" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
-          <circle cx="485" cy="225" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1"/>
-          <text x="485" y="223" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
-          <!-- annotations -->
-          <text x="440" y="250" text-anchor="middle" font-size="6.5" fill="var(--accent)">聯詠–瑞昱 CosSim = 0.999 → 仍強連結</text>
-          <text x="440" y="260" text-anchor="middle" font-size="6.5" fill="var(--neg)">台積電：大幅負值 → 反向連結加強</text>
-          <text x="440" y="272" text-anchor="middle" font-size="6" fill="var(--ink-3)">CosSim(台積電,聯詠) = −0.621 · CosSim(台積電,聯發科) = +0.996</text>
-
-          <!-- ═══ C：關鍵差異 + B−c 限制 + 掃描結果 ═══ -->
-          <line x1="5" y1="286" x2="575" y2="286" stroke="var(--border)" stroke-width="1"/>
-          <text x="5" y="301" font-size="10" font-weight="600" fill="var(--ink)">產業基準的改變與限制</text>
-
-          <!-- 左框：改變了什麼 -->
-          <rect x="5" y="308" width="275" height="58" rx="3" fill="var(--bg)" stroke="var(--positive)" stroke-width=".5"/>
-          <text x="142" y="320" text-anchor="middle" font-size="8" font-weight="600" fill="var(--positive)">產業基準改變了什麼</text>
-          <text x="15" y="334" font-size="7" fill="var(--ink-2)">• 台積電從「弱連結」變成「反向強連結」（產業內佔比 72.7%）</text>
-          <text x="15" y="346" font-size="7" fill="var(--ink-2)">• 中小型股的超額配置相對值略減</text>
-          <text x="15" y="358" font-size="7" fill="var(--ink-2)">• 聯詠–瑞昱的強連結依然存在（向量仍相似）</text>
-
-          <!-- 右框：沒有改變什麼 -->
-          <rect x="295" y="308" width="275" height="58" rx="3" fill="var(--vbg)" stroke="var(--neg)" stroke-width=".5"/>
-          <text x="432" y="320" text-anchor="middle" font-size="8" font-weight="600" fill="var(--neg)">產業基準沒有改變什麼</text>
-          <text x="305" y="334" font-size="7" fill="var(--ink-2)">• ETF 對產業的配置比例 a 未被移除</text>
-          <text x="305" y="346" font-size="7" fill="var(--ink-2)">• B − c = (a−1)c ≠ 0：同 c 股票 CosSim 仍為 1</text>
-          <text x="305" y="358" font-size="7" fill="var(--ink-2)">• 未持有該產業的 ETF 產生 −c 共同負權重</text>
-
-          <!-- B−c 數值範例（緊湊行） -->
-          <rect x="5" y="374" width="565" height="36" rx="3" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="290" y="387" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)">B − w<tspan font-size="5.5" baseline-shift="super">sec</tspan> 的限制：數值範例</text>
-          <text x="15" y="401" font-size="7.5" fill="var(--ink-2)">ETF₁ 配置 a₁=20%、ETF₂ 配置 a₂=40%，產業內市值比 c=60%　→　B₁−c = (0.20−1)×0.60 = −48%，B₂−c = (0.40−1)×0.60 = −36%　→　</text>
-          <text x="522" y="401" font-size="7.5" font-weight="600" fill="var(--neg)">同 c → CosSim = 1</text>
-
-          <!-- 掃描結果底條 -->
-          <rect x="5" y="418" width="565" height="34" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
-          <text x="290" y="432" text-anchor="middle" font-size="9" font-weight="600" fill="var(--ink)">產業基準 132 變體掃描結果</text>
-          <text x="290" y="446" text-anchor="middle" font-size="8" fill="var(--ink-2)">Ridge IC 增量 0/8 正、排列 p 值 16 格皆 > 0.05（最小 0.18）、1,056 格中僅 2.5% IC 為正。兩種基準下否證結論一致。</text>
+          <text x="8" y="83" font-size="7" font-weight="500" fill="var(--accent)">2379 瑞昱</text>
+          <text x="58" y="83" font-size="7" fill="var(--ink-2)">0.4%</text><text x="95" y="83" font-size="7" fill="var(--ink-2)">1.1%</text>
+          <text x="132" y="83" font-size="7" fill="var(--ink-2)">0.7%</text>
+          <text x="174" y="83" font-size="7" fill="var(--ink-2)">0.6%</text>
+          <text x="220" y="83" font-size="7" fill="var(--ink-2)">2.5%</text>
+          <text x="314.5" y="83" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">[+0.3, +0.2, +2.1]</text>
+          <text x="419.5" y="83" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--accent)">[−0.4, −0.5, +1.4]</text>
+          <text x="524.5" y="83" text-anchor="middle" font-size="6.5" font-weight="600" fill="var(--positive)">[+0.1, −0.1, +2.3]</text>
+          <text x="8" y="95" font-size="7" fill="var(--ink-2)">2303 聯電</text>
+          <text x="58" y="95" font-size="7" fill="var(--ink-2)">1.1%</text><text x="95" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
+          <text x="132" y="95" font-size="7" fill="var(--ink-2)">2.0%</text>
+          <text x="174" y="95" font-size="7" fill="var(--ink-2)">1.9%</text>
+          <text x="220" y="95" font-size="7" fill="var(--ink-2)">3.0%</text>
+          <text x="314.5" y="95" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">[+0.9, +0.8, +1.9]</text>
+          <text x="419.5" y="95" text-anchor="middle" font-size="6.5" fill="var(--ink-3)">[−1.0, −1.1, −0.1]</text>
+          <text x="524.5" y="95" text-anchor="middle" font-size="6.5" fill="var(--positive)">[+0.3, +0.1, +2.4]</text>
+          <rect x="5" y="99" width="570" height="12" rx="1" fill="var(--positive)" fill-opacity=".08"/>
+          <text x="8" y="108" font-size="6.5" font-weight="600" fill="var(--positive)">半導體配置 a<tspan font-size="4.5" baseline-shift="sub">e,半導體</tspan></text>
+          <text x="132" y="108" font-size="7" font-weight="600" fill="var(--positive)">56.7%</text>
+          <text x="174" y="108" font-size="7" font-weight="600" fill="var(--positive)">59.2%</text>
+          <text x="220" y="108" font-size="7" font-weight="600" fill="var(--positive)">18.2%</text>
+          <text x="268" y="108" font-size="6" fill="var(--positive)">= ETF 在半導體業的持股權重合計（以完整上市母體加總）</text>
+          <text x="5" y="121" font-size="6" fill="var(--ink-3)">來源：MOPS 2023Q4 持股；市值權重與產業內市值比 c 取 2023-10-02 再平衡日（示範計算；管線依揭露時點落後使用持股）。</text>
+          <text x="5" y="130" font-size="6" fill="var(--ink-3)">0050 追蹤臺灣50指數（大型股市值加權）、0053 追蹤電子類指數（涵蓋全部電子業，非僅半導體）、0056 追蹤臺灣高股息指數（殖利率規則選股加權）；三者皆非主動管理。</text>
+          <text x="5" y="140" font-size="6.5" fill="var(--neg)">台積電佔半導體市值 72.7%，但 0050 僅持 46.3%、0053 僅 42.0%、0056 未持有：產業基準下三格皆大幅負值；配置基準下 0053 的殘差僅 −1.0。</text>
+          <!-- ═══ B：三個網路面板（邊依實際 CosSim 繪製） ═══ -->
+          <line x1="5" y1="147" x2="575" y2="147" stroke="var(--border)" stroke-width="1"/>
+          <text x="5" y="160" font-size="10" font-weight="600" fill="var(--ink)">網路結構的差異：同五檔股票、同三檔 ETF，三種去偏基準</text>
+          <rect x="5" y="166" width="184" height="160" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="97" y="178" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--ink)">市場級去偏（主規格）</text>
+          <text x="97" y="188" text-anchor="middle" font-size="7" fill="var(--ink-3)">A = B − w<tspan font-size="5" baseline-shift="super">mkt</tspan></text>
+          <line x1="47" y1="234" x2="41" y2="278" stroke="var(--neg)" stroke-width="0.97" stroke-dasharray="3,2"/>
+          <line x1="47" y1="234" x2="97" y2="288" stroke="var(--neg)" stroke-width="1.01" stroke-dasharray="3,2"/>
+          <line x1="143" y1="230" x2="151" y2="278" stroke="var(--accent)" stroke-width="2.04"/>
+          <line x1="41" y1="278" x2="97" y2="288" stroke="var(--accent)" stroke-width="2.6"/>
+          <line x1="41" y1="278" x2="151" y2="278" stroke="var(--accent)" stroke-width="2.46"/>
+          <line x1="97" y1="288" x2="151" y2="278" stroke="var(--accent)" stroke-width="2.42"/>
+          <circle cx="47" cy="234" r="11" fill="var(--surface)" stroke="var(--neg)" stroke-width="1.2"/>
+          <text x="47" y="236" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text>
+          <text x="47" y="220" text-anchor="middle" font-size="5" fill="var(--ink-3)">+19.9,+15.6,−26.4</text>
+          <circle cx="143" cy="230" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="143" y="232" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text>
+          <text x="143" y="217" text-anchor="middle" font-size="5" fill="var(--ink-3)">+2.6,+2.8,+1.0</text>
+          <circle cx="41" cy="278" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="41" y="280" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
+          <circle cx="97" cy="288" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="97" y="290" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
+          <circle cx="151" cy="278" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="151" y="280" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
+          <text x="97" y="300" text-anchor="middle" font-size="6" fill="var(--accent)">聯詠–瑞昱 = 0.999（強正相似）</text>
+          <text x="97" y="309" text-anchor="middle" font-size="6" fill="var(--ink-3)">台積電–聯詠 = −0.554、台積電–瑞昱 = −0.585</text>
+          <text x="97" y="318" text-anchor="middle" font-size="6" fill="var(--ink-3)">台積電–聯發科 = +0.470（未達 0.5）</text>
+          <rect x="198" y="166" width="184" height="160" rx="4" fill="var(--accent)" fill-opacity=".04" stroke="var(--accent)" stroke-width=".5"/>
+          <text x="290" y="178" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--accent)">產業級去偏（敏感度檢查）</text>
+          <text x="290" y="188" text-anchor="middle" font-size="7" fill="var(--ink-3)">A = B − c</text>
+          <line x1="240" y1="234" x2="336" y2="230" stroke="var(--accent)" stroke-width="2.59"/>
+          <line x1="240" y1="234" x2="234" y2="278" stroke="var(--neg)" stroke-width="1.06" stroke-dasharray="3,2"/>
+          <line x1="240" y1="234" x2="290" y2="288" stroke="var(--neg)" stroke-width="1.03" stroke-dasharray="3,2"/>
+          <line x1="240" y1="234" x2="344" y2="278" stroke="var(--accent)" stroke-width="1.56"/>
+          <line x1="336" y1="230" x2="234" y2="278" stroke="var(--neg)" stroke-width="1.01" stroke-dasharray="3,2"/>
+          <line x1="336" y1="230" x2="290" y2="288" stroke="var(--neg)" stroke-width="0.99" stroke-dasharray="3,2"/>
+          <line x1="336" y1="230" x2="344" y2="278" stroke="var(--accent)" stroke-width="1.64"/>
+          <line x1="234" y1="278" x2="290" y2="288" stroke="var(--accent)" stroke-width="2.6"/>
+          <circle cx="240" cy="234" r="11" fill="var(--surface)" stroke="var(--neg)" stroke-width="1.2"/>
+          <text x="240" y="236" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text>
+          <text x="240" y="220" text-anchor="middle" font-size="5" fill="var(--ink-3)">−26.4,−30.7,−72.7</text>
+          <circle cx="336" cy="230" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="336" y="232" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text>
+          <text x="336" y="217" text-anchor="middle" font-size="5" fill="var(--ink-3)">−1.4,−1.2,−3.0</text>
+          <circle cx="234" cy="278" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="234" y="280" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
+          <circle cx="290" cy="288" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="290" y="290" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
+          <circle cx="344" cy="278" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="344" y="280" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
+          <text x="290" y="300" text-anchor="middle" font-size="6" fill="var(--accent)">聯詠–瑞昱 = 1.000（仍強正相似）</text>
+          <text x="290" y="309" text-anchor="middle" font-size="6" fill="var(--neg)">台積電–聯發科 = +0.996（同被低配）</text>
+          <text x="290" y="318" text-anchor="middle" font-size="6" fill="var(--ink-3)">台積電–聯詠 = −0.621、聯發科–聯詠 = −0.587</text>
+          <rect x="391" y="166" width="184" height="160" rx="4" fill="var(--positive)" fill-opacity=".04" stroke="var(--positive)" stroke-width=".5"/>
+          <text x="483" y="178" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--positive)">配置級去偏（敏感度檢查）</text>
+          <text x="483" y="188" text-anchor="middle" font-size="7" fill="var(--ink-3)">A = B − a<tspan dy="2" font-size="5">e,g(j)</tspan><tspan dy="-2"> · c</tspan><tspan dy="2" font-size="5">j</tspan></text>
+          <line x1="433" y1="234" x2="529" y2="230" stroke="var(--neg)" stroke-width="1.0" stroke-dasharray="3,2"/>
+          <line x1="433" y1="234" x2="427" y2="278" stroke="var(--neg)" stroke-width="1.43" stroke-dasharray="3,2"/>
+          <line x1="433" y1="234" x2="483" y2="288" stroke="var(--neg)" stroke-width="1.44" stroke-dasharray="3,2"/>
+          <line x1="433" y1="234" x2="537" y2="278" stroke="var(--neg)" stroke-width="1.41" stroke-dasharray="3,2"/>
+          <line x1="529" y1="230" x2="427" y2="278" stroke="var(--positive)" stroke-width="2.13"/>
+          <line x1="529" y1="230" x2="483" y2="288" stroke="var(--positive)" stroke-width="2.08"/>
+          <line x1="529" y1="230" x2="537" y2="278" stroke="var(--positive)" stroke-width="2.22"/>
+          <line x1="427" y1="278" x2="483" y2="288" stroke="var(--positive)" stroke-width="2.6"/>
+          <line x1="427" y1="278" x2="537" y2="278" stroke="var(--positive)" stroke-width="2.59"/>
+          <line x1="483" y1="288" x2="537" y2="278" stroke="var(--positive)" stroke-width="2.59"/>
+          <circle cx="433" cy="234" r="11" fill="var(--surface)" stroke="var(--neg)" stroke-width="1.2"/>
+          <text x="433" y="236" text-anchor="middle" font-size="5.5" fill="var(--neg)">台積電</text>
+          <text x="433" y="220" text-anchor="middle" font-size="5" fill="var(--ink-3)">+5.1,−1.0,−13.2</text>
+          <circle cx="529" cy="230" r="10" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="529" y="232" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯發科</text>
+          <text x="529" y="217" text-anchor="middle" font-size="5" fill="var(--ink-3)">+1.3,+1.4,+2.2</text>
+          <circle cx="427" cy="278" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="427" y="280" text-anchor="middle" font-size="5.5" fill="var(--accent)">聯詠</text>
+          <circle cx="483" cy="288" r="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="483" y="290" text-anchor="middle" font-size="5.5" fill="var(--accent)">瑞昱</text>
+          <circle cx="537" cy="278" r="8" fill="var(--surface)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <text x="537" y="280" text-anchor="middle" font-size="5.5" fill="var(--ink-3)">聯電</text>
+          <text x="483" y="300" text-anchor="middle" font-size="6" fill="var(--positive)">其餘四檔彼此 +0.76 至 +1.00（0056 欄主導）</text>
+          <text x="483" y="309" text-anchor="middle" font-size="6" fill="var(--neg)">台積電–聯發科 = −0.571（由正轉負）</text>
+          <text x="483" y="318" text-anchor="middle" font-size="6" fill="var(--ink-3)">台積電–其餘三檔 = −0.89 至 −0.91</text>
+          <text x="5" y="336" font-size="6" fill="var(--ink-3)">實線：CosSim ≥ +0.5（線寬隨相似度）；紅虛線：CosSim ≤ −0.5。軌道 A 的 kNN 只取 CosSim &gt; τ = 0.05 的正相似鄰居，負相似不成邊。此處僅以三檔 ETF 示範，管線使用全部 ETF。</text>
+          <!-- ═══ C：各基準移除什麼、留下什麼 ═══ -->
+          <line x1="5" y1="343" x2="575" y2="343" stroke="var(--border)" stroke-width="1"/>
+          <text x="5" y="356" font-size="10" font-weight="600" fill="var(--ink)">產業基準與配置基準各移除什麼、留下什麼</text>
+          <rect x="5" y="362" width="281" height="56" rx="3" fill="var(--accent)" fill-opacity=".04" stroke="var(--accent)" stroke-width=".5"/>
+          <text x="145.5" y="373" text-anchor="middle" font-size="7.5" font-weight="600" fill="var(--accent)">B − c：只移除產業內市值比</text>
+          <text x="12" y="385" font-size="6.5" fill="var(--ink-2)">• 未移除 ETF 對該產業的配置比例 a</text>
+          <text x="12" y="396" font-size="6.5" fill="var(--ink-2)">• 若 B = a·c，B − c = (a−1)·c ≠ 0：同產業股票 CosSim 仍為 1</text>
+          <text x="12" y="407" font-size="6.5" fill="var(--ink-2)">• 未持有該產業的 ETF 對每檔股票產生 −c 的共同負權重</text>
+          <rect x="294" y="362" width="281" height="56" rx="3" fill="var(--positive)" fill-opacity=".05" stroke="var(--positive)" stroke-width=".5"/>
+          <text x="434.5" y="373" text-anchor="middle" font-size="7.5" font-weight="600" fill="var(--positive)">B − a·c：再條件化於各 ETF 的產業配置</text>
+          <text x="301" y="385" font-size="6.5" fill="var(--ink-2)">• 僅當 B = a·c 精確成立（產業內純市值加權）時殘差為零</text>
+          <text x="301" y="396" font-size="6.5" fill="var(--ink-2)">• 0053 近似此情形：五檔殘差介於 −1.0 與 +1.4</text>
+          <text x="301" y="407" font-size="6.5" fill="var(--ink-2)">• 0050（只持 7 檔半導體）與 0056（殖利率規則）仍留下殘差</text>
+          <rect x="5" y="424" width="570" height="18" rx="3" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="290" y="436" text-anchor="middle" font-size="7" fill="var(--ink-2)">實算（台積電 × 0050）：a = 56.7%、c = 72.7% → a·c = 41.2%；B = 46.3% → B − w<tspan font-size="5" baseline-shift="super">mkt</tspan> = +19.9、B − c = −26.4、B − a·c = +5.1</text>
+          <rect x="5" y="448" width="570" height="40" rx="4" fill="var(--bg)" stroke="var(--border)" stroke-width=".5"/>
+          <text x="290" y="461" text-anchor="middle" font-size="8.5" font-weight="600" fill="var(--ink)">三種基準各重跑 132 個變體（含 99 次排列與 10 次雜訊安慰劑；共 396 次執行，非獨立複現）</text>
+          <text x="290" y="473" text-anchor="middle" font-size="7" fill="var(--ink-2)">Ridge 主規格 ΔIC 三基準皆 0/8 為正；Ridge 合併 R² 排列排名 p：市場 0.34–0.95、產業 0.18–0.99、配置 0.53–0.84。</text>
+          <text x="290" y="483" text-anchor="middle" font-size="7" fill="var(--ink-2)">全部變體中正 ΔIC 格數：市場 19/1056、產業 26/1056、配置 15/1056，多數來自排列格。為穩健性證據，非完全辨識。</text>
         </svg>
         <div class="formula">
           <span class="label">去偏公式（主規格）：</span><br>
           <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup> = <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup> − <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>mkt</sup>
-          　<span class="label">敏感度檢查：</span>
-          <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>sec</sup> = <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup> − <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>sector</sup><br>
+<br>
+          <span class="label">事後敏感度檢查（產業基準、配置基準）：</span><br>
+          <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>sec</sup> = <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup> − <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>sector</sup>
+          　<span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>alloc</sup> = <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup> − <span class="eq">a</span><sub><span class="eq">i</span>,<span class="eq">g</span>(<span class="eq">j</span>)</sub> · <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>sector</sup>，<span class="eq">a</span><sub><span class="eq">i</span>,<span class="eq">g</span></sub> = Σ<sub><span class="eq">k</span>∈<span class="eq">U</span>, <span class="eq">g</span>(<span class="eq">k</span>)=<span class="eq">g</span></sub> <span class="eq">w</span><sub><span class="eq">ik</span></sub><sup>ETF</sup><br>
           <span class="label">兩股票間的去偏共同持股相似度（餘弦相似度）：</span><br>
           CosSim(<span class="eq">j</span>, <span class="eq">k</span>) = Σ<sub><span class="eq">i</span></sub> <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup> · <span class="eq">w</span><sub><span class="eq">ik</span></sub><sup>rel</sup> / (‖<span class="eq">w</span><sub>·<span class="eq">j</span></sub><sup>rel</sup>‖ · ‖<span class="eq">w</span><sub>·<span class="eq">k</span></sub><sup>rel</sup>‖)
           <hr style="border:none;border-top:1px solid var(--border);margin:8px 0 6px">
           <span class="label" style="font-size:11px;line-height:1.6">
             <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>ETF</sup>：股票 <span class="eq">j</span> 在 ETF <span class="eq">i</span> 中的持股權重。<br>
             <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>mkt</sup>：股票 <span class="eq">j</span> 的全市場市值權重（市值 / 全市場總市值）。
-            <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>sector</sup>：股票 <span class="eq">j</span> 的產業內市值權重（市值 / 同產業總市值）。<br>
+            <span class="eq">w</span><sub><span class="eq">j</span></sub><sup>sector</sup>：股票 <span class="eq">j</span> 的產業內市值權重（市值 / 同產業總市值；圖中記為 <span class="eq">c</span>）。<br>
+            <span class="eq">a</span><sub><span class="eq">i</span>,<span class="eq">g</span></sub>：ETF <span class="eq">i</span> 在產業 <span class="eq">g</span> 的總配置，於鄰居池篩選前以完整上市母體 <span class="eq">U</span> 加總（與 <span class="eq">c</span> 的分母同一母體）。僅當持股恰為 <span class="eq">a</span> · <span class="eq">c</span> 時殘差為零。圖中 <span class="eq">B</span> 即 <span class="eq">w</span><sup>ETF</sup>。<br>
             <span class="eq">w</span><sub><span class="eq">ij</span></sub><sup>rel</sup>：市場相對權重。正值表示 ETF <span class="eq">i</span> 對股票 <span class="eq">j</span> 超額配置，負值表示不足配置。<br>
             CosSim(<span class="eq">j</span>, <span class="eq">k</span>)：股票 <span class="eq">j</span> 與 <span class="eq">k</span> 在所有 ETF 上的相對權重向量之餘弦相似度。保留 K=30 最近鄰。
           </span>
         </div>
-        <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則均於分析之前載明於計畫書中，旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡。</p>
+        <p>本研究以臺灣半導體股票（訓練期每季約 22 檔、評估期約 36 檔）為主要場域，金融保險股票（約 22–26 檔）為比較產業。樣本限於至少被兩檔 ETF 持有、於該季具有效產業分類與上市地位的普通股。五項可檢驗命題與裁定規則記載於 2026 年 4 月定稿的計畫書，於樣本外評估之前設定（下稱事前設定），旨在限制研究者自由度；後續修訂已揭露於下方修訂軌跡。</p>
       </div>
 
       <div class="c">
@@ -399,12 +413,12 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <line x1="220" y1="100" x2="220" y2="114" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
           <rect x="100" y="114" width="240" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="129" text-anchor="middle" font-size="9" fill="var(--ink)">Ridge（裁定）· XGBoost · GAT</text>
           <line x1="220" y1="136" x2="220" y2="150" stroke="var(--ink-3)" stroke-width="1" marker-end="url(#fa)"/>
-          <rect x="60" y="150" width="320" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="165" text-anchor="middle" font-size="9" fill="var(--ink)">六路評估 → P1–P5 裁定 → 132 個穩健性變體</text>
+          <rect x="60" y="150" width="320" height="22" rx="4" fill="var(--grid)" stroke="var(--border)" stroke-width="1"/><text x="220" y="165" text-anchor="middle" font-size="9" fill="var(--ink)">六路評估 → P1–P5 裁定 → 3 基準 × 132 變體</text>
           <!-- Timeline annotation -->
           <text x="220" y="190" text-anchor="middle" font-size="9" fill="var(--ink-3)">訓練 2012–2017 ｜ 樣本外評估 2018–2025（~1,948 交易日）</text>
         </svg>
         <p>本研究的主要檢驗是比較無網路基線 M0 與加入雙軌網路特徵的完整模型 M1：若 M1 在已測試的規格下未能顯著擊敗 M0，則未能建立網路特徵的增量預測力。兩條平行的網路軌道如下：軌道 A 基於 ETF 的季度持股揭露，計算每對股票在市場相對權重（ETF 持股權重減去全市場市值權重）上的餘弦相似度，保留最相似的 K=30 個鄰居（K 為最大保留鄰居數）。軌道 B 基於股價的殘差共動，先以六個共同因子加一個產業特定因子殘差化個股日報酬（詳見論文 §5.2），再以滾動 52 週窗口計算殘差相關。兩條軌道合計提供 24 個網路特徵，連同 10 個個股特徵與 11 個市場控制變數（其中 1 個因缺失而未使用），候選特徵共 45 個；經篩選後 M1 實際配適約 42 個。</p>
-        <p>預測模型採用 Ridge 迴歸（一種帶 L2 懲罰的線性模型，事前指定為裁定模型，即正式命題裁定以其結果為準，其餘模型提供描述性參照）與 XGBoost（一種梯度提升樹模型）。模型每季以全部歷史資料重新配適，在 2018–2025 年進行樣本外預測。穩健性檢核涵蓋 132 個設定變體（含 99 次排列安慰劑、10 次 iid 抽取及基準設定），此 132 包含安慰劑抽取，非 132 種獨立模型設計。</p>
+        <p>預測模型採用 Ridge 迴歸（一種帶 L2 懲罰的線性模型，事前指定為裁定模型，即正式命題裁定以其結果為準，其餘模型提供描述性參照）與 XGBoost（一種梯度提升樹模型）。模型每季以全部歷史資料重新配適，在 2018–2025 年進行樣本外預測。穩健性檢核在每種去偏基準下各跑 132 個變體（23 個實質設定含主規格、99 次排列安慰劑、10 次雜訊安慰劑），三種基準共 396 次變體執行；132 包含安慰劑抽取，非 132 種獨立模型設計，三種基準亦共享資料與流程，不構成獨立複現。</p>
         <table class="st features">
           <thead><tr><th>特徵群組</th><th>欄位數</th><th>角色</th><th>M0</th><th>M1</th></tr></thead>
           <tbody>
@@ -419,7 +433,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>三、五項命題裁定</h2>
-        <p>P1 在嚴格規則下不可裁定，P2–P4 不支持，P5 因 P3 未通過而不予裁定。裁定標準於分析前載明於計畫書（H 為交易日預測期距）。</p>
+        <p>P1 依事前規則無法裁定（Ridge 在兩種解讀下皆未通過一致性與顯著性條件，實質判讀為不支持），P2–P4 不支持，P5 因 P3 未通過而不予裁定。裁定標準為事前設定，記載於樣本外評估前定稿的計畫書（H 為交易日預測期距）。</p>
         <table class="st verdicts">
           <thead><tr><th>命題</th><th>內容</th><th>裁定</th><th>依據</th></tr></thead>
           <tbody>
@@ -430,6 +444,27 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
             <tr><td>P5</td><td>差異來自價格軌道</td><td class="na">不予裁定</td><td>條件於 P3</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="c">
+        <h2>主要結果：增量排序資訊 ΔIC（三種去偏基準）</h2>
+        <p>以裁定模型 Ridge 比較雙軌網路特徵的完整模型 M1 與無網路基準 M0：ΔIC = IC(M1) − IC(M0)，IC 為每日橫斷面 Spearman 等級相關的評估期平均。三種去偏基準下，8 格 ΔIC 全部為負。</p>
+        <table class="nt">
+          <thead><tr><th>產業 × 預測天數</th><th>市場 B − w<sup>mkt</sup></th><th>產業 B − c</th><th>配置 B − a·c</th></tr></thead>
+          <tbody>
+            <tr><td>半導體 5 日</td><td class="red">−0.0151</td><td class="red">−0.0160</td><td class="red">−0.0125</td></tr>
+            <tr><td>半導體 20 日</td><td class="red">−0.0310</td><td class="red">−0.0285</td><td class="red">−0.0313</td></tr>
+            <tr><td>半導體 30 日</td><td class="red">−0.0341</td><td class="red">−0.0301</td><td class="red">−0.0345</td></tr>
+            <tr><td>半導體 60 日</td><td class="red">−0.0414</td><td class="red">−0.0309</td><td class="red">−0.0316</td></tr>
+            <tr><td>金融 5 日</td><td class="red">−0.0068</td><td class="red">−0.0156</td><td class="red">−0.0130</td></tr>
+            <tr><td>金融 20 日</td><td class="red">−0.0108</td><td class="red">−0.0269</td><td class="red">−0.0254</td></tr>
+            <tr><td>金融 30 日</td><td class="red">−0.0162</td><td class="red">−0.0397</td><td class="red">−0.0315</td></tr>
+            <tr><td>金融 60 日</td><td class="red">−0.0184</td><td class="red">−0.0499</td><td class="red">−0.0392</td></tr>
+            <tr><td>單尾 p(ΔIC&gt;0) 最小</td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
+            <tr><td>ΔIC 排列排名 p 最小</td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
+          </tbody>
+        </table>
+        <div class="note">單尾 p 以 Newey–West 標準誤（落後期 H−1）計算；排列排名 p 為真實網路的 ΔIC 在 99 次股票 ID 區塊排列中的位置（排列虛無下 ΔIC 中位數本身亦為負，故「8 格皆負」須搭配 p 值解讀）。僅保留 ETF 軌道（M1_noPrice）時，市場基準下金融 4 格為微幅正值（+0.0016 至 +0.0039，單尾 p 0.26–0.43，皆不顯著），其餘格皆負。ΔIC 是回應合併 R² 指標問題的事後補充判準，不更動事前裁定。來源：論文 §9.3、§10.10（表 11、表 18）；<code>docs/findings/17</code>、<code>18</code>。</div>
       </div>
 
       <div class="c">
@@ -457,7 +492,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
           <dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），衡量 M1 相對 M0 在同一天內個股報酬偏差上的平方誤差縮減程度。此指標對預測值的尺度敏感：保序的正向縮放可改變 R²<sub>CS</sub> 而不改變排序。排序能力由 IC 另行衡量。</dd>
           <dt>IC</dt><dd>資訊係數（Information Coefficient），定義為每日預測值與實現報酬的 Spearman 等級相關。IC > 0 表示預測排序與實際漲跌方向一致。本研究以 IC 增量（IC(M1) − IC(M0)）判斷加入網路特徵後排序是否改善。</dd>
           <dt>淨選股增益</dt><dd>R²<sub>CS</sub>(M1) − R²<sub>CS</sub>(φ×M0)，其中 φ×M0 是將基線預測縮放至與 M1 相同離散度後的版本。此指標排除了「M1 只是因為離散度較小而得分」的可能，是事後診斷工具而非因果推論。</dd>
-          <dt>增量選股資訊</dt><dd>加入網路特徵後，模型是否能比不含網路的基線（M0）更好地區分同一天內哪些股票會漲、哪些會跌。「增量」是相對於 M0 已有的預測能力而言：M0 已使用個股與市場特徵，問的是網路特徵能否在此之上再提供額外的選股排序資訊。</dd>
+          <dt>增量排序資訊</dt><dd>亦稱增量選股資訊：加入網路特徵後，模型能否比不含網路的基線 M0 更好地排序同一天內的個股報酬，操作定義為 ΔIC = IC(M1) − IC(M0) &gt; 0。M0 已使用個股與市場特徵，問的是網路特徵能否在此之上再提供額外的排序資訊；IC(M1) 本身為正不等於有增量。</dd>
           <dt>增量預測關聯</dt><dd>Fama–MacBeth 迴歸中的概念。在每個交易日，用 M0 和 M1 的預測值同時去解釋實際報酬的橫斷面差異。若 M1 的係數（γ₁）顯著異於零，表示 M1 在控制 M0 之後仍與橫斷面報酬有額外的線性關聯。此處的「關聯」不等同於識別已定價風險因子。本研究八格 p = 0.26–0.90，遠離顯著。</dd>
         </dl>
       </div>
@@ -604,7 +639,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h3>圖二：統計檢定工具的可靠度</h3>
-        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷「新模型是否顯著優於舊模型」。理想情況下，當兩個模型實際上一樣好時，此檢定應僅有約 5% 的機率誤判為「新模型較優」（下圖虛線）。在本資料集的 99 次排列實驗中（掃描規格；名目 α=0.05），Ridge 的拒絕率接近名目水準（0.02–0.07），XGBoost 則大幅超過（0.25–0.99）。此結果描述的是已測試的資料、模型設定與隨機化方案，不構成 CW 檢定在所有 XGBoost 應用上無效的一般性結論。</p>
+        <p style="font-size:11px;color:var(--ink-3);margin-bottom:6px">Clark–West 檢定用於判斷「新模型是否顯著優於舊模型」。理想情況下，當兩個模型實際上一樣好時，此檢定應僅有約 5% 的機率誤判為「新模型較優」（下圖虛線）。在本資料集的 99 次排列實驗中（掃描規格；α=0.05，模型內八格 BH 校正），Ridge 的拒絕比例為 0.020–0.071，未見明顯拒絕膨脹；XGBoost 為 0.253–0.990，拒絕比例偏高。完全虛無下此逐格比例的期望值低於 0.05，虛線僅作參照。此結果描述的是已測試的資料、模型設定與隨機化方案，不構成 CW 檢定在所有 XGBoost 應用上無效的一般性結論。</p>
         <div class="lg"><span><span class="sw" style="background:var(--accent)"></span>Ridge（裁定模型）</span><span><span class="sw" style="background:var(--neg)"></span>XGBoost</span></div>
         <div class="chart-scroll" tabindex="0" role="region" aria-label="可橫向捲動的圖表"><svg viewBox="0 0 540 220" style="width:100%;height:auto" role="img" aria-label="Paired Clark-West null rejection rates by horizon. Semiconductor Ridge: 5, 6, 5, 2 percent; XGBoost: 88, 99, 96, 82 percent. Finance Ridge: 2, 6, 7, 5 percent; XGBoost: 25, 96, 86, 66 percent. Dashed line: nominal 5 percent.">
 <line x1="45" y1="160.0" x2="520" y2="160.0" stroke="var(--grid)" stroke-width="1"/><text x="38" y="164.0" text-anchor="end" font-size="10" fill="var(--ink-2)">0%</text>
@@ -668,7 +703,16 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>七、穩健性與延伸分析</h2>
-        <p>在兩種懲罰網格設定下，Ridge 的資訊係數（IC，即預測值與實現報酬的日橫斷面 Spearman 相關）增量在 8 格中無一為正。132 個設定變體涵蓋鄰居數敏感度（K = 15, 20, 30, 50）、99 次排列安慰劑等。示範性案例：交叉驗證在半導體 H=60 上選出的 Elastic Net 最佳模型為 42 個係數全為零的空模型，所有股票在同一天得到完全相同的預測，選股資訊依定義為零，然而合併 R² 仍為正值（+0.326%），構成離散度匹配診斷的直接示範。</p>
+        <p>在兩種懲罰網格設定下，Ridge 的資訊係數（IC，即預測值與實現報酬的日橫斷面 Spearman 相關）增量在 8 格中無一為正。每種去偏基準的 132 個變體涵蓋鄰居數敏感度（K = 15, 20, 30, 50）、99 次排列安慰劑等（下表）。示範性案例：交叉驗證在半導體 H=60 上選出的 Elastic Net 最佳模型為 42 個係數全為零的空模型，所有股票在同一天得到完全相同的預測，選股資訊依定義為零，然而合併 R² 仍為正值（+0.326%），構成離散度匹配診斷的直接示範。</p>
+        <table class="nt">
+          <thead><tr><th>基準</th><th>正 ΔIC 全部</th><th>實質 23×8</th><th>排列 99×8</th><th>雜訊 10×8</th><th>CW 拒絕率 Ridge</th><th>XGBoost</th></tr></thead>
+          <tbody>
+            <tr><td>市場</td><td>19/1056</td><td>5/184</td><td>14/792</td><td>0/80</td><td>0.020–0.071</td><td>0.253–0.990</td></tr>
+            <tr><td>產業</td><td>26/1056</td><td>0/184</td><td>26/792</td><td>0/80</td><td>0.010–0.071</td><td>0.293–1.000</td></tr>
+            <tr><td>配置</td><td>15/1056</td><td>4/184</td><td>11/792</td><td>0/80</td><td>0.000–0.020</td><td>0.162–0.990</td></tr>
+          </tbody>
+        </table>
+        <div class="note">Ridge 正 ΔIC 格數（132 變體 × 8 格）與排列安慰劑下 CW 經模型內 BH 校正後的拒絕比例。正格多數來自排列格；配置欄為完整母體版本。Ridge 未見明顯拒絕膨脹，XGBoost 拒絕比例偏高。來源：論文表 20；<code>results/{sweep, sector_debiasing, alloc_v2_debiasing}/</code> 的 <code>variant_ic.csv</code>、<code>placebo_ranks.csv</code>。</div>
         <h3 style="margin-top:8px;font-size:12px">ETF 類型切分（XGBoost 合併 R²，掃描規格，機制診斷用途）</h3>
         <p>論文 §5.1 預測去偏後市值加權 ETF 貢獻近乎為零，故預期僅用市值加權廣基 ETF 建構的網路（cap_broad 變體）應大幅衰減。金融側符合此一預期，但半導體側方向相反。此結果來自掃描規格而非主規格（主規格見圖一），為機制診斷而非增量選股資訊的正面證據。</p>
         <table class="nt">
@@ -685,15 +729,15 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 
       <div class="c">
         <h2>八、限制與效力邊界</h2>
-        <p>本研究的橫斷面規模（N ≈ 22–36）約為 Gu, Kelly, & Xiu (2020) 所使用的美國橫斷面（N ≈ 3,000–10,000）的百分之一，外推需謹慎。Ridge 的交叉驗證 216 次中 216 次選到懲罰項上界（據歷史稽核紀錄，當前匯出的 fit log 未含 best_alpha），顯示模型偏好常數預測，其有效容量可能不足以提取極弱訊號。Clark–West（CW）在 XGBoost 上的大小失真可能為小樣本所特有；LightGBM 與 CatBoost 未獨立量測。M1 同時包含 ETF 軌道 A 與價格軌道 B，負結果不能單獨歸因於其中一條軌道（論文 §9.3 的描述性單軌消融分析顯示 Ridge 16 格皆負，但正式的 P5 閘門未通過）。六條檢驗路徑使用不同的統計工具（方法論上互補），但共享同一組預測輸出與訓練協定。</p>
-        <p>去偏程序的另一項限制是：市場相對權重無法區分三種來源：(1) 指數母體差異（追蹤子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數方法論差異（等權 vs 市值加權 vs 殖利率加權等）、(3) 管理者的主動配置。本研究以全市場市值權重為去偏基準，產業型 ETF 的配置偏離仍反映在特徵中。研究樣本的 76 檔 ETF 中有 8 檔為產業型（10.5%）：半導體或電子相關 5 檔（元大電子科技自 2007 年起全程存在，追蹤電子類指數涵蓋全部電子業；中信關鍵半導體、富邦核心半導體自 2021Q2 起；台新半導體精選 30 自 2022Q1 起；群益半導體收益自 2023Q2 起）、金融相關 2 檔（元大金融全程存在；富邦金融 2008–2019 已下市）、綠能電動車 1 檔（2021Q3 起）。評估期每季產業型 ETF 佔全部 ETF 的 10–16%。事後敏感度檢查：以產業內市值權重取代全市場基準重跑 132 變體，Ridge IC 增量仍 0/8 正、排列 p 值 16 格皆 > 0.05（最小 0.18）。但此基準未完全移除產業配置（B − c = (a−1)c ≠ 0），為穩健性證據而非完全辨識。</p>
+        <p>本研究的橫斷面規模（N ≈ 22–36）約為 Gu, Kelly, & Xiu (2020) 所使用的美國橫斷面（N ≈ 3,000–10,000）的百分之一，外推需謹慎。Ridge 的交叉驗證 216 次中 216 次選到懲罰項上界（據歷史稽核紀錄，當前匯出的 fit log 未含 best_alpha），顯示模型偏好常數預測，其有效容量可能不足以提取極弱訊號。Clark–West（CW）在 XGBoost 上的大小失真可能為小樣本所特有；LightGBM 與 CatBoost 未獨立量測。M1 同時包含 ETF 軌道 A 與價格軌道 B，負結果不能單獨歸因於其中一條軌道（事後單軌比較見論文 §9.3：僅保留 ETF 軌道時，市場基準下金融 4 格 ΔIC 為不顯著的微幅正值，其餘格皆負；P5 依事前規則不予裁定）。六條檢驗路徑使用不同的統計工具（方法論上互補），但共享同一組預測輸出與訓練協定。</p>
+        <p>去偏程序的另一項限制是：市場相對權重無法區分三種來源：(1) 指數成分母體差異（追蹤大型股子集合或特定產業的 ETF，其持股權重與全市場市值權重不同）、(2) 指數選股與加權規則差異（市值加權 vs 等權 vs 殖利率加權等）、(3) 基金的追蹤執行或主動配置差異。研究樣本的 76 檔 ETF 中有 8 檔為產業型（10.5%）：半導體或電子相關 5 檔（元大電子科技自 2007 年起全程存在，追蹤電子類指數涵蓋全部電子業；中信關鍵半導體、富邦核心半導體自 2021Q2 起；台新半導體精選 30 自 2022Q1 起；群益半導體收益自 2023Q2 起）、金融相關 2 檔（元大金融全程存在；富邦金融 2008–2019 已下市）、綠能電動車 1 檔（2021Q3 起）。評估期每季產業型 ETF 佔全部 ETF 的 10–16%。事後敏感度檢查以兩種替代基準各重跑 132 個變體：產業基準 B − c 只移除產業內市值比，未移除 ETF 的產業配置（若 B = a·c，則 B − c = (a−1)c ≠ 0）；配置基準 B − a·c 再條件化於各 ETF 以完整上市母體加總的產業配置 a，但僅當持股恰為 a·c（產業內純市值加權）時殘差才精確為零，大型股子集合、權重上限、殖利率規則或追蹤差距仍留下殘差。三種基準下 Ridge 主規格 ΔIC 皆 0/8 為正，合併 R² 排列排名 p 最小依序為 0.34、0.18、0.53。三基準共 396 次變體執行（3 × 132，每基準含 99 次排列與 10 次雜訊安慰劑），共享資料、模型與多數流程，不是 396 次獨立複現。產業無分類者回退市場基準、早期分類回填，以及持股與市值的時點差異，仍限制「完全消除基金 mandate」的解讀；以上屬穩健性證據，而非完全辨識，不能排除一切隱藏訊號。</p>
       </div>
     </div>
   </div>
 
   <div class="bottom">
     <div class="insight">
-      <h2>次要方法論發現：合併 R² 的估計量—校準不匹配</h2>
+      <h2>次要方法論觀察：合併 R² 對預測離散度的機械敏感（量測）</h2>
       <!-- 收縮機制示意圖 -->
       <svg viewBox="0 0 380 150" style="width:100%;height:auto;margin:0 0 8px" role="img" aria-label="Dispersion-matching diagnostic: for centered, fixed forecasts with negative covariance, MSE increases with prediction dispersion, so shrinking predictions mechanically reduces MSE">
         <defs><marker id="sa" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
@@ -731,11 +775,11 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
       </div>
       <p>合併樣本外 R²（pooled out-of-sample R²）是 Campbell & Thompson (2008) 以來報酬可預測性文獻廣泛採用的標準評估量，Gu, Kelly, & Xiu (2020) 在機器學習資產定價的基準研究中亦以此為主要指標。然而，此一指標在面板追蹤資料的脈絡下混合了兩個可能方向相反的維度：橫斷面（在同一天內區分個股漲跌的能力，即選股）與時序（判斷整體市場方向的能力，即擇時）。本研究的目標是選股，但合併指標被擇時分量主導。</p>
       <p>上方公式揭示了關鍵機制：當預測值已去均值且 Cov(<span style="font-style:italic">y</span>, <span style="font-style:italic">ŷ</span>) < 0 時，MSE 中的 −2 Cov 項變為正值，使 MSE 對預測離散度單調遞增（如上圖紅線所示）。此時任何使預測值更集中的改動，即便完全不攜帶選股資訊，都能機械性地降低預測誤差。改善校準（減少不必要的離散度）本身是合理的建模改進，但它不等同於增加新的排序資訊。</p>
-      <p><strong>歷史診斷（修正前 U19 規格）：</strong>修正前半導體 15/16 格的時序相關為負。修正前三種樹模型（XGBoost、LightGBM、CatBoost）合計 23 格正合併 R² 增益中，離散度匹配的反事實縮放可複製其中大部分（歷史計算的確切比例因修正前配置已不可重建而未獨立驗證）。<strong>修正後（當前結果）：</strong>半導體 XGBoost H=20 的離散度匹配複製比例為 68.8%，即非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。</p>
+      <p><strong>現行結果（U19 修正後）：</strong>合併 R² 為正的 18 格全部屬於樹模型（XGBoost、LightGBM、CatBoost 各 6 格），Ridge 為 0 格；保留均值、不加入任何網路資訊的離散度匹配可重現其中 13 格 100% 以上的合併增益，其餘 5 格為 66%–84%（例：半導體 XGBoost H=20 為 68.8%），即並非全部正增益皆由此通道解釋。示範案例：半導體 H=60 的 Elastic Net 空模型（42 個係數全為零，選股資訊依定義為零），合併 R² 仍為 +0.326%。修正前（U19）稽核紀錄的 23 個正增益格屬歷史對照，不併入現行計數。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">與既有文獻的定位</h3>
-      <p>此一發現的數學基礎（MSE 的二次展開）是教科書內容（Elliott & Timmermann, 2016）。在本研究的文獻搜尋範圍內（截至 2026 年 9 月），尚未發現有文獻明確指出合併 R² 在基線擇時為負時會系統性地獎勵離散度縮減。最接近的是 Engelberg, McLean, Pontiff, & Ringgenberg (2023) 發現橫斷面預測因子的樣本外時序預測力有限，以及 Rapach & Zhou (2020) 分開定義時序與橫斷面 R²，但兩者皆未涉及合併指標的離散度匹配機制。本研究將此定位為已知數學性質在面板報酬預測脈絡下的一個量化應用與診斷程序。</p>
+      <p>合併均方誤差對預測尺度的機械敏感是已知的 MSE 分解性質（Campbell & Thompson, 2008; Gu, Kelly, & Xiu, 2020; Lewellen, 2015; Han, He, Rapach, & Zhou, 2024；數學基礎見 Elliott & Timmermann, 2016）。Rapach & Zhou (2020) 分開定義時序與橫斷面 R²；Engelberg, McLean, Pontiff, & Ringgenberg (2023) 則發現橫斷面預測因子的樣本外時序預測力有限。本研究不主張首次發現此性質，而是在小橫斷面、部分格基線擇時相關為負（Ridge 八格中四格）的實際設計中量測此效應及其量級，並據以提出診斷程序。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">Clark–West 檢定在 XGBoost 上的大小失真</h3>
-      <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑（掃描規格；名目 α=0.05）實測其虛無拒絕率，發現在裁定模型 Ridge 上為 0.02–0.07（接近名目水準），在 XGBoost 上則高達 0.25–0.99（大幅超過名目水準；LightGBM、CatBoost 未獨立量測）。此結果描述的是已測試的資料、模型設定與隨機化方案。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
+      <p>Clark & West (2007) 檢定是判斷巢狀模型預測優劣的標準工具。本研究以 99 次排列安慰劑（掃描規格；名目 α=0.05）實測其經模型內 BH 校正後的拒絕比例：裁定模型 Ridge 為 0.020–0.071，未見明顯拒絕膨脹；XGBoost 為 0.253–0.990，拒絕比例偏高（LightGBM、CatBoost 未量測）。排列只打亂股票身分與網路特徵的配對，此虛無是「網路配對無資訊」，而非 CW 的完整虛無。此結果描述的是已測試的資料、模型設定與隨機化方案。Escanciano & Parra (2026) 從理論分析此類檢定在機器學習方法上的有效性條件，要求損失函數與估計量具備適當相容性且預測收斂足夠快。本研究的排列安慰劑數字提供了在小橫斷面設計下的一組設計特定實證證據，範圍較此理論分析為窄。</p>
       <h3 style="margin-top:10px;font-size:12px;color:var(--ink)">可移植的檢驗程序</h3>
       <svg viewBox="0 0 380 95" style="width:100%;height:auto;margin:4px 0 6px" role="img" aria-label="Portable diagnostic procedure: three steps from checking time-series correlation sign, to computing counterfactual scaling, to comparing with observed gain">
         <defs><marker id="sp" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 6,2.5 0,5" fill="var(--ink-3)"/></marker></defs>
@@ -762,7 +806,7 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
     </div>
     <div class="contrib">
       <h2>本研究之貢獻</h2>
-      <p>在實質面，本研究為去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的橫斷面預測力提供了一份否證記錄。裁定模型 Ridge 在兩個產業、四個預測期距、兩種懲罰網格設定下的 IC 增量（IC(M1) − IC(M0)）無一為正（IC 為預測值與實現報酬的日橫斷面 Spearman 相關），且此符號結論在兩種網格下一致。六條方法論上互補的評估路徑對此給出一致的答案：</p>
+      <p>在實質面，本研究為去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的橫斷面預測力提供了一份否證記錄。裁定模型 Ridge 在兩個產業、四個預測期距的 8 格中，雙軌網路特徵（M1 相對 M0）的增量排序資訊 ΔIC = IC(M1) − IC(M0) 全部為負（IC 為預測值與實現報酬的日橫斷面 Spearman 相關）；市場、產業與 ETF 配置三種去偏基準皆然，單尾 p(ΔIC&gt;0) 最小依序為 0.875、0.946、0.917，延伸懲罰網格下亦無一為正。此 ΔIC 推論為事後補充，不更動事前裁定。六條方法論上互補的評估路徑對此給出一致的答案：</p>
       <!-- 六路收斂圖 -->
       <svg viewBox="0 0 440 165" style="width:100%;height:auto;margin:6px 0" role="img" aria-label="Six complementary evaluation paths converge to the falsification verdict. All paths share the same predictions; subperiod and rolling-CW qualifications appear below.">
 <line x1="155" y1="13" x2="300" y2="65" stroke="var(--ink-3)" stroke-width="1"/>
@@ -779,9 +823,9 @@ svg [stroke-width=".5"],svg [stroke-width=".7"]{stroke-width:1}
 <text x="10" y="117" font-size="11" fill="var(--ink-2)">⑥ 逐點滾動 CW</text>
 <rect x="300" y="50" width="125" height="30" rx="4" fill="#B23830"/><text x="362" y="71" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">否證</text><text x="220" y="154" text-anchor="middle" font-size="10" fill="var(--ink-2)">方法論上互補，共享同一組預測</text></svg>
 <div class="note">⑤ Ridge 合併 R² 在 23/24 子期間格為負（例外：金融 2018–2019 H=20, +0.13%）。<br>⑥ 240 日逐點滾動 CW 診斷，非正式路徑檢定。</div>
-      <p>上述研究也產生了以下次要的方法論診斷。其一，以離散度匹配診斷量化了合併 R² 在基線擇時技能為負時的離散度縮減效應，此為已知 MSE 性質的量化應用，任何使用此指標的面板報酬預測研究都可能遇到。其二，在小橫斷面設計下以排列安慰劑量化了 Clark–West 檢定在 XGBoost 上的大小失真（虛無拒絕率 0.25–0.99，對照裁定模型 Ridge 的 0.02–0.07；LightGBM、CatBoost 未獨立量測），與 Escanciano & Parra (2026) 的理論分析方向一致。其三，提出可移植的「對指標施加安慰劑」檢驗程序，即對指標施加一個理論上不應產生效果的改動並觀察其是否產生反應。此程序適用於任何使用合併 R² 且基線擇時為負的研究。</p>
-      <p>在已測試的規格下（臺灣上市半導體與金融保險股、N ≈ 22–36、訓練期 2012–2017、評估期 2018–2025、Ridge 與 XGBoost），本研究未能建立去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的統計顯著增量預測力。M1 同時包含兩條軌道，負結果不能單獨歸因於其中一條（描述性單軌消融分析顯示 Ridge 16 格皆負，但正式的 P5 閘門未通過）。低於本設計偵測能力的效果、以及在橫斷面規模較大的市場（如美國，N ≈ 3,000–10,000）、其他產業、或以其他模型萃取時的效果，仍屬未決。</p>
-      <div class="ref"><strong>主要參考文獻</strong>　Anton & Polk (2014, <em>JF</em>) · Brown, Davies & Ringgenberg (2021, <em>RoF</em>) · Campbell & Thompson (2008, <em>RFS</em>) · Clark & West (2007, <em>JoE</em>) · Cohen & Frazzini (2008, <em>JF</em>) · Elliott & Timmermann (2016, Princeton UP) · Engelberg, McLean, Pontiff & Ringgenberg (2023, <em>JFQA</em>) · Escanciano & Parra (2026, <em>JBES</em>) · Gu, Kelly & Xiu (2020, <em>RFS</em>) · Rapach & Zhou (2020, Wiley)</div>
+      <p>上述研究也產生了以下次要的方法論診斷。其一，以離散度匹配診斷量測了合併 R² 在基線擇時相關為負時的離散度縮減效應（收縮獎勵）；此為已知 MSE 性質，本研究的貢獻是在本設計中量測其量級，任何使用此指標的面板報酬預測研究都可能遇到。其二，在小橫斷面設計下以排列安慰劑量化了 Clark–West 檢定在 XGBoost 上的大小失真（排列安慰劑下拒絕比例 0.253–0.990，對照裁定模型 Ridge 的 0.020–0.071，未見明顯拒絕膨脹；LightGBM、CatBoost 未獨立量測），與 Escanciano & Parra (2026) 的理論分析方向一致。其三，提出可移植的「對指標施加安慰劑」檢驗程序，即對指標施加一個理論上不應產生效果的改動並觀察其是否產生反應。此程序適用於任何使用合併 R² 且基線擇時為負的研究。</p>
+      <p>在已測試的規格下（臺灣上市半導體與金融保險股、N ≈ 22–36、訓練期 2012–2017、評估期 2018–2025、Ridge 與 XGBoost），本研究未能建立去偏 ETF 共同持股與殘差化價格共動之雙軌網路特徵的統計顯著增量預測力。M1 同時包含兩條軌道，負結果不能單獨歸因於其中一條；事後單軌比較中，僅保留 ETF 軌道時市場基準下金融 4 格 ΔIC 為不顯著的微幅正值（+0.0016 至 +0.0039，單尾 p 0.26–0.43），其餘基準與格皆負，ETF 軌道單獨亦未建立增量。低於本設計偵測能力的效果、以及在橫斷面規模較大的市場（如美國，N ≈ 3,000–10,000）、其他產業、或以其他模型萃取時的效果，仍屬未決。</p>
+      <div class="ref"><strong>主要參考文獻</strong>　Anton & Polk (2014, <em>JF</em>) · Brown, Davies & Ringgenberg (2021, <em>RoF</em>) · Campbell & Thompson (2008, <em>RFS</em>) · Clark & West (2007, <em>JoE</em>) · Cohen & Frazzini (2008, <em>JF</em>) · Elliott & Timmermann (2016, Princeton UP) · Engelberg, McLean, Pontiff & Ringgenberg (2023, <em>JFQA</em>) · Escanciano & Parra (2026, <em>JBES</em>) · Gu, Kelly & Xiu (2020, <em>RFS</em>) · Han, He, Rapach & Zhou (2024, <em>RoF</em>) · Lewellen (2015, <em>CFR</em>) · Rapach & Zhou (2020, Wiley)</div>
     </div>
   </div>
   <footer style="margin-top:18px;padding:12px 0;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--ink-3)">
