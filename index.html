@@ -81,11 +81,11 @@
 <p class="lead">本研究檢驗雙軌網路特徵能否在既有個股與市場資訊之外，改善每日個股報酬排序。</p>
 <p>指數股票型基金（ETF）的共同持股可能連結股票報酬（Anton &amp; Polk, 2014; Brown et al., 2021），但市值加權本身也會造成重疊。軌道 A 以 ETF 持股權重減去全市場市值權重，所得「市場相對權重」衡量配置相似；軌道 B 則以因子殘差化移除共同曝險，再衡量價格共動。兩種去偏均不能單獨辨識經理人意圖。</p>
 <details>
-<summary>三種去偏基準的定義</summary>
+<summary>三種去偏基準：定義與 2023Q4 示例</summary>
 <div aria-label="三種去偏基準示意圖" class="chart-scroll" role="region" tabindex="0">
 <svg aria-labelledby="baseline-title baseline-desc" role="img" viewbox="0 0 660 215">
 <title id="baseline-title">三種軌道 A 去偏基準</title>
-<desc id="baseline-desc">定義示意圖，沒有估計邊或相似度。B 是 ETF 持股權重，w 是全市場市值權重，c 是產業內市值比，a 是以完整上市母體加總的 ETF 產業配置。</desc>
+<desc id="baseline-desc">定義示意圖。B 是 ETF 持股權重，w 是全市場市值權重，c 是產業內市值比，a 是以完整上市母體加總的 ETF 產業配置。</desc>
 <rect fill="var(--bg)" height="155" rx="6" stroke="var(--border)" width="210" x="5" y="5"></rect>
 <text fill="var(--ink)" font-size="14" text-anchor="middle" x="110" y="31">市場基準（主規格）</text>
 <text fill="var(--accent)" font-size="21" text-anchor="middle" x="110" y="65">B − wᵐᵏᵗ</text>
@@ -102,9 +102,132 @@
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="100">再條件化於 ETF 產業配置</text>
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="124">a 在鄰居池篩選前加總</text>
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="184">僅當 B = a·c 時，配置殘差精確為零；子集合、權重上限與追蹤差距仍可留下殘差。</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="207">相似度以各股跨 ETF 的殘差向量計算；此處呈現定義，不繪製未經來源核驗的網路邊。</text>
+<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="207">相似度以各股跨 ETF 的殘差向量計算；下方以 2023Q4 五檔半導體股示範三種殘差與網路。</text>
 </svg>
-</div><div class="note">定義示意，非持股估計圖。B 為 ETF 持股權重；wᵐᵏᵗ 為全市場市值權重；c 為產業內市值比；a 為各 ETF 於鄰居池篩選前、以完整上市母體加總的產業配置。產業與配置基準為事後敏感度檢查。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/cd27ac6a20457a918f8d9e5fd53e010e124c26d1/docs/paper/paper.md">論文 §5.1.1</a></div></details>
+</div><div class="note">上圖為定義示意。B 為 ETF 持股權重；wᵐᵏᵗ 為全市場市值權重；c 為產業內市值比；a 為各 ETF 於鄰居池篩選前、以完整上市母體加總的產業配置。產業與配置基準為事後敏感度檢查。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/cd27ac6a20457a918f8d9e5fd53e010e124c26d1/docs/paper/paper.md">論文 §5.1.1</a></div>
+<h3>2023Q4 示例：五檔半導體股 × 三檔 ETF</h3>
+<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
+<table class="nt" id="debias-weights">
+<caption>持股權重 B、市值權重與半導體配置 a（%）</caption>
+<thead><tr><th scope="col">股票</th><th scope="col">w<sup>mkt</sup></th><th scope="col">c</th><th scope="col">0050 B</th><th scope="col">0053 B</th><th scope="col">0056 B</th></tr></thead><tbody>
+<tr data-code="2330"><td>2330 台積電</td><td>26.4%</td><td>72.7%</td><td>46.3%</td><td>42.0%</td><td>0.0%</td></tr>
+<tr data-code="2454"><td>2454 聯發科</td><td>2.3%</td><td>6.3%</td><td>4.9%</td><td>5.1%</td><td>3.3%</td></tr>
+<tr data-code="3034"><td>3034 聯詠</td><td>0.5%</td><td>1.4%</td><td>1.0%</td><td>0.8%</td><td>3.0%</td></tr>
+<tr data-code="2379"><td>2379 瑞昱</td><td>0.4%</td><td>1.1%</td><td>0.7%</td><td>0.6%</td><td>2.5%</td></tr>
+<tr data-code="2303"><td>2303 聯電</td><td>1.1%</td><td>3.0%</td><td>2.0%</td><td>1.9%</td><td>3.0%</td></tr>
+<tr class="key-row" data-row="a"><td>半導體配置 a</td><td></td><td></td><td>56.7%</td><td>59.2%</td><td>18.2%</td></tr>
+<tr data-row="n"><td>持有半導體檔數</td><td></td><td></td><td>7</td><td>55</td><td>7</td></tr>
+</tbody></table></div>
+<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
+<table class="nt" id="debias-residuals">
+<caption>殘差向量（百分點；依 0050、0053、0056 排列）</caption>
+<thead><tr><th scope="col">股票</th><th scope="col">市場 B − w<sup>mkt</sup></th><th scope="col">產業 B − c</th><th scope="col">配置 B − a·c</th></tr></thead><tbody>
+<tr data-code="2330"><td>台積電</td><td>[+19.9, +15.6, −26.4]</td><td>[−26.4, −30.7, −72.7]</td><td>[+5.1, −1.0, −13.2]</td></tr>
+<tr data-code="2454"><td>聯發科</td><td>[+2.6, +2.8, +1.0]</td><td>[−1.4, −1.2, −3.0]</td><td>[+1.3, +1.4, +2.2]</td></tr>
+<tr data-code="3034"><td>聯詠</td><td>[+0.5, +0.3, +2.5]</td><td>[−0.4, −0.5, +1.6]</td><td>[+0.2, +0.0, +2.8]</td></tr>
+<tr data-code="2379"><td>瑞昱</td><td>[+0.3, +0.2, +2.1]</td><td>[−0.4, −0.5, +1.4]</td><td>[+0.1, −0.1, +2.3]</td></tr>
+<tr data-code="2303"><td>聯電</td><td>[+0.9, +0.8, +1.9]</td><td>[−1.0, −1.1, −0.1]</td><td>[+0.3, +0.1, +2.4]</td></tr>
+</tbody></table></div>
+<p class="formula" id="debias-worked"><span class="label">實算（台積電 × 0050）：</span><br/>a = 56.7%，c = 72.7% → a·c = 41.2%；B = 46.3% → B − w<sup>mkt</sup> = +19.9、B − c = −26.4、B − a·c = +5.1 個百分點</p>
+<p id="debias-reading">台積電占半導體業市值 72.7%，但 0050 只持 46.3%、0053 只持 42.0%、0056 未持有，因此產業基準下三格皆大幅為負。配置基準再乘上各 ETF 的半導體配置 a：0053 持有 55 檔半導體股，接近 B = a·c，五檔的 0053 配置殘差介於 −1.0 與 +1.4 個百分點；0050 與 0056 各只持 7 檔，仍留下殘差。台積電與聯發科的餘弦在市場基準下為 +0.470，產業基準下同被低配而升至 +0.996，配置基準下轉為 −0.571：同一份持股，相似度的符號會隨基準改變。</p>
+<div aria-label="三種基準下的示例網路" class="chart-scroll" role="region" tabindex="0">
+<svg aria-labelledby="network-title network-desc" id="network-chart" role="img" viewbox="0 0 660 362">
+<title id="network-title">同五檔股票、同三檔 ETF，三種去偏基準下的餘弦相似度網路</title>
+<desc id="network-desc">邊依 2023Q4 示例的實際餘弦相似度繪製：實線為餘弦至少 +0.5，虛線為至多 −0.5，線寬隨絕對值增加；絕對值低於 0.5 不繪。各值見下方餘弦表。</desc>
+<rect fill="var(--bg)" height="300" rx="6" stroke="var(--border)" width="210" x="5" y="5"></rect>
+<text fill="var(--ink)" font-size="14" text-anchor="middle" x="110" y="31">市場基準（主規格）</text>
+<text fill="var(--accent)" font-size="17" text-anchor="middle" x="110" y="56">B − wᵐᵏᵗ</text>
+<line data-baseline="market" data-pair="2330-3034" data-value="-0.554070" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.2703" x1="55" x2="45" y1="100" y2="185"></line>
+<line data-baseline="market" data-pair="2330-2379" data-value="-0.584805" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.4240" x1="55" x2="110" y1="100" y2="222"></line>
+<line data-baseline="market" data-pair="2454-2303" data-value="0.746620" stroke="var(--accent)" stroke-width="2.2331" x1="165" x2="175" y1="100" y2="185"></line>
+<line data-baseline="market" data-pair="3034-2379" data-value="0.999114" stroke="var(--accent)" stroke-width="3.4956" x1="45" x2="110" y1="185" y2="222"></line>
+<line data-baseline="market" data-pair="3034-2303" data-value="0.935160" stroke="var(--accent)" stroke-width="3.1758" x1="45" x2="175" y1="185" y2="185"></line>
+<line data-baseline="market" data-pair="2379-2303" data-value="0.920208" stroke="var(--accent)" stroke-width="3.1010" x1="110" x2="175" y1="222" y2="185"></line>
+<circle cx="55" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="55" y="104">台積電</text>
+<circle cx="165" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="165" y="104">聯發科</text>
+<circle cx="45" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="45" y="189">聯詠</text>
+<circle cx="110" cy="222" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="110" y="226">瑞昱</text>
+<circle cx="175" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="175" y="189">聯電</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="258">聯詠–瑞昱 +0.999</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="277">聯發科–聯電 +0.747</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="296">台積電–聯發科 +0.470，無邊</text>
+<rect fill="var(--bg)" height="300" rx="6" stroke="var(--border)" width="210" x="225" y="5"></rect>
+<text fill="var(--ink)" font-size="14" text-anchor="middle" x="330" y="31">產業基準（敏感度）</text>
+<text fill="var(--accent)" font-size="17" text-anchor="middle" x="330" y="56">B − c</text>
+<line data-baseline="sector" data-pair="2330-2454" data-value="0.995827" stroke="var(--accent)" stroke-width="3.4791" x1="275" x2="385" y1="100" y2="100"></line>
+<line data-baseline="sector" data-pair="2330-3034" data-value="-0.620799" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.6040" x1="275" x2="265" y1="100" y2="185"></line>
+<line data-baseline="sector" data-pair="2330-2379" data-value="-0.601380" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.5069" x1="275" x2="330" y1="100" y2="222"></line>
+<line data-baseline="sector" data-pair="2330-2303" data-value="0.526308" stroke="var(--accent)" stroke-width="1.1315" x1="275" x2="395" y1="100" y2="185"></line>
+<line data-baseline="sector" data-pair="2454-3034" data-value="-0.587382" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.4369" x1="385" x2="265" y1="100" y2="185"></line>
+<line data-baseline="sector" data-pair="2454-2379" data-value="-0.568810" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.3441" x1="385" x2="330" y1="100" y2="222"></line>
+<line data-baseline="sector" data-pair="2454-2303" data-value="0.562582" stroke="var(--accent)" stroke-width="1.3129" x1="385" x2="395" y1="100" y2="185"></line>
+<line data-baseline="sector" data-pair="3034-2379" data-value="0.999567" stroke="var(--accent)" stroke-width="3.4978" x1="265" x2="330" y1="185" y2="222"></line>
+<circle cx="275" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="275" y="104">台積電</text>
+<circle cx="385" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="385" y="104">聯發科</text>
+<circle cx="265" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="265" y="189">聯詠</text>
+<circle cx="330" cy="222" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="330" y="226">瑞昱</text>
+<circle cx="395" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="395" y="189">聯電</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="237" y="258">聯詠–瑞昱 +1.000</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="237" y="277">台積電–聯發科 +0.996</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="237" y="296">台積電–聯詠 −0.621</text>
+<rect fill="var(--bg)" height="300" rx="6" stroke="var(--border)" width="210" x="445" y="5"></rect>
+<text fill="var(--ink)" font-size="14" text-anchor="middle" x="550" y="31">配置基準（敏感度）</text>
+<text fill="var(--accent)" font-size="17" text-anchor="middle" x="550" y="56">B − a·c</text>
+<line data-baseline="allocation" data-pair="2330-2454" data-value="-0.571388" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="1.3569" x1="495" x2="605" y1="100" y2="100"></line>
+<line data-baseline="allocation" data-pair="2330-3034" data-value="-0.906640" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="3.0332" x1="495" x2="485" y1="100" y2="185"></line>
+<line data-baseline="allocation" data-pair="2330-2379" data-value="-0.909618" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="3.0481" x1="495" x2="550" y1="100" y2="222"></line>
+<line data-baseline="allocation" data-pair="2330-2303" data-value="-0.885490" stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="2.9275" x1="495" x2="615" y1="100" y2="185"></line>
+<line data-baseline="allocation" data-pair="2454-3034" data-value="0.784172" stroke="var(--accent)" stroke-width="2.4209" x1="605" x2="485" y1="100" y2="185"></line>
+<line data-baseline="allocation" data-pair="2454-2379" data-value="0.763462" stroke="var(--accent)" stroke-width="2.3173" x1="605" x2="550" y1="100" y2="222"></line>
+<line data-baseline="allocation" data-pair="2454-2303" data-value="0.825946" stroke="var(--accent)" stroke-width="2.6297" x1="605" x2="615" y1="100" y2="185"></line>
+<line data-baseline="allocation" data-pair="3034-2379" data-value="0.999410" stroke="var(--accent)" stroke-width="3.4971" x1="485" x2="550" y1="185" y2="222"></line>
+<line data-baseline="allocation" data-pair="3034-2303" data-value="0.997476" stroke="var(--accent)" stroke-width="3.4874" x1="485" x2="615" y1="185" y2="185"></line>
+<line data-baseline="allocation" data-pair="2379-2303" data-value="0.994677" stroke="var(--accent)" stroke-width="3.4734" x1="550" x2="615" y1="222" y2="185"></line>
+<circle cx="495" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="495" y="104">台積電</text>
+<circle cx="605" cy="100" fill="var(--surface)" r="23" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="605" y="104">聯發科</text>
+<circle cx="485" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="485" y="189">聯詠</text>
+<circle cx="550" cy="222" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="550" y="226">瑞昱</text>
+<circle cx="615" cy="185" fill="var(--surface)" r="19" stroke="var(--ink-3)" stroke-width="1.2"></circle>
+<text fill="var(--ink)" font-size="12" text-anchor="middle" x="615" y="189">聯電</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="258">台積電–聯發科 −0.571</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="277">其餘四檔間 +0.763～+0.999</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="296">台積電–其餘 −0.910～−0.885</text>
+<line stroke="var(--accent)" stroke-width="3" x1="8" x2="38" y1="329" y2="329"></line>
+<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="46" y="333">餘弦 ≥ +0.5（線寬隨絕對值）</text>
+<line stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="3" x1="250" x2="280" y1="329" y2="329"></line>
+<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="288" y="333">餘弦 ≤ −0.5；絕對值低於 0.5 不繪</text>
+<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="355">軌道 A 的 kNN 只取餘弦 &gt; τ = 0.05 的正相似鄰居，負相似不成邊。</text>
+</svg></div>
+<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
+<table class="nt" id="cosine-table">
+<caption>十組配對的餘弦相似度（僅以三檔 ETF 為維度；灰字為絕對值低於 0.5、不繪邊）</caption>
+<thead><tr><th scope="col">配對</th><th scope="col">市場</th><th scope="col">產業</th><th scope="col">配置</th></tr></thead><tbody>
+<tr data-pair="2330-2454"><td>台積電–聯發科</td><td class="na">+0.470</td><td>+0.996</td><td>−0.571</td></tr>
+<tr data-pair="2330-3034"><td>台積電–聯詠</td><td>−0.554</td><td>−0.621</td><td>−0.907</td></tr>
+<tr data-pair="2330-2379"><td>台積電–瑞昱</td><td>−0.585</td><td>−0.601</td><td>−0.910</td></tr>
+<tr data-pair="2330-2303"><td>台積電–聯電</td><td class="na">−0.226</td><td>+0.526</td><td>−0.885</td></tr>
+<tr data-pair="2454-3034"><td>聯發科–聯詠</td><td class="na">+0.463</td><td>−0.587</td><td>+0.784</td></tr>
+<tr data-pair="2454-2379"><td>聯發科–瑞昱</td><td class="na">+0.427</td><td>−0.569</td><td>+0.763</td></tr>
+<tr data-pair="2454-2303"><td>聯發科–聯電</td><td>+0.747</td><td>+0.563</td><td>+0.826</td></tr>
+<tr data-pair="3034-2379"><td>聯詠–瑞昱</td><td>+0.999</td><td>+1.000</td><td>+0.999</td></tr>
+<tr data-pair="3034-2303"><td>聯詠–聯電</td><td>+0.935</td><td class="na">+0.338</td><td>+0.997</td></tr>
+<tr data-pair="2379-2303"><td>瑞昱–聯電</td><td>+0.920</td><td class="na">+0.360</td><td>+0.995</td></tr>
+</tbody></table></div>
+<div class="note" id="debias-caption">教學示例，非估計結果。持股取 MOPS 2023Q4，市值權重 w<sup>mkt</sup> 與產業內市值比 c 亦取 2023Q4；管線實際以兩季前公告的持股配對當季權重，此處為簡化。餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。a 以 ETF 持有、位於完整上市母體的半導體業股票加總。0050 追蹤臺灣50指數（大型股市值加權），0053 追蹤電子類指數（範圍不等於半導體），0056 追蹤臺灣高股息指數（殖利率規則選股加權），三者皆非主動管理。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/docs/findings/22-poster-debiasing-example.json">示例數值</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/src/poster_debiasing_example.py">產生程式</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/docs/paper/paper.md">論文 §5.1</a></div></details>
 <details>
 <summary>資料概覽與樣本範圍</summary>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">

@@ -11,6 +11,7 @@ import json
 import math
 import re
 import statistics
+from decimal import Decimal, ROUND_HALF_UP
 import subprocess
 from bs4 import BeautifulSoup
 
@@ -179,6 +180,119 @@ eq('matching >= 100% cells', sum(float(r['shrink_share']) >= 1 for r in positive
 remainder = [float(r['shrink_share']) for r in positive if float(r['shrink_share']) < 1]
 eq('remaining matching lower percent', f'{min(remainder):.0%}', '66%')
 eq('remaining matching upper percent', f'{max(remainder):.0%}', '84%')
+
+# Three-baseline teaching example: every displayed number is re-derived from findings/22.
+example = js('docs/findings/22-poster-debiasing-example.json')
+first_example_check = len(checks)
+etfs, ex_stocks = example['meta']['etf_order'], example['stocks']
+assert etfs == ['0050', '0053', '0056'] and list(ex_stocks) == ['2330', '2454', '3034', '2379', '2303']
+
+
+def half_up(value, decimals):
+    # 0056's a is exactly 18.15%; float formatting would show 18.1, the decimal value rounds to 18.2.
+    return Decimal(repr(round(value, 12))).quantize(Decimal(1).scaleb(-decimals), ROUND_HALF_UP)
+
+
+def ex_signed(value, decimals=1):
+    r = half_up(value, decimals)
+    return ('+' if r >= 0 else '−') + f'{abs(r):.{decimals}f}'
+
+
+def ex_pct(value):
+    return f'{half_up(value*100, 1):.1f}%'
+
+
+def ex_vec(values):
+    return '[' + ', '.join(ex_signed(v*100) for v in values) + ']'
+
+
+weights = {tr['data-code']: [td.get_text(strip=True) for td in tr.find_all('td')] for tr in soup.select('#debias-weights tr[data-code]')}
+assert list(weights) == list(ex_stocks), weights.keys()
+for code, s in ex_stocks.items():
+    eq(f'example name/{code}', weights[code][0], f'{code} {s["name"]}')
+    eq(f'example w_mkt/{code}', weights[code][1], ex_pct(s['w_mkt']))
+    eq(f'example c/{code}', weights[code][2], ex_pct(s['c_sector']))
+    for k, etf in enumerate(etfs):
+        eq(f'example B/{code}/{etf}', weights[code][3+k], ex_pct(s['holdings_B'][k]))
+a_row = [td.get_text(strip=True) for td in soup.select_one('#debias-weights tr[data-row="a"]').find_all('td')]
+n_row = [td.get_text(strip=True) for td in soup.select_one('#debias-weights tr[data-row="n"]').find_all('td')]
+for k, etf in enumerate(etfs):
+    eq(f'example a/{etf}', a_row[3+k], ex_pct(example['allocation_a_semis'][etf]))
+    eq(f'example semis held/{etf}', n_row[3+k], example['n_semis_held_in_U'][etf])
+residuals = {tr['data-code']: [td.get_text(strip=True) for td in tr.find_all('td')] for tr in soup.select('#debias-residuals tr[data-code]')}
+assert list(residuals) == list(ex_stocks)
+for code, s in ex_stocks.items():
+    for k, b in enumerate(['market', 'sector', 'allocation'], 1):
+        eq(f'example residual/{b}/{code}', residuals[code][k], ex_vec(s[f'residual_{b}']))
+tsmc = ex_stocks['2330']
+assert math.isclose(tsmc['a_times_c'][0], example['allocation_a_semis']['0050']*tsmc['c_sector'])
+eq('example worked 2330×0050', soup.select_one('#debias-worked').get_text('', strip=True),
+   f'實算（台積電 × 0050）：a = {ex_pct(example["allocation_a_semis"]["0050"])}，c = {ex_pct(tsmc["c_sector"])} → '
+   f'a·c = {ex_pct(tsmc["a_times_c"][0])}；B = {ex_pct(tsmc["holdings_B"][0])} → B − wmkt = {ex_signed(tsmc["residual_market"][0]*100)}、'
+   f'B − c = {ex_signed(tsmc["residual_sector"][0]*100)}、B − a·c = {ex_signed(tsmc["residual_allocation"][0]*100)} 個百分點')
+
+ex_names = {c: s['name'] for c, s in ex_stocks.items()}
+ex_cos = {tuple(r['pair']): r for r in example['cosines']}
+assert len(ex_cos) == 10
+baselines3 = ['market', 'sector', 'allocation']
+cos_rows = {tr['data-pair']: tr for tr in soup.select('#cosine-table tr[data-pair]')}
+assert list(cos_rows) == [f'{i}-{j}' for i, j in ex_cos]
+for (i, j), r in ex_cos.items():
+    tds = cos_rows[f'{i}-{j}'].find_all('td')
+    eq(f'cosine pair/{i}-{j}', tds[0].get_text(strip=True), f'{ex_names[i]}–{ex_names[j]}')
+    for k, b in enumerate(baselines3, 1):
+        eq(f'cosine/{b}/{i}-{j}', tds[k].get_text(strip=True), ex_signed(r[b], 3))
+        assert ('na' in (tds[k].get('class') or [])) == (abs(r[b]) < .5), (i, j, b)
+for b in baselines3:
+    lines = soup.select(f'#network-chart line[data-baseline="{b}"]')
+    drawn = {tuple(l['data-pair'].split('-')): l for l in lines}
+    expected_edges = {p for p, r in ex_cos.items() if abs(r[b]) >= .5}
+    eq(f'network edges/{b}', sorted('-'.join(p) for p in drawn), sorted('-'.join(p) for p in expected_edges))
+    for p, l in drawn.items():
+        v = ex_cos[p][b]
+        near(f'edge value/{b}/{"-".join(p)}', l['data-value'], v)
+        near(f'edge width/{b}/{"-".join(p)}', l['stroke-width'], 1 + 5*(abs(v) - .5), 1e-4)
+        assert (l.get('stroke-dasharray') is not None) == (v < 0) and l['stroke'] == ('var(--accent)' if v > 0 else 'var(--neg)')
+
+
+def pair_label(i, j, b):
+    r = ex_cos.get((i, j)) or ex_cos[(j, i)]
+    return f'{ex_names[i]}–{ex_names[j]} {ex_signed(r[b], 3)}'
+
+
+rest = [r['allocation'] for p, r in ex_cos.items() if '2330' not in p]
+tsmc_rest = [r['allocation'] for p, r in ex_cos.items() if '2330' in p and '2454' not in p]
+assert min(rest) > 0 and max(tsmc_rest) < 0
+expected_notes = [pair_label('3034', '2379', 'market'), pair_label('2454', '2303', 'market'), pair_label('2330', '2454', 'market') + '，無邊',
+                  pair_label('3034', '2379', 'sector'), pair_label('2330', '2454', 'sector'), pair_label('2330', '3034', 'sector'),
+                  pair_label('2330', '2454', 'allocation'), f'其餘四檔間 {ex_signed(min(rest), 3)}～{ex_signed(max(rest), 3)}',
+                  f'台積電–其餘 {ex_signed(min(tsmc_rest), 3)}～{ex_signed(max(tsmc_rest), 3)}']
+assert abs(ex_cos[('2330', '2454')]['market']) < .5
+for k, (t, e) in enumerate(zip(soup.select('#network-chart text.cos-note'), expected_notes, strict=True)):
+    eq(f'network note/{k}', t.get_text(), e)
+alloc53 = [s['residual_allocation'][1]*100 for s in ex_stocks.values()]
+reading = soup.select_one('#debias-reading').get_text()
+for label, value in [('TSMC c', ex_pct(tsmc['c_sector'])), ('TSMC 0050', ex_pct(tsmc['holdings_B'][0])), ('TSMC 0053', ex_pct(tsmc['holdings_B'][1])),
+                     ('0053 semis', f'{example["n_semis_held_in_U"]["0053"]} 檔'), ('0053 residual range', f'介於 {ex_signed(min(alloc53))} 與 {ex_signed(max(alloc53))}'),
+                     ('0050/0056 semis', f'各只持 {example["n_semis_held_in_U"]["0050"]} 檔'),
+                     ('TSMC–MTK market', ex_signed(ex_cos[('2330', '2454')]['market'], 3)), ('TSMC–MTK sector', ex_signed(ex_cos[('2330', '2454')]['sector'], 3)),
+                     ('TSMC–MTK allocation', ex_signed(ex_cos[('2330', '2454')]['allocation'], 3))]:
+    assert value in reading, (label, value)
+    checks.append({'label': f'example reading/{label}', 'value': value})
+assert tsmc['holdings_B'][2] == 0 and '0056 未持有' in reading
+assert example['n_semis_held_in_U']['0050'] == example['n_semis_held_in_U']['0056']
+caption = soup.select_one('#debias-caption').get_text()
+for phrase in ['教學示例，非估計結果', '持股取 MOPS 2023Q4', '亦取 2023Q4', '兩季前公告的持股', '只以圖中三檔 ETF 為維度']:
+    assert phrase in caption, phrase
+assert 'the three ETFs shown only' == example['meta']['cosine_dimension'] and '2023Q4' in example['meta']['weights'] and '2023Q4' in example['meta']['holdings']
+checks.append({'label': 'example caption', 'value': 'holdings and weights 2023Q4; two-quarter pipeline lag; three-ETF cosines; teaching example'})
+# Audit: no number in the disclosure may lack a source. Structural tokens are codes, dates, thresholds and section numbers.
+rendered = set(re.findall(r'\d+(?:\.\d+)*', ' '.join(str(c['value']) for c in checks[first_example_check:])))
+structural = {'0050', '0053', '0056', '2023', '4', '2330', '2454', '3034', '2379', '2303', '0.5', '0.05', '50', '5.1.1', '5.1'}
+block = soup.select_one('#network-chart').find_parent('details')
+for token in re.findall(r'\d+(?:\.\d+)*', block.get_text(' ')):
+    assert token in rendered or token in structural, f'untraced number in three-baseline example: {token}'
+checks.append({'label': 'three-baseline disclosure number audit', 'value': 'every numeric token sourced from findings/22 or structural'})
 
 paper = read('docs/paper/paper.md')
 visible = soup.get_text(' ', strip=True)

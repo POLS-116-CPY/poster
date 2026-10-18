@@ -1,5 +1,5 @@
 {
-  "research_commit": "cd27ac6a20457a918f8d9e5fd53e010e124c26d1",
+  "research_commit": "7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19",
   "scope": "Aggregate export consistency; no model rerun, raw TEJ access, or provenance certification",
   "source_sha256_lf": {
     "docs/findings/18-delta-ic-inference.json": "c46af8453702775ebed1909fe7662e46344d63db880ad5364453f77c39eff5e0",
@@ -15,9 +15,10 @@
     "results/14_economic/cost_matrix.csv": "112c67197aa9d93edf268322343db1bf5fd9692d9fff5d093a8c9ebe96cb4848",
     "docs/findings/20-economic-h60-quarterly.json": "9f6608c4acba87c588fa28bd3aba34f29e56217350195a2f7150e15b25ce12ba",
     "docs/findings/19-ridge-wide-alpha-counts.json": "e469462827f53709b61ca775b724621c7f3505d6be39de303b9b774953b75820",
-    "docs/paper/paper.md": "1e8c000d2b8fe9db2e82390d8f065dda62863c38243897a311c1d0594ac252da"
+    "docs/findings/22-poster-debiasing-example.json": "faed30df8f83c82558a5142345af91883395cbc5be07c3164374c6d0b7ea924b",
+    "docs/paper/paper.md": "8ed00cb1eb481e5d3d8f865106c8ef2bc8991f6837f2ceaf8051d107115d937f"
   },
-  "check_count": 320,
+  "check_count": 483,
   "checks": [
     {
       "label": "ΔIC/market/半導體業/5",
@@ -1262,6 +1263,685 @@
     {
       "label": "remaining matching upper percent",
       "value": "84%"
+    },
+    {
+      "label": "example name/2330",
+      "value": "2330 台積電"
+    },
+    {
+      "label": "example w_mkt/2330",
+      "value": "26.4%"
+    },
+    {
+      "label": "example c/2330",
+      "value": "72.7%"
+    },
+    {
+      "label": "example B/2330/0050",
+      "value": "46.3%"
+    },
+    {
+      "label": "example B/2330/0053",
+      "value": "42.0%"
+    },
+    {
+      "label": "example B/2330/0056",
+      "value": "0.0%"
+    },
+    {
+      "label": "example name/2454",
+      "value": "2454 聯發科"
+    },
+    {
+      "label": "example w_mkt/2454",
+      "value": "2.3%"
+    },
+    {
+      "label": "example c/2454",
+      "value": "6.3%"
+    },
+    {
+      "label": "example B/2454/0050",
+      "value": "4.9%"
+    },
+    {
+      "label": "example B/2454/0053",
+      "value": "5.1%"
+    },
+    {
+      "label": "example B/2454/0056",
+      "value": "3.3%"
+    },
+    {
+      "label": "example name/3034",
+      "value": "3034 聯詠"
+    },
+    {
+      "label": "example w_mkt/3034",
+      "value": "0.5%"
+    },
+    {
+      "label": "example c/3034",
+      "value": "1.4%"
+    },
+    {
+      "label": "example B/3034/0050",
+      "value": "1.0%"
+    },
+    {
+      "label": "example B/3034/0053",
+      "value": "0.8%"
+    },
+    {
+      "label": "example B/3034/0056",
+      "value": "3.0%"
+    },
+    {
+      "label": "example name/2379",
+      "value": "2379 瑞昱"
+    },
+    {
+      "label": "example w_mkt/2379",
+      "value": "0.4%"
+    },
+    {
+      "label": "example c/2379",
+      "value": "1.1%"
+    },
+    {
+      "label": "example B/2379/0050",
+      "value": "0.7%"
+    },
+    {
+      "label": "example B/2379/0053",
+      "value": "0.6%"
+    },
+    {
+      "label": "example B/2379/0056",
+      "value": "2.5%"
+    },
+    {
+      "label": "example name/2303",
+      "value": "2303 聯電"
+    },
+    {
+      "label": "example w_mkt/2303",
+      "value": "1.1%"
+    },
+    {
+      "label": "example c/2303",
+      "value": "3.0%"
+    },
+    {
+      "label": "example B/2303/0050",
+      "value": "2.0%"
+    },
+    {
+      "label": "example B/2303/0053",
+      "value": "1.9%"
+    },
+    {
+      "label": "example B/2303/0056",
+      "value": "3.0%"
+    },
+    {
+      "label": "example a/0050",
+      "value": "56.7%"
+    },
+    {
+      "label": "example semis held/0050",
+      "value": 7
+    },
+    {
+      "label": "example a/0053",
+      "value": "59.2%"
+    },
+    {
+      "label": "example semis held/0053",
+      "value": 55
+    },
+    {
+      "label": "example a/0056",
+      "value": "18.2%"
+    },
+    {
+      "label": "example semis held/0056",
+      "value": 7
+    },
+    {
+      "label": "example residual/market/2330",
+      "value": "[+19.9, +15.6, −26.4]"
+    },
+    {
+      "label": "example residual/sector/2330",
+      "value": "[−26.4, −30.7, −72.7]"
+    },
+    {
+      "label": "example residual/allocation/2330",
+      "value": "[+5.1, −1.0, −13.2]"
+    },
+    {
+      "label": "example residual/market/2454",
+      "value": "[+2.6, +2.8, +1.0]"
+    },
+    {
+      "label": "example residual/sector/2454",
+      "value": "[−1.4, −1.2, −3.0]"
+    },
+    {
+      "label": "example residual/allocation/2454",
+      "value": "[+1.3, +1.4, +2.2]"
+    },
+    {
+      "label": "example residual/market/3034",
+      "value": "[+0.5, +0.3, +2.5]"
+    },
+    {
+      "label": "example residual/sector/3034",
+      "value": "[−0.4, −0.5, +1.6]"
+    },
+    {
+      "label": "example residual/allocation/3034",
+      "value": "[+0.2, +0.0, +2.8]"
+    },
+    {
+      "label": "example residual/market/2379",
+      "value": "[+0.3, +0.2, +2.1]"
+    },
+    {
+      "label": "example residual/sector/2379",
+      "value": "[−0.4, −0.5, +1.4]"
+    },
+    {
+      "label": "example residual/allocation/2379",
+      "value": "[+0.1, −0.1, +2.3]"
+    },
+    {
+      "label": "example residual/market/2303",
+      "value": "[+0.9, +0.8, +1.9]"
+    },
+    {
+      "label": "example residual/sector/2303",
+      "value": "[−1.0, −1.1, −0.1]"
+    },
+    {
+      "label": "example residual/allocation/2303",
+      "value": "[+0.3, +0.1, +2.4]"
+    },
+    {
+      "label": "example worked 2330×0050",
+      "value": "實算（台積電 × 0050）：a = 56.7%，c = 72.7% → a·c = 41.2%；B = 46.3% → B − wmkt = +19.9、B − c = −26.4、B − a·c = +5.1 個百分點"
+    },
+    {
+      "label": "cosine pair/2330-2454",
+      "value": "台積電–聯發科"
+    },
+    {
+      "label": "cosine/market/2330-2454",
+      "value": "+0.470"
+    },
+    {
+      "label": "cosine/sector/2330-2454",
+      "value": "+0.996"
+    },
+    {
+      "label": "cosine/allocation/2330-2454",
+      "value": "−0.571"
+    },
+    {
+      "label": "cosine pair/2330-3034",
+      "value": "台積電–聯詠"
+    },
+    {
+      "label": "cosine/market/2330-3034",
+      "value": "−0.554"
+    },
+    {
+      "label": "cosine/sector/2330-3034",
+      "value": "−0.621"
+    },
+    {
+      "label": "cosine/allocation/2330-3034",
+      "value": "−0.907"
+    },
+    {
+      "label": "cosine pair/2330-2379",
+      "value": "台積電–瑞昱"
+    },
+    {
+      "label": "cosine/market/2330-2379",
+      "value": "−0.585"
+    },
+    {
+      "label": "cosine/sector/2330-2379",
+      "value": "−0.601"
+    },
+    {
+      "label": "cosine/allocation/2330-2379",
+      "value": "−0.910"
+    },
+    {
+      "label": "cosine pair/2330-2303",
+      "value": "台積電–聯電"
+    },
+    {
+      "label": "cosine/market/2330-2303",
+      "value": "−0.226"
+    },
+    {
+      "label": "cosine/sector/2330-2303",
+      "value": "+0.526"
+    },
+    {
+      "label": "cosine/allocation/2330-2303",
+      "value": "−0.885"
+    },
+    {
+      "label": "cosine pair/2454-3034",
+      "value": "聯發科–聯詠"
+    },
+    {
+      "label": "cosine/market/2454-3034",
+      "value": "+0.463"
+    },
+    {
+      "label": "cosine/sector/2454-3034",
+      "value": "−0.587"
+    },
+    {
+      "label": "cosine/allocation/2454-3034",
+      "value": "+0.784"
+    },
+    {
+      "label": "cosine pair/2454-2379",
+      "value": "聯發科–瑞昱"
+    },
+    {
+      "label": "cosine/market/2454-2379",
+      "value": "+0.427"
+    },
+    {
+      "label": "cosine/sector/2454-2379",
+      "value": "−0.569"
+    },
+    {
+      "label": "cosine/allocation/2454-2379",
+      "value": "+0.763"
+    },
+    {
+      "label": "cosine pair/2454-2303",
+      "value": "聯發科–聯電"
+    },
+    {
+      "label": "cosine/market/2454-2303",
+      "value": "+0.747"
+    },
+    {
+      "label": "cosine/sector/2454-2303",
+      "value": "+0.563"
+    },
+    {
+      "label": "cosine/allocation/2454-2303",
+      "value": "+0.826"
+    },
+    {
+      "label": "cosine pair/3034-2379",
+      "value": "聯詠–瑞昱"
+    },
+    {
+      "label": "cosine/market/3034-2379",
+      "value": "+0.999"
+    },
+    {
+      "label": "cosine/sector/3034-2379",
+      "value": "+1.000"
+    },
+    {
+      "label": "cosine/allocation/3034-2379",
+      "value": "+0.999"
+    },
+    {
+      "label": "cosine pair/3034-2303",
+      "value": "聯詠–聯電"
+    },
+    {
+      "label": "cosine/market/3034-2303",
+      "value": "+0.935"
+    },
+    {
+      "label": "cosine/sector/3034-2303",
+      "value": "+0.338"
+    },
+    {
+      "label": "cosine/allocation/3034-2303",
+      "value": "+0.997"
+    },
+    {
+      "label": "cosine pair/2379-2303",
+      "value": "瑞昱–聯電"
+    },
+    {
+      "label": "cosine/market/2379-2303",
+      "value": "+0.920"
+    },
+    {
+      "label": "cosine/sector/2379-2303",
+      "value": "+0.360"
+    },
+    {
+      "label": "cosine/allocation/2379-2303",
+      "value": "+0.995"
+    },
+    {
+      "label": "network edges/market",
+      "value": [
+        "2330-2379",
+        "2330-3034",
+        "2379-2303",
+        "2454-2303",
+        "3034-2303",
+        "3034-2379"
+      ]
+    },
+    {
+      "label": "edge value/market/2330-3034",
+      "value": -0.5540698475793026
+    },
+    {
+      "label": "edge width/market/2330-3034",
+      "value": 1.2703492378965127
+    },
+    {
+      "label": "edge value/market/2330-2379",
+      "value": -0.5848049939818006
+    },
+    {
+      "label": "edge width/market/2330-2379",
+      "value": 1.424024969909003
+    },
+    {
+      "label": "edge value/market/2454-2303",
+      "value": 0.7466199685575294
+    },
+    {
+      "label": "edge width/market/2454-2303",
+      "value": 2.233099842787647
+    },
+    {
+      "label": "edge value/market/3034-2379",
+      "value": 0.9991140408810906
+    },
+    {
+      "label": "edge width/market/3034-2379",
+      "value": 3.495570204405453
+    },
+    {
+      "label": "edge value/market/3034-2303",
+      "value": 0.9351598628751794
+    },
+    {
+      "label": "edge width/market/3034-2303",
+      "value": 3.175799314375897
+    },
+    {
+      "label": "edge value/market/2379-2303",
+      "value": 0.9202082986312726
+    },
+    {
+      "label": "edge width/market/2379-2303",
+      "value": 3.1010414931563632
+    },
+    {
+      "label": "network edges/sector",
+      "value": [
+        "2330-2303",
+        "2330-2379",
+        "2330-2454",
+        "2330-3034",
+        "2454-2303",
+        "2454-2379",
+        "2454-3034",
+        "3034-2379"
+      ]
+    },
+    {
+      "label": "edge value/sector/2330-2454",
+      "value": 0.9958268053464019
+    },
+    {
+      "label": "edge width/sector/2330-2454",
+      "value": 3.4791340267320097
+    },
+    {
+      "label": "edge value/sector/2330-3034",
+      "value": -0.6207994418204485
+    },
+    {
+      "label": "edge width/sector/2330-3034",
+      "value": 1.6039972091022427
+    },
+    {
+      "label": "edge value/sector/2330-2379",
+      "value": -0.6013801755870375
+    },
+    {
+      "label": "edge width/sector/2330-2379",
+      "value": 1.5069008779351876
+    },
+    {
+      "label": "edge value/sector/2330-2303",
+      "value": 0.5263081895006592
+    },
+    {
+      "label": "edge width/sector/2330-2303",
+      "value": 1.1315409475032958
+    },
+    {
+      "label": "edge value/sector/2454-3034",
+      "value": -0.5873816592227438
+    },
+    {
+      "label": "edge width/sector/2454-3034",
+      "value": 1.4369082961137187
+    },
+    {
+      "label": "edge value/sector/2454-2379",
+      "value": -0.5688102016552914
+    },
+    {
+      "label": "edge width/sector/2454-2379",
+      "value": 1.344051008276457
+    },
+    {
+      "label": "edge value/sector/2454-2303",
+      "value": 0.5625820715107779
+    },
+    {
+      "label": "edge width/sector/2454-2303",
+      "value": 1.3129103575538894
+    },
+    {
+      "label": "edge value/sector/3034-2379",
+      "value": 0.9995672541273297
+    },
+    {
+      "label": "edge width/sector/3034-2379",
+      "value": 3.4978362706366486
+    },
+    {
+      "label": "network edges/allocation",
+      "value": [
+        "2330-2303",
+        "2330-2379",
+        "2330-2454",
+        "2330-3034",
+        "2379-2303",
+        "2454-2303",
+        "2454-2379",
+        "2454-3034",
+        "3034-2303",
+        "3034-2379"
+      ]
+    },
+    {
+      "label": "edge value/allocation/2330-2454",
+      "value": -0.5713875885673656
+    },
+    {
+      "label": "edge width/allocation/2330-2454",
+      "value": 1.356937942836828
+    },
+    {
+      "label": "edge value/allocation/2330-3034",
+      "value": -0.9066399160391451
+    },
+    {
+      "label": "edge width/allocation/2330-3034",
+      "value": 3.0331995801957254
+    },
+    {
+      "label": "edge value/allocation/2330-2379",
+      "value": -0.9096178143059669
+    },
+    {
+      "label": "edge width/allocation/2330-2379",
+      "value": 3.0480890715298345
+    },
+    {
+      "label": "edge value/allocation/2330-2303",
+      "value": -0.8854900136858002
+    },
+    {
+      "label": "edge width/allocation/2330-2303",
+      "value": 2.9274500684290006
+    },
+    {
+      "label": "edge value/allocation/2454-3034",
+      "value": 0.784172075580229
+    },
+    {
+      "label": "edge width/allocation/2454-3034",
+      "value": 2.4208603779011453
+    },
+    {
+      "label": "edge value/allocation/2454-2379",
+      "value": 0.7634615946234248
+    },
+    {
+      "label": "edge width/allocation/2454-2379",
+      "value": 2.3173079731171238
+    },
+    {
+      "label": "edge value/allocation/2454-2303",
+      "value": 0.8259460174403478
+    },
+    {
+      "label": "edge width/allocation/2454-2303",
+      "value": 2.629730087201739
+    },
+    {
+      "label": "edge value/allocation/3034-2379",
+      "value": 0.9994100410818897
+    },
+    {
+      "label": "edge width/allocation/3034-2379",
+      "value": 3.4970502054094483
+    },
+    {
+      "label": "edge value/allocation/3034-2303",
+      "value": 0.9974757358614914
+    },
+    {
+      "label": "edge width/allocation/3034-2303",
+      "value": 3.487378679307457
+    },
+    {
+      "label": "edge value/allocation/2379-2303",
+      "value": 0.9946768018258457
+    },
+    {
+      "label": "edge width/allocation/2379-2303",
+      "value": 3.4733840091292287
+    },
+    {
+      "label": "network note/0",
+      "value": "聯詠–瑞昱 +0.999"
+    },
+    {
+      "label": "network note/1",
+      "value": "聯發科–聯電 +0.747"
+    },
+    {
+      "label": "network note/2",
+      "value": "台積電–聯發科 +0.470，無邊"
+    },
+    {
+      "label": "network note/3",
+      "value": "聯詠–瑞昱 +1.000"
+    },
+    {
+      "label": "network note/4",
+      "value": "台積電–聯發科 +0.996"
+    },
+    {
+      "label": "network note/5",
+      "value": "台積電–聯詠 −0.621"
+    },
+    {
+      "label": "network note/6",
+      "value": "台積電–聯發科 −0.571"
+    },
+    {
+      "label": "network note/7",
+      "value": "其餘四檔間 +0.763～+0.999"
+    },
+    {
+      "label": "network note/8",
+      "value": "台積電–其餘 −0.910～−0.885"
+    },
+    {
+      "label": "example reading/TSMC c",
+      "value": "72.7%"
+    },
+    {
+      "label": "example reading/TSMC 0050",
+      "value": "46.3%"
+    },
+    {
+      "label": "example reading/TSMC 0053",
+      "value": "42.0%"
+    },
+    {
+      "label": "example reading/0053 semis",
+      "value": "55 檔"
+    },
+    {
+      "label": "example reading/0053 residual range",
+      "value": "介於 −1.0 與 +1.4"
+    },
+    {
+      "label": "example reading/0050/0056 semis",
+      "value": "各只持 7 檔"
+    },
+    {
+      "label": "example reading/TSMC–MTK market",
+      "value": "+0.470"
+    },
+    {
+      "label": "example reading/TSMC–MTK sector",
+      "value": "+0.996"
+    },
+    {
+      "label": "example reading/TSMC–MTK allocation",
+      "value": "−0.571"
+    },
+    {
+      "label": "example caption",
+      "value": "holdings and weights 2023Q4; two-quarter pipeline lag; three-ETF cosines; teaching example"
+    },
+    {
+      "label": "three-baseline disclosure number audit",
+      "value": "every numeric token sourced from findings/22 or structural"
     },
     {
       "label": "APA reference",
