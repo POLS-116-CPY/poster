@@ -1,0 +1,1303 @@
+{
+  "research_commit": "cd27ac6a20457a918f8d9e5fd53e010e124c26d1",
+  "scope": "Aggregate export consistency; no model rerun, raw TEJ access, or provenance certification",
+  "source_sha256_lf": {
+    "docs/findings/18-delta-ic-inference.json": "c46af8453702775ebed1909fe7662e46344d63db880ad5364453f77c39eff5e0",
+    "docs/findings/17-three-baseline-evidence.json": "f6f365671b9a2cad5a9718bef3a100e841f44d33755fdd18ecb7b7b87554f99c",
+    "results/16_decompose/decomposition.csv": "e5bac3cf34c118109ef10fdb31ba81e801d77726938f94f0344bd78702570c39",
+    "results/15_power/mde.csv": "50eb53ab3e4edb00aa1bf54fa2ec3f43a3db244400df7bcc1d463be8a9bf156e",
+    "results/sweep/placebo_ranks.csv": "48732c11d5b4687bbd53ff088a1c5c80eaf2caa2b43d4d82b5d74b07c4d0db21",
+    "results/11_matching/common_support.csv": "74572911d4a3d9fcaf0d956813ea8c749bb690319ffd9eca089511b8b5cdd1dc",
+    "results/11_matching/quarter_census.csv": "89781cc86cc5152a4276eb31d624e7f4dc71b05846dec20873bd4ade5c842b73",
+    "results/13_gat/summary.csv": "06718c474ca08f346c89ca30f04cb74f3f9ee418fc009c3ad60c2b59c45bdcec",
+    "results/18_fama_macbeth/fama_macbeth.csv": "19a0dea419c2c13d634127650675a645a97a243259cc0219e67a5203126941e6",
+    "results/sweep/variant_results_full.csv": "bccc2dae00da8cd87596e838d1d1d508c3624b6e57aa6c55c47dba133d411b3b",
+    "results/14_economic/cost_matrix.csv": "112c67197aa9d93edf268322343db1bf5fd9692d9fff5d093a8c9ebe96cb4848",
+    "docs/findings/20-economic-h60-quarterly.json": "9f6608c4acba87c588fa28bd3aba34f29e56217350195a2f7150e15b25ce12ba",
+    "docs/findings/19-ridge-wide-alpha-counts.json": "e469462827f53709b61ca775b724621c7f3505d6be39de303b9b774953b75820",
+    "docs/paper/paper.md": "1e8c000d2b8fe9db2e82390d8f065dda62863c38243897a311c1d0594ac252da"
+  },
+  "check_count": 320,
+  "checks": [
+    {
+      "label": "ΔIC/market/半導體業/5",
+      "value": "-0.0151"
+    },
+    {
+      "label": "ΔIC/market/半導體業/20",
+      "value": "-0.0310"
+    },
+    {
+      "label": "ΔIC/market/半導體業/30",
+      "value": "-0.0341"
+    },
+    {
+      "label": "ΔIC/market/半導體業/60",
+      "value": "-0.0414"
+    },
+    {
+      "label": "ΔIC/market/金融保險業/5",
+      "value": "-0.0068"
+    },
+    {
+      "label": "ΔIC/market/金融保險業/20",
+      "value": "-0.0108"
+    },
+    {
+      "label": "ΔIC/market/金融保險業/30",
+      "value": "-0.0162"
+    },
+    {
+      "label": "ΔIC/market/金融保險業/60",
+      "value": "-0.0184"
+    },
+    {
+      "label": "NW min/market",
+      "value": "0.875"
+    },
+    {
+      "label": "ΔIC permutation min/market",
+      "value": "0.08"
+    },
+    {
+      "label": "track A financial lower ΔIC",
+      "value": "+0.0016"
+    },
+    {
+      "label": "track A financial upper ΔIC",
+      "value": "+0.0039"
+    },
+    {
+      "label": "track A financial lower p",
+      "value": "0.26"
+    },
+    {
+      "label": "track A financial upper p",
+      "value": "0.43"
+    },
+    {
+      "label": "ΔIC/sector/半導體業/5",
+      "value": "-0.0160"
+    },
+    {
+      "label": "ΔIC/sector/半導體業/20",
+      "value": "-0.0285"
+    },
+    {
+      "label": "ΔIC/sector/半導體業/30",
+      "value": "-0.0301"
+    },
+    {
+      "label": "ΔIC/sector/半導體業/60",
+      "value": "-0.0309"
+    },
+    {
+      "label": "ΔIC/sector/金融保險業/5",
+      "value": "-0.0156"
+    },
+    {
+      "label": "ΔIC/sector/金融保險業/20",
+      "value": "-0.0269"
+    },
+    {
+      "label": "ΔIC/sector/金融保險業/30",
+      "value": "-0.0397"
+    },
+    {
+      "label": "ΔIC/sector/金融保險業/60",
+      "value": "-0.0499"
+    },
+    {
+      "label": "NW min/sector",
+      "value": "0.946"
+    },
+    {
+      "label": "ΔIC permutation min/sector",
+      "value": "0.54"
+    },
+    {
+      "label": "ΔIC/allocation/半導體業/5",
+      "value": "-0.0125"
+    },
+    {
+      "label": "ΔIC/allocation/半導體業/20",
+      "value": "-0.0313"
+    },
+    {
+      "label": "ΔIC/allocation/半導體業/30",
+      "value": "-0.0345"
+    },
+    {
+      "label": "ΔIC/allocation/半導體業/60",
+      "value": "-0.0316"
+    },
+    {
+      "label": "ΔIC/allocation/金融保險業/5",
+      "value": "-0.0130"
+    },
+    {
+      "label": "ΔIC/allocation/金融保險業/20",
+      "value": "-0.0254"
+    },
+    {
+      "label": "ΔIC/allocation/金融保險業/30",
+      "value": "-0.0315"
+    },
+    {
+      "label": "ΔIC/allocation/金融保險業/60",
+      "value": "-0.0392"
+    },
+    {
+      "label": "NW min/allocation",
+      "value": "0.917"
+    },
+    {
+      "label": "ΔIC permutation min/allocation",
+      "value": "0.42"
+    },
+    {
+      "label": "Ridge/半導體業/5/r2_pooled",
+      "value": "-0.10%"
+    },
+    {
+      "label": "Ridge/半導體業/5/r2_cross_sectional",
+      "value": "-0.17%"
+    },
+    {
+      "label": "Ridge/半導體業/5/r2_cs_net_of_shrink",
+      "value": "-0.11%"
+    },
+    {
+      "label": "Ridge/半導體業/20/r2_pooled",
+      "value": "-0.35%"
+    },
+    {
+      "label": "Ridge/半導體業/20/r2_cross_sectional",
+      "value": "-0.60%"
+    },
+    {
+      "label": "Ridge/半導體業/20/r2_cs_net_of_shrink",
+      "value": "-0.31%"
+    },
+    {
+      "label": "Ridge/半導體業/30/r2_pooled",
+      "value": "-0.49%"
+    },
+    {
+      "label": "Ridge/半導體業/30/r2_cross_sectional",
+      "value": "-0.80%"
+    },
+    {
+      "label": "Ridge/半導體業/30/r2_cs_net_of_shrink",
+      "value": "-0.39%"
+    },
+    {
+      "label": "Ridge/半導體業/60/r2_pooled",
+      "value": "-0.71%"
+    },
+    {
+      "label": "Ridge/半導體業/60/r2_cross_sectional",
+      "value": "-1.03%"
+    },
+    {
+      "label": "Ridge/半導體業/60/r2_cs_net_of_shrink",
+      "value": "-0.26%"
+    },
+    {
+      "label": "Ridge/金融保險業/5/r2_pooled",
+      "value": "-0.05%"
+    },
+    {
+      "label": "Ridge/金融保險業/5/r2_cross_sectional",
+      "value": "-0.12%"
+    },
+    {
+      "label": "Ridge/金融保險業/5/r2_cs_net_of_shrink",
+      "value": "-0.08%"
+    },
+    {
+      "label": "Ridge/金融保險業/20/r2_pooled",
+      "value": "-0.15%"
+    },
+    {
+      "label": "Ridge/金融保險業/20/r2_cross_sectional",
+      "value": "-0.36%"
+    },
+    {
+      "label": "Ridge/金融保險業/20/r2_cs_net_of_shrink",
+      "value": "-0.35%"
+    },
+    {
+      "label": "Ridge/金融保險業/30/r2_pooled",
+      "value": "-0.26%"
+    },
+    {
+      "label": "Ridge/金融保險業/30/r2_cross_sectional",
+      "value": "-0.57%"
+    },
+    {
+      "label": "Ridge/金融保險業/30/r2_cs_net_of_shrink",
+      "value": "-0.55%"
+    },
+    {
+      "label": "Ridge/金融保險業/60/r2_pooled",
+      "value": "-0.48%"
+    },
+    {
+      "label": "Ridge/金融保險業/60/r2_cross_sectional",
+      "value": "-0.90%"
+    },
+    {
+      "label": "Ridge/金融保險業/60/r2_cs_net_of_shrink",
+      "value": "-0.67%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.001293350323706921
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 12.28682807521575
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.13%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.0005504447753252872
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 324.77077463440975
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 5.229225365590229
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.06%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.0032957771961501514
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 31.309883363426437
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.33%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.0036890367965312088
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 294.9541504329535
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 35.04584956704648
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.37%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.000598801825401285
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 5.688617341312208
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.06%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.008951435881657588
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 244.9613591242529
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 85.03864087574709
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.90%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.0037211481713090855
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 294.6490923725637
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 35.350907627436314
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.37%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.007769137651232105
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 256.193192313295
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 73.806807686705
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.78%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.0004951637455283819
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 325.29594441748037
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 4.704055582519628
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-0.05%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.00042612448367496114
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 4.048182594912131
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.04%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.00775465202593828
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 73.66919424641367
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.78%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.011520088332066969
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 220.5591608453638
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 109.44083915463621
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-1.15%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.0016302307411641959
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 15.48719204105986
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.16%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": -0.0158243494009338
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 179.66868069112888
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 150.33131930887112
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "-1.58%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.007038037809673048
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 66.86135919189395
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.70%"
+    },
+    {
+      "label": "XGBoost bar data",
+      "value": 0.0007857690111383597
+    },
+    {
+      "label": "XGBoost bar origin",
+      "value": 330
+    },
+    {
+      "label": "XGBoost bar width",
+      "value": 7.464805605814417
+    },
+    {
+      "label": "XGBoost visible label",
+      "value": "+0.08%"
+    },
+    {
+      "label": "MDE/半導體業/5",
+      "value": "0.06%"
+    },
+    {
+      "label": "MDE/金融保險業/5",
+      "value": "0.05%"
+    },
+    {
+      "label": "MDE/半導體業/20",
+      "value": "0.16%"
+    },
+    {
+      "label": "MDE/金融保險業/20",
+      "value": "0.25%"
+    },
+    {
+      "label": "MDE/半導體業/30",
+      "value": "0.30%"
+    },
+    {
+      "label": "MDE/金融保險業/30",
+      "value": "0.30%"
+    },
+    {
+      "label": "MDE/半導體業/60",
+      "value": "0.45%"
+    },
+    {
+      "label": "MDE/金融保險業/60",
+      "value": "0.50%"
+    },
+    {
+      "label": "R² permutation/半導體業/ridge/5",
+      "value": "0.83"
+    },
+    {
+      "label": "R² permutation/半導體業/ridge/20",
+      "value": "0.90"
+    },
+    {
+      "label": "R² permutation/半導體業/ridge/30",
+      "value": "0.95"
+    },
+    {
+      "label": "R² permutation/半導體業/ridge/60",
+      "value": "0.92"
+    },
+    {
+      "label": "R² permutation/半導體業/xgboost/5",
+      "value": "0.12"
+    },
+    {
+      "label": "R² permutation/半導體業/xgboost/20",
+      "value": "0.29"
+    },
+    {
+      "label": "R² permutation/半導體業/xgboost/30",
+      "value": "0.47"
+    },
+    {
+      "label": "R² permutation/半導體業/xgboost/60",
+      "value": "0.53"
+    },
+    {
+      "label": "R² permutation/金融保險業/ridge/5",
+      "value": "0.34"
+    },
+    {
+      "label": "R² permutation/金融保險業/ridge/20",
+      "value": "0.42"
+    },
+    {
+      "label": "R² permutation/金融保險業/ridge/30",
+      "value": "0.51"
+    },
+    {
+      "label": "R² permutation/金融保險業/ridge/60",
+      "value": "0.54"
+    },
+    {
+      "label": "R² permutation/金融保險業/xgboost/5",
+      "value": "0.63"
+    },
+    {
+      "label": "R² permutation/金融保險業/xgboost/20",
+      "value": "0.27"
+    },
+    {
+      "label": "R² permutation/金融保險業/xgboost/30",
+      "value": "0.22"
+    },
+    {
+      "label": "R² permutation/金融保險業/xgboost/60",
+      "value": "0.19"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.050505050505050504
+    },
+    {
+      "label": "CW bar y",
+      "value": 197.17171717171718
+    },
+    {
+      "label": "CW bar height",
+      "value": 7.828282828282828
+    },
+    {
+      "label": "CW visible label",
+      "value": "5%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.8787878787878788
+    },
+    {
+      "label": "CW bar y",
+      "value": 68.78787878787878
+    },
+    {
+      "label": "CW bar height",
+      "value": 136.21212121212122
+    },
+    {
+      "label": "CW visible label",
+      "value": "88%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.06060606060606061
+    },
+    {
+      "label": "CW bar y",
+      "value": 195.6060606060606
+    },
+    {
+      "label": "CW bar height",
+      "value": 9.393939393939394
+    },
+    {
+      "label": "CW visible label",
+      "value": "6%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.98989898989899
+    },
+    {
+      "label": "CW bar y",
+      "value": 51.56565656565655
+    },
+    {
+      "label": "CW bar height",
+      "value": 153.43434343434345
+    },
+    {
+      "label": "CW visible label",
+      "value": "99%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.050505050505050504
+    },
+    {
+      "label": "CW bar y",
+      "value": 197.17171717171718
+    },
+    {
+      "label": "CW bar height",
+      "value": 7.828282828282828
+    },
+    {
+      "label": "CW visible label",
+      "value": "5%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.9595959595959596
+    },
+    {
+      "label": "CW bar y",
+      "value": 56.26262626262627
+    },
+    {
+      "label": "CW bar height",
+      "value": 148.73737373737373
+    },
+    {
+      "label": "CW visible label",
+      "value": "96%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.020202020202020204
+    },
+    {
+      "label": "CW bar y",
+      "value": 201.86868686868686
+    },
+    {
+      "label": "CW bar height",
+      "value": 3.1313131313131315
+    },
+    {
+      "label": "CW visible label",
+      "value": "2%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.8181818181818182
+    },
+    {
+      "label": "CW bar y",
+      "value": 78.18181818181817
+    },
+    {
+      "label": "CW bar height",
+      "value": 126.81818181818183
+    },
+    {
+      "label": "CW visible label",
+      "value": "82%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.020202020202020204
+    },
+    {
+      "label": "CW bar y",
+      "value": 201.86868686868686
+    },
+    {
+      "label": "CW bar height",
+      "value": 3.1313131313131315
+    },
+    {
+      "label": "CW visible label",
+      "value": "2%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.25252525252525254
+    },
+    {
+      "label": "CW bar y",
+      "value": 165.85858585858585
+    },
+    {
+      "label": "CW bar height",
+      "value": 39.141414141414145
+    },
+    {
+      "label": "CW visible label",
+      "value": "25%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.06060606060606061
+    },
+    {
+      "label": "CW bar y",
+      "value": 195.6060606060606
+    },
+    {
+      "label": "CW bar height",
+      "value": 9.393939393939394
+    },
+    {
+      "label": "CW visible label",
+      "value": "6%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.9595959595959596
+    },
+    {
+      "label": "CW bar y",
+      "value": 56.26262626262627
+    },
+    {
+      "label": "CW bar height",
+      "value": 148.73737373737373
+    },
+    {
+      "label": "CW visible label",
+      "value": "96%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.0707070707070707
+    },
+    {
+      "label": "CW bar y",
+      "value": 194.04040404040404
+    },
+    {
+      "label": "CW bar height",
+      "value": 10.959595959595958
+    },
+    {
+      "label": "CW visible label",
+      "value": "7%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.8585858585858586
+    },
+    {
+      "label": "CW bar y",
+      "value": 71.91919191919192
+    },
+    {
+      "label": "CW bar height",
+      "value": 133.08080808080808
+    },
+    {
+      "label": "CW visible label",
+      "value": "86%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.050505050505050504
+    },
+    {
+      "label": "CW bar y",
+      "value": 197.17171717171718
+    },
+    {
+      "label": "CW bar height",
+      "value": 7.828282828282828
+    },
+    {
+      "label": "CW visible label",
+      "value": "5%"
+    },
+    {
+      "label": "CW bar data",
+      "value": 0.6565656565656566
+    },
+    {
+      "label": "CW bar y",
+      "value": 103.23232323232322
+    },
+    {
+      "label": "CW bar height",
+      "value": 101.76767676767678
+    },
+    {
+      "label": "CW visible label",
+      "value": "66%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.76
+    },
+    {
+      "label": "annual matchable position",
+      "value": 61.400000000000006
+    },
+    {
+      "label": "annual matchable label",
+      "value": "76.0%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.8846153846153846
+    },
+    {
+      "label": "annual matchable position",
+      "value": 47.69230769230769
+    },
+    {
+      "label": "annual matchable label",
+      "value": "88.5%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.2608333333333333
+    },
+    {
+      "label": "annual matchable position",
+      "value": 116.30833333333334
+    },
+    {
+      "label": "annual matchable label",
+      "value": "26.1%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.26
+    },
+    {
+      "label": "annual matchable position",
+      "value": 116.4
+    },
+    {
+      "label": "annual matchable label",
+      "value": "26.0%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.0
+    },
+    {
+      "label": "annual matchable position",
+      "value": 145.0
+    },
+    {
+      "label": "annual matchable label",
+      "value": "0.0%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.0
+    },
+    {
+      "label": "annual matchable position",
+      "value": 145.0
+    },
+    {
+      "label": "annual matchable label",
+      "value": "0.0%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.04257246376811594
+    },
+    {
+      "label": "annual matchable position",
+      "value": 140.31702898550725
+    },
+    {
+      "label": "annual matchable label",
+      "value": "4.3%"
+    },
+    {
+      "label": "annual matchable fraction",
+      "value": 0.0
+    },
+    {
+      "label": "annual matchable position",
+      "value": 145.0
+    },
+    {
+      "label": "annual matchable label",
+      "value": "0.0%"
+    },
+    {
+      "label": "kept evaluation quarters",
+      "value": 9
+    },
+    {
+      "label": "last kept quarter",
+      "value": "2021Q1"
+    },
+    {
+      "label": "GAT/半導體業/5",
+      "value": "-2.3%"
+    },
+    {
+      "label": "GAT/半導體業/20",
+      "value": "-7.1%"
+    },
+    {
+      "label": "GAT/半導體業/30",
+      "value": "-10.2%"
+    },
+    {
+      "label": "GAT/半導體業/60",
+      "value": "-6.9%"
+    },
+    {
+      "label": "GAT/金融保險業/5",
+      "value": "-5.8%"
+    },
+    {
+      "label": "GAT/金融保險業/20",
+      "value": "-9.4%"
+    },
+    {
+      "label": "GAT/金融保險業/30",
+      "value": "-11.9%"
+    },
+    {
+      "label": "GAT/金融保險業/60",
+      "value": "-9.6%"
+    },
+    {
+      "label": "FM coefficient/半導體業/5",
+      "value": "-0.04"
+    },
+    {
+      "label": "FM p/半導體業/5",
+      "value": "0.84"
+    },
+    {
+      "label": "FM coefficient/半導體業/20",
+      "value": "-0.26"
+    },
+    {
+      "label": "FM p/半導體業/20",
+      "value": "0.30"
+    },
+    {
+      "label": "FM coefficient/半導體業/30",
+      "value": "-0.29"
+    },
+    {
+      "label": "FM p/半導體業/30",
+      "value": "0.26"
+    },
+    {
+      "label": "FM coefficient/半導體業/60",
+      "value": "-0.04"
+    },
+    {
+      "label": "FM p/半導體業/60",
+      "value": "0.86"
+    },
+    {
+      "label": "FM coefficient/金融保險業/5",
+      "value": "0.05"
+    },
+    {
+      "label": "FM p/金融保險業/5",
+      "value": "0.84"
+    },
+    {
+      "label": "FM coefficient/金融保險業/20",
+      "value": "0.04"
+    },
+    {
+      "label": "FM p/金融保險業/20",
+      "value": "0.90"
+    },
+    {
+      "label": "FM coefficient/金融保險業/30",
+      "value": "0.07"
+    },
+    {
+      "label": "FM p/金融保險業/30",
+      "value": "0.81"
+    },
+    {
+      "label": "FM coefficient/金融保險業/60",
+      "value": "0.24"
+    },
+    {
+      "label": "FM p/金融保險業/60",
+      "value": "0.38"
+    },
+    {
+      "label": "robustness/market/1",
+      "value": "19/1056"
+    },
+    {
+      "label": "robustness/market/2",
+      "value": "5/184"
+    },
+    {
+      "label": "robustness/market/3",
+      "value": "14/792"
+    },
+    {
+      "label": "robustness/market/4",
+      "value": "0/80"
+    },
+    {
+      "label": "CW range/market/ridge",
+      "value": "0.020–0.071"
+    },
+    {
+      "label": "CW range/market/xgboost",
+      "value": "0.253–0.990"
+    },
+    {
+      "label": "robustness/sector/1",
+      "value": "26/1056"
+    },
+    {
+      "label": "robustness/sector/2",
+      "value": "0/184"
+    },
+    {
+      "label": "robustness/sector/3",
+      "value": "26/792"
+    },
+    {
+      "label": "robustness/sector/4",
+      "value": "0/80"
+    },
+    {
+      "label": "CW range/sector/ridge",
+      "value": "0.010–0.071"
+    },
+    {
+      "label": "CW range/sector/xgboost",
+      "value": "0.293–1.000"
+    },
+    {
+      "label": "robustness/allocation/1",
+      "value": "15/1056"
+    },
+    {
+      "label": "robustness/allocation/2",
+      "value": "4/184"
+    },
+    {
+      "label": "robustness/allocation/3",
+      "value": "11/792"
+    },
+    {
+      "label": "robustness/allocation/4",
+      "value": "0/80"
+    },
+    {
+      "label": "CW range/allocation/ridge",
+      "value": "0.000–0.020"
+    },
+    {
+      "label": "CW range/allocation/xgboost",
+      "value": "0.162–0.990"
+    },
+    {
+      "label": "ETF/半導體業/base/5",
+      "value": "+0.14%"
+    },
+    {
+      "label": "ETF/半導體業/base/20",
+      "value": "+0.57%"
+    },
+    {
+      "label": "ETF/半導體業/base/30",
+      "value": "+0.14%"
+    },
+    {
+      "label": "ETF/半導體業/base/60",
+      "value": "-0.39%"
+    },
+    {
+      "label": "ETF/半導體業/etf_cap_broad/5",
+      "value": "+0.17%"
+    },
+    {
+      "label": "ETF/半導體業/etf_cap_broad/20",
+      "value": "+0.98%"
+    },
+    {
+      "label": "ETF/半導體業/etf_cap_broad/30",
+      "value": "+0.60%"
+    },
+    {
+      "label": "ETF/半導體業/etf_cap_broad/60",
+      "value": "+0.22%"
+    },
+    {
+      "label": "ETF/金融保險業/base/5",
+      "value": "+0.12%"
+    },
+    {
+      "label": "ETF/金融保險業/base/20",
+      "value": "+0.75%"
+    },
+    {
+      "label": "ETF/金融保險業/base/30",
+      "value": "+1.05%"
+    },
+    {
+      "label": "ETF/金融保險業/base/60",
+      "value": "+0.15%"
+    },
+    {
+      "label": "ETF/金融保險業/etf_cap_broad/5",
+      "value": "-0.01%"
+    },
+    {
+      "label": "ETF/金融保險業/etf_cap_broad/20",
+      "value": "+0.56%"
+    },
+    {
+      "label": "ETF/金融保險業/etf_cap_broad/30",
+      "value": "+0.62%"
+    },
+    {
+      "label": "ETF/金融保險業/etf_cap_broad/60",
+      "value": "-1.22%"
+    },
+    {
+      "label": "H20 positive/M1",
+      "value": "0/16"
+    },
+    {
+      "label": "full cost grid/M1",
+      "value": 1536
+    },
+    {
+      "label": "full cost positive/M1",
+      "value": 564
+    },
+    {
+      "label": "full cost max/M1",
+      "value": "0.730"
+    },
+    {
+      "label": "H20 positive/M0",
+      "value": "1/16"
+    },
+    {
+      "label": "full cost grid/M0",
+      "value": 1536
+    },
+    {
+      "label": "full cost positive/M0",
+      "value": 957
+    },
+    {
+      "label": "full cost max/M0",
+      "value": "0.853"
+    },
+    {
+      "label": "H60 quarterly/M1",
+      "value": "3/16"
+    },
+    {
+      "label": "H60 quarterly/M0",
+      "value": "6/16"
+    },
+    {
+      "label": "main logged upper-bound choices",
+      "value": 216
+    },
+    {
+      "label": "actual main tuning count",
+      "value": 2304
+    },
+    {
+      "label": "wide upper-bound choices",
+      "value": 180
+    },
+    {
+      "label": "positive pooled cells",
+      "value": 18
+    },
+    {
+      "label": "matching >= 100% cells",
+      "value": 13
+    },
+    {
+      "label": "remaining matching lower percent",
+      "value": "66%"
+    },
+    {
+      "label": "remaining matching upper percent",
+      "value": "84%"
+    },
+    {
+      "label": "APA reference",
+      "value": "Anton, M., & Polk, C. (2014). Connected stocks. Journal of Finance, 69(3), 1099–1127. https://doi.org/10.1111/jofi.12149"
+    },
+    {
+      "label": "APA reference",
+      "value": "Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. Journal of the Royal Statistical Society: Series B (Methodological), 57(1), 289–300. https://doi.org/10.1111/j.2517-6161.1995.tb02031.x"
+    },
+    {
+      "label": "APA reference",
+      "value": "Brown, D. C., Davies, S. W., & Ringgenberg, M. C. (2021). ETF arbitrage, non-fundamental demand, and return predictability. Review of Finance, 25(4), 937–972. https://doi.org/10.1093/rof/rfaa027"
+    },
+    {
+      "label": "APA reference",
+      "value": "Campbell, J. Y., & Thompson, S. B. (2008). Predicting excess stock returns out of sample: Can anything beat the historical average? Review of Financial Studies, 21(4), 1509–1531. https://doi.org/10.1093/rfs/hhm055"
+    },
+    {
+      "label": "APA reference",
+      "value": "Clark, T. E., & West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. Journal of Econometrics, 138(1), 291–311. https://doi.org/10.1016/j.jeconom.2006.05.023"
+    },
+    {
+      "label": "APA reference",
+      "value": "Escanciano, J. C., & Parra, R. (2026). Extending the scope of inference about predictive ability to machine learning methods. Journal of Business & Economic Statistics, 44(3), 853–864. https://doi.org/10.1080/07350015.2025.2562964"
+    },
+    {
+      "label": "APA reference",
+      "value": "Fama, E. F., & MacBeth, J. D. (1973). Risk, return, and equilibrium: Empirical tests. Journal of Political Economy, 81(3), 607–636. https://doi.org/10.1086/260061"
+    },
+    {
+      "label": "APA reference",
+      "value": "Gu, S., Kelly, B., & Xiu, D. (2020). Empirical asset pricing via machine learning. Review of Financial Studies, 33(5), 2223–2273. https://doi.org/10.1093/rfs/hhaa009"
+    },
+    {
+      "label": "gate pass rates",
+      "value": "paper §9.9: 74/99, 15/99; units are draws, not cells"
+    }
+  ]
+}
