@@ -1,0 +1,1364 @@
+[
+  {
+    "width": 1440,
+    "colorScheme": "light",
+    "collapsedHeight": 7534,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 7534,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 3.768,
+    "contrastFailures": [
+      {
+        "text": "全市場",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值權重",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業內",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值比 c",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大台灣50",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大電子科技",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動產業市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "規則式高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業相對 B − c",
+        "ratio": 3.768,
+        "required": 4.5
+      },
+      {
+        "text": "配置相對 B − a·c",
+        "ratio": 4.367,
+        "required": 4.5
+      },
+      {
+        "text": "台積電",
+        "ratio": 4.381,
+        "required": 4.5
+      }
+    ],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 495,
+        "height": 1456
+      },
+      {
+        "title": "資料概覽",
+        "top": 1962,
+        "height": 361
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2336,
+        "height": 881
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3228,
+        "height": 382
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3622,
+        "height": 562
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4196,
+        "height": 434
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4642,
+        "height": 593
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 495,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 945,
+        "height": 540
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 1497,
+        "height": 664
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 2173,
+        "height": 193
+      },
+      {
+        "top": 2378,
+        "height": 501
+      },
+      {
+        "top": 2891,
+        "height": 510
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 3413,
+        "height": 373
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 3799,
+        "height": 333
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 4144,
+        "height": 728
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4884,
+        "height": 644
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "light",
+    "collapsedHeight": 17463,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 17463,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 3.768,
+    "contrastFailures": [
+      {
+        "text": "全市場",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值權重",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業內",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值比 c",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大台灣50",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大電子科技",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動產業市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "規則式高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業相對 B − c",
+        "ratio": 3.768,
+        "required": 4.5
+      },
+      {
+        "text": "配置相對 B − a·c",
+        "ratio": 4.367,
+        "required": 4.5
+      },
+      {
+        "text": "台積電",
+        "ratio": 4.381,
+        "required": 4.5
+      }
+    ],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 584,
+        "height": 1719
+      },
+      {
+        "title": "資料概覽",
+        "top": 2315,
+        "height": 451
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2778,
+        "height": 1023
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3813,
+        "height": 555
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 4380,
+        "height": 681
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 5073,
+        "height": 567
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 5651,
+        "height": 1154
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 6818,
+        "height": 481
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 7311,
+        "height": 669
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 7991,
+        "height": 703
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 8706,
+        "height": 317
+      },
+      {
+        "top": 9036,
+        "height": 541
+      },
+      {
+        "top": 9590,
+        "height": 587
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 10189,
+        "height": 557
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 10757,
+        "height": 417
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 11186,
+        "height": 1052
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 12250,
+        "height": 1139
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "light",
+    "collapsedHeight": 13285,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 13285,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 0,
+        "a": "產業級去偏（敏感度檢查）",
+        "b": "A = B − c"
+      },
+      {
+        "svg": 0,
+        "a": "配置級去偏（敏感度檢查）",
+        "b": "A = B − ae,g(j) · cj"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 3.768,
+    "contrastFailures": [
+      {
+        "text": "全市場",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值權重",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業內",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值比 c",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大台灣50",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大電子科技",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動產業市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "規則式高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業相對 B − c",
+        "ratio": 3.768,
+        "required": 4.5
+      },
+      {
+        "text": "配置相對 B − a·c",
+        "ratio": 4.367,
+        "required": 4.5
+      },
+      {
+        "text": "台積電",
+        "ratio": 4.381,
+        "required": 4.5
+      }
+    ],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 403,
+        "height": 1428
+      },
+      {
+        "title": "資料概覽",
+        "top": 1842,
+        "height": 361
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2216,
+        "height": 916
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3143,
+        "height": 401
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3557,
+        "height": 587
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4156,
+        "height": 436
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4604,
+        "height": 614
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 5230,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 5680,
+        "height": 540
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 6232,
+        "height": 654
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 6898,
+        "height": 193
+      },
+      {
+        "top": 7105,
+        "height": 509
+      },
+      {
+        "top": 7626,
+        "height": 497
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 8135,
+        "height": 398
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 8545,
+        "height": 333
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 8890,
+        "height": 728
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 9630,
+        "height": 669
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "light",
+    "collapsedHeight": 12716,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 12716,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 3.768,
+    "contrastFailures": [
+      {
+        "text": "全市場",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值權重",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業內",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "市值比 c",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大台灣50",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大電子科技",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "被動產業市值型",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "元大高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "規則式高股息",
+        "ratio": 4.43,
+        "required": 4.5
+      },
+      {
+        "text": "產業相對 B − c",
+        "ratio": 3.768,
+        "required": 4.5
+      },
+      {
+        "text": "配置相對 B − a·c",
+        "ratio": 4.367,
+        "required": 4.5
+      },
+      {
+        "text": "台積電",
+        "ratio": 4.381,
+        "required": 4.5
+      }
+    ],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 445,
+        "height": 1444
+      },
+      {
+        "title": "資料概覽",
+        "top": 1901,
+        "height": 322
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2236,
+        "height": 905
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3153,
+        "height": 357
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3522,
+        "height": 562
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4096,
+        "height": 378
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4486,
+        "height": 468
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 4966,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 5416,
+        "height": 516
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 5944,
+        "height": 671
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 6627,
+        "height": 168
+      },
+      {
+        "top": 6809,
+        "height": 585
+      },
+      {
+        "top": 7406,
+        "height": 554
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 7971,
+        "height": 330
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 8313,
+        "height": 308
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 8634,
+        "height": 685
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 9330,
+        "height": 521
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "colorScheme": "dark",
+    "collapsedHeight": 7534,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 7534,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 4.894,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 495,
+        "height": 1456
+      },
+      {
+        "title": "資料概覽",
+        "top": 1962,
+        "height": 361
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2336,
+        "height": 881
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3228,
+        "height": 382
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3622,
+        "height": 562
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4196,
+        "height": 434
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4642,
+        "height": 593
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 495,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 945,
+        "height": 540
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 1497,
+        "height": 664
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 2173,
+        "height": 193
+      },
+      {
+        "top": 2378,
+        "height": 501
+      },
+      {
+        "top": 2891,
+        "height": 510
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 3413,
+        "height": 373
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 3799,
+        "height": 333
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 4144,
+        "height": 728
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4884,
+        "height": 644
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "dark",
+    "collapsedHeight": 17463,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 17463,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 4.894,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 584,
+        "height": 1719
+      },
+      {
+        "title": "資料概覽",
+        "top": 2315,
+        "height": 451
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2778,
+        "height": 1023
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3813,
+        "height": 555
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 4380,
+        "height": 681
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 5073,
+        "height": 567
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 5651,
+        "height": 1154
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 6818,
+        "height": 481
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 7311,
+        "height": 669
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 7991,
+        "height": 703
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 8706,
+        "height": 317
+      },
+      {
+        "top": 9036,
+        "height": 541
+      },
+      {
+        "top": 9590,
+        "height": 587
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 10189,
+        "height": 557
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 10757,
+        "height": 417
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 11186,
+        "height": 1052
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 12250,
+        "height": 1139
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "dark",
+    "collapsedHeight": 13285,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 13285,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 0,
+        "a": "產業級去偏（敏感度檢查）",
+        "b": "A = B − c"
+      },
+      {
+        "svg": 0,
+        "a": "配置級去偏（敏感度檢查）",
+        "b": "A = B − ae,g(j) · cj"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 4.894,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 403,
+        "height": 1428
+      },
+      {
+        "title": "資料概覽",
+        "top": 1842,
+        "height": 361
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2216,
+        "height": 916
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3143,
+        "height": 401
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3557,
+        "height": 587
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4156,
+        "height": 436
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4604,
+        "height": 614
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 5230,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 5680,
+        "height": 540
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 6232,
+        "height": 654
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 6898,
+        "height": 193
+      },
+      {
+        "top": 7105,
+        "height": 509
+      },
+      {
+        "top": 7626,
+        "height": 497
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 8135,
+        "height": 398
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 8545,
+        "height": 333
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 8890,
+        "height": 728
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 9630,
+        "height": 669
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "dark",
+    "collapsedHeight": 12716,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 12716,
+    "svgCount": 8,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [
+      {
+        "svg": 0,
+        "a": "市場級去偏（主規格）",
+        "b": "A = B − wmkt"
+      },
+      {
+        "svg": 2,
+        "a": "0%",
+        "b": "2018"
+      },
+      {
+        "svg": 5,
+        "a": "條件：零均值預測、Cov(y,ŷ) < 0",
+        "b": "沿紅線左移 = MSE 下降"
+      },
+      {
+        "svg": 6,
+        "a": "檢查基線的",
+        "b": "時序 Corr(y, ŷ) 符號"
+      },
+      {
+        "svg": 6,
+        "a": "若為負：計算反事實",
+        "b": "φ×M0 的合併 R²"
+      },
+      {
+        "svg": 6,
+        "a": "比較：反事實增益",
+        "b": "≥ 觀測？→ 可由匹配解釋"
+      },
+      {
+        "svg": 6,
+        "a": "R²(φ×M0) 中 φ = sd(ŷ_M1)/sd(ŷ_M0)，僅縮放離散度、不加入任何新資訊。",
+        "b": "若此一無資訊操作即可複製觀測到的 R² 增益，則增益來自離散度縮減而非選股改善。"
+      }
+    ],
+    "minTextContrast": 4.894,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 445,
+        "height": 1444
+      },
+      {
+        "title": "資料概覽",
+        "top": 1901,
+        "height": 322
+      },
+      {
+        "title": "二、研究設計",
+        "top": 2236,
+        "height": 905
+      },
+      {
+        "title": "三、五項命題裁定",
+        "top": 3153,
+        "height": 357
+      },
+      {
+        "title": "主要結果：增量排序資訊 ΔIC（三種去偏基準）",
+        "top": 3522,
+        "height": 562
+      },
+      {
+        "title": "原始假設的修訂軌跡",
+        "top": 4096,
+        "height": 378
+      },
+      {
+        "title": "如何閱讀本海報的核心指標",
+        "top": 4486,
+        "height": 468
+      },
+      {
+        "title": "四、裁定模型的分解結果",
+        "top": 4966,
+        "height": 438
+      },
+      {
+        "title": "檢定力與裁定判讀",
+        "top": 5416,
+        "height": 516
+      },
+      {
+        "title": "五、安慰劑檢驗與配對崩塌",
+        "top": 5944,
+        "height": 671
+      },
+      {
+        "title": "六、經濟顯著性",
+        "top": 6627,
+        "height": 168
+      },
+      {
+        "top": 6809,
+        "height": 585
+      },
+      {
+        "top": 7406,
+        "height": 554
+      },
+      {
+        "title": "圖注意力網路（Graph Attention Network, GAT）",
+        "top": 7971,
+        "height": 330
+      },
+      {
+        "title": "Fama–MacBeth 增量迴歸：第四條互補路徑",
+        "top": 8313,
+        "height": 308
+      },
+      {
+        "title": "七、穩健性與延伸分析",
+        "top": 8634,
+        "height": 685
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 9330,
+        "height": 521
+      }
+    ]
+  }
+]
