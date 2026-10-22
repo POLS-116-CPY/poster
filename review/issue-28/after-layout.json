@@ -1,0 +1,538 @@
+[
+  {
+    "width": 1440,
+    "colorScheme": "light",
+    "collapsedHeight": 3569,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 9868,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 558,
+        "height": 2931
+      },
+      {
+        "title": "二、研究設計",
+        "top": 558,
+        "height": 2931
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 3504,
+        "height": 674
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 4194,
+        "height": 1361
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 4194,
+        "height": 1361
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 5572,
+        "height": 986
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 5572,
+        "height": 986
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 6574,
+        "height": 2555
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 6574,
+        "height": 2555
+      },
+      {
+        "title": "參考文獻",
+        "top": 9145,
+        "height": 616
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "light",
+    "collapsedHeight": 7890,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 18167,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 846,
+        "height": 3529
+      },
+      {
+        "title": "二、研究設計",
+        "top": 4391,
+        "height": 1092
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 5498,
+        "height": 1541
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 7056,
+        "height": 1780
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 8851,
+        "height": 1220
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 10087,
+        "height": 902
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 11005,
+        "height": 1289
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 12310,
+        "height": 946
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 13273,
+        "height": 3336
+      },
+      {
+        "title": "參考文獻",
+        "top": 16624,
+        "height": 1446
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "light",
+    "collapsedHeight": 6095,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 14209,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 642,
+        "height": 2922
+      },
+      {
+        "title": "二、研究設計",
+        "top": 3580,
+        "height": 937
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 4533,
+        "height": 1218
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 5768,
+        "height": 1353
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 7137,
+        "height": 1019
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 8172,
+        "height": 718
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 8906,
+        "height": 986
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 9908,
+        "height": 654
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 10578,
+        "height": 2549
+      },
+      {
+        "title": "參考文獻",
+        "top": 13143,
+        "height": 959
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "light",
+    "collapsedHeight": 5536,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 13702,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 624,
+        "height": 2850
+      },
+      {
+        "title": "二、研究設計",
+        "top": 3490,
+        "height": 942
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 4448,
+        "height": 1172
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 5636,
+        "height": 1380
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 7032,
+        "height": 1000
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 8048,
+        "height": 619
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 8682,
+        "height": 961
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 9660,
+        "height": 555
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 10231,
+        "height": 2517
+      },
+      {
+        "title": "參考文獻",
+        "top": 12764,
+        "height": 830
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "colorScheme": "dark",
+    "collapsedHeight": 3569,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 9868,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 558,
+        "height": 2931
+      },
+      {
+        "title": "二、研究設計",
+        "top": 558,
+        "height": 2931
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 3504,
+        "height": 674
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 4194,
+        "height": 1361
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 4194,
+        "height": 1361
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 5572,
+        "height": 986
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 5572,
+        "height": 986
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 6574,
+        "height": 2555
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 6574,
+        "height": 2555
+      },
+      {
+        "title": "參考文獻",
+        "top": 9145,
+        "height": 616
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "dark",
+    "collapsedHeight": 7890,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 18167,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 846,
+        "height": 3529
+      },
+      {
+        "title": "二、研究設計",
+        "top": 4391,
+        "height": 1092
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 5498,
+        "height": 1541
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 7056,
+        "height": 1780
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 8851,
+        "height": 1220
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 10087,
+        "height": 902
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 11005,
+        "height": 1289
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 12310,
+        "height": 946
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 13273,
+        "height": 3336
+      },
+      {
+        "title": "參考文獻",
+        "top": 16624,
+        "height": 1446
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "dark",
+    "collapsedHeight": 6095,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 14209,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 642,
+        "height": 2922
+      },
+      {
+        "title": "二、研究設計",
+        "top": 3580,
+        "height": 937
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 4533,
+        "height": 1218
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 5768,
+        "height": 1353
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 7137,
+        "height": 1019
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 8172,
+        "height": 718
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 8906,
+        "height": 986
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 9908,
+        "height": 654
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 10578,
+        "height": 2549
+      },
+      {
+        "title": "參考文獻",
+        "top": 13143,
+        "height": 959
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "dark",
+    "collapsedHeight": 5536,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 13702,
+    "svgCount": 7,
+    "tableCount": 11,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 624,
+        "height": 2850
+      },
+      {
+        "title": "二、研究設計",
+        "top": 3490,
+        "height": 942
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 4448,
+        "height": 1172
+      },
+      {
+        "title": "四、等效界限與檢定力：「不顯著」不等於「已排除」",
+        "top": 5636,
+        "height": 1380
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 7032,
+        "height": 1000
+      },
+      {
+        "title": "六、穩健性：設計變體與固定母體",
+        "top": 8048,
+        "height": 619
+      },
+      {
+        "title": "七、經濟顯著性與補充模型",
+        "top": 8682,
+        "height": 961
+      },
+      {
+        "title": "八、如何解讀否證與效力邊界",
+        "top": 9660,
+        "height": 555
+      },
+      {
+        "title": "貢獻與方法論觀察",
+        "top": 10231,
+        "height": 2517
+      },
+      {
+        "title": "參考文獻",
+        "top": 12764,
+        "height": 830
+      }
+    ]
+  }
+]
