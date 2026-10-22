@@ -1,4 +1,5 @@
-// npm install --no-save playwright; node scripts/capture.cjs before|after
+// npm install --no-save playwright; node scripts/capture.cjs before|after [issue-22|issue-28]
+// PW_CHROMIUM may point at an already-installed Chromium when the bundled build is absent.
 const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -8,12 +9,15 @@ const { execFileSync } = require('node:child_process');
 
 (async () => {
   const phase = process.argv[2] || 'after';
+  const issue = process.argv[3] || 'issue-22';
   assert(['before', 'after'].includes(phase));
+  // Keep each comparison baseline fixed after the revision itself is committed.
+  const baselines = { 'issue-22': 'a84930137d9a90b5d51f7912750c41777d21f0f7', 'issue-28': '1225869352c40b1d07df9e0a53ac1cbadeb55d96' };
+  assert(issue in baselines, issue);
   const root = path.resolve(__dirname, '..');
-  const out = path.join(root, 'review', 'issue-22');
+  const out = path.join(root, 'review', issue);
   fs.mkdirSync(out, { recursive: true });
-  // Keep the comparison baseline fixed after the revision itself is committed.
-  const baseline = 'a84930137d9a90b5d51f7912750c41777d21f0f7';
+  const baseline = baselines[issue];
   const html = phase === 'before' ? execFileSync('git', ['show', `${baseline}:index.html`], {cwd:root}) : fs.readFileSync(path.join(root,'index.html'));
   const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -23,7 +27,7 @@ const { execFileSync } = require('node:child_process');
   let browser;
   const checks = [];
   try {
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: true, executablePath: process.env.PW_CHROMIUM || undefined });
     for (const colorScheme of ['light', 'dark']) {
       for (const width of [1440, 400, 700, 900]) {
         const page = await browser.newPage({ viewport: { width, height: 1000 }, colorScheme, deviceScaleFactor: 1 });

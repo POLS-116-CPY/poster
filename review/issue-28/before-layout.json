@@ -1,0 +1,538 @@
+[
+  {
+    "width": 1440,
+    "colorScheme": "light",
+    "collapsedHeight": 3137,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 3137,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 416,
+        "height": 312
+      },
+      {
+        "title": "二、研究設計",
+        "top": 416,
+        "height": 312
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 744,
+        "height": 628
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 1389,
+        "height": 533
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 1389,
+        "height": 533
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 1937,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 1937,
+        "height": 415
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 2369,
+        "height": 293
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 2677,
+        "height": 215
+      },
+      {
+        "title": "參考文獻",
+        "top": 2908,
+        "height": 121
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "light",
+    "collapsedHeight": 5907,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 5907,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 590,
+        "height": 406
+      },
+      {
+        "title": "二、研究設計",
+        "top": 1012,
+        "height": 393
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1420,
+        "height": 1346
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2782,
+        "height": 381
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 3179,
+        "height": 640
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 3834,
+        "height": 526
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 4376,
+        "height": 379
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4771,
+        "height": 535
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 5322,
+        "height": 358
+      },
+      {
+        "title": "參考文獻",
+        "top": 5696,
+        "height": 115
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "light",
+    "collapsedHeight": 4892,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 4892,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 499,
+        "height": 312
+      },
+      {
+        "title": "二、研究設計",
+        "top": 827,
+        "height": 324
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1167,
+        "height": 1133
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2316,
+        "height": 312
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 2644,
+        "height": 557
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 3217,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 3649,
+        "height": 335
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4000,
+        "height": 367
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 4383,
+        "height": 264
+      },
+      {
+        "title": "參考文獻",
+        "top": 4663,
+        "height": 121
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "light",
+    "collapsedHeight": 4534,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 4534,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 5.57,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 456,
+        "height": 287
+      },
+      {
+        "title": "二、研究設計",
+        "top": 759,
+        "height": 274
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1050,
+        "height": 1066
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2131,
+        "height": 263
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 2410,
+        "height": 533
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 2959,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 3390,
+        "height": 310
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 3716,
+        "height": 317
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 4050,
+        "height": 240
+      },
+      {
+        "title": "參考文獻",
+        "top": 4305,
+        "height": 121
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "colorScheme": "dark",
+    "collapsedHeight": 3137,
+    "pageWidth": 1440,
+    "scrollWidth": 1440,
+    "height": 3137,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 416,
+        "height": 312
+      },
+      {
+        "title": "二、研究設計",
+        "top": 416,
+        "height": 312
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 744,
+        "height": 628
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 1389,
+        "height": 533
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 1389,
+        "height": 533
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 1937,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 1937,
+        "height": 415
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 2369,
+        "height": 293
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 2677,
+        "height": 215
+      },
+      {
+        "title": "參考文獻",
+        "top": 2908,
+        "height": 121
+      }
+    ]
+  },
+  {
+    "width": 400,
+    "colorScheme": "dark",
+    "collapsedHeight": 5907,
+    "pageWidth": 400,
+    "scrollWidth": 400,
+    "height": 5907,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 590,
+        "height": 406
+      },
+      {
+        "title": "二、研究設計",
+        "top": 1012,
+        "height": 393
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1420,
+        "height": 1346
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2782,
+        "height": 381
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 3179,
+        "height": 640
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 3834,
+        "height": 526
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 4376,
+        "height": 379
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4771,
+        "height": 535
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 5322,
+        "height": 358
+      },
+      {
+        "title": "參考文獻",
+        "top": 5696,
+        "height": 115
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "colorScheme": "dark",
+    "collapsedHeight": 4892,
+    "pageWidth": 700,
+    "scrollWidth": 700,
+    "height": 4892,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 499,
+        "height": 312
+      },
+      {
+        "title": "二、研究設計",
+        "top": 827,
+        "height": 324
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1167,
+        "height": 1133
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2316,
+        "height": 312
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 2644,
+        "height": 557
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 3217,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 3649,
+        "height": 335
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 4000,
+        "height": 367
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 4383,
+        "height": 264
+      },
+      {
+        "title": "參考文獻",
+        "top": 4663,
+        "height": 121
+      }
+    ]
+  },
+  {
+    "width": 900,
+    "colorScheme": "dark",
+    "collapsedHeight": 4534,
+    "pageWidth": 900,
+    "scrollWidth": 900,
+    "height": 4534,
+    "svgCount": 6,
+    "tableCount": 14,
+    "clipped": [],
+    "textOverlaps": [],
+    "minTextContrast": 6.232,
+    "contrastFailures": [],
+    "font": true,
+    "sections": [
+      {
+        "title": "一、研究背景與問題",
+        "top": 456,
+        "height": 287
+      },
+      {
+        "title": "二、研究設計",
+        "top": 759,
+        "height": 274
+      },
+      {
+        "title": "三、主要結果與命題裁定",
+        "top": 1050,
+        "height": 1066
+      },
+      {
+        "title": "四、誤差分解與檢定力",
+        "top": 2131,
+        "height": 263
+      },
+      {
+        "title": "五、安慰劑與跨產業比較",
+        "top": 2410,
+        "height": 533
+      },
+      {
+        "title": "六、經濟顯著性與補充模型",
+        "top": 2959,
+        "height": 415
+      },
+      {
+        "title": "七、穩健性與檢定工具",
+        "top": 3390,
+        "height": 310
+      },
+      {
+        "title": "八、限制與效力邊界",
+        "top": 3716,
+        "height": 317
+      },
+      {
+        "title": "貢獻與次要方法論觀察",
+        "top": 4050,
+        "height": 240
+      },
+      {
+        "title": "參考文獻",
+        "top": 4305,
+        "height": 121
+      }
+    ]
+  }
+]
