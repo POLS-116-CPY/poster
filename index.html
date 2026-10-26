@@ -8,7 +8,7 @@
 :root{color-scheme:light;--hero-bg:#1B2A4A;--hero-ink:#F4F2ED;--positive:#276B3E;--bg:#F4F2ED;--surface:#FFF;--ink:#1B2A4A;--ink-2:#414E62;--ink-3:#526075;--accent:#175FA8;--neg:#AF352D;--border:#B5BCC6;--grid:#E2DFD8;--vbg:#FDF6F3;--pbg:#F0F7ED}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#C0BEB9;--ink-3:#B0AEA9;--accent:#83BAFA;--neg:#FA9292;--border:#656570;--grid:#303036;--vbg:#2A1F1D;--pbg:#1D2A1D}}
 :root[data-theme="dark"]{color-scheme:dark;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#C0BEB9;--ink-3:#B0AEA9;--accent:#83BAFA;--neg:#FA9292;--border:#656570;--grid:#303036;--vbg:#2A1F1D;--pbg:#1D2A1D}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}.poster{max-width:1440px;margin:auto;padding:20px 20px max(20px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}.hero{background:var(--hero-bg);color:var(--hero-ink);padding:30px 36px;border-radius:10px}.hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(25px,3vw,40px);line-height:1.3;text-wrap:balance}.subtitle{font-size:clamp(17px,2vw,23px);margin-top:8px}.hero .sub{font-size:15px;max-width:92ch;margin-top:14px}.hero .verdict{font-size:18px;font-weight:600;margin-top:14px}.tag{display:inline-block;background:#AF352D;color:#FFF;border-radius:4px;padding:2px 10px;margin-right:8px}.auth{font-size:13px;margin-top:12px}nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;display:flex;gap:4px 18px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:14px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--border)}nav::-webkit-scrollbar{display:none}.c{scroll-margin-top:52px}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.c{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}.wide{grid-column:1/-1}.c h2{font-family:'Noto Serif TC',serif;font-size:22px;line-height:1.4;margin-bottom:10px}.c h3{font-size:17px;line-height:1.45;margin:16px 0 8px}.c p{font-size:15px;margin-bottom:10px;color:var(--ink-2)}.c p:last-child{margin-bottom:0}.lead{color:var(--ink)!important}.note,.fig-caption{font-size:13px;color:var(--ink-3);line-height:1.65;margin-top:8px}.result-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.result-columns>div{min-width:0}.result-columns>div>h3:first-child{margin-top:0}.result{border-top:4px solid var(--accent)}.table-scroll,.chart-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;margin:10px 0}.chart-scroll svg{min-width:640px}svg{display:block;width:100%;height:auto}svg text{font-family:'Noto Sans TC',system-ui,sans-serif}table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:7px 6px;border-bottom:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}th{color:var(--ink);font-weight:600;border-bottom:2px solid var(--border)}.nt td,.nt th{text-align:right;white-space:nowrap}.nt td:first-child,.nt th:first-child,.st td,.st th{text-align:left}.st.features td:nth-child(2),.st.features th:nth-child(2){text-align:right}.red,.fail{color:var(--neg)}.na{color:var(--ink-3)}.verdicts th:first-child{width:8%}.verdicts td:nth-child(3){font-weight:600;min-width:80px}.key-row{background:var(--bg)}caption{text-align:left;color:var(--ink-2);font-size:13px;margin-bottom:6px}.hm{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:3px;font-size:13px;font-variant-numeric:tabular-nums;margin:12px 0}.hm .hd{text-align:center;color:var(--ink-2);padding:4px}.hm .rl{padding:6px;color:var(--ink-2)}.hm .cl{background:var(--grid);color:var(--ink);text-align:center;padding:6px;border-radius:3px}.lg{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin:8px 0}.sw{display:inline-block;width:14px;height:10px;margin-right:5px;background:var(--accent);border:2px solid var(--accent)}.sw.outline{background:transparent;border-color:var(--neg)}details{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}summary{cursor:pointer;color:var(--accent);font-size:15px;font-weight:500}details[open]>summary{margin-bottom:12px}.glossary{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:14px;color:var(--ink-2)}.glossary dt{font-weight:600;color:var(--ink)}.formula{padding:12px;background:var(--bg);overflow-x:auto;font-size:15px}.eq{font-family:'Times New Roman',serif;font-style:italic}.label{font-size:13px;color:var(--ink-2)}.mde tbody th{border-bottom:1px solid var(--grid);font-weight:500}.references{font-size:13px;list-style:none}.references li{margin:10px 0 10px 20px;text-indent:-20px;overflow-wrap:anywhere}.contribution{border-left:4px solid var(--positive)}.plain{font-size:15px;color:var(--ink)!important;border-left:3px solid var(--positive);padding:2px 0 2px 10px}.plain b{font-weight:600;margin-right:4px}.hero .gist{font-size:16px;line-height:1.7;max-width:92ch;margin-top:14px;padding:12px 16px;border-radius:6px;background:rgba(255,255,255,.08);border-left:3px solid #87C99A}.hero .gist b{display:block;font-size:13px;letter-spacing:.04em;margin-bottom:2px}.cands{font-size:15px;color:var(--ink-2);margin:0 0 10px 20px}.cands li{margin:4px 0}.cands b{color:var(--ink);font-weight:600}footer{text-align:center;color:var(--ink-3);font-size:13px;padding:14px 0;border-top:1px solid var(--border)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}.poster{max-width:1440px;margin:auto;padding:20px 20px max(20px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}.hero{background:var(--hero-bg);color:var(--hero-ink);padding:30px 36px;border-radius:10px}.hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(25px,3vw,40px);line-height:1.3;text-wrap:balance}.subtitle{font-size:clamp(17px,2vw,23px);margin-top:8px}.hero .sub{font-size:15px;max-width:92ch;margin-top:14px}.hero .verdict{font-size:18px;font-weight:600;margin-top:14px}.tag{display:inline-block;background:#AF352D;color:#FFF;border-radius:4px;padding:2px 10px;margin-right:8px}.auth{font-size:13px;margin-top:12px}nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;display:flex;gap:4px 18px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:14px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--border)}nav::-webkit-scrollbar{display:none}.c{scroll-margin-top:52px}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.c{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}.wide{grid-column:1/-1}.c h2{font-family:'Noto Serif TC',serif;font-size:22px;line-height:1.4;margin-bottom:10px}.c h3{font-size:17px;line-height:1.45;margin:16px 0 8px}.c p{font-size:15px;margin-bottom:10px;color:var(--ink-2)}.c p:last-child{margin-bottom:0}.lead{color:var(--ink)!important}.note,.fig-caption{font-size:13px;color:var(--ink-3);line-height:1.65;margin-top:8px}.result-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.result-columns>div{min-width:0}#baseline-def td:first-child{white-space:nowrap}.result-columns>div>h3:first-child{margin-top:0}.result{border-top:4px solid var(--accent)}.table-scroll,.chart-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;margin:10px 0}.chart-scroll svg{min-width:640px}svg{display:block;width:100%;height:auto}svg text{font-family:'Noto Sans TC',system-ui,sans-serif}table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:7px 6px;border-bottom:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}th{color:var(--ink);font-weight:600;border-bottom:2px solid var(--border)}.nt td,.nt th{text-align:right;white-space:nowrap}.nt td:first-child,.nt th:first-child,.st td,.st th{text-align:left}.st.features td:nth-child(2),.st.features th:nth-child(2){text-align:right}.red,.fail{color:var(--neg)}.na{color:var(--ink-3)}.verdicts th:first-child{width:8%}.verdicts td:nth-child(3){font-weight:600;min-width:80px}.key-row{background:var(--bg)}caption{text-align:left;color:var(--ink-2);font-size:13px;margin-bottom:6px}.hm{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:3px;font-size:13px;font-variant-numeric:tabular-nums;margin:12px 0}.hm .hd{text-align:center;color:var(--ink-2);padding:4px}.hm .rl{padding:6px;color:var(--ink-2)}.hm .cl{background:var(--grid);color:var(--ink);text-align:center;padding:6px;border-radius:3px}.lg{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin:8px 0}.sw{display:inline-block;width:14px;height:10px;margin-right:5px;background:var(--accent);border:2px solid var(--accent)}.sw.outline{background:transparent;border-color:var(--neg)}details{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}summary{cursor:pointer;color:var(--accent);font-size:15px;font-weight:500}details[open]>summary{margin-bottom:12px}.glossary{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:14px;color:var(--ink-2)}.glossary dt{font-weight:600;color:var(--ink)}.formula{padding:12px;background:var(--bg);overflow-x:auto;font-size:15px}.eq{font-family:'Times New Roman',serif;font-style:italic}.label{font-size:13px;color:var(--ink-2)}.mde tbody th{border-bottom:1px solid var(--grid);font-weight:500}.references{font-size:13px;list-style:none}.references li{margin:10px 0 10px 20px;text-indent:-20px;overflow-wrap:anywhere}.contribution{border-left:4px solid var(--positive)}.plain{font-size:15px;color:var(--ink)!important;border-left:3px solid var(--positive);padding:2px 0 2px 10px}.plain b{font-weight:600;margin-right:4px}.hero .gist{font-size:16px;line-height:1.7;max-width:92ch;margin-top:14px;padding:12px 16px;border-radius:6px;background:rgba(255,255,255,.08);border-left:3px solid #87C99A}.hero .gist b{display:block;font-size:13px;letter-spacing:.04em;margin-bottom:2px}.cands{font-size:15px;color:var(--ink-2);margin:0 0 10px 20px}.cands li{margin:4px 0}.cands b{color:var(--ink);font-weight:600}footer{text-align:center;color:var(--ink-3);font-size:13px;padding:14px 0;border-top:1px solid var(--border)}
 @media(max-width:1000px){.cols,.result-columns{grid-template-columns:1fr}.wide{grid-column:auto}.result-columns{gap:12px}}
 @media(max-width:600px){.poster{padding:12px;gap:12px}.hero{padding:22px 18px}.hero .verdict{font-size:16px}.c{padding:18px 14px}.c h2{font-size:21px}.glossary{grid-template-columns:1fr;gap:3px}.glossary dd{margin-bottom:10px}.table-scroll table{min-width:450px}.hm{font-size:12px}.hm .rl{max-width:108px}nav{gap:8px 16px}.chart-scroll:after,.table-scroll:after{content:'可在此區域橫向捲動';display:block;color:var(--ink-3);font-size:12px;position:sticky;left:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -65,52 +65,43 @@
   footer{margin-top:1.5mm;padding-top:1mm;font-size:7pt}
   nav{display:none}
   /* The web's two-column wide cards would be too narrow inside one print column. */
-  #equivalence .result-columns,#interpretation .result-columns{display:block}
+  #question .result-columns,#design .result-columns,#equivalence .result-columns,#interpretation .result-columns{display:block}
 }
 </style>
 <body><div class="poster">
 <header class="hero">
 <h1>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？</h1>
 <div class="subtitle">臺灣上市半導體與金融保險業的樣本外檢驗</div>
-<div class="gist"><b>一分鐘版本</b>ETF 對某檔股票多買或少買，大多由指數規則決定，而不是有人看好那家公司。把這些持股關係與股價連動做成股票之間的網路、加進預測模型後，同一天股票的報酬排序沒有變得更準，連結隨機亂配的版本也差不多。</div>
+<div class="gist"><b>一分鐘版本</b>ETF 相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回的買賣。把這種連結與股價連動做成網路、加進預測模型後，同一天股票的報酬排序反而變差；把網路隨機亂配，結果也差不多。</div>
 <p class="sub">比較無網路基準 M0 與加入 ETF 共同持股、因子殘差價格共動兩軌特徵的完整模型 M1；增量排序資訊 ΔIC = IC(M1) − IC(M0)，IC 為每日預測與實現報酬 Spearman 秩相關的評估期平均。</p>
 <p class="verdict"><span class="tag">主要發現：未建立增量</span>事前指定的裁定模型 Ridge，雙軌 ΔIC 在兩產業 × 四期距皆為負，三種去偏基準結果相同。</p>
 <p class="sub">ΔIC 為事後補充判準。依事前規則，P1 正式為無法裁定（實質判讀：不支持），P2–P4 不支持，P5 不予裁定；事後分析皆為旁證。</p>
 <div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div></header>
 <nav aria-label="閱讀順序"><a href="#question">一 問題</a><a href="#design">二 設計</a><a href="#results">三 主要結果</a><a href="#equivalence">四 等效界限</a><a href="#placebo">五 安慰劑</a><a href="#robustness">六 穩健性</a><a href="#economic">七 經濟顯著性</a><a href="#method">八 方法論</a><a href="#interpretation">九 解讀與限制</a><a href="#references">參考文獻</a></nav>
 <main class="cols">
-<section class="c" id="question">
+<section class="c wide" id="question">
 <h2>一、研究背景與問題</h2>
+<div class="result-columns"><div>
 <p class="lead">本研究檢驗雙軌網路特徵能否在既有個股與市場資訊之外，改善每日個股報酬排序。</p>
 <p class="plain"><b>白話</b>知道哪些股票被同一批 ETF 一起多買或少買，能不能幫忙判斷同一天裡哪些股票之後漲得比較多？</p>
-<p>指數股票型基金（ETF）的共同持股可能連結股票報酬（Anton &amp; Polk, 2014; Brown et al., 2021），但市值加權本身也會造成重疊。軌道 A 以 ETF 持股權重減去全市場市值權重，所得「市場相對權重」衡量配置相似；軌道 B 則以因子殘差化移除共同曝險，再衡量價格共動。</p>
-<p>持股減基準權重已有前例，用於分離指數需求（Greenwood, 2008; Pavlova &amp; Sikorskaya, 2023）或衡量主動資訊（Cremers &amp; Petajisto, 2009; Jiang et al., 2014; Anton et al., 2021）。本研究的新穎處較窄：以 ETF 相對同一市場基準的偏離建構股票網路並檢驗保留期增量，搜尋範圍內未見先例。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §2.1</a></p>
+<p><b>為什麼要去偏。</b>市值加權的指數股票型基金（ETF）都大量持有台積電等大型股，所以只看「誰被同一批 ETF 持有」，大型股會和所有股票相連，這只反映規模。去偏是把每檔 ETF 對某股的持股比重減去一個基準比重，剩下的是這檔 ETF 相對基準<b>多配或少配</b>的部分。</p>
+<p><b>多配少配從哪來。</b>來自各 ETF 的編製規則：選股範圍（0050 只含大型股）、選股與加權方式（0056 依預估殖利率）、權重上限。規則是人訂的，不同規則造成不同的偏離；但規則事先訂好、一體適用，通常不是針對個別公司當下前景的判斷。樣本自 2025Q2 起另含少數主動式 ETF，這部分則包含經理人的判斷。</p>
+<p><b>想抓的是什麼。</b>兩檔股票若在多檔 ETF 中一起被多配、或一起被少配，就是被同一批規則歸為同一類；資金流入或流出這些 ETF 時，它們會被一起買賣（Anton &amp; Polk, 2014; Brown et al., 2021）。這種連結可能透過兩條方向相反的路徑影響之後的報酬：一起被買高的股票之後一起回落（資金壓力反轉），或一檔股票的消息慢慢反映到同類股票（資訊擴散）。本研究以軌道 A 衡量這種配置上的相似，另以軌道 B 衡量移除共同因子後的股價連動，檢驗兩者能否改善報酬排序。</p>
+<p>持股減基準權重已有前例，用於分離指數需求（Greenwood, 2008; Pavlova &amp; Sikorskaya, 2023）或衡量主動資訊（Cremers &amp; Petajisto, 2009; Jiang et al., 2014; Anton et al., 2021）。本研究的新穎處較窄：以 ETF 相對同一市場基準的偏離建構股票網路並檢驗保留期增量，搜尋範圍內未見先例。</p>
+</div><div>
+<h3>三種去偏基準：減去什麼、留下什麼</h3>
+<div aria-label="三種去偏基準的定義" class="table-scroll" role="region" tabindex="0">
+<table class="st" id="baseline-def">
+<caption>B 為某 ETF 對某股的持股比重；三種基準由粗到細，逐步扣掉更多「不是選股」的成分。</caption>
+<thead><tr><th scope="col">基準</th><th scope="col">從 B 減去</th><th scope="col">扣掉的是</th><th scope="col">留下的是</th></tr></thead><tbody>
+<tr><td>市場（主規格）<br/>B − w<sup>mkt</sup></td><td>w<sup>mkt</sup>：該股占全體上市股票總市值的比重</td><td>「公司越大，每檔 ETF 都持有越多」的規模效果</td><td>ETF 對產業的配置與產業內的選股，兩者混在一起</td></tr>
+<tr><td>產業（敏感度）<br/>B − c</td><td>c：該股占所屬產業總市值的比重</td><td>產業內的規模效果</td><td>產業內選股的偏離；但各 ETF 投入該產業的總比重不同，這個差異仍在，只持有少數半導體股的 ETF 會讓每一檔都顯得大幅少配</td></tr>
+<tr><td>配置（敏感度）<br/>B − a·c</td><td>a·c：該 ETF 投入該產業的總比重 a，乘上該股在產業內的市值比重 c</td><td>「這檔 ETF 整體押多少在這個產業」</td><td>最純的產業內選股：在 ETF 已決定給半導體多少比重的前提下，某股拿到的比重多於或少於它在產業內的市值占比</td></tr>
+</tbody></table></div>
+<p>兩檔股票的相似度，是把它們在各檔 ETF 的偏離排成向量後計算的餘弦。主規格用市場基準；產業與配置基準是結果出來後加做的敏感度檢查。a 以 ETF 持有、位於完整上市母體的該產業股票加總。</p>
 <details>
-<summary>三種去偏基準：定義與 2023Q4 示例</summary>
-<div aria-label="三種去偏基準示意圖" class="chart-scroll" role="region" tabindex="0">
-<svg aria-labelledby="baseline-title baseline-desc" role="img" viewbox="0 0 660 215">
-<title id="baseline-title">三種軌道 A 去偏基準</title>
-<desc id="baseline-desc">定義示意圖。B 是 ETF 持股權重，w 是全市場市值權重，c 是產業內市值比，a 是以完整上市母體加總的 ETF 產業配置。</desc>
-<rect fill="var(--bg)" height="155" rx="6" stroke="var(--border)" width="210" x="5" y="5"></rect>
-<text fill="var(--ink)" font-size="14" text-anchor="middle" x="110" y="31">市場基準（主規格）</text>
-<text fill="var(--accent)" font-size="21" text-anchor="middle" x="110" y="65">B − wᵐᵏᵗ</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="100">移除全市場市值權重</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="124">仍保留產業與指數規則差異</text>
-<rect fill="var(--bg)" height="155" rx="6" stroke="var(--border)" width="210" x="225" y="5"></rect>
-<text fill="var(--ink)" font-size="14" text-anchor="middle" x="330" y="31">產業基準（敏感度）</text>
-<text fill="var(--accent)" font-size="21" text-anchor="middle" x="330" y="65">B − c</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="237" y="100">移除產業內市值比</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="237" y="124">仍保留 ETF 的產業配置</text>
-<rect fill="var(--bg)" height="155" rx="6" stroke="var(--border)" width="210" x="445" y="5"></rect>
-<text fill="var(--ink)" font-size="14" text-anchor="middle" x="550" y="31">配置基準（敏感度）</text>
-<text fill="var(--accent)" font-size="21" text-anchor="middle" x="550" y="65">B − a·c</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="100">再條件化於 ETF 產業配置</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="457" y="124">a 在鄰居池篩選前加總</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="184">僅當 B = a·c 時，配置殘差精確為零；子集合、權重上限與追蹤差距仍可留下殘差。</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="207">相似度以各股跨 ETF 的殘差向量計算；下方以 2023Q4 五檔半導體股示範三種殘差與網路。</text>
-</svg>
-</div><div class="note">上圖為定義示意。B 為 ETF 持股權重；wᵐᵏᵗ 為全市場市值權重；c 為產業內市值比；a 為各 ETF 於鄰居池篩選前、以完整上市母體加總的產業配置。產業與配置基準為事後敏感度檢查。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §5.1.1</a></div>
-<h3>2023Q4 示例：五檔半導體股 × 三檔 ETF</h3>
+<summary>2023Q4 示例：同一份持股，換基準就換網路</summary>
+<p class="lead">同樣五檔半導體股、同樣三檔 ETF，只換基準，誰和誰相似就會改變，甚至正負翻轉。所以網路的樣子取決於「相對什麼算多配」。</p>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="nt" id="debias-weights">
 <caption>持股權重 B、市值權重與半導體配置 a（%）</caption>
@@ -123,18 +114,8 @@
 <tr class="key-row" data-row="a"><td>半導體配置 a</td><td></td><td></td><td>56.7%</td><td>59.2%</td><td>18.2%</td></tr>
 <tr data-row="n"><td>持有半導體檔數</td><td></td><td></td><td>7</td><td>55</td><td>7</td></tr>
 </tbody></table></div>
-<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
-<table class="nt" id="debias-residuals">
-<caption>殘差向量（百分點；依 0050、0053、0056 排列）</caption>
-<thead><tr><th scope="col">股票</th><th scope="col">市場 B − w<sup>mkt</sup></th><th scope="col">產業 B − c</th><th scope="col">配置 B − a·c</th></tr></thead><tbody>
-<tr data-code="2330"><td>台積電</td><td>[+19.9, +15.6, −26.4]</td><td>[−26.4, −30.7, −72.7]</td><td>[+5.1, −1.0, −13.2]</td></tr>
-<tr data-code="2454"><td>聯發科</td><td>[+2.6, +2.8, +1.0]</td><td>[−1.4, −1.2, −3.0]</td><td>[+1.3, +1.4, +2.2]</td></tr>
-<tr data-code="3034"><td>聯詠</td><td>[+0.5, +0.3, +2.5]</td><td>[−0.4, −0.5, +1.6]</td><td>[+0.2, +0.0, +2.8]</td></tr>
-<tr data-code="2379"><td>瑞昱</td><td>[+0.3, +0.2, +2.1]</td><td>[−0.4, −0.5, +1.4]</td><td>[+0.1, −0.1, +2.3]</td></tr>
-<tr data-code="2303"><td>聯電</td><td>[+0.9, +0.8, +1.9]</td><td>[−1.0, −1.1, −0.1]</td><td>[+0.3, +0.1, +2.4]</td></tr>
-</tbody></table></div>
 <p class="formula" id="debias-worked"><span class="label">實算（台積電 × 0050）：</span><br/>a = 56.7%，c = 72.7% → a·c = 41.2%；B = 46.3% → B − w<sup>mkt</sup> = +19.9、B − c = −26.4、B − a·c = +5.1 個百分點</p>
-<p id="debias-reading">台積電占半導體業市值 72.7%，但 0050 只持 46.3%、0053 只持 42.0%、0056 未持有，因此產業基準下三格皆大幅為負。配置基準再乘上各 ETF 的半導體配置 a：0053 持有 55 檔半導體股，接近 B = a·c，五檔的 0053 配置殘差介於 −1.0 與 +1.4 個百分點；0050 與 0056 各只持 7 檔，仍留下殘差。台積電與聯發科的餘弦在市場基準下為 +0.470，產業基準下同被低配而升至 +0.996，配置基準下轉為 −0.571：同一份持股，相似度的符號會隨基準改變。</p>
+<p id="debias-reading"><b>怎麼讀。</b>台積電占半導體業市值 72.7%，但 0050 只持 46.3%、0053 只持 42.0%、0056 未持有，因此產業基準下三格皆大幅為負。配置基準再乘上各 ETF 的半導體配置 a：0053 持有 55 檔半導體股，接近 B = a·c，五檔的 0053 配置殘差介於 −1.0 與 +1.4 個百分點；0050 與 0056 各只持 7 檔，仍留下殘差。台積電與聯發科的餘弦在市場基準下為 +0.470，產業基準下同被低配而升至 +0.996，配置基準下轉為 −0.571：同一份持股，相似度的符號會隨基準改變。</p>
 <div aria-label="三種基準下的示例網路" class="chart-scroll" role="region" tabindex="0">
 <svg aria-labelledby="network-title network-desc" id="network-chart" role="img" viewbox="0 0 660 362">
 <title id="network-title">同五檔股票、同三檔 ETF，三種去偏基準下的餘弦相似度網路</title>
@@ -217,24 +198,9 @@
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="288" y="333">餘弦 ≤ −0.5；絕對值低於 0.5 不繪</text>
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="355">軌道 A 的 kNN 只取餘弦 &gt; τ = 0.05 的正相似鄰居，負相似不成邊。</text>
 </svg></div>
-<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
-<table class="nt" id="cosine-table">
-<caption>十組配對的餘弦相似度（僅以三檔 ETF 為維度；灰字為絕對值低於 0.5、不繪邊）</caption>
-<thead><tr><th scope="col">配對</th><th scope="col">市場</th><th scope="col">產業</th><th scope="col">配置</th></tr></thead><tbody>
-<tr data-pair="2330-2454"><td>台積電–聯發科</td><td class="na">+0.470</td><td>+0.996</td><td>−0.571</td></tr>
-<tr data-pair="2330-3034"><td>台積電–聯詠</td><td>−0.554</td><td>−0.621</td><td>−0.907</td></tr>
-<tr data-pair="2330-2379"><td>台積電–瑞昱</td><td>−0.585</td><td>−0.601</td><td>−0.910</td></tr>
-<tr data-pair="2330-2303"><td>台積電–聯電</td><td class="na">−0.226</td><td>+0.526</td><td>−0.885</td></tr>
-<tr data-pair="2454-3034"><td>聯發科–聯詠</td><td class="na">+0.463</td><td>−0.587</td><td>+0.784</td></tr>
-<tr data-pair="2454-2379"><td>聯發科–瑞昱</td><td class="na">+0.427</td><td>−0.569</td><td>+0.763</td></tr>
-<tr data-pair="2454-2303"><td>聯發科–聯電</td><td>+0.747</td><td>+0.563</td><td>+0.826</td></tr>
-<tr data-pair="3034-2379"><td>聯詠–瑞昱</td><td>+0.999</td><td>+1.000</td><td>+0.999</td></tr>
-<tr data-pair="3034-2303"><td>聯詠–聯電</td><td>+0.935</td><td class="na">+0.338</td><td>+0.997</td></tr>
-<tr data-pair="2379-2303"><td>瑞昱–聯電</td><td>+0.920</td><td class="na">+0.360</td><td>+0.995</td></tr>
-</tbody></table></div>
-<div class="note" id="debias-caption">教學示例，非估計結果。持股取 MOPS 2023Q4，市值權重 w<sup>mkt</sup> 與產業內市值比 c 亦取 2023Q4；管線實際以兩季前公告的持股配對當季權重，此處為簡化。餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。a 以 ETF 持有、位於完整上市母體的半導體業股票加總。0050 追蹤臺灣50指數（大型股市值加權），0053 追蹤電子類指數（範圍不等於半導體），0056 追蹤臺灣高股息指數（殖利率規則選股加權），三者皆非主動管理。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/docs/findings/22-poster-debiasing-example.json">示例數值</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/src/poster_debiasing_example.py">產生程式</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/7f2001175b0ab1bc5c3cee499f1f4b2d4a31de19/docs/paper/paper.md">論文 §5.1</a></div></details>
+<div class="note" id="debias-caption">教學示例，非估計結果。持股取 MOPS 2023Q4，市值權重 w<sup>mkt</sup> 與產業內市值比 c 亦取 2023Q4；管線實際以兩季前公告的持股配對當季權重，此處為簡化。餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。a 以 ETF 持有、位於完整上市母體的半導體業股票加總。0050 追蹤臺灣50指數（大型股市值加權），0053 追蹤電子類指數（範圍不等於半導體），0056 追蹤臺灣高股息指數（殖利率規則選股加權），三者皆非主動管理。</div></details>
 <details>
-<summary>資料概覽與樣本範圍</summary>
+<summary>資料與樣本：每季只有二、三十檔股票</summary>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="st" id="data-table">
 <thead>
@@ -248,16 +214,17 @@
 <tr><td>TWSE 產業分類</td><td>2012Q2–2025Q4</td><td>Internet Archive 快照重建，前視違規 0</td></tr>
 </tbody>
 </table>
-</div><div class="note">訓練期 2012Q4–2017Q4；評估期 2018Q1–2025Q4。半導體業訓練期平均 22.1 檔、評估期 36.4 檔；金融保險業約 22–26 檔。產業分類的訓練期有 16 季回填，前視查核零違規不代表沒有分類不確定性。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文第 4 章</a></div></details>
+</div><div class="note">訓練期 2012Q4–2017Q4；評估期 2018Q1–2025Q4。半導體業訓練期平均 22.1 檔、評估期 36.4 檔；金融保險業約 22–26 檔。每天只排二、三十檔股票，排序指標的雜訊大，這是後面「看不出差異」的重要背景。產業分類的訓練期有 16 季回填，前視查核零違規不代表沒有分類不確定性。</div></details>
+</div></div>
 </section>
-<section class="c" id="design">
+<section class="c wide" id="design">
 <h2>二、研究設計</h2>
+<div class="result-columns"><div>
 <p class="lead">以事前指定的 Ridge 迴歸裁定命題，並以 XGBoost 提供非線性參照。</p>
 <p class="plain"><b>白話</b>同一套模型做兩次預測，一次不給網路資訊（M0）、一次給（M1），比較誰把同一天的股票排得更準。</p>
 <p>兩軌合計加入 24 個網路特徵；軌道 A 保留最多 K=30 個正相似鄰居，軌道 B 使用滾動 52 週的因子殘差相關。模型每季重估，預測 H=5／20／30／60 個交易日的報酬，在 2018–2025 年評估。</p>
 <p>Clark–West（CW）檢定比較巢狀模型的預測誤差；Benjamini–Hochberg（BH；Benjamini &amp; Hochberg, 1995）程序控制多重檢定的錯誤發現率，每個模型各有兩產業 × 四期距的八格家族。</p>
-<details>
-<summary>流程與特徵組成</summary>
+</div><div>
 <div aria-label="研究設計流程" class="chart-scroll" role="region" tabindex="0">
 <svg aria-label="Research design flowchart: data sources through two network tracks, features, models, six evaluation paths, to proposition verdicts" role="img" style="width:100%;height:auto;margin:0 0 8px" viewbox="0 0 440 195">
 <defs><marker id="fa" markerheight="5" markerwidth="7" orient="auto" refx="7" refy="2.5"><polygon fill="var(--ink-3)" points="0,0 7,2.5 0,5"></polygon></marker></defs>
@@ -282,7 +249,10 @@
 <!-- Timeline annotation -->
 <text fill="var(--ink-3)" font-size="9" text-anchor="middle" x="220" y="190">訓練 2012–2017 ｜ 樣本外評估 2018–2025（~1,948 交易日）</text>
 </svg>
-</div><div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
+</div>
+<details>
+<summary>特徵組成：每個模型實際用了哪些特徵</summary>
+<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="st features" id="features-table">
 <thead>
 <tr><th scope="col">特徵群組</th><th scope="col">欄位數</th><th scope="col">角色</th><th scope="col">M0</th><th scope="col">M1</th></tr>
@@ -294,14 +264,15 @@
 <tr><td>價格軌道</td><td>12</td><td>實驗變數</td><td>—</td><td>✓</td></tr>
 </tbody>
 </table>
-</div><div class="note">候選特徵 45 個；市場控制 11 個中 1 個全缺，故實際候選 44 個。篩選後 M0 約 20 個、M1 約 42 個。五項命題與規則於樣本外評估前設定；事後修訂另外揭露。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文第 3、6–8 章</a></div></details>
+</div><div class="note">候選特徵 45 個；市場控制 11 個中 1 個全缺，故實際候選 44 個。篩選後 M0 約 20 個、M1 約 42 個。五項命題與規則於樣本外評估前設定；事後修訂另外揭露。</div></details>
+</div></div>
 </section>
 <section class="c wide result" id="results">
 <h2>三、主要結果與命題裁定</h2>
 <p class="lead">雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八格全負，未能建立增量排序資訊。</p>
 <p class="plain"><b>白話</b>加入網路後，24 種組合的排序準確度全部略降；把股票與網路的對應隨機打亂再加入，也同樣略降，真實網路並沒有比亂配的好。</p>
 <div class="result-columns"><div>
-<h3>Ridge：增量排序資訊 ΔIC</h3>
+<h3>加入網路後，24 格的排序能力全部下降</h3>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="nt" id="delta-table">
 <thead>
@@ -316,28 +287,29 @@
 <tr><td>金融 20 日</td><td class="red">−0.0108</td><td class="red">−0.0269</td><td class="red">−0.0254</td></tr>
 <tr><td>金融 30 日</td><td class="red">−0.0162</td><td class="red">−0.0397</td><td class="red">−0.0315</td></tr>
 <tr><td>金融 60 日</td><td class="red">−0.0184</td><td class="red">−0.0499</td><td class="red">−0.0392</td></tr>
-<tr class="key-row"><td>單尾 p(ΔIC&gt;0) 最小</td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
-<tr class="key-row"><td>ΔIC 排列排名 p 最小</td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
+<tr class="key-row"><td>「網路有幫助」的單尾 p（最小）</td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
+<tr class="key-row"><td>亂配網路不輸真實網路的比例（最小）</td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
 </tbody>
 </table>
-</div><div class="note">單尾 p 使用 Newey–West 標準誤（落後期 H−1）；排列排名 p 比較真實網路與 99 次股票 ID 區塊排列。排列虛無的 ΔIC 中位數本身亦為負，故不能僅憑「八格皆負」區分虛無與對立。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/18-delta-ic-inference.json">ΔIC 推論來源</a></div></div><div>
-<h3>P1–P5：保留事前裁定</h3>
+</div><p><b>怎麼讀。</b>數值是 M1 與 M0 平均 IC 的差，負值代表加了網路反而排得較差。以市場基準為例，M0 的 IC 在半導體為 0.04–0.08、金融保險為 0.07–0.15；加入網路後，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
+<div class="note">單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤，落後期 H−1）。下一列是 99 次把股票與網路隨機亂配後，表現不輸真實網路的比例：即使最好的一格，也有約 8% 的亂配網路不輸真實網路。亂配網路的 ΔIC 中位數本身也是負的，所以光是「全部為負」不足以否證；關鍵是真實網路沒有比亂配好。</div></div><div>
+<h3>事前設定的五項命題，沒有一項獲得支持</h3>
 <div aria-label="命題裁定表" class="table-scroll" role="region" tabindex="0">
 <table class="st verdicts" id="verdict-table">
 <thead>
 <tr><th>命題</th><th>內容</th><th>裁定</th><th>依據</th></tr>
 </thead>
 <tbody>
-<tr><td>P1</td><td>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>嚴格解讀下可用期距為空；以安慰劑排除期距是執行階段判讀。若限於 Ridge，H=5 加 H=20 或 H=30 可採，但仍未通過支持條件。</td></tr>
-<tr><td>P2</td><td>去偏程序為必要</td><td class="fail">不支持</td><td>移除去偏後未觀察到符合裁定門檻的顯著惡化</td></tr>
-<tr><td>P3</td><td>半導體效果強於金融</td><td class="fail">不支持</td><td>未配對全樣本交互作用 p=0.17–0.75；配對可行性不足，詳第五節。</td></tr>
-<tr><td>P4</td><td>ETF 重疊梯度</td><td class="fail">不支持</td><td>F 檢定八格皆不顯著；P4 專屬安慰劑下，F 參考分布在名目 5% 實際拒絕 22.4%–60.4%，改以安慰劑為參考的排名 p 為 0.45–0.85。方向條件僅半導體 H=60 成立。</td></tr>
-<tr><td>P5</td><td>差異來自價格軌道</td><td class="na">不予裁定</td><td>條件於 P3</td></tr>
+<tr><td>P1</td><td>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>嚴格照事前規則，沒有任何期距可用來裁定，所以形式上無法裁定；放寬為只看 Ridge 時，H=5 加 H=20 或 H=30 可用，但仍未通過支持條件。兩種讀法都不支持網路有預測力。</td></tr>
+<tr><td>P2</td><td>去偏程序為必要</td><td class="fail">不支持</td><td>改用未去偏的原始持股或原始股價，預測沒有顯著變差：沒有證據顯示去偏是必要的。</td></tr>
+<tr><td>P3</td><td>半導體效果強於金融</td><td class="fail">不支持</td><td>半導體並沒有比金融更受益於網路（全樣本交互作用 p=0.17–0.75）；原定的配對比較因可配對樣本不足而無法執行，見第五節。</td></tr>
+<tr><td>P4</td><td>ETF 重疊梯度</td><td class="fail">不支持</td><td>ETF 重疊越多，網路效果並沒有越強。F 檢定八格皆不顯著；而且這個檢定在虛無下就會過度拒絕（名目 5%，實際 22.4%–60.4%），改用安慰劑校準後排名 p 為 0.45–0.85，仍無證據。方向條件僅半導體 H=60 成立。</td></tr>
+<tr><td>P5</td><td>差異來自價格軌道</td><td class="na">不予裁定</td><td>以 P3 成立為前提；P3 不成立，故不裁定。</td></tr>
 </tbody>
 </table>
 </div>
-<p>僅保留 ETF 軌道（M1_noPrice）時，市場基準下金融四格 ΔIC 為 +0.0016 至 +0.0039，單尾 p=0.26–0.43，皆不顯著；半導體四格及另兩種基準的八格皆負。這是事後單軌比較，P5 仍不予裁定。</p>
-<div class="note">ΔIC 是回應合併 R² 指標問題的事後補充判準，不取代正式裁定。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §9.2–9.3、§10.10</a></div></div></div></section>
+<p>僅保留 ETF 軌道（M1_noPrice）時，市場基準下金融四格 ΔIC 為 +0.0016 至 +0.0039，單尾 p=0.26–0.43，皆不顯著；半導體四格及另兩種基準的八格皆負。這是事後單軌比較，而且只出現在一種基準、一個產業，不能解讀為 ETF 網路在金融業有效；P5 仍不予裁定。</p>
+<div class="note">ΔIC 是回應合併 R² 指標問題的事後補充判準，不取代正式裁定。</div></div></div></section>
 <section class="c wide result" id="equivalence">
 <h2>四、等效界限與檢定力：「不顯著」不等於「已排除」</h2>
 <div class="result-columns"><div>
@@ -351,10 +323,10 @@
 <p>注入訊號取自標籤（神諭特徵），只回答「若網路帶有此強度的訊號，本協定能否偵測」，不回答訊號是否存在；其雜訊每日獨立，量到的是同等 IC 下持續性訊號檢定力的上限。</p>
 <p>合併 R² 的最小可偵測效果（MDE）是以 M0 殘差事後校準的模擬設計參數，BH 最保守門檻下約為 0.05%（H=5）至 0.5%（H=60）。它帶有不小的蒙地卡羅誤差：換 21 個種子重算，匯出的金融保險 H=20 值 0.25% 正是最大值，中位數為 0.17%。MDE 針對合併 R²／CW，不是 ΔIC 的門檻或效果上界；H=60 依事前規則僅供描述。</p>
 </details>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/24-delta-ic-equivalence.csv">等效界限逐格</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/25-delta-ic-power-summary.csv">半合成檢定力</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/25-mde-spread.csv">MDE 種子範圍</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §8.6、附錄 D.13–D.15</a></div>
+
 </div><div>
-<h3>圖三：24 格的單尾上界與界限</h3>
-<p>事後界限依主動管理基本定律（Grinold, 1989）：δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223；固定 0.01 為敏感度界限。界限在結果已知後選定，不更動事前裁定。</p>
+<h3>圖三：大部分格子能排除「有意義幅度」的改善</h3>
+<p><b>怎麼讀。</b>每列線段的右端，是資料在 95% 信心下仍允許的最大改善；右端落在紅線左側，就能排除「改善達到紅線」的可能。紅線 δ<sub>H</sub> 依主動管理基本定律（Grinold, 1989）換算：每期排約 30 檔股票、每 H 個交易日換倉一次，要讓年化資訊比率多 0.25 所需的 IC，即 δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223；固定 0.01 為敏感度界限。界限在結果已知後選定，不更動事前裁定。</p>
 <!-- BEGIN equivalence-chart -->
 <div aria-label="ΔIC 等效界限圖" class="chart-scroll" role="region" tabindex="0">
 <svg aria-labelledby="eq-title eq-desc" id="equivalence-chart" role="img" viewbox="0 0 660 544">
@@ -499,7 +471,7 @@
 <line data-baseline="allocation" data-horizon="60" data-industry="金融保險業" data-ub-unadj="-0.012758264781641413" stroke="var(--accent)" stroke-width="2" x1="274.596" x2="416.118" y1="488" y2="488"></line>
 <circle data-baseline="allocation" data-horizon="60" data-industry="金融保險業" cx="274.596" cy="488" data-value="-0.0391964373874911" fill="var(--accent)" r="3.5"></circle>
 </svg></div>
-<div class="note">每列為一個基準 × 產業 × 期距格，市場、產業、配置依序排列。以圖中的 Newey–West 標準誤，Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六格，其中市場基準四格（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。圖中標準誤為匯出的 Newey–West（落後期 H−1）；改用 Hansen–Hodrick 時，該範圍放寬為約 0.017–0.028。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">Hansen–Hodrick 重算</a></div>
+<div class="note">每列為一個基準 × 產業 × 期距格，市場、產業、配置依序排列。以圖中的 Newey–West 標準誤，Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六格，其中市場基準四格（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。圖中標準誤為匯出的 Newey–West（落後期 H−1）；改用 Hansen–Hodrick 時，該範圍放寬為約 0.017–0.028。</div>
 <!-- END equivalence-chart -->
 </div></div>
 </section>
@@ -507,21 +479,21 @@
 <h2>五、安慰劑與跨產業比較</h2>
 <p class="lead">真實網路的合併 R² 排列排名在十六格中無一低於 0.05；改用規模分層排列，結論不變。</p>
 <p class="plain"><b>白話</b>把股票與網路的對應隨機洗牌 99 次，真實網路的成績一直落在洗牌結果的中段，而不是前段。</p>
-<p id="cperm">改在產業、季度與規模三分位內排列，三種基準 24 格的 Ridge ΔIC 排名 p 最小為 0.09（無條件為 0.08），合併 R² 最小為 0.19。對到自己的股票比例由 3.6% 升到 10.8%：約一成股票保留自身的網路區塊，虛無因此更接近真實網路，檢定略偏保守；結論不變。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §9.5、附錄 D.16</a></p>
+<p id="cperm">改在產業、季度與規模三分位內排列，三種基準 24 格的 Ridge ΔIC 排名 p 最小為 0.09（無條件為 0.08），合併 R² 最小為 0.19。對到自己的股票比例由 3.6% 升到 10.8%：約一成股票保留自身的網路區塊，虛無因此更接近真實網路，檢定略偏保守；結論不變。</p>
 <p>排列下四基線閘門仍有 15/99（15.2%）通過，M0-Char 單一閘門為 74/99（74.7%）；通過閘門本身不足以建立配對資訊。</p>
 <details>
-<summary>合併 R² 的排列排名 p（16 格）</summary>
-<p>排列安慰劑在產業與季度內重新指派股票與網路特徵區塊的對應。下列為合併 R² 的排列排名 p（ΔIC 排名見第三節）。</p>
+<summary>合併 R²：16 格中真實網路都不比亂配網路突出</summary>
+<p><b>怎麼讀。</b>每格是亂配網路中合併 R² 不低於真實網路的比例。0.5 左右代表真實網路表現居中，要接近 0 才代表真實網路突出（ΔIC 的對應結果見第三節）。</p>
 <div class="hm">
 <div class="hd"></div><div class="hd">5 日</div><div class="hd">20 日</div><div class="hd">30 日</div><div class="hd">60 日</div>
 <div class="rl">半導體 Ridge</div><div class="cl">0.83</div><div class="cl">0.90</div><div class="cl">0.95</div><div class="cl">0.92</div>
 <div class="rl">半導體 XGBoost</div><div class="cl">0.12</div><div class="cl">0.29</div><div class="cl">0.47</div><div class="cl">0.53</div>
 <div class="rl">金融 Ridge</div><div class="cl">0.34</div><div class="cl">0.42</div><div class="cl">0.51</div><div class="cl">0.54</div>
 <div class="rl">金融 XGBoost</div><div class="cl">0.63</div><div class="cl">0.27</div><div class="cl">0.22</div><div class="cl">0.19</div>
-</div><div class="note">市場基準，Ridge／XGBoost × 兩產業 × 四期距，未調整排名 p 最小 0.12。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/sweep/placebo_ranks.csv">排列來源</a></div>
+</div><div class="note">市場基準，Ridge／XGBoost × 兩產業 × 四期距，未調整排名 p 最小 0.12。</div>
 </details>
 <details>
-<summary>配對可行性與 P3 敏感度</summary>
+<summary>原定的配對比較為何無法執行</summary>
 <div aria-label="年度可配對比例" class="chart-scroll" role="region" tabindex="0">
 <svg aria-label="評估期金融股可配對比例：每季可配對比例的年度中位數。共用 0 到 100% 線性尺度。" id="matching-chart" role="img" viewbox="0 0 660 205">
 <line stroke="var(--grid)" x1="55" x2="630" y1="145" y2="145"></line>
@@ -558,8 +530,8 @@
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="55" y="201">來源：每季共同支撐；年度中位數不等同於實際保留的配對數。</text>
 </svg>
 </div>
-<p>32 個評估季度僅 9 季保留至少 5 對配對，最後一季為 2021Q1；共同支撐比例的年度中位數仍有局部回升。P3 以未配對全樣本交互作用作主要參照，四期距均不顯著。配對子樣本的 p 值是 500 種配對順序的平均，平均後已不是有效的 p 值。改用有效的合併方式（平均的兩倍）後，H=60 經 BH 調整為 0.083，四期距皆不顯著；即使採原平均值，該期距也是事前排除且方向相反，不改變裁定。</p>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">有效合併重算</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/common_support.csv">共同支撐</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/quarter_census.csv">逐季配對</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §9.6、§9.9</a></div></details>
+<p>P3 原本要把條件相近的半導體股與金融股配對後比較。但 2022 年起，可配對比例的年度中位數幾乎為零：32 個評估季度僅 9 季保留至少 5 對配對，最後一季為 2021Q1；共同支撐比例的年度中位數仍有局部回升。P3 以未配對全樣本交互作用作主要參照，四期距均不顯著。配對子樣本的 p 值是 500 種配對順序的平均，平均後已不是有效的 p 值。改用有效的合併方式（平均的兩倍）後，H=60 經 BH 調整為 0.083，四期距皆不顯著；即使採原平均值，該期距也是事前排除且方向相反，不改變裁定。</p>
+</details>
 </section>
 <section class="c" id="robustness">
 <h2>六、穩健性：設計變體與固定母體</h2>
@@ -567,9 +539,9 @@
 <p class="plain"><b>白話</b>換訓練目標、換網路做法、只看固定的一批股票，結果都一樣：沒有一種改法讓網路變得有幫助。</p>
 <p>變體包括：日內排序或去均值標籤、Ridge 不含截距、延伸懲罰網格、撤回 U19 與 U15 兩項修正的 2×2、只取超配、依 ETF 規模加權，以及遞迴的金融次指數正交化。每個變體都重新擬合 M0。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），三種基準 24 格 ΔIC 亦全為負。</p>
 <p>原主規格的 2,304 次 Ridge 調參全部選在網格上界。改用日內排序標籤並延伸網格後，懲罰係數取得內部解（僅 5/2,304 次撞上界），ΔIC 仍八格皆負。</p>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/25-design-variants-summary.json">設計變體</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/25-fixed-composition-delta-ic.csv">固定母體</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §10.11</a></div>
+
 <details>
-<summary>三基準掃描摘要</summary>
+<summary>三基準掃描：少數正 ΔIC 主要出現在亂配網路</summary>
 <p>三種去偏基準各有 132 次變體執行：23 個實質設定（含主規格）、99 次排列與 10 次雜訊安慰劑。共 396 次執行共享資料與流程，不能視為獨立複現。配置基準以完整上市母體加總產業配置。</p>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="nt" id="robustness-table">
@@ -582,7 +554,7 @@
 <tr><td>配置</td><td>15/1056</td><td>4/184</td><td>11/792</td><td>0/80</td><td>0.000–0.020</td><td>0.162–0.990</td></tr>
 </tbody>
 </table>
-</div><div class="note">分母為 Ridge 的變體 × 八格；正格多數來自排列。CW 拒絕比例經各模型八格 BH 校正。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/17-three-baseline-evidence.json">三基準彙總</a></div></details>
+</div><div class="note">分母為 Ridge 的變體 × 八格；正格多數來自排列。CW 拒絕比例經各模型八格 BH 校正。</div></details>
 </section>
 <section class="c" id="economic">
 <h2>七、經濟顯著性與補充模型</h2>
@@ -591,7 +563,7 @@
 <p>最保守成本設定為零售費率、年化借券費 3% 與市場衝擊係數 0.003。H=20 時 M1 最佳淨夏普為 −0.007，M0 為 +0.308；扣成本前的三分位多空策略亦有 7/8 格由 M0 較高。</p>
 <div aria-label="扣成本組合績效" class="table-scroll" role="region" tabindex="0">
 <table class="nt" id="economic-table">
-<caption>最保守成本下淨夏普為正的格數</caption>
+<caption>扣成本後仍賺錢（淨夏普為正）的組合數：加了網路反而更少</caption>
 <thead>
 <tr><th>預測／再平衡</th><th>M1</th><th>M0</th></tr>
 </thead>
@@ -600,55 +572,26 @@
 <tr class="key-row"><td>H=60／日曆季度</td><td>3/16</td><td>6/16</td></tr>
 </tbody>
 </table>
-</div><div class="note">每列為兩產業 × 四模型 × 三分位／五分位排序。H=60 季度變體使用每季第一個預測日；季距可能短於持有期，報酬窗口可重疊。夏普差異未經正式檢定。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/20-economic-h60-quarterly.json">季度再平衡來源</a></div>
+</div><div class="note">每列為兩產業 × 四模型 × 三分位／五分位排序。H=60 季度變體使用每季第一個預測日；季距可能短於持有期，報酬窗口可重疊。夏普差異未經正式檢定。</div>
 <details>
 <summary>全成本網格、GAT 與 Fama–MacBeth</summary>
 <p>全成本網格各 1,536 格中，M1 淨夏普為正 564 格、最高 0.730；M0 為正 957 格、最高 0.853。這是成本情境敏感度描述，不是獨立檢定。</p>
 <h3>GAT：未優於 Ridge 參照</h3>
 <p id="gat-text">圖注意力網路（Graph Attention Network, GAT）學習鄰居的彙總權重。已測實作對 Ridge M0 的合併 R² 八格全負（−2.3% 至 −11.9%，平均 −7.9%）。排序上，GAT 相對 Ridge M0 的 ΔIC 八格皆負；相對 Ridge M1 有 3/8 為正，最小單尾 p 為 0.435。這是整條管線的比較，並非同一 GAT 的有邊／無邊消融。</p>
-<h3>Fama–MacBeth：未建立增量預測關聯</h3>
-<p>Fama–MacBeth（Fama &amp; MacBeth, 1973）逐日橫斷面迴歸同時控制 M0 與 M1 預測；Ridge 的 M1 增量係數 γ₁ 八格皆不顯著（p=0.26–0.90），不作已定價風險因子的識別。</p>
-<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
-<table class="nt" id="fm-table">
-<thead>
-<tr><th scope="col">產業</th><th scope="col">5 日</th><th scope="col">20 日</th><th scope="col">30 日</th><th scope="col">60 日</th></tr>
-</thead>
-<tbody>
-<tr><td>半導體 γ̄₁</td><td>−0.04</td><td>−0.26</td><td>−0.29</td><td>−0.04</td></tr>
-<tr><td>p 值</td><td>0.84</td><td>0.30</td><td>0.26</td><td>0.86</td></tr>
-<tr><td>金融 γ̄₁</td><td>0.05</td><td>0.04</td><td>0.07</td><td>0.24</td></tr>
-<tr><td>p 值</td><td>0.84</td><td>0.90</td><td>0.81</td><td>0.38</td></tr>
-</tbody>
-</table>
-</div><div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/14_economic/cost_matrix.csv">成本網格</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/13_gat/summary.csv">GAT 合併 R²</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/findings/25-gat-delta-ic.csv">GAT ΔIC</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/18_fama_macbeth/fama_macbeth.csv">Fama–MacBeth</a></div></details>
+<h3>Fama–MacBeth：控制 M0 後，M1 的預測沒有額外解釋力</h3>
+<p>Fama–MacBeth（Fama &amp; MacBeth, 1973）逐日橫斷面迴歸同時控制 M0 與 M1 預測；Ridge 的 M1 增量係數 γ₁ 八格皆不顯著（p=0.26–0.90），不作已定價風險因子的識別。</p></details>
 </section>
 <section class="c contribution" id="method">
 <h2>八、貢獻與方法論觀察</h2>
 <p class="lead">本研究提供雙軌網路特徵在已測設計下未建立排序增量的記錄，並量測評估量對預測尺度的已知敏感性。</p>
 <p class="plain"><b>白話</b>只把預測等比例縮小、不改任何排序，分數就可能變好。所以我們改看排序，並檢查分數有沒有灌水。</p>
 <p>合併 R² = 1 − MSE(M1)／MSE(M0) 混合擇時與橫斷面誤差，且對預測離散度敏感；這是平方損失的一般性質，並非本研究首次發現。相鄰的討論見 Campbell &amp; Thompson（2008）對樣本外 R² 的限制，以及 Gu et al.（2020）以零為基準的 R²。保留均值、只匹配 M0 與 M1 的離散度，即可重現部分合併 R² 增益；此為事後診斷，不是因果歸因。排列安慰劑下，Ridge 各格經 BH 校正的 CW 拒絕比例為 0.020–0.071，但 99 次排列中有 16 次至少一格被拒絕，高於 BH 保證的 5%：Ridge 也輕度過度拒絕，只是遠低於 XGBoost（0.253–0.990，每次排列都有拒絕；Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。</p>
-<p>比較基準本身也會製造假增量。撤回 U19 正規化修正後，XGBoost 有 6/8 格 ΔIC 轉正，原因是 M0 的平均 IC 由 0.074 降到 0.041，而不是 M1 變好。判讀增量前，須先看兩側各自的水準。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §10.11</a></p>
+<p>比較基準本身也會製造假增量。撤回 U19 正規化修正後，XGBoost 有 6/8 格 ΔIC 轉正，原因是 M0 的平均 IC 由 0.074 降到 0.041，而不是 M1 變好。判讀增量前，須先看兩側各自的水準。</p>
 <p>可移植的檢查程序：對預測施加一個不增加排序資訊的尺度改動，觀察指標是否反應。</p>
 <details>
-<summary>Ridge 分解表與圖一：XGBoost 合併與選股 R²</summary>
-<div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
-<table class="nt" id="ridge-table">
-<thead>
-<tr><th scope="col">產業 × 預測天數</th><th scope="col">合併 R²</th><th scope="col">選股 R²</th><th scope="col">淨選股增益</th></tr>
-</thead>
-<tbody>
-<tr><td>半導體 5 日</td><td class="red">−0.10%</td><td class="red">−0.17%</td><td class="red">−0.11%</td></tr>
-<tr><td>半導體 20 日</td><td class="red">−0.35%</td><td class="red">−0.60%</td><td class="red">−0.31%</td></tr>
-<tr><td>半導體 30 日</td><td class="red">−0.49%</td><td class="red">−0.80%</td><td class="red">−0.39%</td></tr>
-<tr><td>半導體 60 日</td><td class="red">−0.71%</td><td class="red">−1.03%</td><td class="red">−0.26%</td></tr>
-<tr><td>金融 5 日</td><td class="red">−0.05%</td><td class="red">−0.12%</td><td class="red">−0.08%</td></tr>
-<tr><td>金融 20 日</td><td class="red">−0.15%</td><td class="red">−0.36%</td><td class="red">−0.35%</td></tr>
-<tr><td>金融 30 日</td><td class="red">−0.26%</td><td class="red">−0.57%</td><td class="red">−0.55%</td></tr>
-<tr><td>金融 60 日</td><td class="red">−0.48%</td><td class="red">−0.90%</td><td class="red">−0.67%</td></tr>
-</tbody>
-</table>
-</div>
-<h3>圖一：合併正值與橫斷面誤差可有不同方向</h3>
+<summary>圖一：合併 R² 的進步可能只是尺度效果</summary>
+<p>Ridge 的八格合併 R² 與選股 R² 都是負的；以下只看 XGBoost。</p>
+<h3>圖一：合併 R² 為正的六格中，五格的選股 R² 為負</h3>
 <div class="lg"><span><span class="sw"></span>合併 R²</span><span><span class="sw outline"></span>選股 R²</span></div><div aria-label="XGBoost 誤差分解圖" class="chart-scroll" role="region" tabindex="0">
 <svg aria-label="XGBoost 主規格 M1 對 M0 的增量 R 平方。藍色實心為合併，紅色空心為橫斷面；共用線性尺度，百分比。" id="decomposition-chart" role="img" viewbox="0 0 660 340">
 <text fill="var(--accent)" font-size="12" text-anchor="end" x="527" y="18">合併 R²</text>
@@ -706,9 +649,9 @@
 <rect data-horizon="60" data-industry="金融保險業" data-metric="r2_cross_sectional" data-value="0.0007857690111383597" fill="none" height="8" stroke="var(--neg)" stroke-width="1.5" width="7.464806" x="330.000000" y="273"></rect>
 <text fill="var(--neg)" font-size="12" text-anchor="end" x="650" y="276">+0.08%</text>
 </svg>
-</div><div class="note">XGBoost 主規格，M1 對 M0；每組上下兩條使用相同百分比尺度。空心與實心區分兩指標。橫斷面 R² 仍是平方損失量，不能直接代表排序。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/16_decompose/decomposition.csv">分解數值</a></div></details>
+</div><div class="note">XGBoost 主規格，M1 對 M0；每組上下兩條使用相同百分比尺度。空心與實心區分兩指標。橫斷面 R² 仍是平方損失量，不能直接代表排序。</div></details>
 <details>
-<summary>圖二：排列下的 CW 拒絕比例</summary>
+<summary>圖二：亂配網路下，XGBoost 的 CW 幾乎總是「顯著」</summary>
 <div class="lg"><span><span class="sw"></span>Ridge（裁定模型）</span><span><span class="sw outline"></span>XGBoost</span></div><div aria-label="排列下 CW 拒絕比例" class="chart-scroll" role="region" tabindex="0">
 <svg aria-label="市場基準下 99 次排列的 Clark–West 拒絕比例。藍色實心為 Ridge，紅色空心為 XGBoost；經模型內八格 BH 校正，虛線為 5% 參照。" id="cw-chart" role="img" viewbox="0 0 660 275">
 <line stroke="var(--grid)" x1="45" x2="650" y1="205" y2="205"></line>
@@ -762,7 +705,7 @@
 <text fill="var(--ink-2)" font-size="14" text-anchor="middle" x="192" y="261">半導體</text>
 <text fill="var(--ink-2)" font-size="14" text-anchor="middle" x="484" y="261">金融保險</text>
 </svg>
-</div><div class="note">市場基準，99 次產業與季度內的股票身分排列。Ridge 逐格為 0.020–0.071，但以八格為一族，99 次中有 16 次至少一格被拒絕（BH 保證的上限是 5%）；XGBoost 為 0.253–0.990。家族拒絕數見<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">重算來源</a>。此虛無僅打斷網路配對，並非 CW 的完整虛無；5% 虛線只是參照。結果不推廣至所有 XGBoost 應用（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/sweep/placebo_ranks.csv">拒絕比例來源</a></div></details>
+</div><div class="note">市場基準，99 次產業與季度內的股票身分排列。Ridge 逐格為 0.020–0.071，但以八格為一族，99 次中有 16 次至少一格被拒絕（BH 保證的上限是 5%）；XGBoost 為 0.253–0.990。此虛無僅打斷網路配對，並非 CW 的完整虛無；5% 虛線只是參照。結果不推廣至所有 XGBoost 應用（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。</div></details>
 
 <details>
 <summary>指標定義、離散度匹配公式與實測範圍</summary>
@@ -790,14 +733,14 @@
         </span>
 </div>
 <p>合併 R² 為正的 18 格皆屬樹模型。離散度匹配可重現其中 13 格至少全部的合併增益，其餘五格約 66%–84%。匹配操作保持排序，僅說明合併增益可由尺度調整重現，不能證明其因果來源。Ridge 的八格合併增益皆負，故不計算此佔比。</p>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/16_decompose/decomposition.csv">分解來源</a></div></details>
+</details>
 </section>
 <section class="c wide" id="interpretation">
 <h2>九、如何解讀否證與效力邊界</h2>
 <p class="lead">結論限於已測市場、樣本、模型與訓練協定；現有診斷不足以判定是哪一種機制使預期效果未出現。</p>
-<p class="plain"><b>白話</b>ETF 多買少買大多是指數規則決定的，不是有人看好某家公司。所以「被同一批 ETF 多買」比較像「被同一套規則選中」，不一定帶有誰的判斷。</p>
+<p class="plain"><b>白話</b>ETF 的多配少配主要來自事先訂好的編製規則。被同一批 ETF 一起多配，比較像「被同一套規則歸為同一類」，不一定代表有人看好這幾家公司。</p>
 <div class="result-columns"><div>
-<p>所有 ETF 都減去同一個全市場基準，因此市場相對權重混合了三類來源：成分母體（例如 0050 只含大型股、0053 限電子類）、選股與加權規則（例如 0056 依預估殖利率）、權重上限與追蹤執行。這些來源都不表達對個別公司的判斷（樣本自 2025Q2 起另含少數主動式 ETF），去偏後的連結因此較接近「被同一套規則選中」，而非「被同一群投資人看好」。下列候選解釋互不排斥，本研究未能區分：</p>
+<p>所有 ETF 都減去同一個全市場基準，因此市場相對權重混合了三類來源：成分母體（例如 0050 只含大型股、0053 限電子類）、選股與加權規則（例如 0056 依預估殖利率）、權重上限與追蹤執行。這些規則是人訂的，但多半事先訂好、一體適用，不是針對個別公司當下前景的判斷（樣本自 2025Q2 起另含少數主動式 ETF，是例外）。去偏後的連結因此較接近「被同一套規則歸為同一類」，而非「被同一群投資人看好」。下列候選解釋互不排斥，本研究未能區分：</p>
 <ul class="cands">
 <li><b>規則驅動：</b>連結反映指數規則而非資訊（未量測規則成分的占比）。</li>
 <li><b>已反映於價格：</b>持股依公開時點落後使用；主動基金共同超配的溢酬在公開後很快消失（Jiang et al., 2014）。</li>
@@ -808,7 +751,7 @@
 </div><div>
 <p><b>訓練目標與判準。</b>事前判準（合併 R²、CW）與平方損失訓練一致；ΔIC 是事後加入的排序判準。事後改以日內排序標籤重訓，結果不變（第六節）。</p>
 <p>其餘限制：市場相對權重仍混合規則與追蹤差距；分類回填與持股、市值時點差異仍限制辨識；雙軌負結果不能單獨歸因於任一軌道。低於偵測能力的效果、其他產業、更大橫斷面或其他模型仍待檢驗。</p>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §5.1、§11.1、§11.5、第 12 章</a></div>
+
 </div></div></section>
 <section class="c wide" id="references">
 <h2>參考文獻</h2>
@@ -832,6 +775,6 @@
 </ul></details>
 </section>
 </main>
-<footer>© 2026 黃晨瑋、鐘珮甄、黃苡晴　All rights reserved.<br/>國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題</footer>
+<footer><span class="note">海報上的數字皆可追溯至研究專案的匯出檔與核對腳本；研究專案未公開。</span><br/>© 2026 黃晨瑋、鐘珮甄、黃苡晴　All rights reserved.<br/>國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題</footer>
 </div></body>
 </html>

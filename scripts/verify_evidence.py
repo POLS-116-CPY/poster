@@ -60,6 +60,9 @@ def cells(id):
             for tr in soup.select(f'#{id} tbody tr')]
 
 
+text_of = lambda sel: ' '.join(e.get_text(' ', strip=True) for e in soup.select(sel))
+
+
 def signed(value, decimals=2):
     return f'{float(value):+.{decimals}f}'
 
@@ -86,10 +89,27 @@ for col, baseline in enumerate(['market', 'sector', 'allocation'], 1):
         eq('track A financial upper p', f'{max(r["p_one_sided_gt0"] for r in a):.2f}', '0.43')
 
 decomp = csvrows('results/16_decompose/decomposition.csv')
-for row, (industry, h) in enumerate((i, h) for i in industries for h in horizons):
-    r = next(r for r in decomp if r['model'] == 'ridge' and r['industry'] == industry and int(r['horizon']) == h)
-    for col, metric in enumerate(['r2_pooled', 'r2_cross_sectional', 'r2_cs_net_of_shrink'], 1):
-        eq(f'Ridge/{industry}/{h}/{metric}', cells('ridge-table')[row][col], signed(float(r[metric])*100)+'%')
+ridge_d = [r for r in decomp if r['model'] == 'ridge']
+assert len(ridge_d) == 8 and all(float(r['r2_pooled']) < 0 and float(r['r2_cross_sectional']) < 0 for r in ridge_d)
+assert 'Ridge 的八格合併 R² 與選股 R² 都是負的' in soup.get_text()
+checks.append({'label': 'Ridge pooled and cross-sectional R² all negative', 'value': '8/8'})
+xgb_d = [r for r in decomp if r['model'] == 'xgboost' and float(r['r2_pooled']) > 0]
+eq('XGBoost pooled-positive cells', len(xgb_d), 6)
+eq('of which cross-sectional negative', sum(float(r['r2_cross_sectional']) < 0 for r in xgb_d), 5)
+assert '六格中，五格的選股 R² 為負' in soup.get_text()
+# The ΔIC table's meaning line: M0 IC levels and the share of ranking ability lost (market baseline, Ridge).
+base = [r for r in csvrows('results/sweep/robustness_table.csv') if r['variant'] == 'base' and r['model'] == 'ridge']
+for ind, lvl, loss in [('半導體業', '0.04–0.08', '26%–74%'), ('金融保險業', '0.07–0.15', '8%–14%')]:
+    rows = [r for r in base if r['industry'] == ind]
+    assert len(rows) == 4
+    ic0 = [float(r['mean_ic_M0']) for r in rows]
+    rel = [1 - float(r['mean_ic_M1']) / float(r['mean_ic_M0']) for r in rows]
+    for r in rows:
+        d = next(x for x in inference['delta_ic'] if x['source'] == 'market' and x['candidate'] == 'M1' and x['industry'] == ind and x['horizon'] == int(r['horizon']))
+        near(f'IC difference matches ΔIC/{ind}/{r["horizon"]}', float(r['mean_ic_M1']) - float(r['mean_ic_M0']), d['delta_ic'], 1e-9)
+    eq(f'M0 IC range/{ind}', f'{min(ic0):.2f}–{max(ic0):.2f}', lvl)
+    eq(f'ranking ability lost/{ind}', f'{min(rel):.0%}–{max(rel):.0%}', loss)
+    assert lvl in text_of('#results') and loss in text_of('#results')
 
 for bar in soup.select('#decomposition-chart rect[data-value]'):
     r = next(r for r in decomp if r['model'] == 'xgboost' and r['industry'] == bar['data-industry'] and r['horizon'] == bar['data-horizon'])
@@ -150,11 +170,10 @@ eq('GAT ΔIC vs Ridge M1 positive', f'{sum(float(r["delta_ic"]) > 0 for r in vs1
 eq('GAT ΔIC min p', f'{min(float(r["p_one_sided_gt0"]) for r in gat_ic):.3f}', '0.435')
 
 fm = csvrows('results/18_fama_macbeth/fama_macbeth.csv')
-for index, industry in enumerate(industries):
-    for col, h in enumerate(horizons, 1):
-        r = next(r for r in fm if r['industry'] == industry and r['horizon'] == str(h) and r['model'] == 'ridge' and r['variant'] == 'M1_incremental')
-        eq(f'FM coefficient/{industry}/{h}', cells('fm-table')[index*2][col], f'{float(r["gamma_mean"]):.2f}')
-        eq(f'FM p/{industry}/{h}', cells('fm-table')[index*2+1][col], f'{float(r["nw_p"]):.2f}')
+fm_p = [float(r['nw_p']) for r in fm if r['model'] == 'ridge' and r['variant'] == 'M1_incremental']
+assert len(fm_p) == 8
+eq('FM p range', f'{min(fm_p):.2f}–{max(fm_p):.2f}', '0.26–0.90')
+assert 'p=0.26–0.90' in text_of('#economic')
 
 for row, baseline in enumerate(['market', 'sector', 'allocation']):
     b = evidence['baselines'][baseline]
@@ -223,11 +242,6 @@ n_row = [td.get_text(strip=True) for td in soup.select_one('#debias-weights tr[d
 for k, etf in enumerate(etfs):
     eq(f'example a/{etf}', a_row[3+k], ex_pct(example['allocation_a_semis'][etf]))
     eq(f'example semis held/{etf}', n_row[3+k], example['n_semis_held_in_U'][etf])
-residuals = {tr['data-code']: [td.get_text(strip=True) for td in tr.find_all('td')] for tr in soup.select('#debias-residuals tr[data-code]')}
-assert list(residuals) == list(ex_stocks)
-for code, s in ex_stocks.items():
-    for k, b in enumerate(['market', 'sector', 'allocation'], 1):
-        eq(f'example residual/{b}/{code}', residuals[code][k], ex_vec(s[f'residual_{b}']))
 tsmc = ex_stocks['2330']
 assert math.isclose(tsmc['a_times_c'][0], example['allocation_a_semis']['0050']*tsmc['c_sector'])
 eq('example worked 2330×0050', soup.select_one('#debias-worked').get_text('', strip=True),
@@ -239,14 +253,6 @@ ex_names = {c: s['name'] for c, s in ex_stocks.items()}
 ex_cos = {tuple(r['pair']): r for r in example['cosines']}
 assert len(ex_cos) == 10
 baselines3 = ['market', 'sector', 'allocation']
-cos_rows = {tr['data-pair']: tr for tr in soup.select('#cosine-table tr[data-pair]')}
-assert list(cos_rows) == [f'{i}-{j}' for i, j in ex_cos]
-for (i, j), r in ex_cos.items():
-    tds = cos_rows[f'{i}-{j}'].find_all('td')
-    eq(f'cosine pair/{i}-{j}', tds[0].get_text(strip=True), f'{ex_names[i]}–{ex_names[j]}')
-    for k, b in enumerate(baselines3, 1):
-        eq(f'cosine/{b}/{i}-{j}', tds[k].get_text(strip=True), ex_signed(r[b], 3))
-        assert ('na' in (tds[k].get('class') or [])) == (abs(r[b]) < .5), (i, j, b)
 for b in baselines3:
     lines = soup.select(f'#network-chart line[data-baseline="{b}"]')
     drawn = {tuple(l['data-pair'].split('-')): l for l in lines}
@@ -301,7 +307,6 @@ checks.append({'label': 'three-baseline disclosure number audit', 'value': 'ever
 # ---- Issue #28: post hoc evidence from issue #25 ----
 paper = read('docs/paper/paper.md')
 first_28 = len(checks)
-text_of = lambda sel: ' '.join(e.get_text(' ', strip=True) for e in soup.select(sel))
 eqv = csvrows('docs/findings/24-delta-ic-equivalence.csv')
 eqj = js('docs/findings/24-delta-ic-equivalence.json')
 assert len(eqv) == 24
@@ -425,7 +430,7 @@ assert '上市主動式（2025Q2 起）' in paper and '2025Q2 起另含少數主
 # Paper wording for the precedent and its narrower novelty claim.
 assert '未見以基準相對權重建構共同持股網路並在保留期檢驗其增量的先例' in paper
 for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton']:
-    assert name in text_of('#question > p')
+    assert name in text_of('#question .result-columns > div > p')
 
 # ---- #30 review corrections, ahead of the thesis text: every number from findings/28 ----
 rc = js('docs/findings/28-review-recompute.json')
