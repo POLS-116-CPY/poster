@@ -341,9 +341,10 @@
 <section class="c wide result" id="equivalence">
 <h2>四、等效界限與檢定力：「不顯著」不等於「已排除」</h2>
 <div class="result-columns"><div>
-<p class="lead">未校正時，三種基準 24 格 ΔIC 的單尾 95% 上界皆低於兩種事後選定的界限（依主動管理基本定律推得的 δ<sub>H</sub> 與固定 0.01）；Bonferroni 校正後，基本定律界限排除 23/24 格，固定 0.01 界限排除 18/24 格。</p>
+<p class="lead">未校正時，三種基準 24 格 ΔIC 的單尾 95% 上界皆低於依主動管理基本定律推得的事後界限 δ<sub>H</sub>。Bonferroni 校正後，排除格數取決於標準誤的算法：Newey–West 下為 23/24 格，較適合重疊報酬的 Hansen–Hodrick 下為 18/24 格；固定 0.01 界限則為 18/24 與 16/24 格。</p>
 <p class="plain"><b>白話</b>「沒有顯著」只表示沒看到效果。我們另外問：加入網路特徵後，排序最多可能變好多少？並檢查資料能否排除那樣大小的改善。</p>
 <p>界限檢驗的是 M1 相對 M0 的排序改善，也就是「加入網路特徵」這個做法整體帶來的改善，而不是單獨衡量網路本身含有多少資訊。</p>
+<p><b>標準誤的選擇。</b>每日 ΔIC 由重疊的 H 日報酬算出，相鄰幾天高度相關。Newey–West 的 Bartlett 權重會低估這類序列的變異，本資料中 Hansen–Hodrick 標準誤為 Newey–West 的 1.14–1.26 倍。改用 Hansen–Hodrick 後，市場基準的金融保險 H=20／30／60 與半導體 H=60、產業基準的半導體 H=60 也無法排除，加上原本的配置基準半導體 H=60，共六格。</p>
 <p><b>半合成檢定力。</b>在 M1 中注入強度已知的人造訊號，經管線自身的擬合程式共 4,800 次重訓。H=5 時平均 ΔIC 約 +0.014 即有 97% 以上的拒絕率；H=20 時 +0.017 只有 20%；H=30／60 在最強注入下平均 ΔIC 仍不超過 +0.009。兩種界限從未錯誤排除注入的改善，因此長期距提供資訊的是界限，而不是顯著性檢定。</p>
 <details>
 <summary>模擬設計與 MDE</summary>
@@ -498,7 +499,7 @@
 <line data-baseline="allocation" data-horizon="60" data-industry="金融保險業" data-ub-unadj="-0.012758264781641413" stroke="var(--accent)" stroke-width="2" x1="274.596" x2="416.118" y1="488" y2="488"></line>
 <circle data-baseline="allocation" data-horizon="60" data-industry="金融保險業" cx="274.596" cy="488" data-value="-0.0391964373874911" fill="var(--accent)" r="3.5"></circle>
 </svg></div>
-<div class="note">每列為一個基準 × 產業 × 期距格，市場、產業、配置依序排列。Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六格，其中市場基準四格（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。標準誤為匯出的 Newey–West（落後期 H−1）。</div>
+<div class="note">每列為一個基準 × 產業 × 期距格，市場、產業、配置依序排列。以圖中的 Newey–West 標準誤，Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六格，其中市場基準四格（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。圖中標準誤為匯出的 Newey–West（落後期 H−1）；改用 Hansen–Hodrick 時，該範圍放寬為約 0.017–0.028。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">Hansen–Hodrick 重算</a></div>
 <!-- END equivalence-chart -->
 </div></div>
 </section>
@@ -557,8 +558,8 @@
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="55" y="201">來源：每季共同支撐；年度中位數不等同於實際保留的配對數。</text>
 </svg>
 </div>
-<p>32 個評估季度僅 9 季保留至少 5 對配對，最後一季為 2021Q1；共同支撐比例的年度中位數仍有局部回升。P3 以未配對全樣本交互作用作主要參照，四期距均不顯著。配對子樣本 H=60 的交互作用經 BH 拒絕，但該期距事前排除且方向相反，不改變裁定。</p>
-<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/common_support.csv">共同支撐</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/quarter_census.csv">逐季配對</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §9.6、§9.9</a></div></details>
+<p>32 個評估季度僅 9 季保留至少 5 對配對，最後一季為 2021Q1；共同支撐比例的年度中位數仍有局部回升。P3 以未配對全樣本交互作用作主要參照，四期距均不顯著。配對子樣本的 p 值是 500 種配對順序的平均，平均後已不是有效的 p 值。改用有效的合併方式（平均的兩倍）後，H=60 經 BH 調整為 0.083，四期距皆不顯著；即使採原平均值，該期距也是事前排除且方向相反，不改變裁定。</p>
+<div class="note"><a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">有效合併重算</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/common_support.csv">共同支撐</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/11_matching/quarter_census.csv">逐季配對</a>；<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §9.6、§9.9</a></div></details>
 </section>
 <section class="c" id="robustness">
 <h2>六、穩健性：設計變體與固定母體</h2>
@@ -625,7 +626,7 @@
 <h2>八、貢獻與方法論觀察</h2>
 <p class="lead">本研究提供雙軌網路特徵在已測設計下未建立排序增量的記錄，並量測評估量對預測尺度的已知敏感性。</p>
 <p class="plain"><b>白話</b>只把預測等比例縮小、不改任何排序，分數就可能變好。所以我們改看排序，並檢查分數有沒有灌水。</p>
-<p>合併 R² = 1 − MSE(M1)／MSE(M0) 混合擇時與橫斷面誤差，且對預測離散度敏感；這是既有的 MSE 性質，並非本研究首次發現。保留均值、只匹配 M0 與 M1 的離散度，即可重現部分合併 R² 增益；此為事後診斷，不是因果歸因（Campbell &amp; Thompson, 2008; Gu et al., 2020）。排列安慰劑下，Ridge 的 CW 拒絕比例 0.020–0.071，未見明顯拒絕膨脹；XGBoost 為 0.253–0.990（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。</p>
+<p>合併 R² = 1 − MSE(M1)／MSE(M0) 混合擇時與橫斷面誤差，且對預測離散度敏感；這是平方損失的一般性質，並非本研究首次發現。相鄰的討論見 Campbell &amp; Thompson（2008）對樣本外 R² 的限制，以及 Gu et al.（2020）以零為基準的 R²。保留均值、只匹配 M0 與 M1 的離散度，即可重現部分合併 R² 增益；此為事後診斷，不是因果歸因。排列安慰劑下，Ridge 各格經 BH 校正的 CW 拒絕比例為 0.020–0.071，但 99 次排列中有 16 次至少一格被拒絕，高於 BH 保證的 5%：Ridge 也輕度過度拒絕，只是遠低於 XGBoost（0.253–0.990，每次排列都有拒絕；Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。</p>
 <p>比較基準本身也會製造假增量。撤回 U19 正規化修正後，XGBoost 有 6/8 格 ΔIC 轉正，原因是 M0 的平均 IC 由 0.074 降到 0.041，而不是 M1 變好。判讀增量前，須先看兩側各自的水準。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/docs/paper/paper.md">論文 §10.11</a></p>
 <p>可移植的檢查程序：對預測施加一個不增加排序資訊的尺度改動，觀察指標是否反應。</p>
 <details>
@@ -761,7 +762,7 @@
 <text fill="var(--ink-2)" font-size="14" text-anchor="middle" x="192" y="261">半導體</text>
 <text fill="var(--ink-2)" font-size="14" text-anchor="middle" x="484" y="261">金融保險</text>
 </svg>
-</div><div class="note">市場基準，99 次產業與季度內的股票身分排列。Ridge 為 0.020–0.071，未見明顯拒絕膨脹；XGBoost 為 0.253–0.990。此虛無僅打斷網路配對，並非 CW 的完整虛無；5% 虛線只是參照。結果不推廣至所有 XGBoost 應用（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/sweep/placebo_ranks.csv">拒絕比例來源</a></div></details>
+</div><div class="note">市場基準，99 次產業與季度內的股票身分排列。Ridge 逐格為 0.020–0.071，但以八格為一族，99 次中有 16 次至少一格被拒絕（BH 保證的上限是 5%）；XGBoost 為 0.253–0.990。家族拒絕數見<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/516efbb7df54e946707060b3189871a6affdb5e1/docs/findings/28-review-recompute.json">重算來源</a>。此虛無僅打斷網路配對，並非 CW 的完整虛無；5% 虛線只是參照。結果不推廣至所有 XGBoost 應用（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）。<a href="https://github.com/POLS-116-CPY/POLS-116-CPY/blob/3287104c98945c95803fcc69fecb15b4ce7a110d/results/sweep/placebo_ranks.csv">拒絕比例來源</a></div></details>
 
 <details>
 <summary>指標定義、離散度匹配公式與實測範圍</summary>
