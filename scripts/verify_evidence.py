@@ -427,6 +427,31 @@ assert '未見以基準相對權重建構共同持股網路並在保留期檢驗
 for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton']:
     assert name in text_of('#question > p')
 
+# ---- #30 review corrections, ahead of the thesis text: every number from findings/28 ----
+rc = js('docs/findings/28-review-recompute.json')
+nw, hh = rc['equivalence']['NW'], rc['equivalence']['HH']
+eq('NW Bonferroni FL (recomputed)', f"{nw['excl_fl_bonf8']}/24", f"{excl('excl_fl_bonf8')}/24")
+eq('HH Bonferroni FL', f"{hh['excl_fl_bonf8']}/24", '18/24')
+eq('HH Bonferroni fixed', f"{hh['excl_fixed_bonf8']}/24", '16/24')
+eq('NW Bonferroni fixed', f"{nw['excl_fixed_bonf8']}/24", '18/24')
+eq('HH/NW SE ratio', '–'.join(f'{x:.2f}' for x in hh['se_ratio_hh_over_nw']), '1.14–1.26')
+eq('HH market financials long UB', '–'.join(f'{x:.3f}' for x in hh['market_fin_long_ub_bonf8']), '0.017–0.028')
+eq('HH not excluded', len(hh['not_excluded_fl_bonf8']), 6)
+assert set(hh['not_excluded_fl_bonf8']) == {'market/半導體業/H60', 'market/金融保險業/H20', 'market/金融保險業/H30',
+                                            'market/金融保險業/H60', 'sector/半導體業/H60', 'allocation/半導體業/H60'}
+for v in ['23/24', '18/24', '16/24', '1.14–1.26', '六格']:
+    assert v in text_of('#equivalence > .result-columns p'), v
+assert '0.017–0.028' in text_of('#equivalence .note')
+cwf = rc['cw_permutation_family']
+eq('Ridge family-wise rejections (market)', cwf['market/ridge']['draws_with_any_bh_reject'], 16)
+eq('XGBoost family-wise rejections (market)', cwf['market/xgboost']['draws_with_any_bh_reject'], 99)
+eq('Ridge per-cell BH (market)', '–'.join(f'{x:.3f}' for x in cwf['market/ridge']['per_cell_bh']), '0.020–0.071')
+for sel in ['#method > p', '#method details .note']:
+    assert '16 次' in text_of(sel) and '未見明顯拒絕膨脹' not in text_of(sel), sel
+p3m = rc['p3_matched']
+eq('P3 matched valid-merge BH H=60', f"{p3m['bh_of_2x_mean_p'][3]:.3f}", '0.083')
+assert not p3m['any_reject_valid'] and '0.083' in text_of('#placebo details') and '500' in text_of('#placebo details')
+
 # Audit: every number in a block written or rewritten for #28 is sourced above or structural.
 rendered28 = {t.replace(',', '') for t in re.findall(r'\d+(?:[.,]\d+)*', ' '.join(str(c['value']) + ' ' + c['label'] for c in checks))}
 structural28 = {'2025', '5', '20', '30', '60', '8', '95', '0.25', '252', '0.01', '1989', '2008', '2009', '2014', '2021', '2023', '2026', '2020', '2007',
