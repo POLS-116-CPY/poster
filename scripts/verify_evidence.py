@@ -429,8 +429,13 @@ assert '99 次' in text_of('#placebo .plain') and all(r['n_draws'] == 99 for r i
 assert '上市主動式（2025Q2 起）' in paper and '2025Q2 起另含少數主動式 ETF' in text_of('#interpretation')
 # Paper wording for the precedent and its narrower novelty claim.
 assert '未見以基準相對權重建構共同持股網路並在保留期檢驗其增量的先例' in paper
-for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton']:
-    assert name in text_of('#question .result-columns > div > p')
+for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton', 'Frazzini']:
+    assert name in text_of('#precedent-table')
+# Precedent block: every figure is quoted from the paper's §2.1 paragraph, not from memory.
+for lit in ['1980–2003', '1.51%–2.40%', '1.13%–1.15%', '1984–2008', '7% 以上', '1983–2018', '2.8%–4.5%']:
+    assert lit in paper and lit in text_of('#precedent'), lit
+    checks.append({'label': f'precedent figure (paper §2.1)', 'value': lit})
+assert '未見以基準相對權重建構共同持股網路並在保留期檢驗其增量的先例' in text_of('#precedent')
 
 # ---- #30 review corrections, ahead of the thesis text: every number from findings/28 ----
 rc = js('docs/findings/28-review-recompute.json')
@@ -475,7 +480,7 @@ for li in soup.select('.references li'):
     text = li.get_text(' ', strip=True)
     expected = next(line for line in paper.splitlines() if line.startswith(text.split(' (')[0]))
     eq('APA reference', text, expected.replace('*', ''))
-for name, year in [('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
+for name, year in [('Frazzini',2016),('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
     assert re.search(rf'{name}.{{0,45}}{year}', visible)
     assert any(name in li.get_text() for li in soup.select('.references li'))
 assert '© 2026 黃晨瑋、鐘珮甄、黃苡晴' in visible
