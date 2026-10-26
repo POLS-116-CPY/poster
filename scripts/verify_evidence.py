@@ -91,7 +91,7 @@ for col, baseline in enumerate(['market', 'sector', 'allocation'], 1):
 decomp = csvrows('results/16_decompose/decomposition.csv')
 ridge_d = [r for r in decomp if r['model'] == 'ridge']
 assert len(ridge_d) == 8 and all(float(r['r2_pooled']) < 0 and float(r['r2_cross_sectional']) < 0 for r in ridge_d)
-assert 'Ridge 的八格合併 R² 與選股 R² 都是負的' in soup.get_text()
+assert re.search(r'Ridge 的八格合併 R² 與選股 R²[^。]*都是負的', soup.get_text())
 checks.append({'label': 'Ridge pooled and cross-sectional R² all negative', 'value': '8/8'})
 xgb_d = [r for r in decomp if r['model'] == 'xgboost' and float(r['r2_pooled']) > 0]
 eq('XGBoost pooled-positive cells', len(xgb_d), 6)
@@ -292,7 +292,7 @@ for label, value in [('TSMC c', ex_pct(tsmc['c_sector'])), ('TSMC 0050', ex_pct(
 assert tsmc['holdings_B'][2] == 0 and '0056 未持有' in reading
 assert example['n_semis_held_in_U']['0050'] == example['n_semis_held_in_U']['0056']
 caption = soup.select_one('#debias-caption').get_text()
-for phrase in ['教學示例，非估計結果', '持股取 MOPS 2023Q4', '亦取 2023Q4', '兩季前公告的持股', '只以圖中三檔 ETF 為維度']:
+for phrase in ['教學示例，非估計結果', '持股取 MOPS（公開資訊觀測站）2023Q4', '亦取 2023Q4', '兩季前公告的持股', '只以圖中三檔 ETF 為維度']:
     assert phrase in caption, phrase
 assert 'the three ETFs shown only' == example['meta']['cosine_dimension'] and '2023Q4' in example['meta']['weights'] and '2023Q4' in example['meta']['holdings']
 checks.append({'label': 'example caption', 'value': 'holdings and weights 2023Q4; two-quarter pipeline lag; three-ETF cosines; teaching example'})
@@ -462,6 +462,29 @@ p3m = rc['p3_matched']
 eq('P3 matched valid-merge BH H=60', f"{p3m['bh_of_2x_mean_p'][3]:.3f}", '0.083')
 assert not p3m['any_reject_valid'] and '0.083' in text_of('#placebo details') and '500' in text_of('#placebo details')
 
+# ---- Features block: counts quoted from paper ch. 6, ablation and permutation figures from findings/18 ----
+ftext = text_of('#features')
+for lit in ['45 個', '實際 44 個', '0.90', 'VIF', '41.91–42.00', '36–43']:
+    assert lit in ftext, lit
+for lit in ['41.91–42.00', '36–43 個區間', 'M0 恆為 20.00 個', '絕對相關高於 0.90', 'VIF $\\geq 10$']:
+    assert lit in paper, lit
+    checks.append({'label': 'feature count/screen (paper ch. 6)', 'value': lit})
+assert 'M0 固定 20 個' in ftext
+# 'main' repeats the market baseline; count the three baselines once each.
+three = [r for r in inference['delta_ic'] if r['source'] in ('market', 'sector', 'allocation')]
+only_etf = [r for r in three if r['candidate'] == 'M1_noPrice']
+only_price = [r for r in three if r['candidate'] == 'M1_noETF']
+assert len(only_etf) == len(only_price) == 24
+eq('ETF-track-only positive cells', f"{sum(r['delta_ic'] > 0 for r in only_etf)}/{len(only_etf)}", '4/24')
+assert all(r['source'] == 'market' and r['industry'] == '金融保險業' for r in only_etf if r['delta_ic'] > 0)
+eq('price-track-only positive cells', sum(r['delta_ic'] > 0 for r in only_price), 0)
+pm = [r['perm_median'] for r in inference['perm_rank']]
+eq('permutation ΔIC median range', f'{min(pm):.3f} 至 {max(pm):.3f}'.replace('-', '−'), '−0.034 至 −0.008')
+for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 格中只有市場基準的金融四格']:
+    assert lit in ftext, lit
+for name, year in [('Amihud', 2002), ('Cohen', 2008), ('Ying', 2024)]:
+    assert f'{name}' in ftext and str(year) in ftext
+
 # Audit: every number in a block written or rewritten for #28 is sourced above or structural.
 rendered28 = {t.replace(',', '') for t in re.findall(r'\d+(?:[.,]\d+)*', ' '.join(str(c['value']) + ' ' + c['label'] for c in checks))}
 structural28 = {'2025', '5', '20', '30', '60', '8', '95', '0.25', '252', '0.01', '1989', '2008', '2009', '2014', '2021', '2023', '2026', '2020', '2007',
@@ -480,7 +503,7 @@ for li in soup.select('.references li'):
     text = li.get_text(' ', strip=True)
     expected = next(line for line in paper.splitlines() if line.startswith(text.split(' (')[0]))
     eq('APA reference', text, expected.replace('*', ''))
-for name, year in [('Frazzini',2016),('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
+for name, year in [('Amihud',2002),('Cohen',2008),('Ying',2024),('Frazzini',2016),('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
     assert re.search(rf'{name}.{{0,45}}{year}', visible)
     assert any(name in li.get_text() for li in soup.select('.references li'))
 assert '© 2026 黃晨瑋、鐘珮甄、黃苡晴' in visible
