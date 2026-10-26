@@ -327,7 +327,7 @@ for h in horizons:
 near('fixed bound x', soup.select_one('#equivalence-chart line[data-bound="fixed"]')['x1'], sx(eqj['delta_fixed']), 1e-3)
 assert eqj['delta_fl_formula'] == '0.25 / sqrt(N*252/H), N=30'
 eq('δ_H values', '／'.join(f'{eqj["delta_fl"][str(h)]:.4f}' for h in horizons), '0.0064／0.0129／0.0157／0.0223')
-assert '0.0064／0.0129／0.0157／0.0223' in text_of('#equivalence details')
+assert '0.0064／0.0129／0.0157／0.0223' in text_of('#equivalence')
 excl = lambda k: sum(eqj['cells_excluded'][f'{b}/{k}'] for b in ['market', 'sector', 'allocation'])
 eq('unadjusted excluded (FL)', excl('excl_fl_unadj'), 24)
 eq('unadjusted excluded (0.01)', excl('excl_fixed_unadj'), 24)
@@ -420,6 +420,8 @@ checks.append({'label': 'cross-section size', 'value': '22–36 (paper ch. 12–
 assert '24 種組合' in text_of('#results .plain') and len(inference['perm_rank']) == 24
 checks.append({'label': 'plain-language 24 combinations', 'value': '3 baselines × 2 industries × 4 horizons'})
 assert '99 次' in text_of('#placebo .plain') and all(r['n_draws'] == 99 for r in inference['perm_rank'])
+# The active-ETF qualifier in the interpretation block follows the data chapter.
+assert '上市主動式（2025Q2 起）' in paper and '2025Q2 起另含少數主動式 ETF' in text_of('#interpretation')
 # Paper wording for the precedent and its narrower novelty claim.
 assert '未見以基準相對權重建構共同持股網路並在保留期檢驗其增量的先例' in paper
 for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton']:
@@ -427,7 +429,7 @@ for name in ['Greenwood', 'Pavlova', 'Cremers', 'Jiang', 'Anton']:
 
 # Audit: every number in a block written or rewritten for #28 is sourced above or structural.
 rendered28 = {t.replace(',', '') for t in re.findall(r'\d+(?:[.,]\d+)*', ' '.join(str(c['value']) + ' ' + c['label'] for c in checks))}
-structural28 = {'5', '20', '30', '60', '8', '95', '0.25', '252', '0.01', '1989', '2008', '2009', '2014', '2021', '2023', '2026', '2020', '2007',
+structural28 = {'2025', '5', '20', '30', '60', '8', '95', '0.25', '252', '0.01', '1989', '2008', '2009', '2014', '2021', '2023', '2026', '2020', '2007',
                 '0050', '0053', '0056', '19', '1', '2', '8.6', '9.5', '10.11', '2.1', '5.1', '11.1', '11.5', '12', 'D.13', '13', '15', '16', '99', '22', '36'}
 audit = ['.hero .gist', '.plain', '#equivalence p', '#equivalence .note', '#robustness > p', '#interpretation', '#method > p', '#cperm']
 for sel in audit:
