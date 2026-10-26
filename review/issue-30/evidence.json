@@ -29,7 +29,7 @@
     "docs/findings/25-p4-overlap-placebo.csv": "6797d41af1edb4f79226ea0ed02e0fb5ff72b192c94f95fcefa708aa4ddbad2e",
     "docs/findings/28-review-recompute.json": "72c3f54540533b15d886a584bc90eb481d6937fe349b5691fac5f199a24babf3"
   },
-  "check_count": 600,
+  "check_count": 608,
   "checks": [
     {
       "label": "ΔIC/market/半導體業/5",
@@ -2380,6 +2380,34 @@
       "value": "3 baselines × 2 industries × 4 horizons"
     },
     {
+      "label": "precedent figure (paper §2.1)",
+      "value": "1980–2003"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "1.51%–2.40%"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "1.13%–1.15%"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "1984–2008"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "7% 以上"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "1983–2018"
+    },
+    {
+      "label": "precedent figure (paper §2.1)",
+      "value": "2.8%–4.5%"
+    },
+    {
       "label": "NW Bonferroni FL (recomputed)",
       "value": "23/24"
     },
@@ -2462,6 +2490,10 @@
     {
       "label": "APA reference",
       "value": "Fama, E. F., & MacBeth, J. D. (1973). Risk, return, and equilibrium: Empirical tests. Journal of Political Economy, 81(3), 607–636. https://doi.org/10.1086/260061"
+    },
+    {
+      "label": "APA reference",
+      "value": "Frazzini, A., Friedman, J., & Pomorski, L. (2016). Deactivating active share. Financial Analysts Journal, 72(2), 14–21."
     },
     {
       "label": "APA reference",
