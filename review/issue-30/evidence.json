@@ -29,7 +29,7 @@
     "docs/findings/25-p4-overlap-placebo.csv": "6797d41af1edb4f79226ea0ed02e0fb5ff72b192c94f95fcefa708aa4ddbad2e",
     "docs/findings/28-review-recompute.json": "72c3f54540533b15d886a584bc90eb481d6937fe349b5691fac5f199a24babf3"
   },
-  "check_count": 608,
+  "check_count": 619,
   "checks": [
     {
       "label": "ΔIC/market/半導體業/5",
@@ -2452,8 +2452,44 @@
       "value": "0.083"
     },
     {
+      "label": "feature count/screen (paper ch. 6)",
+      "value": "41.91–42.00"
+    },
+    {
+      "label": "feature count/screen (paper ch. 6)",
+      "value": "36–43 個區間"
+    },
+    {
+      "label": "feature count/screen (paper ch. 6)",
+      "value": "M0 恆為 20.00 個"
+    },
+    {
+      "label": "feature count/screen (paper ch. 6)",
+      "value": "絕對相關高於 0.90"
+    },
+    {
+      "label": "feature count/screen (paper ch. 6)",
+      "value": "VIF $\\geq 10$"
+    },
+    {
+      "label": "ETF-track-only positive cells",
+      "value": "4/24"
+    },
+    {
+      "label": "price-track-only positive cells",
+      "value": 0
+    },
+    {
+      "label": "permutation ΔIC median range",
+      "value": "−0.034 至 −0.008"
+    },
+    {
       "label": "issue-28 number audit",
       "value": "every numeric token in new or rewritten blocks sourced or structural"
+    },
+    {
+      "label": "APA reference",
+      "value": "Amihud, Y. (2002). Illiquidity and stock returns: Cross-section and time-series effects. Journal of Financial Markets, 5(1), 31–56. https://doi.org/10.1016/S1386-4181(01)00024-6"
     },
     {
       "label": "APA reference",
@@ -2478,6 +2514,10 @@
     {
       "label": "APA reference",
       "value": "Clark, T. E., & West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. Journal of Econometrics, 138(1), 291–311. https://doi.org/10.1016/j.jeconom.2006.05.023"
+    },
+    {
+      "label": "APA reference",
+      "value": "Cohen, L., & Frazzini, A. (2008). Economic links and predictable returns. Journal of Finance, 63(4), 1977–2011. https://doi.org/10.1111/j.1540-6261.2008.01379.x"
     },
     {
       "label": "APA reference",
@@ -2514,6 +2554,10 @@
     {
       "label": "APA reference",
       "value": "Pavlova, A., & Sikorskaya, T. (2023). Benchmarking intensity. Review of Financial Studies, 36(3), 859–903. https://doi.org/10.1093/rfs/hhac055"
+    },
+    {
+      "label": "APA reference",
+      "value": "Ying, J. (2024). Gradual information diffusion across commonly owned firms. Journal of Financial Economics, 156, Article 103852. https://doi.org/10.1016/j.jfineco.2024.103852"
     },
     {
       "label": "gate pass rates",
