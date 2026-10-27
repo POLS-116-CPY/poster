@@ -30,7 +30,7 @@
     "docs/findings/25-p4-overlap-placebo.csv": "6797d41af1edb4f79226ea0ed02e0fb5ff72b192c94f95fcefa708aa4ddbad2e",
     "docs/findings/28-review-recompute.json": "72c3f54540533b15d886a584bc90eb481d6937fe349b5691fac5f199a24babf3"
   },
-  "check_count": 628,
+  "check_count": 630,
   "checks": [
     {
       "label": "ΔIC/market/半導體業/5",
@@ -2423,6 +2423,14 @@
     {
       "label": "permutation ΔIC medians all negative",
       "value": "-0.0341 to -0.0075"
+    },
+    {
+      "label": "explore rows",
+      "value": 8
+    },
+    {
+      "label": "exploratory reasons block: signs traced to paper ch.11–13",
+      "value": "0/8 2022 2025; cites 2014 2024; paper sections 11 11.2 12.2 13.4 13.5"
     },
     {
       "label": "cross-section size",
