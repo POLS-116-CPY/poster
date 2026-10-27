@@ -437,7 +437,16 @@ for v in ['22.4%–60.4%', '0.45–0.85', 'H=60']:
 perm_medians = [r['perm_median'] for r in inference['perm_rank']]
 assert max(perm_medians) < 0
 checks.append({'label': 'permutation ΔIC medians all negative', 'value': f'{min(perm_medians):.4f} to {max(perm_medians):.4f}'})
-assert '22–36' in paper and '22–36' in text_of('#interpretation')
+assert '22–36' in paper and '22–36' in text_of('#explore')
+# §11 is exploratory; each "sign" it cites must already be in the paper.
+for lit in ['三組的 Ridge 增量 IC 皆 0/8 為正', '2022–2025 年快速成長', '金融側的顯著比例在擴張前期最高', '僅取超配與依規模加權兩種連結定義亦未使',
+            'Jiang et al. (2014) 發現主動基金共同超配的溢酬在持股公開後很快消失', 'M0 已含個股多期距動量與產業動量']:
+    assert lit in paper, lit
+ex = text_of('#explore')
+for lit in ['僅探討，非研究結論', '0/8 為正', '2022–2025', '22–36', '−0.034 至 −0.008', '2,304 次', '第五節']:
+    assert lit in ex, lit
+eq('explore rows', len(soup.select('#explore-table tbody td:first-child')), 8)
+checks.append({'label': 'exploratory reasons block: signs traced to paper ch.11–13', 'value': '0/8 2022 2025; cites 2014 2024; paper sections 11 11.2 12.2 13.4 13.5'})
 checks.append({'label': 'cross-section size', 'value': '22–36 (paper ch. 12–13)'})
 assert '24 種組合' in text_of('#results .plain') and len(inference['perm_rank']) == 24
 checks.append({'label': 'plain-language 24 combinations', 'value': '3 baselines × 2 industries × 4 horizons'})
@@ -506,7 +515,7 @@ for name, year in [('Amihud', 2002), ('Cohen', 2008), ('Ying', 2024)]:
 rendered28 = {t.replace(',', '') for t in re.findall(r'\d+(?:[.,]\d+)*', ' '.join(str(c['value']) + ' ' + c['label'] for c in checks))}
 structural28 = {'2025', '5', '20', '30', '60', '8', '95', '0.25', '252', '0.01', '1989', '2008', '2009', '2014', '2021', '2023', '2026', '2020', '2007',
                 '0050', '0053', '0056', '19', '1', '2', '8.6', '9.5', '10.11', '2.1', '5.1', '11.1', '11.5', '12', 'D.13', '13', '15', '16', '99', '22', '36'}
-audit = ['.hero .gist', '.plain', '#equivalence p', '#equivalence .note', '#robustness > p', '#interpretation', '#method > p', '#cperm']
+audit = ['.hero .gist', '.plain', '#equivalence p', '#equivalence .note', '#robustness > p', '#interpretation', '#method > p', '#cperm', '#explore']
 for sel in audit:
     for token in re.findall(r'\d+(?:[.,]\d+)*', text_of(sel)):
         assert token.replace(',', '') in rendered28 or token in structural28, f'untraced number in {sel}: {token}'
