@@ -168,6 +168,23 @@ vs1 = [r for r in gat_ic if r['comparison'] == 'GAT_M1-ridge_M1']
 eq('GAT ΔIC vs Ridge M0 negative', sum(float(r['delta_ic']) < 0 for r in vs0), 8)
 eq('GAT ΔIC vs Ridge M1 positive', f'{sum(float(r["delta_ic"]) > 0 for r in vs1)}/{len(vs1)}', '3/8')
 eq('GAT ΔIC min p', f'{min(float(r["p_one_sided_gt0"]) for r in gat_ic):.3f}', '0.435')
+gat16 = [float(r['r2_oos']) for r in csvrows('results/13_gat/summary.csv')]
+eq('GAT R² cells negative, both references', f'{sum(x < 0 for x in gat16)}/{len(gat16)}', '16/16')
+sdr = [float(r['sd_ratio_pooled']) for r in csvrows('results/16_decompose/gat_vs_manual.csv') if r['reference_model'] == 'ridge']
+assert len(sdr) == 16
+eq('GAT pooled sd ratio range', f'{min(sdr):.1f}–{max(sdr):.1f}', '1.6–4.7')
+assert '1.6 至 4.7 倍' in read('docs/paper/paper.md') and '4 頭注意力、隱藏維度 64' in read('docs/paper/paper.md') and '975 檔' in read('docs/paper/paper.md')
+for lit in ['1.6–4.7 倍', '4 個注意力頭', '隱藏維度（每檔股票內部表示的長度）64', '975 檔股票', '對 Ridge M0 平均 −7.9%', '最小單尾 p 為 0.435']:
+    assert lit in text_of('#gat'), lit
+checks.append({'label': 'GAT architecture (paper §7.4: heads, hidden size, nodes, year)', 'value': '4 64 975 2018'})
+gat_rows = soup.select('#gat-table tbody tr')
+assert len(gat_rows) == 4
+for tr, (ind, ref) in zip(gat_rows, [('半導體業','M0'),('半導體業','M1'),('金融保險業','M0'),('金融保險業','M1')]):
+    want = [f"{float(r['delta_ic']):+.3f}".replace('-', '−') for h in ('5','20','30','60') for r in gat_ic
+            if r['industry'] == ind and r['horizon'] == h and r['comparison'] == f'GAT_M1-ridge_{ref}']
+    eq(f'GAT ΔIC row {ind}/{ref}', [td.get_text() for td in tr.select('td')[1:]], want)
+pos = [td.get_text() for td in soup.select('#gat-table td') if td.get_text().startswith('+')]
+eq('GAT positive cells shown', len(pos), 3)
 
 fm = csvrows('results/18_fama_macbeth/fama_macbeth.csv')
 fm_p = [float(r['nw_p']) for r in fm if r['model'] == 'ridge' and r['variant'] == 'M1_incremental']
@@ -493,7 +510,7 @@ audit = ['.hero .gist', '.plain', '#equivalence p', '#equivalence .note', '#robu
 for sel in audit:
     for token in re.findall(r'\d+(?:[.,]\d+)*', text_of(sel)):
         assert token.replace(',', '') in rendered28 or token in structural28, f'untraced number in {sel}: {token}'
-for token in re.findall(r'\d+(?:[.,]\d+)*', p4row + ' ' + text_of('#gat-text')):
+for token in re.findall(r'\d+(?:[.,]\d+)*', p4row + ' ' + ' '.join(text_of(s) for s in ('#gat .plain', '#gat-why', '#gat-arch', '#gat-text', '#gat-limits'))):
     assert token.replace(',', '') in rendered28 or token in structural28, token
 checks.append({'label': 'issue-28 number audit', 'value': 'every numeric token in new or rewritten blocks sourced or structural'})
 
@@ -503,7 +520,7 @@ for li in soup.select('.references li'):
     text = li.get_text(' ', strip=True)
     expected = next(line for line in paper.splitlines() if line.startswith(text.split(' (')[0]))
     eq('APA reference', text, expected.replace('*', ''))
-for name, year in [('Amihud',2002),('Cohen',2008),('Ying',2024),('Frazzini',2016),('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
+for name, year in [('Veličković',2018),('Amihud',2002),('Cohen',2008),('Ying',2024),('Frazzini',2016),('Anton',2021),('Cremers',2009),('Greenwood',2008),('Grinold',1989),('Jiang',2014),('Pavlova',2023),('Anton',2014),('Benjamini',1995),('Brown',2021),('Campbell',2008),('Clark',2007),('Escanciano',2026),('Fama',1973),('Gu',2020)]:
     assert re.search(rf'{name}.{{0,45}}{year}', visible)
     assert any(name in li.get_text() for li in soup.select('.references li'))
 assert '© 2026 黃晨瑋、鐘珮甄、黃苡晴' in visible
