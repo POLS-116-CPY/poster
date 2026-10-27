@@ -13,11 +13,12 @@
     "results/11_matching/quarter_census.csv": "89781cc86cc5152a4276eb31d624e7f4dc71b05846dec20873bd4ade5c842b73",
     "results/13_gat/summary.csv": "06718c474ca08f346c89ca30f04cb74f3f9ee418fc009c3ad60c2b59c45bdcec",
     "docs/findings/25-gat-delta-ic.csv": "73eb3b6bb591eb2b0bb70c17cea6b7f011e46e9e0fcea26226f33f9da0150d2c",
+    "results/16_decompose/gat_vs_manual.csv": "1ef4ccdf07d3e99728f6de7445821fc877cad63bc3499fa5e77a2bfd86ed6282",
+    "docs/paper/paper.md": "cfd0e8f79e5e08e2d4c8125dc514e1f9713fe3e19cbc525d1bf65e493307fc11",
     "results/18_fama_macbeth/fama_macbeth.csv": "19a0dea419c2c13d634127650675a645a97a243259cc0219e67a5203126941e6",
     "results/14_economic/cost_matrix.csv": "112c67197aa9d93edf268322343db1bf5fd9692d9fff5d093a8c9ebe96cb4848",
     "docs/findings/20-economic-h60-quarterly.json": "9f6608c4acba87c588fa28bd3aba34f29e56217350195a2f7150e15b25ce12ba",
     "docs/findings/22-poster-debiasing-example.json": "faed30df8f83c82558a5142345af91883395cbc5be07c3164374c6d0b7ea924b",
-    "docs/paper/paper.md": "cfd0e8f79e5e08e2d4c8125dc514e1f9713fe3e19cbc525d1bf65e493307fc11",
     "docs/findings/24-delta-ic-equivalence.csv": "b9af05cb7864ee6a9d662b32da8aa71597af8b394d885ea74e448bafd8320e5b",
     "docs/findings/24-delta-ic-equivalence.json": "8ec12263c4cf21d86a6dc2987e12710d0cffa321f92e316c0a181fa11985c0dd",
     "docs/findings/25-delta-ic-power-summary.csv": "fd62536b053eacbcabe89711c0c250bc135c2778108c54121be7b716d10a5c27",
@@ -29,7 +30,7 @@
     "docs/findings/25-p4-overlap-placebo.csv": "6797d41af1edb4f79226ea0ed02e0fb5ff72b192c94f95fcefa708aa4ddbad2e",
     "docs/findings/28-review-recompute.json": "72c3f54540533b15d886a584bc90eb481d6937fe349b5691fac5f199a24babf3"
   },
-  "check_count": 619,
+  "check_count": 628,
   "checks": [
     {
       "label": "ΔIC/market/半導體業/5",
@@ -950,6 +951,58 @@
     {
       "label": "GAT ΔIC min p",
       "value": "0.435"
+    },
+    {
+      "label": "GAT R² cells negative, both references",
+      "value": "16/16"
+    },
+    {
+      "label": "GAT pooled sd ratio range",
+      "value": "1.6–4.7"
+    },
+    {
+      "label": "GAT architecture (paper §7.4: heads, hidden size, nodes, year)",
+      "value": "4 64 975 2018"
+    },
+    {
+      "label": "GAT ΔIC row 半導體業/M0",
+      "value": [
+        "−0.050",
+        "−0.030",
+        "−0.030",
+        "−0.040"
+      ]
+    },
+    {
+      "label": "GAT ΔIC row 半導體業/M1",
+      "value": [
+        "−0.035",
+        "+0.001",
+        "+0.004",
+        "+0.002"
+      ]
+    },
+    {
+      "label": "GAT ΔIC row 金融保險業/M0",
+      "value": [
+        "−0.063",
+        "−0.120",
+        "−0.167",
+        "−0.132"
+      ]
+    },
+    {
+      "label": "GAT ΔIC row 金融保險業/M1",
+      "value": [
+        "−0.057",
+        "−0.110",
+        "−0.151",
+        "−0.113"
+      ]
+    },
+    {
+      "label": "GAT positive cells shown",
+      "value": 3
     },
     {
       "label": "FM p range",
@@ -2554,6 +2607,10 @@
     {
       "label": "APA reference",
       "value": "Pavlova, A., & Sikorskaya, T. (2023). Benchmarking intensity. Review of Financial Studies, 36(3), 859–903. https://doi.org/10.1093/rfs/hhac055"
+    },
+    {
+      "label": "APA reference",
+      "value": "Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., & Bengio, Y. (2018). Graph attention networks. International Conference on Learning Representations."
     },
     {
       "label": "APA reference",

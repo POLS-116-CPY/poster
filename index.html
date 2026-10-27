@@ -617,11 +617,27 @@
 </tbody>
 </table>
 </div><div class="note">每列為兩產業 × 四模型 × 三分位／五分位排序。H=60 季度變體使用每季第一個預測日；季距可能短於持有期，報酬窗口可重疊。夏普差異未經正式檢定。</div>
+<div id="gat">
+<h3>GAT：讓模型自己學怎麼看鄰居，也沒有勝過人工特徵</h3>
+<p class="plain"><b>白話</b>前面的模型吃的是我們設計好的網路特徵。也許網路裡有資訊，只是我們的特徵抓不到？所以再試一種能自己決定「哪個鄰居比較重要」的模型。結果它排得更差，沒有找到人工特徵漏掉的東西。</p>
+<p id="gat-why"><b>為什麼要做。</b>Ridge 與 XGBoost 用的網路特徵（例如鄰居的報酬平均）是研究者事先決定的算法。若網路其實有資訊、只是人工特徵抓不到，換成能自己學彙總方式的模型應該看得出來。圖注意力網路（Graph Attention Network, GAT；Veličković et al., 2018；直接在股票網路上運算的神經網路）以注意力機制（自動學出每個鄰居該占多少權重）取代人工指定的彙總方式，並可經由兩層傳遞看到鄰居的鄰居。GAT 是選用延伸，不參與任何命題的裁定。</p>
+<p id="gat-arch"><b>怎麼做。</b>兩個分支同時運作：一支在 ETF 共同持股網路上，一支在價格相關網路上；每支兩層、4 個注意力頭（並行學幾組不同的鄰居權重）、隱藏維度（每檔股票內部表示的長度）64。節點是兩張網路涵蓋的 975 檔股票，只有目標產業的股票計入損失，其餘提供鄰居脈絡。</p>
+<div aria-label="GAT 相對 Ridge 的排序差異" class="table-scroll" role="region" tabindex="0">
+<table class="nt" id="gat-table">
+<caption>GAT 的排序能力比 Ridge 參照差多少（ΔIC；負值＝GAT 排得較差）</caption>
+<thead><tr><th scope="col">產業與參照</th><th scope="col">5 日</th><th scope="col">20 日</th><th scope="col">30 日</th><th scope="col">60 日</th></tr></thead>
+<tbody>
+<tr><td>半導體，對 Ridge M0</td><td class="red">−0.050</td><td class="red">−0.030</td><td class="red">−0.030</td><td class="red">−0.040</td></tr>
+<tr><td>半導體，對 Ridge M1</td><td class="red">−0.035</td><td>+0.001</td><td>+0.004</td><td>+0.002</td></tr>
+<tr><td>金融保險，對 Ridge M0</td><td class="red">−0.063</td><td class="red">−0.120</td><td class="red">−0.167</td><td class="red">−0.132</td></tr>
+<tr><td>金融保險，對 Ridge M1</td><td class="red">−0.057</td><td class="red">−0.110</td><td class="red">−0.151</td><td class="red">−0.113</td></tr>
+</tbody></table></div>
+<p id="gat-text"><b>怎麼讀。</b>相對沒有網路的 Ridge M0，GAT 八格都排得較差，金融保險尤其明顯；相對 Ridge M1，只有半導體 20、30、60 日三格略好，最小單尾 p 為 0.435，看不出優勢。平方誤差上，GAT 對兩種 Ridge 參照共 16 格的合併 R² 全為負（對 Ridge M0 平均 −7.9%）；主因是尺度失準：GAT 預測的離散程度是 Ridge 的 1.6–4.7 倍，誤差被放大。</p>
+<p id="gat-limits"><b>限制。</b>這是 GAT 與人工特徵模型之間的比較，不是 GAT 自己有網路與無網路的消融（只拿掉網路、其餘不變的對照）：架構、特徵與訓練程序同時不同，差異不能歸因於注意力機制本身。實作另有三項已知未修的缺陷（當日不存在的股票以中位數填補、訓練與驗證之間未清除重疊、節點集與計畫書所述不同），影響未經量測。因此只能說：已測的這個實作沒有勝過人工特徵。</p>
+</div>
 <details>
-<summary>全成本網格、GAT 與 Fama–MacBeth</summary>
+<summary>全成本網格與 Fama–MacBeth</summary>
 <p>全成本網格各 1,536 格中，M1 淨夏普為正 564 格、最高 0.730；M0 為正 957 格、最高 0.853。這是成本情境敏感度描述，不是獨立檢定。</p>
-<h3>GAT：未優於 Ridge 參照</h3>
-<p id="gat-text">圖注意力網路（Graph Attention Network, GAT）學習鄰居的彙總權重。已測實作對 Ridge M0 的合併 R² 八格全負（−2.3% 至 −11.9%，平均 −7.9%）。排序上，GAT 相對 Ridge M0 的 ΔIC 八格皆負；相對 Ridge M1 有 3/8 為正，最小單尾 p 為 0.435。這是整條管線的比較，並非同一 GAT 的有邊／無邊消融。</p>
 <h3>Fama–MacBeth：控制 M0 後，M1 的預測沒有額外解釋力</h3>
 <p>Fama–MacBeth（Fama &amp; MacBeth, 1973；每天對所有股票做一次迴歸，再把係數取平均）逐日橫斷面迴歸同時放入 M0 與 M1 的預測；Ridge 的 M1 增量係數 γ₁（控制 M0 後，M1 預測多出的解釋力）八格皆不顯著（p=0.26–0.90），不作已定價風險因子（市場會給予補償的風險來源）的識別。</p></details>
 </section>
@@ -819,6 +835,7 @@
 <li>Gu, S., Kelly, B., &amp; Xiu, D. (2020). Empirical asset pricing via machine learning. <em>Review of Financial Studies</em>, <em>33</em>(5), 2223–2273. <a href="https://doi.org/10.1093/rfs/hhaa009">https://doi.org/10.1093/rfs/hhaa009</a></li>
 <li>Jiang, H., Verbeek, M., &amp; Wang, Y. (2014). Information content when mutual funds deviate from benchmarks. <em>Management Science</em>, <em>60</em>(8), 2038–2053. <a href="https://doi.org/10.1287/mnsc.2013.1847">https://doi.org/10.1287/mnsc.2013.1847</a></li>
 <li>Pavlova, A., &amp; Sikorskaya, T. (2023). Benchmarking intensity. <em>Review of Financial Studies</em>, <em>36</em>(3), 859–903. <a href="https://doi.org/10.1093/rfs/hhac055">https://doi.org/10.1093/rfs/hhac055</a></li>
+<li>Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., &amp; Bengio, Y. (2018). Graph attention networks. <em>International Conference on Learning Representations</em>.</li>
 <li>Ying, J. (2024). Gradual information diffusion across commonly owned firms. <em>Journal of Financial Economics</em>, <em>156</em>, Article 103852. <a href="https://doi.org/10.1016/j.jfineco.2024.103852">https://doi.org/10.1016/j.jfineco.2024.103852</a></li>
 </ul></details>
 </section>
