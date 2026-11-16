@@ -23,12 +23,12 @@
       {
         "col": 2,
         "height_mm": 865,
-        "slack_mm": 39.2
+        "slack_mm": 8.8
       },
       {
         "col": 3,
         "height_mm": 865,
-        "slack_mm": 81.8
+        "slack_mm": 4.8
       }
     ],
     "pageOverflow": 0,

@@ -8,7 +8,7 @@
 :root{color-scheme:light;--hero-bg:#1B2A4A;--hero-ink:#F4F2ED;--positive:#276B3E;--bg:#F4F2ED;--surface:#FFF;--ink:#1B2A4A;--ink-2:#414E62;--ink-3:#526075;--accent:#175FA8;--neg:#AF352D;--border:#B5BCC6;--grid:#E2DFD8;--vbg:#FDF6F3;--pbg:#F0F7ED}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#C0BEB9;--ink-3:#B0AEA9;--accent:#83BAFA;--neg:#FA9292;--border:#656570;--grid:#303036;--vbg:#2A1F1D;--pbg:#1D2A1D}}
 :root[data-theme="dark"]{color-scheme:dark;--positive:#87C99A;--bg:#111114;--surface:#1C1C20;--ink:#E8E6E2;--ink-2:#C0BEB9;--ink-3:#B0AEA9;--accent:#83BAFA;--neg:#FA9292;--border:#656570;--grid:#303036;--vbg:#2A1F1D;--pbg:#1D2A1D}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}.poster{max-width:1440px;margin:auto;padding:20px 20px max(20px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}.hero{background:var(--hero-bg);color:var(--hero-ink);padding:30px 36px;border-radius:10px}.hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(25px,3vw,40px);line-height:1.3;text-wrap:balance}.subtitle{font-size:clamp(17px,2vw,23px);margin-top:8px}.hero .sub{font-size:15px;max-width:92ch;margin-top:14px}.hero .verdict{font-size:18px;font-weight:600;margin-top:14px}.tag{display:inline-block;background:#AF352D;color:#FFF;border-radius:4px;padding:2px 10px;margin-right:8px}.auth{font-size:13px;margin-top:12px}nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;display:flex;gap:4px 18px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:14px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--border)}nav::-webkit-scrollbar{display:none}.c{scroll-margin-top:52px}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.c{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}.wide{grid-column:1/-1}.c h2{font-family:'Noto Serif TC',serif;font-size:22px;line-height:1.4;margin-bottom:10px}.c h3{font-size:17px;line-height:1.45;margin:16px 0 8px}.c p{font-size:15px;margin-bottom:10px;color:var(--ink-2)}.c p:last-child{margin-bottom:0}.lead{color:var(--ink)!important}.note,.fig-caption{font-size:13px;color:var(--ink-3);line-height:1.65;margin-top:8px}.result-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.result-columns>div{min-width:0}#baseline-def td:first-child{white-space:nowrap}#precedent-table td:nth-child(3){min-width:7.5em}#precedent-table td:first-child{min-width:7em}.result-columns>div>h3:first-child{margin-top:0}.result{border-top:4px solid var(--accent)}.table-scroll,.chart-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;margin:10px 0}.chart-scroll svg{min-width:640px}svg{display:block;width:100%;height:auto}svg text{font-family:'Noto Sans TC',system-ui,sans-serif}table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:7px 6px;border-bottom:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}th{color:var(--ink);font-weight:600;border-bottom:2px solid var(--border)}.nt td,.nt th{text-align:right;white-space:nowrap}.nt td:first-child,.nt th:first-child,.st td,.st th{text-align:left}.st.features td:nth-child(2),.st.features th:nth-child(2){text-align:right}.red,.fail{color:var(--neg)}.na{color:var(--ink-3)}.verdicts th:first-child{width:8%}.verdicts td:nth-child(3){font-weight:600;min-width:80px}.key-row{background:var(--bg)}.nt .sep th{white-space:normal;font-weight:500;color:var(--ink-2);padding-top:12px}caption{text-align:left;color:var(--ink-2);font-size:13px;margin-bottom:6px}.hm{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:3px;font-size:13px;font-variant-numeric:tabular-nums;margin:12px 0}.hm .hd{text-align:center;color:var(--ink-2);padding:4px}.hm .rl{padding:6px;color:var(--ink-2)}.hm .cl{background:var(--grid);color:var(--ink);text-align:center;padding:6px;border-radius:3px}.lg{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin:8px 0}.sw{display:inline-block;width:14px;height:10px;margin-right:5px;background:var(--accent);border:2px solid var(--accent)}.sw.outline{background:transparent;border-color:var(--neg)}details{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}summary{cursor:pointer;color:var(--accent);font-size:15px;font-weight:500}details[open]>summary{margin-bottom:12px}.glossary{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:14px;color:var(--ink-2)}.glossary dt{font-weight:600;color:var(--ink)}.formula{padding:12px;background:var(--bg);overflow-x:auto;font-size:15px}.eq{font-family:'Times New Roman',serif;font-style:italic}.label{font-size:13px;color:var(--ink-2)}.mde tbody th{border-bottom:1px solid var(--grid);font-weight:500}.references{font-size:13px;list-style:none}.references li{margin:10px 0 10px 20px;text-indent:-20px;overflow-wrap:anywhere}.contribution{border-left:4px solid var(--positive)}.plain{font-size:15px;color:var(--ink)!important;border-left:3px solid var(--positive);padding:2px 0 2px 10px}.plain b{font-weight:600;margin-right:4px}.hero .gist{font-size:16px;line-height:1.7;max-width:92ch;margin-top:14px;padding:12px 16px;border-radius:6px;background:rgba(255,255,255,.08);border-left:3px solid #87C99A}.hero .gist b{display:block;font-size:13px;letter-spacing:.04em;margin-bottom:2px}.cands{font-size:15px;color:var(--ink-2);margin:0 0 10px 20px}.cands li{margin:4px 0}.cands b{color:var(--ink);font-weight:600}.explore{border:2px dashed var(--border)}.flag{border:1px dashed var(--neg);background:var(--vbg);border-radius:6px;padding:10px 14px;margin:0 0 12px;font-size:15px;color:var(--ink)}.flag b{color:var(--neg)}.tag-x{display:inline-block;border:1px solid var(--neg);color:var(--neg);border-radius:4px;padding:0 8px;margin-left:8px;font-size:14px;font-family:"Noto Sans TC",system-ui,sans-serif;font-weight:600;vertical-align:middle}#explore-table td{min-width:9em}#explore-table td:first-child{min-width:7em;font-weight:600;color:var(--ink)}#explore-table th[colspan]{background:var(--bg)}footer{text-align:center;color:var(--ink-3);font-size:13px;padding:14px 0;border-top:1px solid var(--border)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}.poster{max-width:1440px;margin:auto;padding:20px 20px max(20px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}.hero{background:var(--hero-bg);color:var(--hero-ink);padding:30px 36px;border-radius:10px}.hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(25px,3vw,40px);line-height:1.3;text-wrap:balance}.subtitle{font-size:clamp(17px,2vw,23px);margin-top:8px}.hero .sub{font-size:15px;max-width:92ch;margin-top:14px}.hero .verdict{font-size:18px;font-weight:600;margin-top:14px}.tag{display:inline-block;background:#AF352D;color:#FFF;border-radius:4px;padding:2px 10px;margin-right:8px}.auth{font-size:13px;margin-top:12px}nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;display:flex;gap:4px 18px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:14px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--border)}nav::-webkit-scrollbar{display:none}.c{scroll-margin-top:52px}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.c{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}.wide{grid-column:1/-1}.c h2{font-family:'Noto Serif TC',serif;font-size:22px;line-height:1.4;margin-bottom:10px}.c h3{font-size:17px;line-height:1.45;margin:16px 0 8px}.c p{font-size:15px;margin-bottom:10px;color:var(--ink-2)}.c p:last-child{margin-bottom:0}.lead{color:var(--ink)!important}.note,.fig-caption{font-size:13px;color:var(--ink-3);line-height:1.65;margin-top:8px}.result-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.result-columns>div{min-width:0}#baseline-def td:first-child{white-space:nowrap}#precedent-table td:nth-child(3){min-width:7.5em}#precedent-table td:first-child{min-width:7em}.result-columns>div>h3:first-child{margin-top:0}.result{border-top:4px solid var(--accent)}.table-scroll,.chart-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;margin:10px 0}.chart-scroll svg{min-width:640px}svg{display:block;width:100%;height:auto}svg text{font-family:'Noto Sans TC',system-ui,sans-serif}table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:7px 6px;border-bottom:1px solid var(--grid);vertical-align:top;color:var(--ink-2)}th{color:var(--ink);font-weight:600;border-bottom:2px solid var(--border)}.nt td,.nt th{text-align:right;white-space:nowrap}.nt td:first-child,.nt th:first-child,.st td,.st th{text-align:left}.st.features td:nth-child(2),.st.features th:nth-child(2){text-align:right}.red,.fail{color:var(--neg)}.na{color:var(--ink-3)}.verdicts th:first-child{width:8%}.verdicts td:nth-child(3){font-weight:600;min-width:80px}.key-row{background:var(--bg)}#delta-table td:first-child{white-space:normal;min-width:7em}.nt .sep th{white-space:normal;font-weight:500;color:var(--ink-2);padding-top:12px}caption{text-align:left;color:var(--ink-2);font-size:13px;margin-bottom:6px}.hm{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:3px;font-size:13px;font-variant-numeric:tabular-nums;margin:12px 0}.hm .hd{text-align:center;color:var(--ink-2);padding:4px}.hm .rl{padding:6px;color:var(--ink-2)}.hm .cl{background:var(--grid);color:var(--ink);text-align:center;padding:6px;border-radius:3px}.lg{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin:8px 0}.sw{display:inline-block;width:14px;height:10px;margin-right:5px;background:var(--accent);border:2px solid var(--accent)}.sw.outline{background:transparent;border-color:var(--neg)}details{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}summary{cursor:pointer;color:var(--accent);font-size:15px;font-weight:500}details[open]>summary{margin-bottom:12px}.glossary{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:14px;color:var(--ink-2)}.glossary dt{font-weight:600;color:var(--ink)}.formula{padding:12px;background:var(--bg);overflow-x:auto;font-size:15px}.eq{font-family:'Times New Roman',serif;font-style:italic}.label{font-size:13px;color:var(--ink-2)}.mde tbody th{border-bottom:1px solid var(--grid);font-weight:500}.references{font-size:13px;list-style:none}.references li{margin:10px 0 10px 20px;text-indent:-20px;overflow-wrap:anywhere}.contribution{border-left:4px solid var(--positive)}.plain{font-size:15px;color:var(--ink)!important;border-left:3px solid var(--positive);padding:2px 0 2px 10px}.plain b{font-weight:600;margin-right:4px}.hero .gist{font-size:16px;line-height:1.7;max-width:92ch;margin-top:14px;padding:12px 16px;border-radius:6px;background:rgba(255,255,255,.08);border-left:3px solid #87C99A}.hero .gist b{display:block;font-size:13px;letter-spacing:.04em;margin-bottom:2px}.cands{font-size:15px;color:var(--ink-2);margin:0 0 10px 20px}.cands li{margin:4px 0}.cands b{color:var(--ink);font-weight:600}.explore{border:2px dashed var(--border)}.flag{border:1px dashed var(--neg);background:var(--vbg);border-radius:6px;padding:10px 14px;margin:0 0 12px;font-size:15px;color:var(--ink)}.flag b{color:var(--neg)}.tag-x{display:inline-block;border:1px solid var(--neg);color:var(--neg);border-radius:4px;padding:0 8px;margin-left:8px;font-size:14px;font-family:"Noto Sans TC",system-ui,sans-serif;font-weight:600;vertical-align:middle}#explore-table td{min-width:9em}#explore-table td:first-child{min-width:7em;font-weight:600;color:var(--ink)}#explore-table th[colspan]{background:var(--bg)}footer{text-align:center;color:var(--ink-3);font-size:13px;padding:14px 0;border-top:1px solid var(--border)}
 @media(max-width:1000px){.cols,.result-columns{grid-template-columns:1fr}.wide{grid-column:auto}.result-columns{gap:12px}}
 @media(max-width:600px){.poster{padding:12px;gap:12px}.hero{padding:22px 18px}.hero .verdict{font-size:16px}.c{padding:18px 14px}.c h2{font-size:21px}.glossary{grid-template-columns:1fr;gap:3px}.glossary dd{margin-bottom:10px}.table-scroll table{min-width:450px}.hm{font-size:12px}.hm .rl{max-width:108px}nav{gap:8px 16px}#explore-table,#explore-table tbody,#explore-table tr,#explore-table td,#explore-table th{display:block;min-width:0!important;width:auto}#explore-table thead{display:none}#explore .table-scroll:after{display:none}#explore-table tr{padding:8px 0;border-bottom:1px solid var(--border)}#explore-table td{border:0;padding:3px 0}#explore-table td:nth-child(n+2):before{display:block;font-size:12px;color:var(--ink-3)}#explore-table td:nth-child(2):before{content:'意思'}#explore-table td:nth-child(3):before{content:'目前資料中的跡象'}#explore-table td:nth-child(4):before{content:'為何還不能下結論'}#explore-table td:nth-child(5):before{content:'可以怎麼檢驗'}.chart-scroll:after,.table-scroll:after{content:'可在此區域橫向捲動';display:block;color:var(--ink-3);font-size:12px;position:sticky;left:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -72,7 +72,7 @@
 <header class="hero">
 <h1>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？</h1>
 <div class="subtitle">臺灣上市半導體與金融保險業的樣本外檢驗</div>
-<div class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回（投資人向發行商買進或賣回 ETF，發行商隨之買賣成分股）帶來的買賣。把這種連結與股價連動做成網路、加進預測模型後，預測哪些股票之後漲得比較多的排序反而變差；把網路隨機亂配，真實網路也沒有比較好。</div>
+<div class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回（投資人向發行商買進或賣回 ETF，發行商隨之買賣成分股）帶來的買賣。把這種連結與股價連動做成網路、加進事前指定的 Ridge 模型後，預測哪些股票之後漲得比較多的排序反而變差；真實網路也沒有明顯勝過隨機亂配的網路。</div>
 <p class="sub">比較無網路基準 M0（只用個股與市場資訊的預測模型）與完整模型 M1（M0 再加上兩軌網路特徵：ETF 共同持股，以及因子殘差價格共動，即扣除大盤等共同因子後兩檔股票報酬仍一起變動的程度）。IC（資訊係數）是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均，越高代表排得越準；增量排序資訊 ΔIC = IC(M1) − IC(M0)。</p>
 <p class="verdict"><span class="tag">主要發現：未建立增量</span>事前指定的裁定模型（用來正式判定命題的模型）Ridge（加上懲罰項以免過度擬合的線性迴歸），雙軌 ΔIC 在兩產業 × 四期距（預測 5、20、30、60 個交易日後的報酬）皆為負，三種去偏基準（扣除基準持股的方式，見第一節）結果相同。</p>
 <p class="sub">ΔIC 為事後補充判準（看到結果後才加入的判斷標準）。依事前規則（研究計畫在看結果前訂好的規則），五項命題 P1–P5 中，P1 正式為無法裁定（實質判讀：不支持），P2–P4 不支持，P5 不予裁定；事後分析皆為旁證（輔助證據，不改變正式裁定）。</p>
@@ -87,6 +87,7 @@
 <p><b>為什麼要去偏。</b>市值加權的指數股票型基金（ETF）都大量持有台積電等大型股，所以只看「誰被同一批 ETF 持有」，大型股會和所有股票相連，這只反映規模。去偏是把每檔 ETF 對某股的持股比重減去一個基準比重，剩下的是這檔 ETF 相對基準<b>多配或少配</b>的部分。</p>
 <p><b>多配少配從哪來。</b>來自各 ETF 的編製規則：選股範圍（0050 只含大型股）、選股與加權方式（0056 依預估殖利率）、權重上限。規則是人訂的，不同規則造成不同的偏離；但規則事先訂好、一體適用，通常不是針對個別公司當下前景的判斷。樣本自 2025Q2 起另含少數主動式 ETF（由經理人選股、不追蹤固定指數），這部分則包含經理人的判斷。</p>
 <p><b>想抓的是什麼。</b>兩檔股票若在多檔 ETF 中一起被多配、或一起被少配，就是被同一批規則歸為同一類；資金流入或流出這些 ETF 時，它們會被一起買賣（Anton &amp; Polk, 2014; Brown et al., 2021）。這種連結可能透過兩條方向相反的路徑影響之後的報酬：一起被買高的股票之後一起回落（資金壓力反轉：非基本面的買盤推高價格後，價格回到原位），或一檔股票的消息慢慢反映到同類股票（資訊擴散：投資人對相連股票的消息反應較慢，報酬因此延續）。本研究以軌道 A（ETF 去偏共同持股網路）衡量這種配置上的相似，另以軌道 B（價格共動網路）衡量移除共同因子（大盤、規模、價值等多數股票共同承受的報酬來源）後的股價連動，檢驗兩者能否改善報酬排序。</p>
+<p><b>為什麼有兩個產業。</b>半導體是主場域，金融保險業是比較產業：子問題之一是網路帶來的改善是否因產業而不同（P3）。選這兩個產業依據的是供應鏈結構的差異，不表示金融業沒有 ETF 資金帶動的買賣。</p>
 </div><div>
 <h3>三種去偏基準：減去什麼、留下什麼</h3>
 <div aria-label="三種去偏基準的定義" class="table-scroll" role="region" tabindex="0">
@@ -140,7 +141,7 @@
 <text fill="var(--ink)" font-size="12" text-anchor="middle" x="175" y="189">聯電</text>
 <text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="258">聯詠–瑞昱 +0.999</text>
 <text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="277">聯發科–聯電 +0.747</text>
-<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="296">台積電–聯發科 +0.470，無邊</text>
+<text class="cos-note" fill="var(--ink-2)" font-size="12" text-anchor="start" x="17" y="296">台積電–聯發科 +0.470，未繪</text>
 <rect fill="var(--bg)" height="300" rx="6" stroke="var(--border)" width="210" x="225" y="5"></rect>
 <text fill="var(--ink)" font-size="14" text-anchor="middle" x="330" y="31">產業基準（敏感度）</text>
 <text fill="var(--accent)" font-size="17" text-anchor="middle" x="330" y="56">B − c</text>
@@ -195,7 +196,7 @@
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="46" y="333">餘弦 ≥ +0.5（線寬隨絕對值）</text>
 <line stroke="var(--neg)" stroke-dasharray="5 4" stroke-width="3" x1="250" x2="280" y1="329" y2="329"></line>
 <text fill="var(--ink-2)" font-size="12" text-anchor="start" x="288" y="333">餘弦 ≤ −0.5；絕對值低於 0.5 不繪</text>
-<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="355">紅色虛線只用來顯示正負；預測用的軌道 A 只連餘弦 &gt; τ = 0.05 的正相似鄰居。</text>
+<text fill="var(--ink-2)" font-size="12" text-anchor="start" x="8" y="355">圖中只畫 |餘弦| ≥ 0.5；預測用的軌道 A 則連餘弦 &gt; τ = 0.05 的正相似鄰居，負相似不連。</text>
 </svg></div>
 <div class="note" id="debias-caption">教學示例，非估計結果。持股取 MOPS（公開資訊觀測站）2023Q4，市值權重 w<sup>mkt</sup> 與產業內市值比 c 亦取 2023Q4；管線（本研究的自動化資料處理與建模流程）實際以兩季前公告的持股配對當季權重，此處為簡化。餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。a 以 ETF 持有、位於完整上市母體的半導體業股票加總。0050 追蹤臺灣50指數（大型股市值加權），0053 追蹤電子類指數（範圍不等於半導體），0056 追蹤臺灣高股息指數（殖利率規則選股加權），三者皆非主動管理。</div></details>
 <details>
@@ -253,7 +254,7 @@
 <section class="c wide" id="design">
 <h2>三、研究設計</h2>
 <div class="result-columns"><div>
-<p class="lead">以事前指定的 Ridge 迴歸裁定命題，並以 XGBoost（梯度提升決策樹，能捕捉非線性關係）提供非線性參照。</p>
+<p class="lead">以事前指定的 Ridge 迴歸裁定以預測為基礎的命題（P1、P2、P5），並以 XGBoost（梯度提升決策樹，能捕捉非線性關係）提供非線性參照。</p>
 <p class="plain"><b>白話</b>同一套模型做兩次預測，一次不給網路資訊（M0）、一次給（M1），比較誰把股票之後的漲跌高低排得更準。</p>
 <p>兩軌合計加入 24 個網路特徵；軌道 A 每檔股票保留相似度為正、最高的至多 K=30 檔作為鄰居（kNN），軌道 B 以過去 52 週的因子殘差相關挑選鄰居。模型每季重估，預測 H（期距）=5／20／30／60 個交易日的報酬，在 2018–2025 年評估。</p>
 <p>Clark–West（CW）檢定比較巢狀模型（M1 包含 M0 的全部特徵）的預測誤差；Benjamini–Hochberg（BH；Benjamini &amp; Hochberg, 1995）程序控制多重檢定的錯誤發現率（判為顯著的結果中實際為偽陽性的比例），每個模型各有兩產業 × 四期距的八格家族（一起做多重比較校正的一組檢定）。</p>
@@ -262,13 +263,13 @@
 <svg aria-label="Research design flowchart: the same model is fit without (M0) and with (M1) the two network tracks, and the two rankings of future returns are compared" role="img" style="width:100%;height:auto;margin:0 0 8px" viewbox="0 0 440 252">
 <defs><marker id="fa" markerheight="5" markerwidth="7" orient="auto" refx="7" refy="2.5"><polygon fill="var(--ink-3)" points="0,0 7,2.5 0,5"></polygon></marker></defs>
 <rect fill="var(--grid)" height="22" rx="4" stroke="var(--border)" stroke-width="1" width="300" x="70" y="2"></rect>
-<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="220" y="17">資料：ETF 季度持股、個股股價與財務、市場指數</text>
+<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="220" y="17">資料：ETF 季度持股、個股股價與成交、外資進出、市場指數</text>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="150" x2="95" y1="24" y2="40"></line>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="230" x2="256" y1="24" y2="40"></line>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="290" x2="374" y1="24" y2="40"></line>
 <rect fill="var(--surface)" height="34" rx="4" stroke="var(--ink-3)" stroke-width="1.2" width="170" x="10" y="40"></rect>
 <text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="95" y="54">個股與市場資訊</text>
-<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="95" y="67">過去報酬、波動、周轉率、大盤</text>
+<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="95" y="67">過去報酬、波動、周轉率、大盤等</text>
 <rect fill="none" height="34" rx="4" stroke="var(--accent)" stroke-width="1.5" width="112" x="200" y="40"></rect>
 <text fill="var(--accent)" font-size="9" font-weight="600" text-anchor="middle" x="256" y="54">軌道 A</text>
 <text fill="var(--accent)" font-size="9" text-anchor="middle" x="256" y="67">去偏 ETF 共同持股</text>
@@ -281,21 +282,21 @@
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="374" x2="345" y1="74" y2="96"></line>
 <rect fill="var(--grid)" height="34" rx="4" stroke="var(--border)" stroke-width="1" width="170" x="10" y="96"></rect>
 <text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="95" y="110">M0：無網路基準</text>
-<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="95" y="123">只用個股與市場資訊（20 個特徵）</text>
+<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="95" y="123">不含網路特徵（共 20 個）</text>
 <rect fill="var(--grid)" height="34" rx="4" stroke="var(--border)" stroke-width="1" width="230" x="200" y="96"></rect>
 <text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="315" y="110">M1：M0 ＋ 兩軌網路</text>
-<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="315" y="123">再加鄰居的近期報酬、網路位置等（約 42 個特徵）</text>
+<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="315" y="123">再加鄰居的近期報酬、網路位置等（合計約 42 個）</text>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="95" x2="95" y1="130" y2="150"></line>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="315" x2="315" y1="130" y2="150"></line>
 <rect fill="var(--grid)" height="22" rx="4" stroke="var(--border)" stroke-width="1" width="420" x="10" y="150"></rect>
-<text fill="var(--ink)" font-size="9" text-anchor="middle" x="220" y="165">兩者用同一模型：Ridge（事前指定的裁定模型）；XGBoost 為非線性參照</text>
+<text fill="var(--ink)" font-size="9" text-anchor="middle" x="220" y="165">M0 與 M1 用同一種模型比較：Ridge（事前指定的裁定模型）；XGBoost 為非線性參照</text>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="220" x2="220" y1="172" y2="186"></line>
 <rect fill="none" height="48" rx="4" stroke="var(--accent)" stroke-width="1.5" width="420" x="10" y="186"></rect>
-<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="220" y="200">每個預測日，兩者各排股票名次，與之後 5／20／30／60 個交易日的實際名次比對（IC）</text>
+<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="220" y="200">每個預測日，兩者各排股票名次，與之後 H 日累積報酬的實際名次比對，再取平均（IC）</text>
 <text fill="var(--ink)" font-size="9" text-anchor="middle" x="220" y="213">ΔIC = IC(M1) − IC(M0)；負值代表加入網路後排得較差</text>
-<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="220" y="226">命題 P1–P5 另依事前規則裁定</text>
+<text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="220" y="226">H＝5／20／30／60 個交易日；命題 P1–P5 另依事前規則裁定</text>
 <!-- Timeline annotation -->
-<text fill="var(--ink-3)" font-size="9" text-anchor="middle" x="220" y="247">訓練 2012–2017 ｜ 樣本外評估 2018–2025（~1,948 交易日）</text>
+<text fill="var(--ink-3)" font-size="9" text-anchor="middle" x="220" y="247">初始訓練 2012–2017，之後逐季擴張重訓 ｜ 樣本外評估 2018–2025（~1,948 交易日）</text>
 </svg>
 </div>
 </div></div>
@@ -328,31 +329,31 @@
 </section>
 <section class="c wide result" id="results">
 <h2>四、主要結果與命題裁定</h2>
-<p class="lead">雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八格全負，未能建立增量排序資訊。</p>
-<p class="plain"><b>白話</b>加入網路後，24 種組合的排序準確度全部略降；把股票與網路的對應隨機打亂再加入，也同樣略降，真實網路並沒有比亂配的好。</p>
+<p class="lead">Ridge 的雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八格全負，未能建立增量排序資訊。</p>
+<p class="plain"><b>白話</b>加入網路後，Ridge 在 24 種組合的排序準確度全部下降；把股票與網路的對應隨機打亂再加入，也同樣下降，真實網路沒有明顯勝過亂配的網路。</p>
 <div class="result-columns"><div>
 <h3>加入網路後，24 格的排序能力全部下降</h3>
 <div aria-label="可捲動的資料表" class="table-scroll" role="region" tabindex="0">
 <table class="nt" id="delta-table">
 <thead>
-<tr><th scope="col">產業 × 預測天數</th><th scope="col">市場 B − w<sup>mkt</sup></th><th scope="col">產業 B − c</th><th scope="col">配置 B − a·c</th></tr>
+<tr><th scope="col">產業 × 預測天數</th><th scope="col">M0 的 IC<br/>（各基準相同）</th><th scope="col">市場 B − w<sup>mkt</sup></th><th scope="col">產業 B − c</th><th scope="col">配置 B − a·c</th></tr>
 </thead>
 <tbody>
-<tr><td>半導體 5 日</td><td class="red">−0.0151</td><td class="red">−0.0160</td><td class="red">−0.0125</td></tr>
-<tr><td>半導體 20 日</td><td class="red">−0.0310</td><td class="red">−0.0285</td><td class="red">−0.0313</td></tr>
-<tr><td>半導體 30 日</td><td class="red">−0.0341</td><td class="red">−0.0301</td><td class="red">−0.0345</td></tr>
-<tr><td>半導體 60 日</td><td class="red">−0.0414</td><td class="red">−0.0309</td><td class="red">−0.0316</td></tr>
-<tr><td>金融 5 日</td><td class="red">−0.0068</td><td class="red">−0.0156</td><td class="red">−0.0130</td></tr>
-<tr><td>金融 20 日</td><td class="red">−0.0108</td><td class="red">−0.0269</td><td class="red">−0.0254</td></tr>
-<tr><td>金融 30 日</td><td class="red">−0.0162</td><td class="red">−0.0397</td><td class="red">−0.0315</td></tr>
-<tr><td>金融 60 日</td><td class="red">−0.0184</td><td class="red">−0.0499</td><td class="red">−0.0392</td></tr>
-<tr class="sep"><th colspan="4" scope="colgroup">以下兩列是檢定結果，不是 ΔIC：兩者都要接近 0，才算支持「網路有幫助」</th></tr>
-<tr class="key-row"><td>「網路有幫助」的單尾 p（只檢驗「變好」這一個方向；最小）</td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
-<tr class="key-row"><td>亂配網路不輸真實網路的比例（最小）</td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
+<tr><td>半導體 5 日</td><td>0.0590</td><td class="red">−0.0151</td><td class="red">−0.0160</td><td class="red">−0.0125</td></tr>
+<tr><td>半導體 20 日</td><td>0.0416</td><td class="red">−0.0310</td><td class="red">−0.0285</td><td class="red">−0.0313</td></tr>
+<tr><td>半導體 30 日</td><td>0.0483</td><td class="red">−0.0341</td><td class="red">−0.0301</td><td class="red">−0.0345</td></tr>
+<tr><td>半導體 60 日</td><td>0.0771</td><td class="red">−0.0414</td><td class="red">−0.0309</td><td class="red">−0.0316</td></tr>
+<tr><td>金融 5 日</td><td>0.0718</td><td class="red">−0.0068</td><td class="red">−0.0156</td><td class="red">−0.0130</td></tr>
+<tr><td>金融 20 日</td><td>0.1271</td><td class="red">−0.0108</td><td class="red">−0.0269</td><td class="red">−0.0254</td></tr>
+<tr><td>金融 30 日</td><td>0.1477</td><td class="red">−0.0162</td><td class="red">−0.0397</td><td class="red">−0.0315</td></tr>
+<tr><td>金融 60 日</td><td>0.1353</td><td class="red">−0.0184</td><td class="red">−0.0499</td><td class="red">−0.0392</td></tr>
+<tr class="sep"><th colspan="5" scope="colgroup">以下兩列是 p 值（各取八格中最小者），不是 ΔIC：要明顯小於 0.05，才算支持「網路有幫助」</th></tr>
+<tr class="key-row"><td>「網路有幫助」的單尾 p（只檢驗「變好」這一個方向）</td><td></td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
+<tr class="key-row"><td>排名 p：亂配網路不輸真實網路的比例（無條件排列）</td><td></td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
 </tbody>
 </table>
 </div><p><b>怎麼讀。</b>數值是 M1 與 M0 平均 IC 的差，負值代表加了網路反而排得較差。以市場基準為例，M0 的 IC 在半導體為 0.04–0.08、金融保險為 0.07–0.15；加入網路後，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
-<div class="note">p 值是「假如網路其實沒用，仍會看到至少這麼好結果」的機率。單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤：考慮相鄰日子資料相關的標準誤，落後期 H−1 表示納入前 H−1 天的相關）。下一列是 99 次把股票與網路隨機亂配後，表現不輸真實網路的比例：即使最好的一格，也有約 8% 的亂配網路不輸真實網路。亂配網路的 ΔIC 中位數本身也是負的，所以光是「全部為負」不足以否證（證明原先預期的效果不存在）；關鍵是真實網路沒有比亂配好。</div></div><div>
+<div class="note">p 值是「假如網路其實沒用，仍會看到至少這麼好結果」的機率。單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤：考慮相鄰日子資料相關的標準誤，落後期 H−1 表示納入前 H−1 天的相關）。下一列是 99 次把股票與網路隨機亂配後，表現不輸真實網路的比例：即使最好的一格，99 次亂配中也有 7 次不輸真實網路（排名 p 把真實網路本身也算進去）。亂配網路的 ΔIC 中位數本身也是負的，所以光是「全部為負」不足以否證（證明原先預期的效果不存在）；關鍵是真實網路沒有比亂配好。</div></div><div>
 <h3>事前設定的五項命題，沒有一項獲得支持</h3>
 <div aria-label="命題裁定表" class="table-scroll" role="region" tabindex="0">
 <table class="st verdicts" id="verdict-table">
@@ -360,9 +361,9 @@
 <tr><th>命題</th><th>內容</th><th>裁定</th><th>依據</th></tr>
 </thead>
 <tbody>
-<tr><td>P1</td><td>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>嚴格照事前規則，沒有任何期距可用來裁定，所以形式上無法裁定；放寬為只看 Ridge 時，H=5 加 H=20 或 H=30 可用，但仍未通過支持條件。兩種讀法都不支持網路有預測力。</td></tr>
+<tr><td>P1</td><td>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>P1 須至少兩個期距通過；H=60 事前判定檢定力不足，H=20 與 H=30 不得同時採計，執行階段又依安慰劑結果排除全部期距（此條為執行時的判讀，非事前規則），所以形式上無法裁定；放寬為只看 Ridge 時，H=5 加 H=20 或 H=30 可用，但仍未通過支持條件。兩種讀法都不支持網路有預測力。</td></tr>
 <tr><td>P2</td><td>去偏程序為必要</td><td class="fail">不支持</td><td>改用未去偏的原始持股或原始股價，預測沒有顯著變差：沒有證據顯示去偏是必要的。</td></tr>
-<tr><td>P3</td><td>半導體效果強於金融</td><td class="fail">不支持</td><td>半導體並沒有比金融更受益於網路（全樣本交互作用，即「網路效果是否因產業而不同」的檢定，p=0.17–0.75）；原定的配對比較因可配對樣本不足而無法執行，見第六節。</td></tr>
+<tr><td>P3</td><td>半導體效果強於金融</td><td class="fail">不支持</td><td>半導體並沒有比金融更受益於網路（全樣本交互作用，即「網路效果是否因產業而不同」的檢定，p=0.17–0.75）；原定的配對比較可配對的樣本太少，不作主要依據，見第六節。</td></tr>
 <tr><td>P4</td><td>ETF 重疊梯度</td><td class="fail">不支持</td><td>ETF 重疊越多，網路效果並沒有越強。F 檢定（檢驗一組係數是否同時為零）八格皆不顯著；而且這個檢定在網路無效時就會過度拒絕（理論上 5%，實際 22.4%–60.4%），改用安慰劑（把受測變數換成保留同樣結構的隨機數）校準後，排名 p（真實結果在安慰劑結果中的名次比例）為 0.45–0.85，仍無證據。方向條件僅半導體 H=60 成立。</td></tr>
 <tr><td>P5</td><td>差異來自價格軌道</td><td class="na">不予裁定</td><td>以 P3 成立為前提；P3 不成立，故不裁定。</td></tr>
 </tbody>
@@ -787,7 +788,7 @@
 <summary>指標定義、離散度匹配公式與實測範圍</summary>
 <dl class="glossary">
 <dt>合併 R²</dt><dd>R²<sub>OOS</sub>(M1:M0) = 1 − MSE(M1)／MSE(M0)，將所有股票在所有交易日的預測匯成一個數字。正值表示 M1 的平方誤差低於 M0。它混合了選股（同一天內的相對漲跌）與擇時（市場整體方向）。</dd>
-<dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），只看同一天內個股報酬偏差的平方誤差。保序的正向縮放可改變它而不改變排序。</dd>
+<dt>選股 R²</dt><dd>橫斷面 R²（R²<sub>CS</sub>），公式同合併 R²，但先把每天的平均報酬與平均預測都扣掉，只比較同一天內股票之間的相對誤差。保序的正向縮放可改變它而不改變排序。</dd>
 <dt>IC、ΔIC</dt><dd>IC 是每日預測與實現報酬的 Spearman 等級相關；ΔIC = IC(M1) − IC(M0) &gt; 0 才表示網路特徵帶來增量排序資訊。IC(M1) 本身為正不等於有增量。</dd>
 <dt>淨選股增益</dt><dd>R²_CS(M1) − R²_CS(φ×M0)，φ×M0 以獨立的橫斷面離散度比匹配 M1。此量描述尺度匹配後的差異，是事後診斷，不能據此作因果歸因。</dd>
 </dl>
@@ -814,7 +815,7 @@
 <section class="c wide" id="interpretation">
 <h2>十、如何解讀否證與效力邊界</h2>
 <p class="lead">結論限於已測市場、樣本、模型與訓練協定（模型怎麼訓練、何時重訓的整套規則）；現有診斷不足以判定是哪一種機制使預期效果未出現。</p>
-<p class="plain"><b>白話</b>ETF 的多配少配主要來自事先訂好的編製規則。被同一批 ETF 一起多配，比較像「被同一套規則歸為同一類」，不一定代表有人看好這幾家公司。</p>
+<p class="plain"><b>白話</b>在本研究測試的設定下，加入兩種網路沒有建立額外的排序優勢；這不代表所有設定都無效，原因也還不能確定。</p>
 <div class="result-columns"><div>
 <p>所有 ETF 都減去同一個全市場基準，因此市場相對權重混合了三類來源：成分母體（例如 0050 只含大型股、0053 限電子類）、選股與加權規則（例如 0056 依預估殖利率）、權重上限與追蹤執行。這些規則是人訂的，但多半事先訂好、一體適用，不是針對個別公司當下前景的判斷（樣本自 2025Q2 起另含少數主動式 ETF，是例外）。去偏後的連結因此較接近「被同一套規則歸為同一類」，而非「被同一群投資人看好」。可能的原因整理於第十一節；該節僅為探討，不是研究結論。</p>
 </div><div>
