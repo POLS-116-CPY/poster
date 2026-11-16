@@ -73,7 +73,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="qr-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" class="qr"><path class="qrline" stroke="#1b2a4a" d="M0 0.5h7m1 0h1m5 0h1m1 0h5m1 0h7m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m1 0h8m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m7 0h2m1 0h1m-20 1h1m1 0h2m1 0h3m2 0h4m3 0h2m3 0h1m2 0h1m1 0h2m-27 1h3m2 0h1m2 0h1m5 0h4m1 0h2m1 0h1m3 0h1m-27 1h1m3 0h2m2 0h1m3 0h1m1 0h2m3 0h2m1 0h1m1 0h2m-28 1h3m1 0h2m1 0h3m1 0h3m1 0h2m2 0h1m1 0h2m5 0h1m-29 1h2m2 0h4m1 0h1m5 0h3m1 0h3m1 0h1m1 0h2m-27 1h1m1 0h1m1 0h2m1 0h1m3 0h9m1 0h2m3 0h3m-27 1h1m3 0h2m1 0h2m3 0h1m3 0h2m2 0h1m3 0h3m-28 1h1m2 0h2m4 0h1m2 0h1m2 0h1m6 0h1m3 0h1m-28 1h1m1 0h1m3 0h5m4 0h1m2 0h1m4 0h3m1 0h1m-27 1h1m1 0h2m6 0h3m1 0h1m4 0h2m1 0h1m1 0h3m-28 1h1m1 0h3m1 0h3m3 0h1m2 0h1m1 0h2m1 0h2m1 0h1m2 0h1m-24 1h1m1 0h1m1 0h1m1 0h1m7 0h1m1 0h3m2 0h1m1 0h1m-26 1h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m1 0h8m-19 1h2m2 0h3m1 0h3m1 0h1m3 0h5m-29 1h7m1 0h1m1 0h4m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h4m3 0h1m4 0h1m3 0h2m-26 1h1m1 0h3m1 0h1m2 0h4m1 0h1m2 0h1m2 0h5m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m2 0h3m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h2m5 0h2m1 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h2m1 0h1m-28 1h7m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1"/></svg><p>完整網頁版<br/>含 GAT、經濟顯著性、<br/>前人作法與可能原因</p></div>
 <p class="verdict"><span class="tag">主要發現：未建立增量</span>加入兩軌網路後，事前指定的裁定模型 Ridge 的 ΔIC 在兩產業 × 四期距皆為負，三種去偏基準結果相同。</p>
 <p class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把這種連結與股價連動做成網路、加進事前指定的 Ridge 模型後，預測哪些股票之後漲得比較多的排序反而變差；真實網路也沒有明顯勝過隨機亂配的網路。</p>
-<p class="def">比較無網路基準 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上兩軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準；依事前規則，P1 正式為無法裁定（實質判讀：不支持），P2–P4 不支持，P5 不予裁定。</p>
+<p class="def">比較無網路基線 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上兩軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準；依事前規則，P1 正式為無法裁定（實質判讀：不支持），P2–P4 不支持，P5 不予裁定。</p>
 </header>
 
 <main class="cols">
@@ -205,7 +205,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="256" x2="290" y1="74" y2="96"></line>
 <line marker-end="url(#fa)" stroke="var(--ink-3)" stroke-width="1" x1="374" x2="345" y1="74" y2="96"></line>
 <rect fill="var(--grid)" height="34" rx="4" stroke="var(--border)" stroke-width="1" width="170" x="10" y="96"></rect>
-<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="95" y="110">M0：無網路基準</text>
+<text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="95" y="110">M0：無網路基線</text>
 <text fill="var(--ink-2)" font-size="9" text-anchor="middle" x="95" y="123">不含網路特徵（共 20 個）</text>
 <rect fill="var(--grid)" height="34" rx="4" stroke="var(--border)" stroke-width="1" width="230" x="200" y="96"></rect>
 <text fill="var(--ink)" font-size="9" font-weight="600" text-anchor="middle" x="315" y="110">M1：M0 ＋ 兩軌網路</text>
@@ -510,7 +510,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <dt>排名 p</dt><dd>99 次亂配網路中表現不輸真實網路的比例（含真實網路本身）。</dd>
 <dt>無法裁定</dt><dd>事前規則下沒有可用的期距組合；「不予裁定」則是前提命題不成立，所以不進行。</dd>
 <dt>等效界限</dt><dd>選定一個「有意義的改善」幅度，看資料能否排除達到該幅度的改善。</dd>
-<dt>三種「基準」</dt><dd>去偏用的持股基準（市場／產業／配置）、預測的比較模型 M0、等效界限的改善門檻，各自是不同比較的參照點。</dd>
+<dt>基準與基線</dt><dd>「基準」只指去偏時減去的持股基準（市場／產業／配置）；「基線」指預測的比較模型 M0，它不含網路，不受去偏影響。</dd>
 </dl>
 </section>
 
