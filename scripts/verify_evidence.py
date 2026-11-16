@@ -462,6 +462,9 @@ for lit in ['僅探討，非研究結論', '0/8 為正', '2022–2025', '22–36
 eq('explore rows', len(soup.select('#explore-table tbody td:first-child')), 8)
 checks.append({'label': 'exploratory reasons block: signs traced to paper ch.11–13', 'value': '0/8 2022 2025; cites 2014 2024; paper sections 11 11.2 12.2 13.4 13.5'})
 checks.append({'label': 'cross-section size', 'value': '22–36 (paper ch. 12–13)'})
+for lit in ['D.8 逐點滾動 CW 診斷（Ridge，240 日窗口）', '逐點門檻 1.645', '擴張前期（2018–2019']:
+    assert lit in paper, lit
+checks.append({'label': 'rolling CW diagnostic (paper D.8, §4)', 'value': '240-day window; t > 1.645; 2018–2019'})
 assert '24 種組合' in text_of('#results .plain') and len(inference['perm_rank']) == 24
 checks.append({'label': 'plain-language 24 combinations', 'value': '3 baselines × 2 industries × 4 horizons'})
 assert '99 次' in text_of('#placebo .plain') and all(r['n_draws'] == 99 for r in inference['perm_rank'])
@@ -555,6 +558,18 @@ assert 'ETF 重疊梯度' in soup.select_one('#verdict-table').get_text()
 for literal in ['74.7%', '15.2%']:
     assert literal in paper and literal in visible
 checks.append({'label':'gate pass rates', 'value':'paper §9.9: 74/99, 15/99; units are draws, not cells'})
+# Definitions added for first-time readers (#comprehension audit); each number is the paper's or the code's.
+for lit in ['| M0-Char 閘門 | 1/4（掃描設定）', '| 四基線閘門（U21） | **0/4**（掃描設定）', '過去 60 日平均每日成交周轉高於 TWSE 第 10 百分位',
+            '$\\rho$ 取 0、0.02、0.03、0.05、0.075、0.10，每個（格、$\\rho$）抽 100 次，共 4,800 次重訓']:
+    assert lit in paper, lit
+# Round trip = two commission sides + 0.3% sell-side tax: retail 2 × 0.1425% + 0.3% = 0.585%.
+cm = csvrows('results/14_economic/cost_matrix.csv')
+eq('retail round-trip cost', sorted({round(float(r['round_trip_cost']), 6) for r in cm if r['cost_scenario'] == 'retail'}), [0.00585])
+eq('base round-trip cost', sorted({round(float(r['round_trip_cost']), 6) for r in cm if r['cost_scenario'] == 'base'}), [0.0042])
+eq('highest impact lambda', max(float(r['lambda_mi']) for r in cm), 0.003)
+for lit in ['1/4、四基線 0/4', '第 10 百分位', '六種注入強度 × 100 次', '單邊 0.1425%，另含賣方證交稅 0.3%', '單邊約 30 bp']:
+    assert lit in visible, lit
+checks.append({'label': 'reader definitions', 'value': 'gates 1/4 0/4; inclusion 60 days, 10th pct; injection 8 × 6 × 100 = 4,800; costs 0.1425% 0.3% 30 bp (s14_economic.py)'})
 
 research_sha = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
 manifest = {'research_commit': research_sha, 'scope':'Aggregate export consistency; no model rerun, raw TEJ access, or provenance certification',
