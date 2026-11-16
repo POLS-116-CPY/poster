@@ -408,6 +408,11 @@ eq('self-mapping unconditional', f'{fp["unconditional"][0]:.1%}', '3.6%')
 eq('self-mapping stratified', f'{fp["size_stratified"][0]:.1%}', '10.8%')
 for v in ['0.09', '0.08', '0.19', '3.6%', '10.8%', '24 格']:
     assert v in text_of('#placebo > p'), v
+# XGBoost is not adjudicating, but its smaller uncorrected ranks are disclosed; the per-cell range is the paper's (table D-5 note).
+eq('XGBoost ΔIC rank min', f'{min(cp["ranks"][b][n]["xgboost"]["min_p_rank_delta_ic"] for b in ["market", "sector", "allocation"] for n in ["unconditional", "size_stratified"]):.2f}', '0.02')
+assert '非裁定的 XGBoost 在半導體業 H=20／30 反覆出現 0.02–0.10 的排名 $p$' in paper
+assert '0.02–0.10' in text_of('#placebo > p')
+checks.append({'label': 'XGBoost ΔIC rank range, semiconductor H=20/30 (paper §9.5)', 'value': '0.02–0.10'})
 
 dv = csvrows('docs/findings/25-design-variants-delta-ic.csv')
 var = [r for r in dv if r['variant'] != 'base_ctrl']
@@ -515,7 +520,7 @@ assert all(r['source'] == 'market' and r['industry'] == '金融保險業' for r 
 eq('price-track-only positive cells', sum(r['delta_ic'] > 0 for r in only_price), 0)
 pm = [r['perm_median'] for r in inference['perm_rank']]
 eq('permutation ΔIC median range', f'{min(pm):.3f} 至 {max(pm):.3f}'.replace('-', '−'), '−0.034 至 −0.008')
-for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 格中只有市場基準的金融四格']:
+for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 格中只有市場基準的金融保險四格']:
     assert lit in ftext, lit
 for name, year in [('Amihud', 2002), ('Cohen', 2008), ('Ying', 2024)]:
     assert f'{name}' in ftext and str(year) in ftext
