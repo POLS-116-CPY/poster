@@ -57,7 +57,7 @@ def near(label, actual, expected, tolerance=1e-6):
 
 def cells(id):
     return [[c.get_text(' ', strip=True) for c in tr.find_all(['td', 'th'], recursive=False)]
-            for tr in soup.select(f'#{id} tbody tr')]
+            for tr in soup.select(f'#{id} tbody tr:not(.sep)')]
 
 
 text_of = lambda sel: ' '.join(e.get_text(' ', strip=True) for e in soup.select(sel))
@@ -72,7 +72,16 @@ horizons = [5, 20, 30, 60]
 inference = js('docs/findings/18-delta-ic-inference.json')
 evidence = js('docs/findings/17-three-baseline-evidence.json')
 delta = cells('delta-table')
-for col, baseline in enumerate(['market', 'sector', 'allocation'], 1):
+# Column 1 is IC(M0), shown once because M0 has no network features; prove it is identical across the three baselines.
+m0_ic = {}
+for folder in ['sweep', 'sector_debiasing', 'alloc_v2_debiasing']:
+    rows = [r for r in csvrows(f'results/{folder}/robustness_table.csv') if r['variant'] == 'base' and r['model'] == 'ridge']
+    assert len(rows) == 8
+    m0_ic[folder] = {(r['industry'], int(r['horizon'])): f"{float(r['mean_ic_M0']):.4f}" for r in rows}
+assert m0_ic['sweep'] == m0_ic['sector_debiasing'] == m0_ic['alloc_v2_debiasing']
+for row, (industry, h) in enumerate((i, h) for i in industries for h in horizons):
+    eq(f'IC(M0)/{industry}/{h}', delta[row][1], m0_ic['sweep'][(industry, h)])
+for col, baseline in enumerate(['market', 'sector', 'allocation'], 2):
     data = [r for r in inference['delta_ic'] if r['source'] == baseline and r['candidate'] == 'M1']
     for row, (industry, h) in enumerate((i, h) for i in industries for h in horizons):
         r = next(r for r in data if r['industry'] == industry and r['horizon'] == h)
@@ -290,7 +299,7 @@ def pair_label(i, j, b):
 rest = [r['allocation'] for p, r in ex_cos.items() if '2330' not in p]
 tsmc_rest = [r['allocation'] for p, r in ex_cos.items() if '2330' in p and '2454' not in p]
 assert min(rest) > 0 and max(tsmc_rest) < 0
-expected_notes = [pair_label('3034', '2379', 'market'), pair_label('2454', '2303', 'market'), pair_label('2330', '2454', 'market') + '，無邊',
+expected_notes = [pair_label('3034', '2379', 'market'), pair_label('2454', '2303', 'market'), pair_label('2330', '2454', 'market') + '，未繪',
                   pair_label('3034', '2379', 'sector'), pair_label('2330', '2454', 'sector'), pair_label('2330', '3034', 'sector'),
                   pair_label('2330', '2454', 'allocation'), f'其餘四檔間 {ex_signed(min(rest), 3)}～{ex_signed(max(rest), 3)}',
                   f'台積電–其餘 {ex_signed(min(tsmc_rest), 3)}～{ex_signed(max(tsmc_rest), 3)}']
