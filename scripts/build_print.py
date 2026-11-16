@@ -67,24 +67,24 @@ missing = [t for t in tokens if t not in web_tokens]
 if missing:
     sys.exit(f'numbers absent from index.html: {missing}')
 
-# References: the printed list must be exactly the works cited in the printed body.
-body, _, refs = print_text.partition('參考文獻')
+# References: print has no list (the QR leads to the web edition's), so every work cited
+# in print must be an entry of the web reference list.
 cites = set()
-for group in re.findall(r'[（(]([^（()）]*\d{4}[^（()）]*)[）)]', body) + \
-        re.findall(r'([A-Z][^，。；（()]*?\s*[（(]\d{4}[）)])', body):
+for group in re.findall(r'[（(]([^（()）]*\d{4}[^（()）]*)[）)]', print_text) + \
+        re.findall(r'([A-Z][^，。；（()]*?\s*[（(]\d{4}[）)])', print_text):
     for part in re.split(r'[;；、]', group):
         m = re.search(r'([A-Z][A-Za-z–\- ]+?)(?:,| et al\.| &| and|\s*[（(])', part)
         y = re.search(r'(\d{4})', part)
         if m and y:
             cites.add((m.group(1).strip(), y.group(1)))
 listed = set()
-for entry in re.findall(r'<li>(.*?)</li>', out.partition('class="references"')[2], re.S):
+for entry in re.findall(r'<li>(.*?)</li>', web.partition('class="references"')[2].partition('</ul>')[0], re.S):
     t = visible(entry)
     listed.add((re.match(r'\s*([^,]+),', t).group(1).strip(), re.search(r'\((\d{4})\)', t).group(1)))
-if cites != listed:
-    sys.exit(f'cited but not listed: {sorted(cites - listed)}; listed but not cited: {sorted(listed - cites)}')
+if not cites <= listed:
+    sys.exit(f'cited in print but not in the web reference list: {sorted(cites - listed)}')
 
 (root / 'print' / 'zenkai.html').write_text(out, encoding='utf-8')
 han = len(re.findall(r'[一-鿿]', print_text))
 print(f'print/zenkai.html: {len(tokens)} numeric tokens found in index.html; '
-      f'{len(listed)} references match citations; {han} Han characters')
+      f'{len(cites)} citations in the web reference list; {han} Han characters')
