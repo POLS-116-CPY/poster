@@ -57,7 +57,7 @@ def near(label, actual, expected, tolerance=1e-6):
 
 def cells(id):
     return [[c.get_text(' ', strip=True) for c in tr.find_all(['td', 'th'], recursive=False)]
-            for tr in soup.select(f'#{id} tbody tr')]
+            for tr in soup.select(f'#{id} tbody tr:not(.sep)')]
 
 
 text_of = lambda sel: ' '.join(e.get_text(' ', strip=True) for e in soup.select(sel))

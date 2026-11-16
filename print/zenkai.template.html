@@ -69,8 +69,8 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div>
 </div>
 <div class="qr-box"><!--@qr--><p>完整網頁版<br/>含 GAT、經濟顯著性、<br/>前人作法與可能原因</p></div>
-<p class="verdict"><span class="tag">主要發現：未建立增量</span>事前指定的裁定模型 Ridge，雙軌 ΔIC 在兩產業 × 四期距皆為負，三種去偏基準結果相同。</p>
-<p class="gist"><b>一分鐘版本</b>ETF 相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把這種連結與股價連動做成網路、加進預測模型後，同一天股票的報酬排序反而變差；把網路隨機亂配，結果也差不多。</p>
+<p class="verdict"><span class="tag">主要發現：未建立增量</span>加入兩軌網路後，事前指定的裁定模型 Ridge 的 ΔIC 在兩產業 × 四期距皆為負，三種去偏基準結果相同。</p>
+<p class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把這種連結與股價連動做成網路、加進預測模型後，預測哪些股票之後漲得比較多的排序反而變差；把網路隨機亂配，真實網路也沒有比較好。</p>
 <p class="def">比較無網路基準 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上兩軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準；依事前規則，P1 正式為無法裁定（實質判讀：不支持），P2–P4 不支持，P5 不予裁定。</p>
 </header>
 
@@ -82,7 +82,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <p class="plain"><b>白話</b>知道哪些股票被同一批 ETF 一起多買或少買，能不能幫忙判斷同一天裡哪些股票之後漲得比較多？</p>
 <p><b>為什麼要去偏。</b>市值加權的 ETF 都大量持有台積電等大型股，只看「誰被同一批 ETF 持有」，大型股會和所有股票相連，這只反映規模。去偏是把每檔 ETF 對某股的持股比重減去一個基準比重，剩下的是相對基準<b>多配或少配</b>的部分。</p>
 <p><b>多配少配從哪來。</b>來自各 ETF 的編製規則：選股範圍（0050 只含大型股）、選股與加權方式（0056 依預估殖利率）、權重上限。規則事先訂好、一體適用，通常不是針對個別公司當下前景的判斷。</p>
-<p><b>想抓的是什麼。</b>一起被多配或少配的股票，在資金流入或流出這些 ETF 時會被一起買賣（Anton &amp; Polk, 2014; Brown et al., 2021）。軌道 A（ETF 去偏共同持股網路）衡量這種配置上的相似，軌道 B（價格共動網路）衡量移除共同因子後的股價連動。</p>
+<p><b>想抓的是什麼。</b>一起被多配或少配的股票，在資金流入或流出這些 ETF 時會被一起買賣（Anton &amp; Polk, 2014; Brown et al., 2021）。軌道 A（ETF 去偏共同持股網路）衡量這種配置上的相似，軌道 B（價格共動網路）衡量移除共同因子（大盤、規模、價值等多數股票共同承受的報酬來源）後的股價連動。</p>
 <table class="st">
 <thead><tr><th>基準</th><th>從持股比重 B 減去</th><th>留下的是</th></tr></thead>
 <tbody>
@@ -95,13 +95,13 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <h3>2023Q4 示例：同一份持股，換基準就換網路</h3>
 <p>同樣五檔半導體股、同樣三檔 ETF，只換基準，誰和誰相似就會改變。台積電與聯發科的餘弦在市場基準下為 +0.470，產業基準下升至 +0.996，配置基準下轉為 −0.571。</p>
 <figure><!--@svg:network-chart--></figure>
-<div class="note">教學示例，非估計結果。持股取 MOPS 2023Q4；餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。0050、0053、0056 皆非主動管理。</div>
+<div class="note"><b>教學示例，非估計結果。</b>持股取 MOPS 2023Q4；餘弦只以圖中三檔 ETF 為維度，管線使用當季全部 ETF。0050、0053、0056 皆非主動管理。</div>
 </section>
 
 <section class="c" id="design">
 <h2>二、研究設計</h2>
 <p class="lead">以事前指定的 Ridge 迴歸裁定命題，並以 XGBoost（梯度提升決策樹）提供非線性參照。</p>
-<p class="plain"><b>白話</b>同一套模型做兩次預測，一次不給網路資訊（M0）、一次給（M1），比較誰把同一天的股票排得更準。</p>
+<p class="plain"><b>白話</b>同一套模型做兩次預測，一次不給網路資訊（M0）、一次給（M1），比較誰把股票之後的漲跌高低排得更準。</p>
 <figure><!--@svg:aria-label="Research design flowchart--></figure>
 <p>兩軌合計加入 24 個網路特徵；軌道 A 每檔股票保留相似度為正、最高的至多 K=30 檔作為鄰居（kNN），軌道 B 以過去 52 週的因子殘差相關挑選鄰居。模型每季重估，預測 H=5／20／30／60 個交易日的報酬。篩選後 M0 固定 20 個特徵、M1 約 42 個，候選特徵在看到任何報酬結果之前就已固定。多重檢定以 Benjamini–Hochberg 程序（BH；Benjamini &amp; Hochberg, 1995）控制錯誤發現率。</p>
 <p>訓練期 2012Q4–2017Q4；評估期 2018Q1–2025Q4。半導體業評估期平均 36.4 檔、金融保險業約 22–26 檔。每天只排二、三十檔股票，排序指標的雜訊大。</p>
@@ -113,8 +113,8 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <h2>三、主要結果：24 格的排序能力全部下降</h2>
 <p class="lead">雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八格全負，未能建立增量排序資訊。</p>
 <p class="plain"><b>白話</b>加入網路後，24 種組合的排序準確度全部略降；把股票與網路的對應隨機打亂再加入，也同樣略降，真實網路並沒有比亂配的好。</p>
+<p><b>怎麼讀。</b>每格是 M1 與 M0 平均 IC 的差，負值代表加了網路反而排得較差；24 格＝三種基準 × 兩產業 × 四期距。以市場基準為例，M0 的 IC 在半導體為 0.04–0.08、金融保險為 0.07–0.15；加入網路後，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
 <!--@table:delta-table-->
-<p><b>怎麼讀。</b>數值是 M1 與 M0 平均 IC 的差，負值代表加了網路反而排得較差。以市場基準為例，加入網路後，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
 <div class="note">單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤，落後期 H−1）。末列是 99 次把股票與網路隨機亂配後，表現不輸真實網路的比例。亂配網路的 ΔIC 中位數本身也是負的，所以光是「全部為負」不足以否證；關鍵是真實網路沒有比亂配好。</div>
 <h3>事前設定的五項命題，沒有一項獲得支持</h3>
 <table class="st">
@@ -127,14 +127,13 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <tr><td>P5<br/>差異來自價格軌道</td><td class="na">不予裁定</td><td>以 P3 成立為前提。</td></tr>
 </tbody>
 </table>
-<p>僅保留 ETF 軌道時，市場基準下金融四格 ΔIC 為 +0.0016 至 +0.0039（單尾 p=0.26–0.43），皆不顯著；其餘格皆負。這是事後單軌比較，不能解讀為 ETF 網路在金融業有效。</p>
 </section>
 
 <section class="c result" id="equivalence">
 <h2>四、等效界限：「不顯著」不等於「已排除」</h2>
 <p class="lead">未校正時，三種基準 24 格 ΔIC 的單尾 95% 上界皆低於依主動管理基本定律推得的事後界限 δ<sub>H</sub>（Grinold, 1989）。Bonferroni 校正後，Newey–West 下為 23/24 格、Hansen–Hodrick 下為 18/24 格；固定 0.01 界限則為 18/24 與 16/24 格。</p>
 <p class="plain"><b>白話</b>「沒有顯著」只表示沒看到效果。我們另外問：排序最多可能變好多少？資料能否排除那樣大小的改善？</p>
-<h3>圖三：大部分格子能排除「有意義幅度」的改善</h3>
+<h3>大部分格子能排除「有意義幅度」的改善</h3>
 <figure><!--@svg:equivalence-chart--></figure>
 <p><b>怎麼讀。</b>線段右端是資料在 95% 信心下仍允許的最大改善；落在紅線左側，就排除「改善達到紅線」。δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223。界限在結果已知後選定，不更動事前裁定。</p>
 <p><b>半合成檢定力。</b>注入強度已知的人造訊號、共 4,800 次重訓：H=5 時平均 ΔIC 約 +0.014 即有 97% 以上的拒絕率，H=20 時 +0.017 只有 20%。界限從未錯誤排除注入的改善，因此長期距提供資訊的是界限，而不是顯著性檢定。</p>
@@ -144,23 +143,23 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="col">
 <section class="c" id="placebo">
 <h2>五、安慰劑與穩健性</h2>
-<p class="lead">真實網路的合併 R² 排列排名在十六格中無一低於 0.05；改用規模分層排列，結論不變。</p>
-<p class="plain"><b>白話</b>把股票與網路的對應隨機洗牌 99 次，真實網路的成績一直落在洗牌結果的中段，而不是前段。</p>
-<p>在產業、季度與規模三分位內排列，三種基準 24 格的 Ridge ΔIC 排名 p 最小為 0.09（無條件為 0.08）。十一個事後設計變體（日內排序或去均值標籤、延伸懲罰網格、只取超配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 88 格全為負；計入單軌消融與 XGBoost 共 528 格，無一格單尾 p &lt; 0.05。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 格 ΔIC 亦全為負。</p>
+<p class="lead">把股票與網路的對應在產業、季度與規模三分位內隨機打亂 99 次，三種基準 24 格的 Ridge ΔIC 排名 p 最小為 0.09（無條件為 0.08）。</p>
+<p class="plain"><b>白話</b>把股票與網路的對應隨機打亂 99 次，真實網路沒有顯示出明確優勢。</p>
+<p><b>怎麼讀。</b>排名 p 是亂配網路中表現不輸真實網路的比例：0.5 左右代表真實網路居中，要接近 0 才代表真實網路突出。</p>
+<p>其他事後設計變體（日內排序或去均值標籤、延伸懲罰網格、只取超配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 也全為負；連同只保留一條軌道的版本與 XGBoost，沒有一格單尾 p &lt; 0.05。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 格 ΔIC 亦全為負。</p>
+<p>僅保留 ETF 軌道時，市場基準下金融四格 ΔIC 為 +0.0016 至 +0.0039（單尾 p=0.26–0.43），皆不顯著；其餘格皆負。這是事後單軌比較，不能解讀為 ETF 網路在金融業有效。</p>
 <p><b>經濟顯著性。</b>最保守成本下，H=20 時 M1 最佳淨夏普為 −0.007，M0 為 +0.308：加入網路未改善扣成本的組合績效。</p>
 </section>
 
 <section class="c method" id="method">
 <h2>六、方法論觀察：分數變好不等於更會選股</h2>
-<p class="lead">合併 R² 混合擇時與橫斷面誤差，且對預測離散度敏感；這是平方損失的一般性質（Campbell &amp; Thompson, 2008; Gu et al., 2020），本研究量測它在本設計中的作用。</p>
+<p class="lead">合併 R² 把「猜對整體漲跌」（擇時）與「猜對股票之間的高低」（選股）的誤差混在一起，且對預測的分散程度敏感；這是平方損失的一般性質（Campbell &amp; Thompson, 2008; Gu et al., 2020），本研究量測它在本設計中的作用。</p>
 <p class="plain"><b>白話</b>只把預測等比例縮小、不改任何排序，分數就可能變好。所以我們改看排序，並檢查分數有沒有灌水。</p>
-<h3>圖一：XGBoost 合併 R² 為正的六格中，五格的選股 R² 為負</h3>
+<h3>XGBoost 合併 R² 為正的六格中，五格的選股 R² 為負</h3>
 <div class="lg"><span><span class="sw"></span>合併 R²</span><span><span class="sw outline"></span>選股 R²（同一天股票之間的相對高低）</span></div>
 <figure><!--@svg:decomposition-chart--></figure>
-<div class="note">XGBoost 主規格，M1 對 M0。Ridge 的八格合併 R² 與選股 R² 都是負的。</div>
+<div class="note">XGBoost 主規格，M1 對 M0；補充模型，不是裁定依據。合併 R² = 1 − MSE(M1)／MSE(M0)（MSE：預測誤差平方的平均），選股 R² 只看同一天內個股報酬偏差的平方誤差；兩者都看誤差大小，IC 只看名次。Ridge 的八格合併 R² 與選股 R² 都是負的。</div>
 <p>合併 R² 為正的 18 格皆屬樹模型；保留均值、只匹配 M0 與 M1 的離散度，可重現其中 13 格至少全部的合併增益。此為事後診斷，不是因果歸因。</p>
-<p><b>CW 檢定的大小。</b>排列安慰劑下，經 BH 校正的 Clark–West 拒絕比例 Ridge 為 0.020–0.071，XGBoost 為 0.253–0.990（Clark &amp; West, 2007; Escanciano &amp; Parra, 2026）：XGBoost 的 CW 顯著不能直接作為支持證據。</p>
-<p><b>基準也會製造假增量。</b>撤回 U19 正規化修正後，XGBoost 有 6/8 格 ΔIC 轉正，原因是 M0 的平均 IC 由 0.074 降到 0.041，而不是 M1 變好。</p>
 <p class="check"><b>可移植的檢查程序：</b>對預測施加一個不增加排序資訊的尺度改動，觀察指標是否反應。</p>
 </section>
 
@@ -178,8 +177,6 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <li>Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, <em>57</em>(1), 289–300.</li>
 <li>Brown, D. C., Davies, S. W., &amp; Ringgenberg, M. C. (2021). ETF arbitrage, non-fundamental demand, and return predictability. <em>Review of Finance</em>, <em>25</em>(4), 937–972.</li>
 <li>Campbell, J. Y., &amp; Thompson, S. B. (2008). Predicting excess stock returns out of sample: Can anything beat the historical average? <em>Review of Financial Studies</em>, <em>21</em>(4), 1509–1531.</li>
-<li>Clark, T. E., &amp; West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. <em>Journal of Econometrics</em>, <em>138</em>(1), 291–311.</li>
-<li>Escanciano, J. C., &amp; Parra, R. (2026). Extending the scope of inference about predictive ability to machine learning methods. <em>Journal of Business &amp; Economic Statistics</em>, <em>44</em>(3), 853–864.</li>
 <li>Grinold, R. C. (1989). The fundamental law of active management. <em>Journal of Portfolio Management</em>, <em>15</em>(3), 30–37.</li>
 <li>Gu, S., Kelly, B., &amp; Xiu, D. (2020). Empirical asset pricing via machine learning. <em>Review of Financial Studies</em>, <em>33</em>(5), 2223–2273.</li>
 <li>Jiang, H., Verbeek, M., &amp; Wang, Y. (2014). Information content when mutual funds deviate from benchmarks. <em>Management Science</em>, <em>60</em>(8), 2038–2053.</li>

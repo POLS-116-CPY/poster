@@ -18,17 +18,17 @@
       {
         "col": 1,
         "height_mm": 865,
-        "slack_mm": 53.2
+        "slack_mm": 10.1
       },
       {
         "col": 2,
         "height_mm": 865,
-        "slack_mm": 25.8
+        "slack_mm": 39.2
       },
       {
         "col": 3,
         "height_mm": 865,
-        "slack_mm": 56.5
+        "slack_mm": 81.8
       }
     ],
     "pageOverflow": 0,
