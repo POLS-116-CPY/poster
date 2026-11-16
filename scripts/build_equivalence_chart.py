@@ -19,7 +19,7 @@ assert len(rows) == 24, len(rows)
 X0, X1, LO, HI = 190, 645, -0.055, 0.03
 Y0, ROW, GAP = 56, 16, 8
 H = Y0 + 8 * 3 * ROW + 7 * GAP + 48
-industries = [('半導體業', '半導體'), ('金融保險業', '金融')]
+industries = [('半導體業', '半導體'), ('金融保險業', '金融保險')]
 horizons = [5, 20, 30, 60]
 baselines = [('market', '市場'), ('sector', '產業'), ('allocation', '配置')]
 
