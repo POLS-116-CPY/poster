@@ -1,0 +1,52 @@
+{
+  "layout": {
+    "fonts": [
+      [
+        "Noto Sans TC 400",
+        true
+      ],
+      [
+        "Noto Sans TC 700",
+        true
+      ],
+      [
+        "Noto Serif TC 900",
+        true
+      ]
+    ],
+    "cols": [
+      {
+        "col": 1,
+        "height_mm": 865,
+        "slack_mm": 53.2
+      },
+      {
+        "col": 2,
+        "height_mm": 865,
+        "slack_mm": 25.8
+      },
+      {
+        "col": 3,
+        "height_mm": 865,
+        "slack_mm": 56.5
+      }
+    ],
+    "pageOverflow": 0,
+    "svgCount": 4,
+    "clipped": [],
+    "escapes": [],
+    "min_pt": {
+      "body": 21,
+      "table": 17,
+      "note": 15.5,
+      "figure": 11.67
+    }
+  },
+  "pdf": {
+    "pages": 1,
+    "size_mm": [
+      787.1,
+      1091.9
+    ]
+  }
+}
