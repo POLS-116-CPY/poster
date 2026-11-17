@@ -231,9 +231,9 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="col">
 <section class="c result" id="results">
 <h2>三、主要結果與命題裁定</h2>
-<p class="lead">Ridge 的雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八格全負，未能建立增量排序資訊。</p>
+<p class="lead">Ridge 的雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八個組合全負，未能建立增量排序資訊。</p>
 <p class="plain"><b>白話</b>加入網路後，Ridge 在 24 種組合的排序準確度全部下降；把股票與網路的對應隨機打亂再加入也同樣下降，真實網路沒有明顯勝過亂配。</p>
-<p><b>判讀方式。</b>每格是 M1 與 M0 平均 IC 的差，負值代表加入網路後排序反而較差；24 格＝三種基準 × 兩產業 × 四期距。以市場基準為例，相對表中 M0 的 IC，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
+<p><b>判讀方式。</b>每個數值是 M1 與 M0 平均 IC 的差，負值代表加入網路後排序較差；24 個組合＝三種基準 × 兩產業 × 四期距。以市場基準為例，相對 M0 的 IC，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
 <table class="nt" id="delta-table">
 <thead>
 <tr><th scope="col">產業 × 期距</th><th scope="col">M0 的 IC<br/>（各基準相同）</th><th scope="col">市場 B − w<sup>mkt</sup></th><th scope="col">產業 B − c</th><th scope="col">配置 B − a·c</th></tr>
@@ -247,7 +247,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <tr><td>金融保險 20 日</td><td>0.1271</td><td class="red">−0.0108</td><td class="red">−0.0269</td><td class="red">−0.0254</td></tr>
 <tr><td>金融保險 30 日</td><td>0.1477</td><td class="red">−0.0162</td><td class="red">−0.0397</td><td class="red">−0.0315</td></tr>
 <tr><td>金融保險 60 日</td><td>0.1353</td><td class="red">−0.0184</td><td class="red">−0.0499</td><td class="red">−0.0392</td></tr>
-<tr class="sep"><th colspan="5" scope="colgroup">以下兩列是 p 值，不是 ΔIC：各取八格中最小者（未經多重比較校正），低於 0.05 才算支持「網路有幫助」，三種基準皆未達到</th></tr>
+<tr class="sep"><th colspan="5" scope="colgroup">以下兩列是 p 值，不是 ΔIC：各取八個組合中最小者（未經多重比較校正），低於 0.05 才算支持「網路有幫助」，三種基準皆未達到</th></tr>
 <tr class="key-row"><td>「網路有幫助」的單尾 p（只檢驗「變好」這一個方向）</td><td></td><td>0.875</td><td>0.946</td><td>0.917</td></tr>
 <tr class="key-row"><td>排名 p：亂配網路不輸真實網路的比例（無條件排列）</td><td></td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
 </tbody>
@@ -257,10 +257,10 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <table class="st">
 <thead><tr><th>命題</th><th>裁定</th><th>依據</th></tr></thead>
 <tbody>
-<tr><td>P1<br/>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>須兩個期距通過；H=60 事前判定檢定力不足，H=20 與 H=30 不得併計；執行時又因亂配下 XGBoost 檢定仍頻繁顯著而排除全部期距（非事前規則）。只看 Ridge 亦未通過。</td></tr>
+<tr><td>P1<br/>網路可預測半導體報酬</td><td class="na">無法裁定</td><td>須兩個期距通過；H=60 事前判定檢定力不足，H=20 與 H=30 不得併計；執行時又因亂配下 XGBoost 仍頻繁顯著而排除全部期距（非事前規則）。只看 Ridge 亦未通過。</td></tr>
 <tr><td>P2<br/>去偏程序為必要</td><td class="fail">不支持</td><td>改用原始持股（軌道 A）或未扣共同因子的股價相關（軌道 B），預測沒有顯著變差。</td></tr>
 <tr><td>P3<br/>半導體效果強於金融保險</td><td class="fail">不支持</td><td>產業 × 網路特徵交互作用 p=0.17–0.75；原定的配對比較可配對的樣本太少，不作主要依據。</td></tr>
-<tr><td>P4<br/>ETF 重疊梯度</td><td class="fail">不支持</td><td>檢驗重疊越多、網路效果是否越強：交互作用 F 檢定八格皆不顯著；參考分布過度拒絕（名目 5%，實際 22.4%–60.4%），校準後排名 p 為 0.45–0.85。</td></tr>
+<tr><td>P4<br/>ETF 重疊梯度</td><td class="fail">不支持</td><td>檢驗重疊越多、網路效果是否越強：交互作用 F 檢定八個組合皆不顯著；參考分布過度拒絕（名目 5%，實際 22.4%–60.4%），校準後排名 p 為 0.45–0.85。</td></tr>
 <tr><td>P5<br/>差異來自價格軌道</td><td class="na">不予裁定</td><td>以 P3 成立為前提。</td></tr>
 </tbody>
 </table>
@@ -269,11 +269,11 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <section class="c result" id="equivalence">
 <h2>四、等效界限與檢定力</h2>
 <p class="plain"><b>白話</b>上一節：排序變差，也沒有明顯勝過亂配網路。但「沒有顯著」只表示沒看到效果；資料能否排除「排序明顯變好」？</p>
-<p class="lead">未校正時，三種基準 24 格 ΔIC 的單尾 95% 上界皆低於依主動管理基本定律推得的事後界限 δ<sub>H</sub>（Grinold, 1989）。Bonferroni 校正（每種基準八格為一族）後可排除：Newey–West（圖中所用）23/24 格、Hansen–Hodrick 18/24 格，後者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60；固定 0.01 界限為 18/24 與 16/24 格。</p>
+<p class="lead">未校正時，三種基準 24 個組合 ΔIC 的單尾 95% 上界皆低於依主動管理基本定律推得的事後界限 δ<sub>H</sub>（Grinold, 1989）。Bonferroni 校正（每種基準八個組合為一族）後可排除：Newey–West（圖中所用）23/24、Hansen–Hodrick 18/24，後者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60；固定 0.01 界限為 18/24 與 16/24。</p>
 <h3>ΔIC 單尾上界與等效界限</h3>
 <p><b>判讀方式。</b>線段右端是 95% 信心下仍允許的最大改善；落在紅線左側即排除「改善達到紅線」。δ<sub>H</sub> 是每期排約 30 檔、每 H 日換倉時，使年化資訊比率增加 0.25 所需的 IC：δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223。</p>
 <figure><svg aria-labelledby="eq-title eq-desc" id="equivalence-chart" role="img" viewbox="0 0 660 544">
-<title id="eq-title">Ridge 雙軌 ΔIC 的單尾上界與事後等效界限（24 格）</title>
+<title id="eq-title">Ridge 雙軌 ΔIC 的單尾上界與事後等效界限（24 個組合）</title>
 <desc id="eq-desc">每列為一個基準、產業與期距。圓點為 ΔIC 點估計，實線延伸到未校正單尾 95% 上界，虛線再延伸到 Bonferroni-8 上界；紅色短豎線為該期距的基本定律界限 δ_H，點線為固定 0.01 界限。上界落在界限左側即排除該幅度的改善。</desc>
 <circle cx="14" cy="12" fill="var(--accent)" r="3.5"></circle><text fill="var(--ink-2)" font-size="12" x="24" y="16">ΔIC 點估計</text>
 <line stroke="var(--accent)" stroke-width="2" x1="108" x2="136" y1="12" y2="12"></line><text fill="var(--ink-2)" font-size="12" x="142" y="16">未校正單尾 95% 上界</text>
@@ -421,11 +421,11 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="col">
 <section class="c" id="placebo">
 <h2>五、排列安慰劑與穩健性檢驗</h2>
-<p class="lead">讓每檔股票換用同產業、同季另一檔股票的整組網路特徵，重抽 99 次（無條件排列；再限同規模三分位者為條件排列）。三種基準 24 格的 Ridge ΔIC 排名 p 最小為 0.09（條件）／0.08（無條件）。</p>
-<p class="plain"><b>白話</b>隨機打亂股票與網路的對應 99 次，Ridge 下真實網路沒有顯示出明確優勢。</p>
-<p>主規格下，Ridge 只保留 ETF 軌道時，市場基準的金融保險四格 ΔIC 為 +0.0016 至 +0.0039（單尾 p=0.26–0.43），皆不顯著；Ridge 其餘單軌格皆負。這是事後單軌比較，不能解讀為 ETF 網路在金融保險業有效。</p>
-<p>十一個事後設計變體（當日排序或去均值標籤、延伸懲罰網格、只取多配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 也全為負；連同單軌版本與 XGBoost，沒有一格單尾 p &lt; 0.05。另一組 23 個設定（K、τ、估計窗口等）的 Ridge 184 格中 5 格為正，與亂配 14/792 相近。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 格 ΔIC 亦全為負。</p>
-<p><b>經濟顯著性。</b>最保守成本下 H=20，淨夏普為正的多空組合（兩產業 × 四種模型 × 三／五分位，共 16 個）M1 為 0 個、M0 為 1 個；差異未經正式檢定。</p>
+<p class="lead">讓每檔股票換用同產業、同季另一檔股票的整組網路特徵，重抽 99 次（無條件排列；再限同規模三分位者為條件排列）。三種基準 24 個組合的 Ridge ΔIC 排名 p 最小為 0.09（條件）／0.08（無條件）。</p>
+<p class="plain"><b>白話</b>隨機打亂股票與網路的對應 99 次，Ridge 下真實網路未顯示明確優勢。</p>
+<p>主規格下，Ridge 只保留 ETF 軌道時，市場基準的金融保險四個組合 ΔIC 為 +0.0016 至 +0.0039（單尾 p=0.26–0.43），皆不顯著；Ridge 其餘單軌組合皆負。這是事後單軌比較，不能解讀為 ETF 網路在金融保險業有效。</p>
+<p>十一個事後設計變體（當日排序或去均值標籤、延伸懲罰網格、只取多配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 也全為負；連同單軌版本與 XGBoost，沒有一個組合的單尾 p &lt; 0.05。另一組 23 個設定（K、τ、估計窗口等）的 Ridge 184 個組合中 5 個為正，與亂配 14/792 相近。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 個組合 ΔIC 亦全為負。</p>
+<p><b>經濟顯著性。</b>最保守成本下 H=20，淨夏普為正的多空組合（兩產業 × 四種模型 × 三／五分位，共 16 個）M1 為 0 個、M0 為 1 個；差異未經檢定。</p>
 </section>
 
 <section class="c method" id="method">
@@ -490,14 +490,14 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <rect data-horizon="60" data-industry="金融保險業" data-metric="r2_cross_sectional" data-value="0.0007857690111383597" fill="none" height="8" stroke="var(--neg)" stroke-width="1.5" width="7.464806" x="330.000000" y="273"></rect>
 <text fill="var(--neg)" font-size="12" text-anchor="end" x="650" y="276">+0.08%</text>
 </svg></figure>
-<div class="note">XGBoost 主規格，M1 對 M0；補充模型，不是裁定依據。合併 R² = 1 − MSE(M1)／MSE(M0)（MSE：預測誤差平方的平均），選股 R² 用同一公式，但先把每天的平均報酬與平均預測都扣掉，只比較股票之間的相對誤差；兩者都看誤差大小，IC 只看名次。Ridge 的八格合併 R² 與選股 R² 都是負的。</div>
-<p>合併 R² 為正的 18 格皆屬三種樹模型（含 XGBoost）；把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）其中 13 格的增益。此為事後診斷，非因果歸因。</p>
+<div class="note">XGBoost 主規格，M1 對 M0；補充模型，不是裁定依據。合併 R² = 1 − MSE(M1)／MSE(M0)（MSE：預測誤差平方的平均），選股 R² 用同一公式，但先把每天的平均報酬與平均預測都扣掉，只比較股票之間的相對誤差；兩者都看誤差大小，IC 只看名次。Ridge 八個組合的合併 R² 與選股 R² 都是負的。</div>
+<p>合併 R² 為正的 18 個組合皆屬三種樹模型（含 XGBoost）；把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）其中 13 個組合的增益。此為事後診斷，非因果歸因。</p>
 <p class="check"><b>可移植的檢查程序：</b>對預測施加一個不增加排序資訊的尺度改動，觀察指標是否反應。</p>
 </section>
 
 <section class="c" id="interpretation">
 <h2>七、結果解讀、研究限制與未來研究</h2>
-<p class="lead">已測設計下未建立增量；多數格中，達到事後設定之有意義幅度的改善可被排除（第四節）。結論限於已測市場、樣本、模型與訓練協定，現有診斷不足以判定是哪一種機制使預期效果未出現。</p>
+<p class="lead">已測設計下未建立增量；多數組合中，達到事後設定之有意義幅度的改善可被排除（第四節）。結論限於已測市場、樣本、模型與訓練協定，現有診斷不足以判定是哪一種機制使預期效果未出現。</p>
 <p><b>研究限制。</b>市場相對權重仍混合編製規則與追蹤差距；產業分類回填與持股、市值的時點差異限制辨識；雙軌結果不能單獨歸因於任一軌道；ΔIC 與等效界限皆為事後判準。</p>
 <table class="st fw">
 <thead><tr><th>可能原因（僅探討，未經檢驗）</th><th>未來研究可如何檢驗</th></tr></thead>
