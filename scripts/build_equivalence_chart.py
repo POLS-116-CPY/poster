@@ -34,7 +34,7 @@ def f(v):
 
 out = ['<div aria-label="ΔIC 等效界限圖" class="chart-scroll" role="region" tabindex="0">',
        f'<svg aria-labelledby="eq-title eq-desc" id="equivalence-chart" role="img" viewbox="0 0 660 {H}">',
-       '<title id="eq-title">Ridge 雙軌 ΔIC 的單尾上界與事後等效界限（24 格）</title>',
+       '<title id="eq-title">Ridge 雙軌 ΔIC 的單尾上界與事後等效界限（24 個組合）</title>',
        '<desc id="eq-desc">每列為一個基準、產業與期距。圓點為 ΔIC 點估計，實線延伸到未校正單尾 95% 上界，虛線再延伸到 Bonferroni-8 上界；紅色短豎線為該期距的基本定律界限 δ_H，點線為固定 0.01 界限。上界落在界限左側即排除該幅度的改善。</desc>']
 # Legend: two lines above the plot.
 out += [f'<circle cx="14" cy="12" fill="var(--accent)" r="3.5"></circle><text fill="var(--ink-2)" font-size="12" x="24" y="16">ΔIC 點估計</text>',
@@ -68,7 +68,7 @@ for g, ((ind, ind_label), h) in enumerate((i, h) for i in industries for h in ho
         out.append(f'<line {attrs} data-ub-unadj="{ub!r}" stroke="var(--accent)" stroke-width="2" x1="{f(sx(est))}" x2="{f(sx(ub))}" y1="{f(y)}" y2="{f(y)}"></line>')
         out.append(f'<circle {attrs} cx="{f(sx(est))}" cy="{f(y)}" data-value="{est!r}" fill="var(--accent)" r="3.5"></circle>')
 out.append('</svg></div>')
-out.append('<div class="note">每列為一個基準 × 產業 × 期距格，市場、產業、配置依序排列。Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六格，其中市場基準四格（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。標準誤為匯出的 Newey–West（落後期 H−1）。</div>')
+out.append('<div class="note">每列為一個基準 × 產業 × 期距組合，市場、產業、配置依序排列。Bonferroni-8 下唯一越過基本定律界限的是配置基準半導體 H=60（上界 0.0254 對 0.0223），屬事前僅作描述的期距；越過固定 0.01 界限的有六個組合，其中市場基準四個組合（金融保險 H=20／30／60、半導體 H=60）。校正後，市場基準金融保險業長期距只能排除約 0.013–0.022 以上的改善。標準誤為匯出的 Newey–West（落後期 H−1）。</div>')
 
 index = Path(__file__).resolve().parents[1] / 'index.html'
 html = index.read_text(encoding='utf-8')

@@ -100,12 +100,12 @@ for col, baseline in enumerate(['market', 'sector', 'allocation'], 2):
 decomp = csvrows('results/16_decompose/decomposition.csv')
 ridge_d = [r for r in decomp if r['model'] == 'ridge']
 assert len(ridge_d) == 8 and all(float(r['r2_pooled']) < 0 and float(r['r2_cross_sectional']) < 0 for r in ridge_d)
-assert re.search(r'Ridge 的八格合併 R² 與選股 R²[^。]*都是負的', soup.get_text())
+assert re.search(r'Ridge 八個組合的合併 R² 與選股 R²[^。]*都是負的', soup.get_text())
 checks.append({'label': 'Ridge pooled and cross-sectional R² all negative', 'value': '8/8'})
 xgb_d = [r for r in decomp if r['model'] == 'xgboost' and float(r['r2_pooled']) > 0]
 eq('XGBoost pooled-positive cells', len(xgb_d), 6)
 eq('of which cross-sectional negative', sum(float(r['r2_cross_sectional']) < 0 for r in xgb_d), 5)
-assert '六格中，五格的選股 R² 為負' in soup.get_text()
+assert '六個組合中，五個的選股 R² 為負' in soup.get_text()
 # The ΔIC table's meaning line: M0 IC levels and the share of ranking ability lost (market baseline, Ridge).
 base = [r for r in csvrows('results/sweep/robustness_table.csv') if r['variant'] == 'base' and r['model'] == 'ridge']
 for ind, lvl, loss in [('半導體業', '0.04–0.08', '26%–74%'), ('金融保險業', '0.07–0.15', '8%–14%')]:
@@ -376,7 +376,7 @@ fin_long = [float(r['ub_bonf8']) for r in eqv if r['source'] == 'market' and r['
 eq('market financial long-horizon excludable range', f'{min(fin_long):.3f}–{max(fin_long):.3f}', '0.013–0.022')
 assert '0.013–0.022' in paper
 eqtext = text_of('#equivalence')
-for v in ['24 格', '23/24', '18/24', '0.0254', '0.0223', '0.013–0.022', '0.01']:
+for v in ['24 個組合', '23/24', '18/24', '0.0254', '0.0223', '0.013–0.022', '0.01']:
     assert v in eqtext, v
 
 power = csvrows('docs/findings/25-delta-ic-power-summary.csv')
@@ -406,7 +406,7 @@ eq('stratified R² rank min', f'{mins("size_stratified", "min_p_rank_r2"):.2f}',
 fp = cp['diagnostics']['market']['fixed_point_share_mean_max']
 eq('self-mapping unconditional', f'{fp["unconditional"][0]:.1%}', '3.6%')
 eq('self-mapping stratified', f'{fp["size_stratified"][0]:.1%}', '10.8%')
-for v in ['0.09', '0.08', '0.19', '3.6%', '10.8%', '24 格']:
+for v in ['0.09', '0.08', '0.19', '3.6%', '10.8%', '24 個組合']:
     assert v in text_of('#placebo > p'), v
 # XGBoost is not adjudicating, but its smaller uncorrected ranks are disclosed; the per-cell range is the paper's (table D-5 note).
 eq('XGBoost ΔIC rank min', f'{min(cp["ranks"][b][n]["xgboost"]["min_p_rank_delta_ic"] for b in ["market", "sector", "allocation"] for n in ["unconditional", "size_stratified"]):.2f}', '0.02')
@@ -434,7 +434,7 @@ eq('fixed composition negative', f'{sum(float(r["delta_ic"]) < 0 for r in fc)}/{
 eq('fixed semis stocks', sorted({r['n_stocks_fixed'] for r in fc if r['industry'] == '半導體業'}), ['18'])
 eq('fixed financial stocks', sorted({r['n_stocks_fixed'] for r in fc if r['industry'] == '金融保險業'}), ['17'])
 rob = text_of('#robustness > p')
-for v in ['88', '528', '0.05', '18 檔', '17 檔', '24 格', '2,304', '5/2,304']:
+for v in ['88', '528', '0.05', '18 檔', '17 檔', '24 個組合', '2,304', '5/2,304']:
     assert v in rob, v
 mtext = text_of('#method > p')
 for v in ['6/8', '0.074', '0.041', '0.020–0.071', '0.253–0.990']:
@@ -492,7 +492,7 @@ eq('HH market financials long UB', '–'.join(f'{x:.3f}' for x in hh['market_fin
 eq('HH not excluded', len(hh['not_excluded_fl_bonf8']), 6)
 assert set(hh['not_excluded_fl_bonf8']) == {'market/半導體業/H60', 'market/金融保險業/H20', 'market/金融保險業/H30',
                                             'market/金融保險業/H60', 'sector/半導體業/H60', 'allocation/半導體業/H60'}
-for v in ['23/24', '18/24', '16/24', '1.14–1.26', '六格']:
+for v in ['23/24', '18/24', '16/24', '1.14–1.26', '六個組合']:
     assert v in text_of('#equivalence > .result-columns p'), v
 assert '0.017–0.028' in text_of('#equivalence .note')
 cwf = rc['cw_permutation_family']
@@ -523,7 +523,7 @@ assert all(r['source'] == 'market' and r['industry'] == '金融保險業' for r 
 eq('price-track-only positive cells', sum(r['delta_ic'] > 0 for r in only_price), 0)
 pm = [r['perm_median'] for r in inference['perm_rank']]
 eq('permutation ΔIC median range', f'{min(pm):.3f} 至 {max(pm):.3f}'.replace('-', '−'), '−0.034 至 −0.008')
-for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 格中只有市場基準的金融保險四格']:
+for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 個組合中只有市場基準的金融保險四個組合']:
     assert lit in ftext, lit
 for name, year in [('Amihud', 2002), ('Cohen', 2008), ('Ying', 2024)]:
     assert f'{name}' in ftext and str(year) in ftext
