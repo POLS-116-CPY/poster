@@ -506,7 +506,8 @@ eq('P3 matched valid-merge BH H=60', f"{p3m['bh_of_2x_mean_p'][3]:.3f}", '0.083'
 assert not p3m['any_reject_valid'] and '0.083' in text_of('#placebo details') and '500' in text_of('#placebo details')
 
 # ---- Features block: counts quoted from paper ch. 6, ablation and permutation figures from findings/18 ----
-ftext = text_of('#features')
+# The feature-count effects are results, so they sit in §七 (#feature-effects) rather than the design block.
+ftext = text_of('#features, #feature-effects')
 for lit in ['45 個', '實際 44 個', '0.90', 'VIF', '41.91–42.00', '36–43']:
     assert lit in ftext, lit
 for lit in ['41.91–42.00', '36–43 個區間', 'M0 恆為 20.00 個', '絕對相關高於 0.90', 'VIF $\\geq 10$']:
@@ -523,7 +524,7 @@ assert all(r['source'] == 'market' and r['industry'] == '金融保險業' for r 
 eq('price-track-only positive cells', sum(r['delta_ic'] > 0 for r in only_price), 0)
 pm = [r['perm_median'] for r in inference['perm_rank']]
 eq('permutation ΔIC median range', f'{min(pm):.3f} 至 {max(pm):.3f}'.replace('-', '−'), '−0.034 至 −0.008')
-for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '2,304', '24 個組合中只有市場基準的金融保險四個組合']:
+for lit in ['+0.0016 至 +0.0039', '−0.034 至 −0.008', '24 個組合中只有市場基準的金融保險四個組合']:  # 2,304 is checked in #robustness
     assert lit in ftext, lit
 for name, year in [('Amihud', 2002), ('Cohen', 2008), ('Ying', 2024)]:
     assert f'{name}' in ftext and str(year) in ftext

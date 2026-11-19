@@ -12,18 +12,19 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 html,body{background:#FFF;color:var(--ink);font-family:'Noto Sans TC','Noto Sans',sans-serif;-webkit-font-smoothing:antialiased}
 .page{width:787mm;height:1092mm;padding:14mm;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7mm;overflow:hidden}
-.hero{background:var(--hero-bg);color:var(--hero-ink);padding:10mm 12mm;display:grid;grid-template-columns:minmax(0,1fr) 62mm;gap:4mm 12mm}
+.hero{background:var(--hero-bg);color:var(--hero-ink);padding:10mm 12mm;display:grid;grid-template-columns:minmax(0,1fr) 55mm;gap:4mm 12mm}
 .hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:58pt;line-height:1.18;letter-spacing:.01em}
 .hero .subtitle{font-size:32pt;margin-top:2mm;font-weight:500}
-.hero .auth{font-size:18pt;margin-top:4mm;opacity:.92}
-.hero .verdict{grid-column:1/-1;font-size:24pt;font-weight:600;line-height:1.45}
+.hero .meta{display:flex;justify-content:space-between;align-items:baseline;gap:8mm;margin-top:4mm;font-size:18pt}
+.hero .auth{opacity:.92}
+.hero .qr-cap{text-align:right;color:#C9E8D2}
+.hero .verdict{grid-column:1/-1;font-size:26pt;font-weight:600;line-height:1.45}
 .tag{display:inline-block;background:#AF352D;color:#FFF;padding:.5mm 4mm;margin-right:3mm}
-.hero .gist{grid-column:1/-1;font-size:20pt;line-height:1.55;padding:4mm 6mm;background:rgba(255,255,255,.08);border-left:2mm solid #87C99A}
+.hero .gist{grid-column:1/-1;font-size:21pt;line-height:1.55;padding:4mm 6mm;background:rgba(255,255,255,.08);border-left:2mm solid #87C99A}
 .hero .gist b{font-size:16pt;letter-spacing:.06em;margin-right:3mm;color:#C9E8D2}
-.hero .def{grid-column:1/-1;font-size:17pt;line-height:1.5;opacity:.95}
+.hero .def{grid-column:1/-1;font-size:20pt;line-height:1.5;opacity:.95}
 .qr-box{grid-row:1;grid-column:2;align-self:start;background:#FFF;padding:4mm;text-align:center;color:var(--ink)}
 .qr-box svg{display:block;width:100%;height:auto}
-.qr-box p{font-size:13pt;line-height:1.35;margin-top:2mm}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9mm;min-height:0}
 /* Sections spread to fill each column; the exporter measures slack with this switched off. */
 .col{display:flex;flex-direction:column;justify-content:space-between;gap:6mm;min-height:0}
@@ -62,6 +63,7 @@ caption{text-align:left;font-size:15.5pt;color:var(--ink-3);margin-bottom:1mm;ca
 .references li{margin:0 0 1.2mm 6mm;text-indent:-6mm}
 footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt;color:var(--ink-3);border-top:.4mm solid var(--border);padding-top:2.5mm}
 #interpretation .fw td,#interpretation .fw th{white-space:normal}#interpretation .fw td:first-child,#interpretation .fw th:first-child{width:42%}
+#interpretation .fw .grp th{width:auto;background:var(--bg);font-weight:600;border-bottom:.3mm solid var(--grid)}
 </style>
 </head>
 <body><div class="page">
@@ -69,23 +71,23 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div>
 <h1>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？</h1>
 <div class="subtitle">臺灣上市半導體與金融保險業的樣本外檢驗</div>
-<div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div>
+<div class="meta"><div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div><div class="qr-cap">完整網頁版（含 GAT、經濟顯著性、文獻回顧與參考文獻）→</div></div>
 </div>
-<div class="qr-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" class="qr"><path class="qrline" stroke="#1b2a4a" d="M0 0.5h7m1 0h1m5 0h1m1 0h5m1 0h7m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m1 0h8m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m7 0h2m1 0h1m-20 1h1m1 0h2m1 0h3m2 0h4m3 0h2m3 0h1m2 0h1m1 0h2m-27 1h3m2 0h1m2 0h1m5 0h4m1 0h2m1 0h1m3 0h1m-27 1h1m3 0h2m2 0h1m3 0h1m1 0h2m3 0h2m1 0h1m1 0h2m-28 1h3m1 0h2m1 0h3m1 0h3m1 0h2m2 0h1m1 0h2m5 0h1m-29 1h2m2 0h4m1 0h1m5 0h3m1 0h3m1 0h1m1 0h2m-27 1h1m1 0h1m1 0h2m1 0h1m3 0h9m1 0h2m3 0h3m-27 1h1m3 0h2m1 0h2m3 0h1m3 0h2m2 0h1m3 0h3m-28 1h1m2 0h2m4 0h1m2 0h1m2 0h1m6 0h1m3 0h1m-28 1h1m1 0h1m3 0h5m4 0h1m2 0h1m4 0h3m1 0h1m-27 1h1m1 0h2m6 0h3m1 0h1m4 0h2m1 0h1m1 0h3m-28 1h1m1 0h3m1 0h3m3 0h1m2 0h1m1 0h2m1 0h2m1 0h1m2 0h1m-24 1h1m1 0h1m1 0h1m1 0h1m7 0h1m1 0h3m2 0h1m1 0h1m-26 1h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m1 0h8m-19 1h2m2 0h3m1 0h3m1 0h1m3 0h5m-29 1h7m1 0h1m1 0h4m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h4m3 0h1m4 0h1m3 0h2m-26 1h1m1 0h3m1 0h1m2 0h4m1 0h1m2 0h1m2 0h5m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m2 0h3m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h2m5 0h2m1 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h2m1 0h1m-28 1h7m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1"/></svg><p>完整網頁版<br/>含 GAT、經濟顯著性、<br/>文獻回顧與參考文獻</p></div>
-<p class="verdict"><span class="tag">主要發現：未建立增量</span>加入雙軌網路後，事前指定的裁定模型 Ridge 的 ΔIC 在兩產業 × 四期距皆為負，三種去偏基準結果相同。</p>
-<p class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把此類連結與股價連動建構成網路、加進事前指定的 Ridge 模型後，預測哪些股票之後漲得比較多的排序反而變差；真實網路也沒有明顯勝過隨機亂配的網路。</p>
-<p class="def">比較無網路基線 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上雙軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準；依事前規則，五項命題（第三節表）中 P2–P4 不支持，P5 不予裁定；P1 另經執行階段的安慰劑判讀後沒有可用的期距，正式為無法裁定（實質判讀：不支持）。</p>
+<div class="qr-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" class="qr"><path class="qrline" stroke="#1b2a4a" d="M0 0.5h7m1 0h1m5 0h1m1 0h5m1 0h7m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h2m4 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m1 0h8m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m7 0h2m1 0h1m-20 1h1m1 0h2m1 0h3m2 0h4m3 0h2m3 0h1m2 0h1m1 0h2m-27 1h3m2 0h1m2 0h1m5 0h4m1 0h2m1 0h1m3 0h1m-27 1h1m3 0h2m2 0h1m3 0h1m1 0h2m3 0h2m1 0h1m1 0h2m-28 1h3m1 0h2m1 0h3m1 0h3m1 0h2m2 0h1m1 0h2m5 0h1m-29 1h2m2 0h4m1 0h1m5 0h3m1 0h3m1 0h1m1 0h2m-27 1h1m1 0h1m1 0h2m1 0h1m3 0h9m1 0h2m3 0h3m-27 1h1m3 0h2m1 0h2m3 0h1m3 0h2m2 0h1m3 0h3m-28 1h1m2 0h2m4 0h1m2 0h1m2 0h1m6 0h1m3 0h1m-28 1h1m1 0h1m3 0h5m4 0h1m2 0h1m4 0h3m1 0h1m-27 1h1m1 0h2m6 0h3m1 0h1m4 0h2m1 0h1m1 0h3m-28 1h1m1 0h3m1 0h3m3 0h1m2 0h1m1 0h2m1 0h2m1 0h1m2 0h1m-24 1h1m1 0h1m1 0h1m1 0h1m7 0h1m1 0h3m2 0h1m1 0h1m-26 1h1m1 0h1m1 0h2m2 0h1m2 0h2m3 0h1m1 0h8m-19 1h2m2 0h3m1 0h3m1 0h1m3 0h5m-29 1h7m1 0h1m1 0h4m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h4m3 0h1m4 0h1m3 0h2m-26 1h1m1 0h3m1 0h1m2 0h4m1 0h1m2 0h1m2 0h5m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m3 0h2m2 0h3m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h2m5 0h2m1 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m2 0h1m4 0h1m1 0h1m3 0h1m3 0h2m1 0h1m-28 1h7m1 0h1m2 0h2m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1"/></svg></div>
+<p class="verdict"><span class="tag">主要發現：未建立增量</span>加入雙軌網路後，事前指定的 Ridge 在三種基準 × 兩產業 × 四期距的 ΔIC 皆為負，且未顯著勝過亂配網路；多數組合可排除達到事後界限的改善。</p>
+<p class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把此類連結與股價連動建構成網路、加進事前指定的 Ridge 模型後，預測哪些股票之後漲得比較多的排序反而變差；但隨機亂配的網路同樣變差，真實網路並未明顯勝出。</p>
+<p class="def">比較無網路基線 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上雙軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準（理由見第六節）；依事前規則，五項命題（第三節表）中 P2–P4 不支持，P5 不予裁定；P1 另經執行階段的安慰劑判讀後沒有可用的期距，正式為無法裁定（實質判讀：不支持）。</p>
 </header>
 
 <main class="cols">
 <div class="col">
 <section class="c" id="question">
 <h2>一、研究問題與去偏方法</h2>
-<p class="lead">本研究檢驗雙軌網路特徵能否在既有個股與市場資訊之外，改善每日個股報酬排序；以半導體為主場域，金融保險業為比較產業（看改善是否因產業而不同）。</p>
+<p class="lead">本研究檢驗雙軌網路特徵（軌道 A：ETF 去偏共同持股網路；軌道 B：因子殘差價格共動網路）能否在既有個股與市場資訊之外，改善每日個股報酬排序；以半導體為主場域，金融保險業為比較產業（看改善是否因產業而不同）。</p>
 <p><b>排序的定義。</b>每個交易日，在同一產業當天有預測的股票中依預測由高到低排名，再與之後 H 個交易日（從隔日起算）累積報酬的實際名次比較；只看同一天股票之間的相對高低，不看大盤漲跌或報酬幅度。</p>
 <p><b>去偏的目的。</b>市值加權的 ETF 都大量持有台積電等大型股，只看「誰被同一批 ETF 持有」，大型股會和所有股票相連，這只反映規模。去偏是把每檔 ETF 對某股的持股比重減去一個基準比重，差額即相對基準<b>多配或少配</b>的部分。</p>
 <p><b>偏離的來源。</b>來自各 ETF 的編製規則：選股範圍（0050 只含大型股）、選股與加權方式（0056 依預估殖利率）、權重上限。規則事先訂好、一體適用，通常不是針對個別公司當下前景的判斷；樣本自 2025Q2 起另含少數主動式 ETF，是例外。</p>
-<p><b>欲檢驗的關聯。</b>一起被多配或少配的股票，在資金流入或流出這些 ETF 時可能會被一起買賣（共同基金的類似證據見 Anton &amp; Polk, 2014；ETF 資金流見 Brown et al., 2021）。軌道 A（ETF 去偏共同持股網路）衡量此類配置上的相似，軌道 B（因子殘差價格共動網路）衡量移除共同因子（大盤、規模、價值等多數股票共同承受的報酬來源）後的股價連動。</p>
+<p><b>欲檢驗的關聯。</b>一起被多配或少配的股票，在資金流入或流出這些 ETF 時可能會被一起買賣（共同基金的類似證據見 Anton &amp; Polk, 2014；ETF 資金流見 Brown et al., 2021）。軌道 A 衡量此類配置上的相似，軌道 B 衡量移除共同因子（大盤、規模、價值等多數股票共同承受的報酬來源）後的股價連動。</p>
 <table class="st">
 <thead><tr><th>基準</th><th>減去的基準權重</th><th>保留的成分</th></tr></thead>
 <tbody>
@@ -223,7 +225,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <!-- Timeline annotation -->
 <text fill="var(--ink-3)" font-size="9" text-anchor="middle" x="220" y="247">初始訓練 2012–2017，之後逐季擴張重訓 ｜ 樣本外評估 2018–2025（約 1,948 個交易日）</text>
 </svg></figure>
-<p>雙軌合計 24 個網路候選特徵；軌道 A 每檔股票保留相似度高於 τ = 0.05、最高的至多 K=30 檔作為鄰居（kNN），軌道 B 以過去 52 週的因子殘差相關挑選鄰居。預測 H=5／20／30／60 個交易日的報酬。候選特徵在看到任何報酬結果之前就已固定；每季刪掉高度重複的特徵後，M0 固定 20 個、M1 合計約 42 個。</p>
+<p>雙軌合計 24 個網路候選特徵；軌道 A 每檔股票保留相似度高於 τ = 0.05、最高的至多 K=30 檔作為鄰居（kNN），軌道 B 以過去 52 週的因子殘差相關挑選鄰居。預測 H=5／20／30／60 個交易日的報酬。候選特徵在看到任何報酬結果之前就已固定，每季再刪除高度重複者（數量見上圖）。</p>
 <p>初始訓練期 2012Q4–2017Q4，之後逐季擴張重訓；評估期 2018Q1–2025Q4。半導體業評估期平均 36.4 檔、金融保險業約 22–26 檔。每天只排約 22–36 檔股票，排序指標的雜訊大。</p>
 </section>
 </div>
@@ -231,7 +233,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div class="col">
 <section class="c result" id="results">
 <h2>三、主要結果與命題裁定</h2>
-<p class="lead">Ridge 的雙軌 M1 相對 M0 的 ΔIC 在三種基準下均為八個組合全負，未能建立增量排序資訊。</p>
+<p class="lead">Ridge 的雙軌 ΔIC 在三種基準下皆八個組合全負，未建立增量排序資訊。</p>
 <p class="plain"><b>白話</b>加入網路後，Ridge 在 24 種組合的排序準確度全部下降；把股票與網路的對應隨機打亂再加入也同樣下降，真實網路沒有明顯勝過亂配。</p>
 <p><b>判讀方式。</b>每個數值是 M1 與 M0 平均 IC 的差，負值代表加入網路後排序較差；24 個組合＝三種基準 × 兩產業 × 四期距。以市場基準為例，相對 M0 的 IC，半導體少了 26%–74% 的排序能力，金融保險少了 8%–14%。</p>
 <table class="nt" id="delta-table">
@@ -252,7 +254,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <tr class="key-row"><td>排名 p：亂配網路不輸真實網路的比例（無條件排列）</td><td></td><td>0.08</td><td>0.54</td><td>0.42</td></tr>
 </tbody>
 </table>
-<div class="note">單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤，落後期 H−1）。末列排名 p 見名詞解釋（無條件排列；分層版本見第五節）。亂配網路的 ΔIC 中位數也是負的，所以「全部為負」不足以判定網路無用；關鍵是真實網路未顯著勝過亂配（排名 p 最小 0.08）。</div>
+<div class="note">單尾 p 接近 1，表示資料幾乎不支持「網路有幫助」（Newey–West 標準誤，落後期 H−1）。末列亂配：讓每檔股票換用同產業、同季另一檔股票的整組網路特徵，重抽 99 次；排名 p 見名詞解釋。亂配網路的 ΔIC 中位數也是負的，所以「全部為負」不足以判定網路無用；關鍵是真實網路未顯著勝過亂配。</div>
 <h3>命題裁定（P1–P5）</h3>
 <table class="st">
 <thead><tr><th>命題</th><th>裁定</th><th>依據</th></tr></thead>
@@ -268,8 +270,8 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 
 <section class="c result" id="equivalence">
 <h2>四、等效界限與檢定力</h2>
-<p class="plain"><b>白話</b>上一節：排序變差，也沒有明顯勝過亂配網路。但「沒有顯著」只表示沒看到效果；資料能否排除「排序明顯變好」？</p>
-<p class="lead">未校正時，三種基準 24 個組合 ΔIC 的單尾 95% 上界皆低於依主動管理基本定律推得的事後界限 δ<sub>H</sub>（Grinold, 1989）。Bonferroni 校正（每種基準八個組合為一族）後可排除：Newey–West（圖中所用）23/24、Hansen–Hodrick 18/24，後者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60；固定 0.01 界限為 18/24 與 16/24。</p>
+<p class="plain"><b>白話</b>「沒有顯著」只表示沒看到效果；資料能否排除「排序明顯變好」？</p>
+<p class="lead">多數組合可排除達到有意義幅度的改善：Bonferroni 校正（每種基準八個組合為一族）後，ΔIC 單尾上界低於依主動管理基本定律推得之事後界限 δ<sub>H</sub>（Grinold, 1989）者，Hansen–Hodrick 下為 18/24、Newey–West（圖中所用）下為 23/24；前者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60。未校正時 24 個組合皆可排除；固定 0.01 界限下，兩者依序為 16/24 與 18/24。</p>
 <h3>ΔIC 單尾上界與等效界限</h3>
 <p><b>判讀方式。</b>線段右端是 95% 信心下仍允許的最大改善；落在紅線左側即排除「改善達到紅線」。δ<sub>H</sub> 是每期排約 30 檔、每 H 日換倉時，使年化資訊比率增加 0.25 所需的 IC：δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223。</p>
 <figure><svg aria-labelledby="eq-title eq-desc" id="equivalence-chart" role="img" viewbox="0 0 660 544">
@@ -414,23 +416,23 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <line data-baseline="allocation" data-horizon="60" data-industry="金融保險業" data-ub-unadj="-0.012758264781641413" stroke="var(--accent)" stroke-width="2" x1="274.596" x2="416.118" y1="488" y2="488"></line>
 <circle data-baseline="allocation" data-horizon="60" data-industry="金融保險業" cx="274.596" cy="488" data-value="-0.0391964373874911" fill="var(--accent)" r="3.5"></circle>
 </svg></figure>
-<p><b>半合成檢定力。</b>注入強度已知的人造訊號、重訓 4,800 次：H=5 時平均 ΔIC 約 +0.014 即有 97% 以上判定顯著改善，H=20 時 +0.017 只有 20%。達到界限的注入（皆在 H=5／20）未被等效界限錯誤排除，長期距則未經檢查。</p>
+<p><b>半合成檢定力。</b>注入強度已知的人造訊號、重訓 4,800 次：H=5 時平均 ΔIC 約 +0.014 即有 97% 以上判定顯著改善，H=20 時 +0.017 只有 20%；長期距的顯著性檢定幾乎沒有檢定力，只能依賴界限。達到界限的注入（皆在 H=5／20）未被錯誤排除，長期距則未經檢查。</p>
 </section>
 </div>
 
 <div class="col">
 <section class="c" id="placebo">
 <h2>五、排列安慰劑與穩健性檢驗</h2>
-<p class="lead">讓每檔股票換用同產業、同季另一檔股票的整組網路特徵，重抽 99 次（無條件排列；再限同規模三分位者為條件排列）。三種基準 24 個組合的 Ridge ΔIC 排名 p 最小為 0.09（條件）／0.08（無條件）。</p>
-<p class="plain"><b>白話</b>隨機打亂股票與網路的對應 99 次，Ridge 下真實網路未顯示明確優勢。</p>
+<p class="lead">排列安慰劑、單軌比較、設計變體與固定母體四類檢驗下，Ridge 皆未建立增量。條件排列（第三節的亂配再限同規模三分位）下，24 個組合的 Ridge ΔIC 排名 p 最小為 0.09（無條件 0.08）。</p>
+<p class="plain"><b>白話</b>隨機打亂股票與網路的對應 99 次，Ridge 下真實網路無明確優勢。</p>
 <p>主規格下，Ridge 只保留 ETF 軌道時，市場基準的金融保險四個組合 ΔIC 為 +0.0016 至 +0.0039（單尾 p=0.26–0.43），皆不顯著；Ridge 其餘單軌組合皆負。這是事後單軌比較，不能解讀為 ETF 網路在金融保險業有效。</p>
-<p>十一個事後設計變體（當日排序或去均值標籤、延伸懲罰網格、只取多配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 也全為負；連同單軌版本與 XGBoost，沒有一個組合的單尾 p &lt; 0.05。另一組 23 個設定（K、τ、估計窗口等）的 Ridge 184 個組合中 5 個為正，與亂配 14/792 相近。只保留評估期每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 個組合 ΔIC 亦全為負。</p>
+<p>十一個事後設計變體（當日排序或去均值標籤、延伸懲罰網格、只取多配、依 ETF 規模加權等）下，Ridge 的雙軌 ΔIC 全為負；連同單軌版本與 XGBoost，無一組合的單尾 p &lt; 0.05。另一組 23 個設定（K、τ、估計窗口等）的 Ridge 184 個組合中 5 個為正，與亂配 14/792 相近。只保留每季都有預測的股票（半導體 18 檔、金融保險 17 檔），24 個組合 ΔIC 亦全為負。</p>
 <p><b>經濟顯著性。</b>最保守成本下 H=20，淨夏普為正的多空組合（兩產業 × 四種模型 × 三／五分位，共 16 個）M1 為 0 個、M0 為 1 個；差異未經檢定。</p>
 </section>
 
 <section class="c method" id="method">
 <h2>六、方法論觀察</h2>
-<p class="lead">合併 R² 把預測整體漲跌（擇時）與股票之間相對高低（選股）的誤差混在一起，且對預測離散度敏感；此為平方損失的一般性質（Campbell &amp; Thompson, 2008; Gu et al., 2020），本研究量測其在本設計的作用。</p>
+<p class="lead">合併 R² 可在選股未改善時上升：市場基準下合併 R² 為正的 18 個組合皆屬三種樹模型（含 XGBoost），其中 13 個組合的增益，只需把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）。</p>
 <p class="plain"><b>白話</b>只把預測等比例縮小、不改任何排序，合併 R² 就可能變好。所以我們改看排序，並檢查合併 R² 的增益是否只來自尺度。</p>
 <h3>XGBoost 合併 R² 與選股 R² 的比較</h3>
 <div class="lg"><span><span class="sw"></span>合併 R²</span><span><span class="sw outline"></span>選股 R²（同一天股票之間的相對高低）</span></div>
@@ -491,7 +493,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <text fill="var(--neg)" font-size="12" text-anchor="end" x="650" y="276">+0.08%</text>
 </svg></figure>
 <div class="note">XGBoost 主規格，M1 對 M0；補充模型，不是裁定依據。合併 R² = 1 − MSE(M1)／MSE(M0)（MSE：預測誤差平方的平均），選股 R² 用同一公式，但先把每天的平均報酬與平均預測都扣掉，只比較股票之間的相對誤差；兩者都看誤差大小，IC 只看名次。Ridge 八個組合的合併 R² 與選股 R² 都是負的。</div>
-<p>合併 R² 為正的 18 個組合皆屬三種樹模型（含 XGBoost）；把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）其中 13 個組合的增益。此為事後診斷，非因果歸因。</p>
+<p>合併 R² 把預測整體漲跌（擇時）與股票之間相對高低（選股）的誤差混在一起，且對預測離散度敏感，此為平方損失的一般性質（Campbell &amp; Thompson, 2008; Gu et al., 2020）；上述縮放為事後診斷，非因果歸因。</p>
 <p class="check"><b>可移植的檢查程序：</b>對預測施加一個不增加排序資訊的尺度改動，觀察指標是否反應。</p>
 </section>
 
@@ -502,10 +504,12 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <table class="st fw">
 <thead><tr><th>可能原因（僅探討，未經檢驗）</th><th>未來研究可如何檢驗</th></tr></thead>
 <tbody>
+<tr class="grp"><th colspan="2">實質面：效果可能不存在或微弱</th></tr>
 <tr><td>連結只反映編製規則、不帶資訊</td><td>依公開編製規則重建「規則應有的權重」，將偏離拆成規則與其餘部分分別檢驗</td></tr>
 <tr><td>資訊在持股揭露時已反映於價格（Jiang et al., 2014）</td><td>改用更即時的持股來源或不同落後期，看增量是否隨落後縮短而出現</td></tr>
 <tr><td>資金壓力反轉與資訊擴散兩條通道互相抵銷</td><td>引入 ETF 申購贖回資金流，分開建構「資金流壓力」與「基本面連結」特徵</td></tr>
 <tr><td>被既有動量控制吸收</td><td>以不含動量的較弱基線重做 M1 對 M0</td></tr>
+<tr class="grp"><th colspan="2">方法面：效果可能存在，但本設計無法偵測</th></tr>
 <tr><td>橫斷面小，且訓練目標（平方誤差）與評估目標（排序）不一致</td><td>在橫斷面大一至兩個數量級的市場，以事前一致的排序目標與更高容量模型重做</td></tr>
 <tr><td>連結定義不對，或效果只在特定時期存在</td><td>事前定義多種連結並校正多重比較；固定成分股分期重做；只預先指定少數核心特徵，以新資料檢驗</td></tr>
 </tbody>
