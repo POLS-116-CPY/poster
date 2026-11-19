@@ -58,7 +58,8 @@ const FLOOR_PT = { body: 18, table: 14, note: 12, figure: 11 };
       }).map(e => e.tagName + ':' + e.textContent.trim().slice(0, 30));
       return {
         fonts, cols, pageOverflow, svgCount: svgs.length, clipped, escapes: escapes.slice(0, 10),
-        min_pt: { body: pt(minOf('.c p')), table: pt(minOf('.c td, .c th')), note: pt(minOf('.note, caption')), figure: pt(figureMin) },
+        // Header prose (verdict, gist, definitions, author and QR lines) is read at the same distance as the columns.
+        min_pt: { body: pt(minOf('.c p, .hero p, .hero .meta > div')), table: pt(minOf('.c td, .c th')), note: pt(minOf('.note, caption')), figure: pt(figureMin) },
       };
     }, { MM });
     report.layout = m;

@@ -12,18 +12,19 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 html,body{background:#FFF;color:var(--ink);font-family:'Noto Sans TC','Noto Sans',sans-serif;-webkit-font-smoothing:antialiased}
 .page{width:787mm;height:1092mm;padding:14mm;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7mm;overflow:hidden}
-.hero{background:var(--hero-bg);color:var(--hero-ink);padding:10mm 12mm;display:grid;grid-template-columns:minmax(0,1fr) 62mm;gap:4mm 12mm}
+.hero{background:var(--hero-bg);color:var(--hero-ink);padding:10mm 12mm;display:grid;grid-template-columns:minmax(0,1fr) 55mm;gap:4mm 12mm}
 .hero h1{font-family:'Noto Serif TC',serif;font-weight:900;font-size:58pt;line-height:1.18;letter-spacing:.01em}
 .hero .subtitle{font-size:32pt;margin-top:2mm;font-weight:500}
-.hero .auth{font-size:18pt;margin-top:4mm;opacity:.92}
-.hero .verdict{grid-column:1/-1;font-size:24pt;font-weight:600;line-height:1.45}
+.hero .meta{display:flex;justify-content:space-between;align-items:baseline;gap:8mm;margin-top:4mm;font-size:18pt}
+.hero .auth{opacity:.92}
+.hero .qr-cap{text-align:right;color:#C9E8D2}
+.hero .verdict{grid-column:1/-1;font-size:26pt;font-weight:600;line-height:1.45}
 .tag{display:inline-block;background:#AF352D;color:#FFF;padding:.5mm 4mm;margin-right:3mm}
-.hero .gist{grid-column:1/-1;font-size:20pt;line-height:1.55;padding:4mm 6mm;background:rgba(255,255,255,.08);border-left:2mm solid #87C99A}
+.hero .gist{grid-column:1/-1;font-size:21pt;line-height:1.55;padding:4mm 6mm;background:rgba(255,255,255,.08);border-left:2mm solid #87C99A}
 .hero .gist b{font-size:16pt;letter-spacing:.06em;margin-right:3mm;color:#C9E8D2}
-.hero .def{grid-column:1/-1;font-size:17pt;line-height:1.5;opacity:.95}
+.hero .def{grid-column:1/-1;font-size:20pt;line-height:1.5;opacity:.95}
 .qr-box{grid-row:1;grid-column:2;align-self:start;background:#FFF;padding:4mm;text-align:center;color:var(--ink)}
 .qr-box svg{display:block;width:100%;height:auto}
-.qr-box p{font-size:13pt;line-height:1.35;margin-top:2mm}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9mm;min-height:0}
 /* Sections spread to fill each column; the exporter measures slack with this switched off. */
 .col{display:flex;flex-direction:column;justify-content:space-between;gap:6mm;min-height:0}
@@ -70,9 +71,9 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <div>
 <h1>去偏的 ETF 共同持股與價格共動網路能改善股票報酬的橫斷面排序嗎？</h1>
 <div class="subtitle">臺灣上市半導體與金融保險業的樣本外檢驗</div>
-<div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div>
+<div class="meta"><div class="auth">黃晨瑋、鐘珮甄、黃苡晴｜國立臺灣師範大學 學習科學學士學位學程 116 級畢業專題｜2026</div><div class="qr-cap">完整網頁版（含 GAT、經濟顯著性、文獻回顧與參考文獻）→</div></div>
 </div>
-<div class="qr-box"><!--@qr--><p>完整網頁版<br/>含 GAT、經濟顯著性、<br/>文獻回顧與參考文獻</p></div>
+<div class="qr-box"><!--@qr--></div>
 <p class="verdict"><span class="tag">主要發現：未建立增量</span>加入雙軌網路後，事前指定的 Ridge 在三種基準 × 兩產業 × 四期距的 ΔIC 皆為負，且未顯著勝過亂配網路；多數組合可排除達到事後界限的改善。</p>
 <p class="gist"><b>一分鐘版本</b>ETF（指數股票型基金：追蹤某個指數、在交易所買賣的基金）相對大盤多配或少配哪些股票，主要來自各自事先訂好的編製規則。兩檔股票若在多檔 ETF 中一起被多配或少配，就被同一批規則歸為同一類，也會一起承受 ETF 申購贖回帶來的買賣。把此類連結與股價連動建構成網路、加進事前指定的 Ridge 模型後，預測哪些股票之後漲得比較多的排序反而變差；但隨機亂配的網路同樣變差，真實網路並未明顯勝出。</p>
 <p class="def">比較無網路基線 M0（只用個股與市場資訊）與完整模型 M1（M0 再加上雙軌網路特徵）。IC 是每天依預測排出的股票名次與實際報酬名次的 Spearman 秩相關，在評估期取平均；增量排序資訊 ΔIC = IC(M1) − IC(M0)。ΔIC 為事後補充判準（理由見第六節）；依事前規則，五項命題（第三節表）中 P2–P4 不支持，P5 不予裁定；P1 另經執行階段的安慰劑判讀後沒有可用的期距，正式為無法裁定（實質判讀：不支持）。</p>

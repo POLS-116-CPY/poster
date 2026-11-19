@@ -17,18 +17,18 @@
     "cols": [
       {
         "col": 1,
-        "height_mm": 865,
-        "slack_mm": 1.9
+        "height_mm": 886.7,
+        "slack_mm": 23.7
       },
       {
         "col": 2,
-        "height_mm": 865,
-        "slack_mm": 2.3
+        "height_mm": 886.7,
+        "slack_mm": 24
       },
       {
         "col": 3,
-        "height_mm": 865,
-        "slack_mm": 4.1
+        "height_mm": 886.7,
+        "slack_mm": 25.9
       }
     ],
     "pageOverflow": 0,
@@ -36,7 +36,7 @@
     "clipped": [],
     "escapes": [],
     "min_pt": {
-      "body": 21,
+      "body": 18,
       "table": 17,
       "note": 15.5,
       "figure": 11.67
