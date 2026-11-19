@@ -270,7 +270,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 <section class="c result" id="equivalence">
 <h2>四、等效界限與檢定力</h2>
 <p class="plain"><b>白話</b>「沒有顯著」只表示沒看到效果；資料能否排除「排序明顯變好」？</p>
-<p class="lead">多數組合可排除達到有意義幅度的改善：Bonferroni 校正（每種基準八個組合為一族）後，ΔIC 單尾 95% 上界低於依主動管理基本定律推得之事後界限 δ<sub>H</sub>（Grinold, 1989）者，Hansen–Hodrick 下為 18/24、Newey–West（圖中所用）下為 23/24；前者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60。未校正時 24 個組合皆可排除；固定 0.01 界限為 18/24 與 16/24。</p>
+<p class="lead">多數組合可排除達到有意義幅度的改善：Bonferroni 校正（每種基準八個組合為一族）後，ΔIC 單尾上界低於依主動管理基本定律推得之事後界限 δ<sub>H</sub>（Grinold, 1989）者，Hansen–Hodrick 下為 18/24、Newey–West（圖中所用）下為 23/24；前者未能排除三種基準的半導體 H=60 與市場基準的金融保險 H=20／30／60。未校正時 24 個組合皆可排除；固定 0.01 界限下，兩者依序為 16/24 與 18/24。</p>
 <h3>ΔIC 單尾上界與等效界限</h3>
 <p><b>判讀方式。</b>線段右端是 95% 信心下仍允許的最大改善；落在紅線左側即排除「改善達到紅線」。δ<sub>H</sub> 是每期排約 30 檔、每 H 日換倉時，使年化資訊比率增加 0.25 所需的 IC：δ<sub>H</sub> = 0.25／√(30·252／H)，H=5／20／30／60 依序為 0.0064／0.0129／0.0157／0.0223。</p>
 <figure><svg aria-labelledby="eq-title eq-desc" id="equivalence-chart" role="img" viewbox="0 0 660 544">
@@ -431,7 +431,7 @@ footer{display:flex;justify-content:space-between;align-items:end;font-size:13pt
 
 <section class="c method" id="method">
 <h2>六、方法論觀察</h2>
-<p class="lead">合併 R² 可在選股未改善時上升：合併 R² 為正的 18 個組合皆屬三種樹模型（含 XGBoost），其中 13 個組合的增益，只需把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）。</p>
+<p class="lead">合併 R² 可在選股未改善時上升：市場基準下合併 R² 為正的 18 個組合皆屬三種樹模型（含 XGBoost），其中 13 個組合的增益，只需把 M0 預測縮放到 M1 的離散度、名次不變，即可完整重現（或超過）。</p>
 <p class="plain"><b>白話</b>只把預測等比例縮小、不改任何排序，合併 R² 就可能變好。所以我們改看排序，並檢查合併 R² 的增益是否只來自尺度。</p>
 <h3>XGBoost 合併 R² 與選股 R² 的比較</h3>
 <div class="lg"><span><span class="sw"></span>合併 R²</span><span><span class="sw outline"></span>選股 R²（同一天股票之間的相對高低）</span></div>
