@@ -453,7 +453,7 @@ assert max(perm_medians) < 0
 checks.append({'label': 'permutation ΔIC medians all negative', 'value': f'{min(perm_medians):.4f} to {max(perm_medians):.4f}'})
 assert '22–36' in paper and '22–36' in text_of('#explore')
 # §11 is exploratory; each "sign" it cites must already be in the paper.
-for lit in ['三組的 Ridge 增量 IC 皆 0/8 為正', '2022–2025 年快速成長', '金融側的顯著比例在擴張前期最高', '僅取超配與依規模加權兩種連結定義亦未使',
+for lit in ['三組的 Ridge 增量 IC 皆 0/8 為正', '2022–2025 年快速成長', '金融保險業的顯著比例在擴張前期最高', '僅取超配與依規模加權兩種連結定義亦未使',
             'Jiang et al. (2014) 發現主動基金共同超配的溢酬在持股公開後很快消失', 'M0 已含個股多期距動量與產業動量']:
     assert lit in paper, lit
 ex = text_of('#explore')
@@ -560,8 +560,8 @@ for literal in ['74.7%', '15.2%']:
     assert literal in paper and literal in visible
 checks.append({'label':'gate pass rates', 'value':'paper §9.9: 74/99, 15/99; units are draws, not cells'})
 # Definitions added for first-time readers (#comprehension audit); each number is the paper's or the code's.
-for lit in ['| M0-Char 閘門 | 1/4（掃描設定）', '| 四基線閘門（U21） | **0/4**（掃描設定）', '過去 60 日平均每日成交周轉高於 TWSE 第 10 百分位',
-            '$\\rho$ 取 0、0.02、0.03、0.05、0.075、0.10，每個（格、$\\rho$）抽 100 次，共 4,800 次重訓']:
+for lit in ['| M0-Char 閘門 | 1/4（掃描設定）', '| 四基線閘門（U21） | **0/4**（掃描設定）', '過去 60 日平均每日成交週轉高於 TWSE 第 10 百分位',
+            '$\\rho$ 取 0、0.02、0.03、0.05、0.075、0.10，每個（組合、$\\rho$）抽 100 次，共 4,800 次重訓']:
     assert lit in paper, lit
 # Round trip = two commission sides + 0.3% sell-side tax: retail 2 × 0.1425% + 0.3% = 0.585%.
 cm = csvrows('results/14_economic/cost_matrix.csv')
